@@ -3,7 +3,7 @@ from control.control import Control
 from states.main_menu_states.main_menu import Main_menu
 from states.main_menu_states.preferences_menu import Preferences_menu
 from states.main_menu_states.load_menu import Load_menu
-from states.in_game_states.in_game import Game
+from states.in_game_states.in_fight import In_fight
 from states.in_game_states.pause_menu import Pause_menu
 
 # import tracemalloc, linecache
@@ -40,7 +40,7 @@ STATE_DICT = {
     'main_menu' : Main_menu(),
     'options' : Preferences_menu(),
     'load_menu' : Load_menu(),
-    'game' : Game(),
+    'game' : In_fight(),
     'pause_menu' : Pause_menu()
 }
 

@@ -1,6 +1,6 @@
 import pygame as pg
 from control.states_control import States
-from assets.__control_settings__ import LANGUAGES_DICT, SCREEN_RESOLUTION_DICT
+from control.__control_settings__ import LANGUAGES_DICT, SCREEN_RESOLUTION_DICT
 from states.main_menu_states.__main_menu_manager__ import Main_menu_manager
 pg.font.init()
 
@@ -44,10 +44,10 @@ class Preferences_menu(States, Main_menu_manager):
         else:
             self.back = "main_menu"
         self.settings_in_preferences = self.settings.copy()
-        self.sfx_volume_in_preference = self.sfx_volume
-        self.music_volume_in_preference = self.music_volume
-        self.language_in_preference = self.language
-        self.screen_resolution_in_preference = self.screen_resolution
+        self.sfx_volume_in_preferences = self.sfx_volume
+        self.music_volume_in_preferences = self.music_volume
+        self.language_in_preferences = self.language
+        self.screen_resolution_in_preferences = self.screen_resolution
         self.init_render_options()
         self.pre_render_options()
 

@@ -3,10 +3,9 @@ from control.states_control import States
 
 pg.font.init()
 
-class Game(States):
+class In_fight(States):
     def __init__(self):
         States.__init__(self)
-        self.next = "main_menu"
 
     def cleanup(self):
         # cleans up all menu related data
@@ -14,9 +13,11 @@ class Game(States):
 
     def startup(self):
         # initiates all menu related data
+        # init new fight instance
         pass
 
     def get_event(self, event):
+        # all input checks for in GAME
         if event.type == pg.MOUSEBUTTONDOWN or event.type == pg.KEYDOWN:
             self.done = True
         

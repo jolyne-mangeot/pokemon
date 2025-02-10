@@ -1,5 +1,5 @@
 import json
-from assets.__control_settings__ import CONTROL_SETTINGS_PATH
+from control.__control_settings__ import CONTROL_SETTINGS_PATH
 
 class Settings:
     def load_settings(self):

@@ -3,31 +3,20 @@
     "active_team" : {
 
         "pokemon_1" : {
-            "png" : {
-                "front" : "front.png",
-                "back" : "back.png"
-            },
+            "id" : "001",
             "name" : "name",
-            "type" : "type1 type2",
             "lvl" : 45,
-            "atk" : 12,
-            "def" : 45,
-            "max_hp" : 156,
-            "current_hp" : 112
+            "current_hp" : 112,
+            "exp" : 12500
         },
 
         "pokemon_2" : {
-            "png" : {
-                "front" : "front.png",
-                "back" : "back.png"
-            },
+            "id" : "002",
             "name" : "name",
             "type" : "type1 type2",
             "lvl" : 99,
-            "atk" : 12,
-            "def" : 45,
-            "max_hp" : 156,
-            "current_hp" : 112
+            "current_hp" : 112,
+            "exp" : 900000
         }
     }
 }

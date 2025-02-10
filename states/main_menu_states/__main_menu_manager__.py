@@ -54,9 +54,9 @@ class Main_menu_manager:
 
         rendered_msg = {"deselected":[], "selected":[]}
         for option in self.options:
-            deselected_render = font_deselected.render(option, 1 , self.deselected_color)
+            deselected_render = font_deselected.render(option, 1, self.deselected_color)
             deselected_rect = deselected_render.get_rect()
-            selected_render = font_selected.render(option, 1 , self.selected_color)
+            selected_render = font_selected.render(option, 1, self.selected_color)
             selected_rect = selected_render.get_rect()
             rendered_msg["deselected"].append((deselected_render, deselected_rect))
             rendered_msg["selected"].append((selected_render, selected_rect))
