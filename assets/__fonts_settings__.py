@@ -1,0 +1,1 @@
+FONTS_PATH = "assets/fonts/"
