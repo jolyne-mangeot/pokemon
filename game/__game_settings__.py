@@ -1,0 +1,1 @@
+POKEDEX_DICT_PATH = "game/pokemons/pokedex_dict.json"
