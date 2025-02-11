@@ -19,17 +19,24 @@ class Pokedex:
         self.init_player_team()
     
     def init_player_team(self):
-        for pokemon in list(self.active_team.keys()):
-            self.add_pokemon(self.active_team[pokemon]["entry"], self.active_team[pokemon]["experience_points"])
+        for pokemon_data in list(self.active_team.keys()):
+            pokemon = self.add_pokemon(self.active_team[pokemon_data]["entry"],\
+                                       self.active_team[pokemon_data]["experience_points"])
             self.player_team.append(pokemon)
 
     def add_pokemon(self, entry, experience_points=0):
         pokemon = Pokemon(self.pokemon_dict[entry], experience_points)
+        return pokemon
     
     def check_evolutions(self):
         for pokemon in self.player_team:
             if pokemon.level >= pokemon.evolution_level:
-                pokemon.evolve(Pokedex.pokemon_dict[pokemon.evolution])
+                if bool(pokemon.evolution):
+                    new_entry = pokemon.evolution
+                else:
+                    new_entry = int(pokemon.entry)+1
+                    new_entry = "00" + str(new_entry)
+                pokemon.evolve(Pokedex.pokemon_dict[new_entry])
     
     def init_player_pokedex_data(self):
         pass

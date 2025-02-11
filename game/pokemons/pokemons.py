@@ -18,7 +18,8 @@ class Pokemon:
         self.defense = round(((self.défense*2) * self.level)/100 + 5, 0)
         self.health_points = round(((self.point_de_vie*2) * self.level)/100 + self.level+10, 0)
     
-    def gain_experience(self, gained_experience):
+    def gain_experience(self, defeated_pokemon):
+        gained_experience = round((defeated_pokemon.yield_experience*defeated_pokemon.level)/7 * 1.5,0)
         self.experience_points += gained_experience
         self.current_experience += gained_experience
         self.level_up()
@@ -65,9 +66,10 @@ pokedex = {
 }
 gained_experience = round((pokedex["#0001"]['yield_experience']*54) / 7 * 1.5, 0)
 pokemon1 = Pokemon(pokedex["#0001"], 0)
-pokemon1.gain_experience(gained_experience)
+pokemon2 = Pokemon(pokedex["#0001"], 45000)
+pokemon1.gain_experience(pokemon2)
 pokemon1.print_stats()
-pokemon1.gain_experience(gained_experience)
+pokemon1.gain_experience(pokemon2)
 pokemon1.print_stats()
-pokemon1.gain_experience(4500)
+pokemon1.gain_experience(pokemon2)
 pokemon1.print_stats()
