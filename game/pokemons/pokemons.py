@@ -1,4 +1,3 @@
-
 class Pokemon:
     def __init__(self, pokedex_entry, experience_points):
         self.__dict__.update(pokedex_entry)
@@ -15,19 +14,18 @@ class Pokemon:
             sep="\n")
 
     def get_stats(self):
-        self.attack = ((self.puissance_d_attaque * 2) * self.level) / 100 + 5
-        self.defense = ((self.défense * 2) * self.level) / 100 + 5
-        self.health_points = ((self.point_de_vie * 2) * self.level) / 100 + self.level + 10
+        self.attack = round(((self.puissance_d_attaque*2) * self.level)/100 + 5, 0)
+        self.defense = round(((self.défense*2) * self.level)/100 + 5, 0)
+        self.health_points = round(((self.point_de_vie*2) * self.level)/100 + self.level+10, 0)
     
     def gain_experience(self, gained_experience):
         self.experience_points += gained_experience
         self.current_experience += gained_experience
         self.level_up()
 
-    def evolve(self):
-        # condition if level and evolve level
-        # self.__init__(self.evolution, self.experience_points)
-        pass
+    def evolve(self, new_pokedex_entry):
+        if self.level >= self.evolution_level:
+            self.__init__(new_pokedex_entry, self.experience_points)
     
     def level_up(self):
         if self.level == 1:
@@ -49,26 +47,27 @@ class Pokemon:
                 break
         return pokemon_level, current_experience
 
-pokemon_entry = {
-      "Ndex": "#0001",
-      "nom": "Bulbasaur",
-      "type": ["Grass", "Poison"],
-      "défense": 49,
-      "puissance_d_attaque": 49,
-      "point_de_vie": 45,
-      "evolution_level" : 16,
-      "evolution" : "#0002",
-      "yield_experience" : 64,
-      "images": {
-        "front": "img/001/front.png",
-        "back": "img/001/back.png"
-      }
+pokedex = {
+    "#0001" : {
+        "nom": "Bulbasaur",
+        "type": ["Grass", "Poison"],
+        "défense": 49,
+        "puissance_d_attaque": 49,
+        "point_de_vie": 45,
+        "evolution_level" : 16,
+        "evolution" : "#0002",
+        "yield_experience" : 64,
+        "images": {
+            "front": "img/001/front.png",
+            "back": "img/001/back.png"
+        }
     }
-gained_experience = round((pokemon_entry['yield_experience']*54) / 7 * 1.5, 0)
-pokemon1 = Pokemon(pokemon_entry, 0)
+}
+gained_experience = round((pokedex["#0001"]['yield_experience']*54) / 7 * 1.5, 0)
+pokemon1 = Pokemon(pokedex["#0001"], 0)
 pokemon1.gain_experience(gained_experience)
 pokemon1.print_stats()
 pokemon1.gain_experience(gained_experience)
 pokemon1.print_stats()
-pokemon1.gain_experience(gained_experience)
+pokemon1.gain_experience(4500)
 pokemon1.print_stats()

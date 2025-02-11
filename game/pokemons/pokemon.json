@@ -1,534 +1,424 @@
-[
-    {
-      "Ndex": "#0001",
-      "nom": "Bulbasaur",
-      "type": ["Grass", "Poison"],
-      "défense": 49,
-      "puissance_d_attaque": 49,
-      "point_de_vie": 45,
-      "evolution_level" : 16,
-      "evolution" : "#0002",
-      "yield_experience" : 64,
-      "images": {
-        "front": "img/001/front.png",
-        "back": "img/001/back.png"
-      }
-    },
-    {
-      "Ndex": "#0002",
-      "nom": "Ivysaur",
-      "type": ["Grass", "Poison"],
-      "défense": 63,
-      "puissance_d_attaque": 62,
-      "point_de_vie": 60,
-      "images": {
-        "front": "img/002/front.png",
-        "back": "img/002/back.png"
-      }
-    },
-    {
-      "Ndex": "#0003",
-      "nom": "Venusaur",
-      "type": ["Grass", "Poison"],
-      "défense": 83,
-      "puissance_d_attaque": 82,
-      "point_de_vie": 80,
-      "images": {
-        "front": "img/003/front.png",
-        "back": "img/003/back.png"
-      }
-    },
-    {
-      "Ndex": "#0004",
-      "nom": "Charmander",
-      "type": ["Fire"],
-      "défense": 43,
-      "puissance_d_attaque": 52,
-      "point_de_vie": 39,
-      "images": {
-        "front": "img/004/front.png",
-        "back": "img/004/back.png"
-      }
-    },
-    {
-      "Ndex": "#0005",
-      "nom": "Charmeleon",
-      "type": ["Fire"],
-      "défense": 58,
-      "puissance_d_attaque": 64,
-      "point_de_vie": 58,
-      "images": {
-        "front": "img/005/front.png",
-        "back": "img/005/back.png"
-      }
-    },
-    {
-      "Ndex": "#0006",
-      "nom": "Charizard",
-      "type": ["Fire", "Flying"],
-      "défense": 78,
-      "puissance_d_attaque": 84,
-      "point_de_vie": 78,
-      "images": {
-        "front": "img/006/front.png",
-        "back": "img/006/back.png"
-      }
-    },
-    {
-      "Ndex": "#0007",
-      "nom": "Squirtle",
-      "type": ["Water"],
-      "défense": 65,
-      "puissance_d_attaque": 48,
-      "point_de_vие": 44,
-      "images": {
-        "front": "img/007/front.png",
-        "back": "img/007/back.png"
-      }
-    },
-    {
-      "Ndex": "#0008",
-      "nom": "Wartortle",
-      "type": ["Water"],
-      "défense": 80,
-      "puissance_d_attaque": 63,
-      "point_de_vie": 59,
-      "images": {
-        "front": "img/008/front.png",
-        "back": "img/008/back.png"
-      }
-    },
-    {
-      "Ndex": "#0009",
-      "nom": "Blastoise",
-      "type": ["Water"],
-      "défense": 100,
-      "puissance_d_attaque": 83,
-      "point_de_vie": 79,
-      "images": {
-        "front": "img/009/front.png",
-        "back": "img/009/back.png"
-      }
-    },
-    {
-      "Ndex": "#0010",
-      "nom": "Caterpie",
-      "type": ["Bug"],
-      "défense": 35,
-      "puissance_d_attaque": 30,
-      "point_de_vie": 45,
-      "images": {
-        "front": "img/010/front.png",
-        "back": "img/010/back.png"
-      }
-    },
-    {
-      "Ndex": "#0011",
-      "nom": "Metapod",
-      "type": ["Bug"],
-      "défense": 55,
-      "puissance_d_attaque": 20,
-      "point_de_vie": 50,
-      "images": {
-        "front": "img/011/front.png",
-        "back": "img/011/back.png"
-      }
-    },
-    {
-      "Ndex": "#0012",
-      "nom": "Butterfree",
-      "type": ["Bug", "Flying"],
-      "défense": 50,
-      "puissance_d_attaque": 45,
-      "point_de_vie": 60,
-      "images": {
-        "front": "img/012/front.png",
-        "back": "img/012/back.png"
-      }
-    },
-    {
-      "Ndex": "#0013",
-      "nom": "Weedle",
-      "type": ["Bug", "Poison"],
-      "défense": 30,
-      "puissance_d_attaque": 35,
-      "point_de_vie": 40,
-      "images": {
-        "front": "img/013/front.png",
-        "back": "img/013/back.png"
-      }
-    },
-    {
-      "Ndex": "#0014",
-      "nom": "Kakuna",
-      "type": ["Bug", "Poison"],
-      "défense": 50,
-      "puissance_d_attaque": 25,
-      "point_de_vie": 45,
-      "images": {
-        "front": "img/014/front.png",
-        "back": "img/014/back.png"
-      }
-    },
-    {
-      "Ndex": "#0015",
-      "nom": "Beedrill",
-      "type": ["Bug", "Poison"],
-      "défense": 40,
-      "puissance_d_attaque": 90,
-      "point_de_vie": 65,
-      "images": {
-        "front": "img/015/front.png",
-        "back": "img/015/back.png"
-      }
-    },
-    {
-      "Ndex": "#0016",
-      "nom": "Pidgey",
-      "type": ["Normal", "Flying"],
-      "défense": 40,
-      "puissance_d_attaque": 45,
-      "point_de_vie": 40,
-      "images": {
-        "front": "img/016/front.png",
-        "back": "img/016/back.png"
-      }
-    },
-    {
-      "Ndex": "#0017",
-      "nom": "Pidgeotto",
-      "type": ["Normal", "Flying"],
-      "défense": 55,
-      "puissance_d_attaque": 60,
-      "point_de_vie": 63,
-      "images": {
-        "front": "img/017/front.png",
-        "back": "img/017/back.png"
-      }
-    },
-    {
-      "Ndex": "#0018",
-      "nom": "Pidgeot",
-      "type": ["Normal", "Flying"],
-      "défense": 75,
-      "puissance_d_attaque": 80,
-      "point_de_vie": 83,
-      "images": {
-        "front": "img/018/front.png",
-        "back": "img/018/back.png"
-      }
-    },
-    {
-      "Ndex": "#0019",
-      "nom": "Rattata",
-      "type": ["Normal"],
-      "défense": 35,
-      "puissance_d_attaque": 56,
-      "point_de_vie": 30,
-      "images": {
-        "front": "img/019/front.png",
-        "back": "img/019/back.png"
-      }
-    },
-    {
-      "Ndex": "#0020",
-      "nom": "Raticate",
-      "type": ["Normal"],
-      "défense": 60,
-      "puissance_d_attaque": 81,
-      "point_de_vie": 55,
-      "images": {
-        "front": "img/020/front.png",
-        "back": "img/020/back.png"
-      }
-    },
-    {
-      "Ndex": "#0021",
-      "nom": "Spearow",
-      "type": ["Normal", "Flying"],
-      "défense": 30,
-      "puissance_d_attaque": 60,
-      "point_de_vie": 40,
-      "images": {
-        "front": "img/021/front.png",
-        "back": "img/021/back.png"
-      }
-    },
-    {
-      "Ndex": "#0022",
-      "nom": "Fearow",
-      "type": ["Normal", "Flying"],
-      "défense": 65,
-      "puissance_d_attaque": 90,
-      "point_de_vie": 65,
-      "images": {
-        "front": "img/022/front.png",
-        "back": "img/022/back.png"
-      }
-    },
-    {
-      "Ndex": "#0023",
-      "nom": "Ekans",
-      "type": ["Poison"],
-      "défense": 44,
-      "puissance_d_attaque": 60,
-      "point_de_vie": 35,
-      "images": {
-        "front": "img/023/front.png",
-        "back": "img/023/back.png"
-      }
-    },
-    {
-      "Ndex": "#0024",
-      "nom": "Arbok",
-      "type": ["Poison"],
-      "défense": 69,
-      "puissance_d_attaque": 85,
-      "point_de_vie": 60,
-      "images": {
-        "front": "img/024/front.png",
-        "back": "img/024/back.png"
-      }
-    },
-    {
-      "Ndex": "#0025",
-      "nom": "Pikachu",
-      "type": ["Electric"],
-      "défense": 40,
-      "puissance_d_attaque": 55,
-      "point_de_vie": 35,
-      "images": {
-        "front": "img/025/front.png",
-        "back": "img/025/back.png"
-      }
-    },
-    {
-      "Ndex": "#0026",
-      "nom": "Raichu",
-      "type": ["Electric"],
-      "défense": 55,
-      "puissance_d_attaque": 90,
-      "point_de_vie": 60,
-      "images": {
-        "front": "img/026/front.png",
-        "back": "img/026/back.png"
-      }
-    },
-    {
-      "Ndex": "#0027",
-      "nom": "Sandshrew",
-      "type": ["Ground"],
-      "défense": 85,
-      "puissance_d_attaque": 75,
-      "point_de_vie": 50,
-      "images": {
-        "front": "img/027/front.png",
-        "back": "img/027/back.png"
-      }
-    },
-    {
-      "Ndex": "#0028",
-      "nom": "Sandslash",
-      "type": ["Ground"],
-      "défense": 110,
-      "puissance_d_attaque": 100,
-      "point_de_vie": 75,
-      "images": {
-        "front": "img/028/front.png",
-        "back": "img/028/back.png"
-      }
-    },
-    {
-      "Ndex": "#0029",
-      "nom": "Nidoran♀",
-      "type": ["Poison"],
-      "défense": 52,
-      "puissance_d_attaque": 47,
-      "point_de_vie": 55,
-      "images": {
-        "front": "img/029/front.png",
-        "back": "img/029/back.png"
-      }
-    },
-    {
-      "Ndex": "#0030",
-      "nom": "Nidorina",
-      "type": ["Poison"],
-      "défense": 67,
-      "puissance_d_attaque": 62,
-      "point_de_vie": 70,
-      "images": {
-        "front": "img/030/front.png",
-        "back": "img/030/back.png"
-      }
-    },
-    {
-      "Ndex": "#0031",
-      "nom": "Nidoqueen",
-      "type": ["Poison", "Ground"],
-      "défense": 87,
-      "puissance_d_attaque": 92,
-      "point_de_vie": 90,
-      "images": {
-        "front": "img/031/front.png",
-        "back": "img/031/back.png"
-      }
-    },
-    {
-        "Ndex": "#0032",
-        "nom": "Nidoran♂",
-        "type": ["Poison"],
-        "défense": 40,
-        "puissance_d_attaque": 57,
-        "point_de_vie": 46,
-        "images": {
-          "front": "img/032/front.png",
-          "back": "img/032/back.png"
-        }
-      },
-      {
-        "Ndex": "#0033",
-        "nom": "Nidorino",
-        "type": ["Poison"],
-        "défense": 57,
-        "puissance_d_attaque": 72,
-        "point_de_vie": 61,
-        "images": {
-          "front": "img/033/front.png",
-          "back": "img/033/back.png"
-        }
-      },
-      {
-        "Ndex": "#0034",
-        "nom": "Nidoking",
-        "type": ["Poison", "Ground"],
-        "défense": 77,
-        "puissance_d_attaque": 102,
-        "point_de_vie": 81,
-        "images": {
-          "front": "img/034/front.png",
-          "back": "img/034/back.png"
-        }
-      },
-      {
-        "Ndex": "#0035",
-        "nom": "Clefairy",
-        "type": ["Fairy"],
-        "défense": 48,
-        "puissance_d_attaque": 45,
-        "point_de_vie": 70,
-        "images": {
-          "front": "img/035/front.png",
-          "back": "img/035/back.png"
-        }
-      },
-      {
-        "Ndex": "#0036",
-        "nom": "Clefable",
-        "type": ["Fairy"],
-        "défense": 73,
-        "puissance_d_attaque": 70,
-        "point_de_vie": 95,
-        "images": {
-          "front": "img/036/front.png",
-          "back": "img/036/back.png"
-        }
-      },
-      {
-        "Ndex": "#0037",
-        "nom": "Vulpix",
-        "type": ["Fire"],
-        "défense": 40,
-        "puissance_d_attaque": 41,
-        "point_de_vie": 38,
-        "images": {
-          "front": "img/037/front.png",
-          "back": "img/037/back.png"
-        }
-      },
-      {
-        "Ndex": "#0037A",
-        "nom": "Vulpix (Alolan Form)",
-        "type": ["Ice"],
-        "défense": 40,
-        "puissance_d_attaque": 41,
-        "point_de_vie": 38,
-        "images": {
-          "front": "img/037A/front.png",
-          "back": "img/037A/back.png"
-        }
-      },
-      {
-        "Ndex": "#0038",
-        "nom": "Ninetales",
-        "type": ["Fire"],
-        "défense": 75,
-        "puissance_d_attaque": 76,
-        "point_de_vie": 73,
-        "images": {
-          "front": "img/038/front.png",
-          "back": "img/038/back.png"
-        }
-      },
-      {
-        "Ndex": "#0038A",
-        "nom": "Ninetales (Alolan Form)",
-        "type": ["Ice", "Fairy"],
-        "défense": 75,
-        "puissance_d_attaque": 81,
-        "point_de_vie": 73,
-        "images": {
-          "front": "img/038A/front.png",
-          "back": "img/038A/back.png"
-        }
-      },
-      {
-        "Ndex": "#0039",
-        "nom": "Jigglypuff",
-        "type": ["Normal", "Fairy"],
-        "défense": 20,
-        "puissance_d_attaque": 45,
-        "point_de_vie": 115,
-        "images": {
-          "front": "img/039/front.png",
-          "back": "img/039/back.png"
-        }
-      },
-      {
-        "Ndex": "#0040",
-        "nom": "Wigglytuff",
-        "type": ["Normal", "Fairy"],
-        "défense": 45,
-        "puissance_d_attaque": 70,
-        "point_de_vie": 140,
-        "images": {
-          "front": "img/040/front.png",
-          "back": "img/040/back.png"
-        }
-      },
-      {
-        "Ndex": "#0041",
-        "nom": "Zubat",
-        "type": ["Poison", "Flying"],
-        "défense": 35,
-        "puissance_d_attaque": 45,
-        "point_de_vie": 40,
-        "images": {
-          "front": "img/041/front.png",
-          "back": "img/041/back.png"
-        }
-      },
-      {
-        "Ndex": "#0042",
-        "nom": "Golbat",
-        "type": ["Poison", "Flying"],
-        "défense": 70,
-        "puissance_d_attaque": 80,
-        "point_de_vie": 75,
-        "images": {
-          "front": "img/042/front.png",
-          "back": "img/042/back.png"
-        }
-      }
+{
+    "#0001" : {
+        "name": "Bulbasaur",
+        "type": ["Grass", "Poison"],
+        "defence": 49,
+        "attack": 49,
+        "health_points": 45,
 
-]
+        "evolution_level" : 16,
+        "yield_experience" : 64
+    },
+    "#0002" : {
+        "name": "Ivysaur",
+        "type": ["Grass", "Poison"],
+        "defence": 63,
+        "attack": 62,
+        "health_points": 60,
+
+        "evolution_level" : 32,
+        "yield_experience" : 142
+    },
+    "#0003" : {
+        "name": "Venusaur",
+        "type": ["Grass", "Poison"],
+        "defence": 83,
+        "attack": 82,
+        "health_points": 80,
+
+        "yield_experience" : 263
+    },
+    "#0004" : {
+        "name": "Charmander",
+        "type": ["Fire"],
+        "defence": 43,
+        "attack": 52,
+        "health_points": 39,
+
+        "evolution_level" : 16,
+        "yield_experience" : 62
+    },
+    "#0005" : {
+        "name": "Charmeleon",
+        "type": ["Fire"],
+        "defence": 58,
+        "attack": 64,
+        "health_points": 58,
+
+        "evolution_level" : 36,
+        "yield_experience" : 142
+    },
+    "#0006" : {
+        "name": "Charizard",
+        "type": ["Fire", "Flying"],
+        "defence": 78,
+        "attack": 84,
+        "health_points": 78,
+
+        "yield_experience" : 267
+    },
+    "#0007" : {
+        "name": "Squirtle",
+        "type": ["Water"],
+        "defence": 65,
+        "attack": 48,
+        "health_points": 44,
+
+        "evolution_level" : 16,
+        "yield_experience" : 63
+    },
+    "#0008" : {
+        "name": "Wartortle",
+        "type": ["Water"],
+        "defence": 80,
+        "attack": 63,
+        "health_points": 59,
+
+        "evolution_level" : 36,
+        "yield_experience" : 142
+    },
+    "#0009" : {
+        "name": "Blastoise",
+        "type": ["Water"],
+        "defence": 100,
+        "attack": 83,
+        "health_points": 79,
+
+        "yield_experience" : 265
+    },
+    "#0010" : {
+        "name": "Caterpie",
+        "type": ["Bug"],
+        "defence": 35,
+        "attack": 30,
+        "health_points": 45,
+
+        "evolution_level" : 7,
+        "yield_experience" : 39
+    },
+    "#0011" : {
+        "name": "Metapod",
+        "type": ["Bug"],
+        "defence": 55,
+        "attack": 20,
+        "health_points": 50,
+
+        "evolution_level" : 10,
+        "yield_experience" : 72
+    },
+    "#0012" : {
+        "name": "Butterfree",
+        "type": ["Bug", "Flying"],
+        "defence": 50,
+        "attack": 45,
+        "health_points": 60,
+
+        "yield_experience" : 198
+    },
+    "#0013" : {
+        "name": "Weedle",
+        "type": ["Bug", "Poison"],
+        "defence": 30,
+        "attack": 35,
+        "health_points": 40,
+
+        "evolution_level" : 7,
+        "yield_experience" : 39
+    },
+    "#0014" : {
+        "name": "Kakuna",
+        "type": ["Bug", "Poison"],
+        "defence": 50,
+        "attack": 25,
+        "health_points": 45,
+
+        "evolution_level" : 10,
+        "yield_experience" : 72
+    },
+    "#0015" : {
+        "name": "Beedrill",
+        "type": ["Bug", "Poison"],
+        "defence": 40,
+        "attack": 90,
+        "health_points": 65,
+
+        "yield_experience" : 198
+    },
+    "#0016" : {
+        "name": "Pidgey",
+        "type": ["Normal", "Flying"],
+        "defence": 40,
+        "attack": 45,
+        "health_points": 40,
+
+        "evolution_level" : 18,
+        "yield_experience" : 50
+    },
+    "#0017" : {
+        "name": "Pidgeotto",
+        "type": ["Normal", "Flying"],
+        "defence": 55,
+        "attack": 60,
+        "health_points": 63,
+
+        "evolution_level" : 36,
+        "yield_experience" : 122
+    },
+    "#0018" : {
+        "name": "Pidgeot",
+        "type": ["Normal", "Flying"],
+        "defence": 75,
+        "attack": 80,
+        "health_points": 83,
+
+        "yield_experience" : 240
+    },
+    "#0019" : {
+        "name": "Rattata",
+        "type": ["Normal"],
+        "defence": 35,
+        "attack": 56,
+        "health_points": 30,
+
+        "evolution_level" : 20,
+        "yield_experience" : 51
+    },
+    "#0020" : {
+        "name": "Raticate",
+        "type": ["Normal"],
+        "defence": 60,
+        "attack": 81,
+        "health_points": 55,
+
+        "yield_experience" : 145
+    },
+    "#0021" : {
+        "name": "Spearow",
+        "type": ["Normal", "Flying"],
+        "defence": 30,
+        "attack": 60,
+        "health_points": 40,
+
+        "evolution_level" : 20,
+        "yield_experience" : 52
+    },
+    "#0022" : {
+        "name": "Fearow",
+        "type": ["Normal", "Flying"],
+        "defence": 65,
+        "attack": 90,
+        "health_points": 65,
+
+        "yield_experience" : 155
+    },
+    "#0023" : {
+        "name": "Ekans",
+        "type": ["Poison"],
+        "defence": 44,
+        "attack": 60,
+        "health_points": 35,
+
+        "evolution_level" : 22,
+        "yield_experience" : 58
+    },
+    "#0024" : {
+        "name": "Arbok",
+        "type": ["Poison"],
+        "defence": 69,
+        "attack": 85,
+        "health_points": 60,
+
+        "yield_experience" : 157
+    },
+    "#0025" : {
+        "name": "Pikachu",
+        "type": ["Electric"],
+        "defence": 40,
+        "attack": 55,
+        "health_points": 35,
+
+        "evolution_level" : 22,
+        "yield_experience" : 112
+    },
+    "#0026" : {
+        "name": "Raichu",
+        "type": ["Electric"],
+        "defence": 55,
+        "attack": 90,
+        "health_points": 60,
+
+        "yield_experience" : 243
+    },
+    "#0027" : {
+        "name": "Sandshrew",
+        "type": ["Ground"],
+        "defence": 85,
+        "attack": 75,
+        "health_points": 50,
+
+        "evolution_level" : 22,
+        "yield_experience" : 60
+    },
+    "#0028" : {
+        "name": "Sandslash",
+        "type": ["Ground"],
+        "defence": 110,
+        "attack": 100,
+        "health_points": 75,
+
+        "yield_experience" : 158
+    },
+    "#0029" : {
+        "name": "Nidoran♀",
+        "type": ["Poison"],
+        "defence": 52,
+        "attack": 47,
+        "health_points": 55,
+
+        "evolution_level" : 16,
+        "yield_experience" : 55
+    },
+    "#0030" : {
+        "name": "Nidorina",
+        "type": ["Poison"],
+        "defence": 67,
+        "attack": 62,
+        "health_points": 70,
+
+        "evolution_level" : 36,
+        "yield_experience" : 128
+    },
+    "#0031" : {
+        "name": "Nidoqueen",
+        "type": ["Poison", "Ground"],
+        "defence": 87,
+        "attack": 92,
+        "health_points": 90,
+
+        "yield_experience" : 253
+    },
+    "#0032" : {
+        "name": "Nidoran♂",
+        "type": ["Poison"],
+        "defence": 40,
+        "attack": 57,
+        "health_points": 46,
+
+        "evolution_level" : 16,
+        "yield_experience" : 55
+    },
+    "#0033" : {
+        "name": "Nidorino",
+        "type": ["Poison"],
+        "defence": 57,
+        "attack": 72,
+        "health_points": 61,
+
+        "evolution_level" : 36,
+        "yield_experience" : 128
+    },
+    "#0034" : {
+        "name": "Nidoking",
+        "type": ["Poison", "Ground"],
+        "defence": 77,
+        "attack": 102,
+        "health_points": 81,
+
+        "yield_experience" : 253
+    },
+    "#0035" : {
+        "name": "Clefairy",
+        "type": ["Fairy"],
+        "defence": 48,
+        "attack": 45,
+        "health_points": 70,
+
+        "evolution_level" : 28,
+        "yield_experience" : 113
+    },
+    "#0036" : {
+        "name": "Clefable",
+        "type": ["Fairy"],
+        "defence": 73,
+        "attack": 70,
+        "health_points": 95,
+
+        "yield_experience" : 242
+    },
+    "#0037" : {
+        "name": "Vulpix",
+        "type": ["Fire"],
+        "defence": 40,
+        "attack": 41,
+        "health_points": 38,
+
+        "evolution_level" : 22,
+        "yield_experience" : 60
+    },
+    "#0037A" : {
+        "name": "Vulpix (Alolan Form)",
+        "type": ["Ice"],
+        "defence": 40,
+        "attack": 41,
+        "health_points": 38,
+
+        "evolution_level" : 22,
+        "yield_experience" : 60
+    },
+    "#0038" : {
+        "name": "Ninetales",
+        "type": ["Fire"],
+        "defence": 75,
+        "attack": 76,
+        "health_points": 73,
+
+        "yield_experience" : 177
+    },
+    "#0038A" : {
+        "name": "Ninetales (Alolan Form)",
+        "type": ["Ice", "Fairy"],
+        "defence": 75,
+        "attack": 81,
+        "health_points": 73,
+
+        "yield_experience" : 177
+    },
+    "#0039" : {
+        "name": "Jigglypuff",
+        "type": ["Normal", "Fairy"],
+        "defence": 20,
+        "attack": 45,
+        "health_points": 115,
+
+        "evolution_level" : 28,
+        "yield_experience" : 95
+    },
+    "#0040" : {
+        "name": "Wigglytuff",
+        "type": ["Normal", "Fairy"],
+        "defence": 45,
+        "attack": 70,
+        "health_points": 140,
+
+        "yield_experience" : 218
+    },
+    "#0041" : {
+        "name": "Zubat",
+        "type": ["Poison", "Flying"],
+        "defence": 35,
+        "attack": 45,
+        "health_points": 40,
+
+        "evolution_level" : 22,
+        "yield_experience" : 49
+    },
+    "#0042" : {
+        "name": "Golbat",
+        "type": ["Poison", "Flying"],
+        "defence": 70,
+        "attack": 80,
+        "health_points": 75,
+
+        "yield_experience" : 159
+    }
+}

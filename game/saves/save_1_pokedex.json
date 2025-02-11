@@ -4,15 +4,13 @@
     "active_team" : {
 
         "pokemon_1" : {
-            "id" : "001",
-            "exp" : 12500
+            "entry" : "#0001",
+            "experience_points" : 12500
         },
 
         "pokemon_2" : {
-            "id" : "002",
-            "name" : "name",
-            "type" : "type1 type2",
-            "exp" : 900000
+            "entry" : "#0002",
+            "experience_points" : 900000
         }
     }
 }
