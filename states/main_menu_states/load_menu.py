@@ -28,6 +28,7 @@ class Load_menu(States, Main_menu_manager):
         """
             initiates all menu-related data
         """
+        self.startup_menu()
         self.init_config()
         pass
 

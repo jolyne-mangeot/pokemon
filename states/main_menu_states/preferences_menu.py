@@ -39,6 +39,9 @@ class Preferences_menu(States, Main_menu_manager):
         """
             initiates all menu related data
         """
+        self.load_graphics_main_menues()
+        self.load_graphics_preferences_menu()
+
         if self.previous == "game":
             self.back = "game"
         else:
@@ -131,4 +134,5 @@ class Preferences_menu(States, Main_menu_manager):
             launch all display related scripts proper to this menu back
             the main_menu states shared scripts
         """
+        # self.screen.blit(self.background)
         self.draw_menu_options()

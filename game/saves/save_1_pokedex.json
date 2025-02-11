@@ -6,7 +6,6 @@
         "pokemon_1" : {
             "id" : "001",
             "name" : "name",
-            "current_hp" : 112,
             "exp" : 12500
         },
 
@@ -14,7 +13,6 @@
             "id" : "002",
             "name" : "name",
             "type" : "type1 type2",
-            "current_hp" : 112,
             "exp" : 900000
         }
     }

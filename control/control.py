@@ -1,7 +1,8 @@
 import pygame as pg
 from control.settings import Settings
+from control.display import Display
 
-class Control(Settings):
+class Control(Settings, Display):
     def init_settings(self):
         """
             load game settings and init essential data related to Pygame

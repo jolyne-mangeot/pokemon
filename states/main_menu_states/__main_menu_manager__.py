@@ -1,4 +1,5 @@
 import pygame as pg
+from control.states_control import States
 
 class Main_menu_manager:
     def __init__(self):
@@ -17,7 +18,7 @@ class Main_menu_manager:
             for all main_menu states, enumerate buttons and places them before
             checking for selected index button to place it on the same position
         """
-        self.screen.fill((255,0,0))
+        self.screen.fill((100,0,0))
         for index, option in enumerate(self.rendered["deselected"]):
             option[1].center = (self.screen_rect.centerx, self.from_top + index*self.spacer)
             if index == self.selected_index:
