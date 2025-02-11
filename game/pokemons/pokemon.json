@@ -1,5 +1,5 @@
 {
-    "#0001" : {
+    "0001" : {
         "name": "Bulbasaur",
         "type": ["Grass", "Poison"],
         "defence": 49,
@@ -9,7 +9,7 @@
         "evolution_level" : 16,
         "yield_experience" : 64
     },
-    "#0002" : {
+    "0002" : {
         "name": "Ivysaur",
         "type": ["Grass", "Poison"],
         "defence": 63,
@@ -19,7 +19,7 @@
         "evolution_level" : 32,
         "yield_experience" : 142
     },
-    "#0003" : {
+    "0003" : {
         "name": "Venusaur",
         "type": ["Grass", "Poison"],
         "defence": 83,
@@ -28,7 +28,7 @@
 
         "yield_experience" : 263
     },
-    "#0004" : {
+    "0004" : {
         "name": "Charmander",
         "type": ["Fire"],
         "defence": 43,
@@ -38,7 +38,7 @@
         "evolution_level" : 16,
         "yield_experience" : 62
     },
-    "#0005" : {
+    "0005" : {
         "name": "Charmeleon",
         "type": ["Fire"],
         "defence": 58,
@@ -48,7 +48,7 @@
         "evolution_level" : 36,
         "yield_experience" : 142
     },
-    "#0006" : {
+    "0006" : {
         "name": "Charizard",
         "type": ["Fire", "Flying"],
         "defence": 78,
@@ -57,7 +57,7 @@
 
         "yield_experience" : 267
     },
-    "#0007" : {
+    "0007" : {
         "name": "Squirtle",
         "type": ["Water"],
         "defence": 65,
@@ -67,7 +67,7 @@
         "evolution_level" : 16,
         "yield_experience" : 63
     },
-    "#0008" : {
+    "0008" : {
         "name": "Wartortle",
         "type": ["Water"],
         "defence": 80,
@@ -77,7 +77,7 @@
         "evolution_level" : 36,
         "yield_experience" : 142
     },
-    "#0009" : {
+    "0009" : {
         "name": "Blastoise",
         "type": ["Water"],
         "defence": 100,
@@ -86,7 +86,7 @@
 
         "yield_experience" : 265
     },
-    "#0010" : {
+    "0010" : {
         "name": "Caterpie",
         "type": ["Bug"],
         "defence": 35,
@@ -96,7 +96,7 @@
         "evolution_level" : 7,
         "yield_experience" : 39
     },
-    "#0011" : {
+    "0011" : {
         "name": "Metapod",
         "type": ["Bug"],
         "defence": 55,
@@ -106,7 +106,7 @@
         "evolution_level" : 10,
         "yield_experience" : 72
     },
-    "#0012" : {
+    "0012" : {
         "name": "Butterfree",
         "type": ["Bug", "Flying"],
         "defence": 50,
@@ -115,7 +115,7 @@
 
         "yield_experience" : 198
     },
-    "#0013" : {
+    "0013" : {
         "name": "Weedle",
         "type": ["Bug", "Poison"],
         "defence": 30,
@@ -125,7 +125,7 @@
         "evolution_level" : 7,
         "yield_experience" : 39
     },
-    "#0014" : {
+    "0014" : {
         "name": "Kakuna",
         "type": ["Bug", "Poison"],
         "defence": 50,
@@ -135,7 +135,7 @@
         "evolution_level" : 10,
         "yield_experience" : 72
     },
-    "#0015" : {
+    "0015" : {
         "name": "Beedrill",
         "type": ["Bug", "Poison"],
         "defence": 40,
@@ -144,7 +144,7 @@
 
         "yield_experience" : 198
     },
-    "#0016" : {
+    "0016" : {
         "name": "Pidgey",
         "type": ["Normal", "Flying"],
         "defence": 40,
@@ -154,7 +154,7 @@
         "evolution_level" : 18,
         "yield_experience" : 50
     },
-    "#0017" : {
+    "0017" : {
         "name": "Pidgeotto",
         "type": ["Normal", "Flying"],
         "defence": 55,
@@ -164,7 +164,7 @@
         "evolution_level" : 36,
         "yield_experience" : 122
     },
-    "#0018" : {
+    "0018" : {
         "name": "Pidgeot",
         "type": ["Normal", "Flying"],
         "defence": 75,
@@ -173,7 +173,7 @@
 
         "yield_experience" : 240
     },
-    "#0019" : {
+    "0019" : {
         "name": "Rattata",
         "type": ["Normal"],
         "defence": 35,
@@ -183,7 +183,7 @@
         "evolution_level" : 20,
         "yield_experience" : 51
     },
-    "#0020" : {
+    "0020" : {
         "name": "Raticate",
         "type": ["Normal"],
         "defence": 60,
@@ -192,7 +192,7 @@
 
         "yield_experience" : 145
     },
-    "#0021" : {
+    "0021" : {
         "name": "Spearow",
         "type": ["Normal", "Flying"],
         "defence": 30,
@@ -202,7 +202,7 @@
         "evolution_level" : 20,
         "yield_experience" : 52
     },
-    "#0022" : {
+    "0022" : {
         "name": "Fearow",
         "type": ["Normal", "Flying"],
         "defence": 65,
@@ -211,7 +211,7 @@
 
         "yield_experience" : 155
     },
-    "#0023" : {
+    "0023" : {
         "name": "Ekans",
         "type": ["Poison"],
         "defence": 44,
@@ -221,7 +221,7 @@
         "evolution_level" : 22,
         "yield_experience" : 58
     },
-    "#0024" : {
+    "0024" : {
         "name": "Arbok",
         "type": ["Poison"],
         "defence": 69,
@@ -230,7 +230,7 @@
 
         "yield_experience" : 157
     },
-    "#0025" : {
+    "0025" : {
         "name": "Pikachu",
         "type": ["Electric"],
         "defence": 40,
@@ -240,7 +240,7 @@
         "evolution_level" : 22,
         "yield_experience" : 112
     },
-    "#0026" : {
+    "0026" : {
         "name": "Raichu",
         "type": ["Electric"],
         "defence": 55,
@@ -249,7 +249,7 @@
 
         "yield_experience" : 243
     },
-    "#0027" : {
+    "0027" : {
         "name": "Sandshrew",
         "type": ["Ground"],
         "defence": 85,
@@ -259,7 +259,7 @@
         "evolution_level" : 22,
         "yield_experience" : 60
     },
-    "#0028" : {
+    "0028" : {
         "name": "Sandslash",
         "type": ["Ground"],
         "defence": 110,
@@ -268,7 +268,7 @@
 
         "yield_experience" : 158
     },
-    "#0029" : {
+    "0029" : {
         "name": "Nidoran♀",
         "type": ["Poison"],
         "defence": 52,
@@ -278,7 +278,7 @@
         "evolution_level" : 16,
         "yield_experience" : 55
     },
-    "#0030" : {
+    "0030" : {
         "name": "Nidorina",
         "type": ["Poison"],
         "defence": 67,
@@ -288,7 +288,7 @@
         "evolution_level" : 36,
         "yield_experience" : 128
     },
-    "#0031" : {
+    "0031" : {
         "name": "Nidoqueen",
         "type": ["Poison", "Ground"],
         "defence": 87,
@@ -297,7 +297,7 @@
 
         "yield_experience" : 253
     },
-    "#0032" : {
+    "0032" : {
         "name": "Nidoran♂",
         "type": ["Poison"],
         "defence": 40,
@@ -307,7 +307,7 @@
         "evolution_level" : 16,
         "yield_experience" : 55
     },
-    "#0033" : {
+    "0033" : {
         "name": "Nidorino",
         "type": ["Poison"],
         "defence": 57,
@@ -317,7 +317,7 @@
         "evolution_level" : 36,
         "yield_experience" : 128
     },
-    "#0034" : {
+    "0034" : {
         "name": "Nidoking",
         "type": ["Poison", "Ground"],
         "defence": 77,
@@ -326,7 +326,7 @@
 
         "yield_experience" : 253
     },
-    "#0035" : {
+    "0035" : {
         "name": "Clefairy",
         "type": ["Fairy"],
         "defence": 48,
@@ -336,7 +336,7 @@
         "evolution_level" : 28,
         "yield_experience" : 113
     },
-    "#0036" : {
+    "0036" : {
         "name": "Clefable",
         "type": ["Fairy"],
         "defence": 73,
@@ -345,7 +345,7 @@
 
         "yield_experience" : 242
     },
-    "#0037" : {
+    "0037" : {
         "name": "Vulpix",
         "type": ["Fire"],
         "defence": 40,
@@ -355,7 +355,7 @@
         "evolution_level" : 22,
         "yield_experience" : 60
     },
-    "#0037A" : {
+    "0037A" : {
         "name": "Vulpix (Alolan Form)",
         "type": ["Ice"],
         "defence": 40,
@@ -365,7 +365,7 @@
         "evolution_level" : 22,
         "yield_experience" : 60
     },
-    "#0038" : {
+    "0038" : {
         "name": "Ninetales",
         "type": ["Fire"],
         "defence": 75,
@@ -374,7 +374,7 @@
 
         "yield_experience" : 177
     },
-    "#0038A" : {
+    "0038A" : {
         "name": "Ninetales (Alolan Form)",
         "type": ["Ice", "Fairy"],
         "defence": 75,
@@ -383,7 +383,7 @@
 
         "yield_experience" : 177
     },
-    "#0039" : {
+    "0039" : {
         "name": "Jigglypuff",
         "type": ["Normal", "Fairy"],
         "defence": 20,
@@ -393,7 +393,7 @@
         "evolution_level" : 28,
         "yield_experience" : 95
     },
-    "#0040" : {
+    "0040" : {
         "name": "Wigglytuff",
         "type": ["Normal", "Fairy"],
         "defence": 45,
@@ -402,7 +402,7 @@
 
         "yield_experience" : 218
     },
-    "#0041" : {
+    "0041" : {
         "name": "Zubat",
         "type": ["Poison", "Flying"],
         "defence": 35,
@@ -412,7 +412,7 @@
         "evolution_level" : 22,
         "yield_experience" : 49
     },
-    "#0042" : {
+    "0042" : {
         "name": "Golbat",
         "type": ["Poison", "Flying"],
         "defence": 70,
