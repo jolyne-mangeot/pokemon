@@ -19,7 +19,7 @@ class Main_menu(States, Main_menu_manager):
         self.spacer = 75
     
     def init_render_option(self):
-        self.options = ["Play", "Options", "Quit"]
+        self.options = [self.dialogs['play'], self.dialogs['options'], self.dialogs['quit']]
 
     def cleanup(self):
         """

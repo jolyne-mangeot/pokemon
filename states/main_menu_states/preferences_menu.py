@@ -21,12 +21,12 @@ class Preferences_menu(States, Main_menu_manager):
     
     def init_render_options(self):
         self.options = [
-            "Sound effects : " + str(self.sfx_volume_in_preferences),
-            "Music : " + str(self.music_volume_in_preferences),
-            "Language : " + LANGUAGES_DICT[self.language_in_preferences],
-            "Resolution : " + SCREEN_RESOLUTION_DICT[self.screen_resolution_in_preferences],
-            "Apply", 
-            "back"
+            self.dialogs['sfx volume'] + str(self.settings_in_preferences['sfx_volume']),
+            self.dialogs['music volume'] + str(self.settings_in_preferences['music_volume']),
+            self.dialogs['language'] + LANGUAGES_DICT[self.settings_in_preferences['language']],
+            self.dialogs['screen resolution'] + SCREEN_RESOLUTION_DICT[self.settings_in_preferences['screen_resolution']],
+            self.dialogs['apply'], 
+            self.dialogs['back']
         ]
     
     def cleanup(self):
@@ -44,10 +44,6 @@ class Preferences_menu(States, Main_menu_manager):
         else:
             self.back = "main_menu"
         self.settings_in_preferences = self.settings.copy()
-        self.sfx_volume_in_preferences = self.sfx_volume
-        self.music_volume_in_preferences = self.music_volume
-        self.language_in_preferences = self.language
-        self.screen_resolution_in_preferences = self.screen_resolution
         self.init_render_options()
         self.pre_render_options()
 
@@ -68,6 +64,7 @@ class Preferences_menu(States, Main_menu_manager):
                 self.save_settings(self.settings_in_preferences)
                 self.init_settings()
                 self.init_config()
+                self.startup()
             elif event.key in [pg.K_UP, pg.K_z]:
                 self.change_selected_option(-1)
             elif event.key in [pg.K_DOWN, pg.K_s]:
@@ -80,15 +77,14 @@ class Preferences_menu(States, Main_menu_manager):
         self.get_event_menu(event)
     
     def change_settings(self, operant):
-        OPTIONS = (("", self.sfx_volume_in_preferences, 'sfx_volume'),
-                    ("", self.music_volume_in_preferences, 'music_volume'),
-                    (LANGUAGES_DICT, self.language_in_preferences, 'language'),
-                    (SCREEN_RESOLUTION_DICT, self.screen_resolution_in_preferences, 'screen_resolution'))
+        OPTIONS = (("", self.settings_in_preferences['sfx_volume'], 'sfx_volume'),
+                   ("", self.settings_in_preferences['music_volume'], 'music_volume'),
+                   (LANGUAGES_DICT, self.settings_in_preferences['language'], 'language'),
+                   (SCREEN_RESOLUTION_DICT, self.settings_in_preferences['screen_resolution'], 'screen_resolution'))
         index = self.selected_index
 
         if index in (0,1):
-            option = [self.sfx_volume_in_preferences, self.music_volume_in_preferences]
-            current_setting_index = option[index]
+            current_setting_index = OPTIONS[index][1]
             selected_setting_index = current_setting_index + operant
 
             if selected_setting_index < 0:
@@ -110,13 +106,13 @@ class Preferences_menu(States, Main_menu_manager):
             self.settings_in_preferences[OPTIONS[index][2]] = options_list[selected_setting_index]
 
         if index == 0:
-            self.sfx_volume_in_preferences = selected_setting_index
+            self.settings_in_preferences['sfx_volume'] = selected_setting_index
         elif index == 1:
-            self.music_volume_in_preferences = selected_setting_index
+            self.settings_in_preferences['music_volume'] = selected_setting_index
         elif index == 2:
-            self.language_in_preferences = options_list[selected_setting_index]
+            self.settings_in_preferences['language'] = options_list[selected_setting_index]
         elif index == 3:
-            self.screen_resolution_in_preferences = options_list[selected_setting_index]
+            self.settings_in_preferences['screen_resolution'] = options_list[selected_setting_index]
 
         self.init_render_options()
         self.pre_render_options()

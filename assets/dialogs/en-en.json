@@ -1,0 +1,12 @@
+{
+    "title" : "Pokémon",
+    "play" : "Play",
+    "options" : "Options",
+    "quit" : "Quit",
+    "back" : "back",
+    "sfx volume" : "Effects volume : ",
+    "music volume" : "Music volume : ",
+    "language" : "Language : ",
+    "screen resolution" : "Screen resolution : ",
+    "apply" : "Apply"
+}

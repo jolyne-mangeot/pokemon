@@ -1,7 +1,15 @@
 import json
-from control.__control_settings__ import CONTROL_SETTINGS_PATH
+from control.__control_settings__ import CONTROL_SETTINGS_PATH, LANGUAGE_DIALOG_PATH
 
 class Settings:
+    def load_language(self, language):
+        with open(LANGUAGE_DIALOG_PATH + "en-en.json", "r") as file:
+            default_dialogs = json.load(file)
+        with open(LANGUAGE_DIALOG_PATH + language + ".json", "r") as file:
+            dialogs = json.load(file)
+        default_dialogs.update(dialogs)
+        return default_dialogs
+
     def load_settings(self):
         """
             load settings from json file with set path

@@ -1,4 +1,5 @@
 CONTROL_SETTINGS_PATH = "control/settings.json"
+LANGUAGE_DIALOG_PATH = "assets/dialogs/"
 
 LANGUAGES_DICT = {
     "fr-fr" : "Francais",

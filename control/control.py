@@ -7,10 +7,12 @@ class Control(Settings):
             load game settings and init essential data related to Pygame
         """
         Control.settings = self.load_settings()
+        Control.dialogs = self.load_language(Control.settings['language'])
         self.done = False
 
     def init_config(self):
         self.settings = Control.settings #dict
+        self.dialogs = Control.dialogs
         self.__dict__.update(**Control.settings)
         self.screen_width, self.screen_height = map(int, self.settings['screen_resolution'].split(","))
         self.screen = pg.display.set_mode((self.screen_width, self.screen_height))
