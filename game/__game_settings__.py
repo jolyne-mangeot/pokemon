@@ -1,3 +1,3 @@
-POKEDEX_DICT_PATH = "game/pokemons/pokedex_dict.json"
+POKEMON_DICT_PATH = "game/pokemons/pokemon.json"
 
 SAVE_PATH = "game/saves/"

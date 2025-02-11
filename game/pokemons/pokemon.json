@@ -6,6 +6,9 @@
       "défense": 49,
       "puissance_d_attaque": 49,
       "point_de_vie": 45,
+      "evolution_level" : 16,
+      "evolution" : "#0002",
+      "yield_experience" : 64,
       "images": {
         "front": "img/001/front.png",
         "back": "img/001/back.png"

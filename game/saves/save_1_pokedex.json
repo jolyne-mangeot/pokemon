@@ -5,7 +5,6 @@
 
         "pokemon_1" : {
             "id" : "001",
-            "name" : "name",
             "exp" : 12500
         },
 
