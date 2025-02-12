@@ -58,23 +58,19 @@ class Preferences_menu(States, Main_menu_manager):
         if event.type == pg.QUIT:
             self.quit = True
         if event.type == pg.KEYDOWN:
-            if event.key in [pg.K_ESCAPE, pg.K_LSHIFT] and not self.quit:
+            if pg.key.name(event.key) in self.return_keys and not self.quit:
                 self.next = self.back
                 self.done = True
-            if event.key in [pg.K_RETURN, pg.K_SPACE, pg.K_KP_ENTER]\
+            if pg.key.name(event.key) in self.confirm_keys\
                 and self.selected_index == 4 and\
                     self.settings_in_preferences != self.settings:
                 self.save_settings(self.settings_in_preferences)
                 self.init_settings()
                 self.init_config()
                 self.startup()
-            elif event.key in [pg.K_UP, pg.K_z]:
-                self.change_selected_option(-1)
-            elif event.key in [pg.K_DOWN, pg.K_s]:
-                self.change_selected_option(1)
-            elif event.key in [pg.K_LEFT, pg.K_q]:
+            elif pg.key.name(event.key) in self.left_keys:
                 self.change_settings(-1)
-            elif event.key in [pg.K_RIGHT, pg.K_d]:
+            elif pg.key.name(event.key) in self.right_keys:
                 self.change_settings(1)
 
         self.get_event_menu(event)

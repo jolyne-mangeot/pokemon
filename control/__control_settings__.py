@@ -1,5 +1,6 @@
 CONTROL_SETTINGS_PATH = "control/settings.json"
 LANGUAGE_DIALOG_PATH = "assets/dialogs/"
+SAVES_PATH = "game/saves/"
 
 LANGUAGES_DICT = {
     "fr-fr" : "Francais",
