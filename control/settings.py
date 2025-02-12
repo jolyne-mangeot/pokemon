@@ -19,7 +19,7 @@ class Settings:
                 try:
                     player_saves.append(json.load(file))
                 except ValueError:
-                    player_saves.append("New game")
+                    player_saves.append("new game")
                     break
         return player_saves
 

@@ -2,7 +2,7 @@
     "0001" : {
         "entry" : "0001",
         "name": "Bulbasaur",
-        "type": ["Grass", "Poison"],
+        "type": ["grass", "poison"],
         "defence": 49,
         "attack": 49,
         "health_points": 45,
@@ -13,7 +13,7 @@
     "0002" : {
         "entry" : "0002",
         "name": "Ivysaur",
-        "type": ["Grass", "Poison"],
+        "type": ["grass", "poison"],
         "defence": 63,
         "attack": 62,
         "health_points": 60,
@@ -24,7 +24,7 @@
     "0003" : {
         "entry" : "0003",
         "name": "Venusaur",
-        "type": ["Grass", "Poison"],
+        "type": ["grass", "poison"],
         "defence": 83,
         "attack": 82,
         "health_points": 80,
@@ -34,7 +34,7 @@
     "0004" : {
         "entry" : "0004",
         "name": "Charmander",
-        "type": ["Fire"],
+        "type": ["fire"],
         "defence": 43,
         "attack": 52,
         "health_points": 39,
@@ -45,7 +45,7 @@
     "0005" : {
         "entry" : "0005",
         "name": "Charmeleon",
-        "type": ["Fire"],
+        "type": ["fire"],
         "defence": 58,
         "attack": 64,
         "health_points": 58,
@@ -56,7 +56,7 @@
     "0006" : {
         "entry" : "0006",
         "name": "Charizard",
-        "type": ["Fire", "Flying"],
+        "type": ["fire", "flying"],
         "defence": 78,
         "attack": 84,
         "health_points": 78,
@@ -66,7 +66,7 @@
     "0007" : {
         "entry" : "0007",
         "name": "Squirtle",
-        "type": ["Water"],
+        "type": ["water"],
         "defence": 65,
         "attack": 48,
         "health_points": 44,
@@ -77,7 +77,7 @@
     "0008" : {
         "entry" : "0008",
         "name": "Wartortle",
-        "type": ["Water"],
+        "type": ["water"],
         "defence": 80,
         "attack": 63,
         "health_points": 59,
@@ -88,7 +88,7 @@
     "0009" : {
         "entry" : "0009",
         "name": "Blastoise",
-        "type": ["Water"],
+        "type": ["water"],
         "defence": 100,
         "attack": 83,
         "health_points": 79,
@@ -98,7 +98,7 @@
     "0010" : {
         "entry" : "0010",
         "name": "Caterpie",
-        "type": ["Bug"],
+        "type": ["bug"],
         "defence": 35,
         "attack": 30,
         "health_points": 45,
@@ -109,7 +109,7 @@
     "0011" : {
         "entry" : "0011",
         "name": "Metapod",
-        "type": ["Bug"],
+        "type": ["bug"],
         "defence": 55,
         "attack": 20,
         "health_points": 50,
@@ -120,7 +120,7 @@
     "0012" : {
         "entry" : "0012",
         "name": "Butterfree",
-        "type": ["Bug", "Flying"],
+        "type": ["bug", "flying"],
         "defence": 50,
         "attack": 45,
         "health_points": 60,
@@ -130,7 +130,7 @@
     "0013" : {
         "entry" : "0013",
         "name": "Weedle",
-        "type": ["Bug", "Poison"],
+        "type": ["bug", "poison"],
         "defence": 30,
         "attack": 35,
         "health_points": 40,
@@ -141,7 +141,7 @@
     "0014" : {
         "entry" : "0014",
         "name": "Kakuna",
-        "type": ["Bug", "Poison"],
+        "type": ["bug", "poison"],
         "defence": 50,
         "attack": 25,
         "health_points": 45,
@@ -152,7 +152,7 @@
     "0015" : {
         "entry" : "0015",
         "name": "Beedrill",
-        "type": ["Bug", "Poison"],
+        "type": ["bug", "poison"],
         "defence": 40,
         "attack": 90,
         "health_points": 65,
@@ -162,7 +162,7 @@
     "0016" : {
         "entry" : "0016",
         "name": "Pidgey",
-        "type": ["Normal", "Flying"],
+        "type": ["normal", "flying"],
         "defence": 40,
         "attack": 45,
         "health_points": 40,
@@ -173,7 +173,7 @@
     "0017" : {
         "entry" : "0017",
         "name": "Pidgeotto",
-        "type": ["Normal", "Flying"],
+        "type": ["normal", "flying"],
         "defence": 55,
         "attack": 60,
         "health_points": 63,
@@ -184,7 +184,7 @@
     "0018" : {
         "entry" : "0018",
         "name": "Pidgeot",
-        "type": ["Normal", "Flying"],
+        "type": ["normal", "flying"],
         "defence": 75,
         "attack": 80,
         "health_points": 83,
@@ -194,7 +194,7 @@
     "0019" : {
         "entry" : "0019",
         "name": "Rattata",
-        "type": ["Normal"],
+        "type": ["normal"],
         "defence": 35,
         "attack": 56,
         "health_points": 30,
@@ -205,7 +205,7 @@
     "0020" : {
         "entry" : "0020",
         "name": "Raticate",
-        "type": ["Normal"],
+        "type": ["normal"],
         "defence": 60,
         "attack": 81,
         "health_points": 55,
@@ -215,7 +215,7 @@
     "0021" : {
         "entry" : "0021",
         "name": "Spearow",
-        "type": ["Normal", "Flying"],
+        "type": ["normal", "flying"],
         "defence": 30,
         "attack": 60,
         "health_points": 40,
@@ -226,7 +226,7 @@
     "0022" : {
         "entry" : "0022",
         "name": "Fearow",
-        "type": ["Normal", "Flying"],
+        "type": ["normal", "flying"],
         "defence": 65,
         "attack": 90,
         "health_points": 65,
@@ -236,7 +236,7 @@
     "0023" : {
         "entry" : "0023",
         "name": "Ekans",
-        "type": ["Poison"],
+        "type": ["poison"],
         "defence": 44,
         "attack": 60,
         "health_points": 35,
@@ -247,7 +247,7 @@
     "0024" : {
         "entry" : "0024",
         "name": "Arbok",
-        "type": ["Poison"],
+        "type": ["poison"],
         "defence": 69,
         "attack": 85,
         "health_points": 60,
@@ -257,7 +257,7 @@
     "0025" : {
         "entry" : "0025",
         "name": "Pikachu",
-        "type": ["Electric"],
+        "type": ["electric"],
         "defence": 40,
         "attack": 55,
         "health_points": 35,
@@ -268,7 +268,7 @@
     "0026" : {
         "entry" : "0026",
         "name": "Raichu",
-        "type": ["Electric"],
+        "type": ["electric"],
         "defence": 55,
         "attack": 90,
         "health_points": 60,
@@ -278,7 +278,7 @@
     "0027" : {
         "entry" : "0027",
         "name": "Sandshrew",
-        "type": ["Ground"],
+        "type": ["ground"],
         "defence": 85,
         "attack": 75,
         "health_points": 50,
@@ -289,7 +289,7 @@
     "0028" : {
         "entry" : "0028",
         "name": "Sandslash",
-        "type": ["Ground"],
+        "type": ["ground"],
         "defence": 110,
         "attack": 100,
         "health_points": 75,
@@ -299,7 +299,7 @@
     "0029" : {
         "entry" : "0029",
         "name": "Nidoran♀",
-        "type": ["Poison"],
+        "type": ["poison"],
         "defence": 52,
         "attack": 47,
         "health_points": 55,
@@ -310,7 +310,7 @@
     "0030" : {
         "entry" : "0030",
         "name": "Nidorina",
-        "type": ["Poison"],
+        "type": ["poison"],
         "defence": 67,
         "attack": 62,
         "health_points": 70,
@@ -321,7 +321,7 @@
     "0031" : {
         "entry" : "0031",
         "name": "Nidoqueen",
-        "type": ["Poison", "Ground"],
+        "type": ["poison", "ground"],
         "defence": 87,
         "attack": 92,
         "health_points": 90,
@@ -331,7 +331,7 @@
     "0032" : {
         "entry" : "0032",
         "name": "Nidoran♂",
-        "type": ["Poison"],
+        "type": ["poison"],
         "defence": 40,
         "attack": 57,
         "health_points": 46,
@@ -342,7 +342,7 @@
     "0033" : {
         "entry" : "0033",
         "name": "Nidorino",
-        "type": ["Poison"],
+        "type": ["poison"],
         "defence": 57,
         "attack": 72,
         "health_points": 61,
@@ -353,7 +353,7 @@
     "0034" : {
         "entry" : "0034",
         "name": "Nidoking",
-        "type": ["Poison", "Ground"],
+        "type": ["poison", "ground"],
         "defence": 77,
         "attack": 102,
         "health_points": 81,
@@ -363,7 +363,7 @@
     "0035" : {
         "entry" : "0035",
         "name": "Clefairy",
-        "type": ["Fairy"],
+        "type": ["fairy"],
         "defence": 48,
         "attack": 45,
         "health_points": 70,
@@ -374,7 +374,7 @@
     "0036" : {
         "entry" : "0036",
         "name": "Clefable",
-        "type": ["Fairy"],
+        "type": ["fairy"],
         "defence": 73,
         "attack": 70,
         "health_points": 95,
@@ -384,7 +384,7 @@
     "0037" : {
         "entry" : "0037",
         "name": "Vulpix",
-        "type": ["Fire"],
+        "type": ["fire"],
         "defence": 40,
         "attack": 41,
         "health_points": 38,
@@ -395,7 +395,7 @@
     "0037A" : {
         "entry" : "0037A",
         "name": "Vulpix (Alolan Form)",
-        "type": ["Ice"],
+        "type": ["ice"],
         "defence": 40,
         "attack": 41,
         "health_points": 38,
@@ -406,7 +406,7 @@
     "0038" : {
         "entry" : "0038",
         "name": "Ninetales",
-        "type": ["Fire"],
+        "type": ["fire"],
         "defence": 75,
         "attack": 76,
         "health_points": 73,
@@ -416,7 +416,7 @@
     "0038A" : {
         "entry" : "0038A",
         "name": "Ninetales (Alolan Form)",
-        "type": ["Ice", "Fairy"],
+        "type": ["ice", "fairy"],
         "defence": 75,
         "attack": 81,
         "health_points": 73,
@@ -426,7 +426,7 @@
     "0039" : {
         "entry" : "0039",
         "name": "Jigglypuff",
-        "type": ["Normal", "Fairy"],
+        "type": ["normal", "fairy"],
         "defence": 20,
         "attack": 45,
         "health_points": 115,
@@ -437,7 +437,7 @@
     "0040" : {
         "entry" : "0040",
         "name": "Wigglytuff",
-        "type": ["Normal", "Fairy"],
+        "type": ["normal", "fairy"],
         "defence": 45,
         "attack": 70,
         "health_points": 140,
@@ -447,7 +447,7 @@
     "0041" : {
         "entry" : "0041",
         "name": "Zubat",
-        "type": ["Poison", "Flying"],
+        "type": ["poison", "flying"],
         "defence": 35,
         "attack": 45,
         "health_points": 40,
@@ -458,7 +458,7 @@
     "0042" : {
         "entry" : "0042",
         "name": "Golbat",
-        "type": ["Poison", "Flying"],
+        "type": ["poison", "flying"],
         "defence": 70,
         "attack": 80,
         "health_points": 75,

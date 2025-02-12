@@ -1,5 +1,4 @@
 import pygame as pg
-from control.states_control import States
 
 class Main_menu_manager:
     def __init__(self):

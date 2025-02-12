@@ -5,3 +5,15 @@ class Fight:
 
     def attack(self):
         pass
+
+    def guard(self):
+        pass
+
+    def heal(self):
+        pass
+
+    def capture(self):
+        pass
+
+    def run_away(self):
+        pass

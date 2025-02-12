@@ -2,6 +2,7 @@ import pygame as pg
 from control.states_control import States
 from control.__control_settings__ import LANGUAGES_DICT, SCREEN_RESOLUTION_DICT
 from states.main_menu_states.__main_menu_manager__ import Main_menu_manager
+
 pg.font.init()
 
 class Preferences_menu(States, Main_menu_manager):

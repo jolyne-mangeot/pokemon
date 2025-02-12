@@ -2,6 +2,7 @@ import pygame as pg
 from control.states_control import States
 from states.main_menu_states.__main_menu_manager__ import Main_menu_manager
 
+pg.font.init()
 
 class Load_menu(States, Main_menu_manager):
     def __init__(self):
@@ -20,13 +21,13 @@ class Load_menu(States, Main_menu_manager):
         self.options = []
         self.next_list = []
         for player_save in self.player_saves_state:
-            if player_save == "New game":
-                self.options.append(player_save)
+            if player_save == "new game":
+                self.options.append(self.dialogs['new game'])
                 self.next_list.append("")
             else:
                 self.options.append(player_save['player'])
                 self.next_list.append("")
-        self.options.append("back")
+        self.options.append(self.dialogs['back'])
         self.next_list.append("main_menu")
     
     def cleanup(self):
