@@ -44,15 +44,11 @@ class Main_menu(States, Main_menu_manager):
         if event.type == pg.QUIT:
             self.quit = True
         if event.type == pg.KEYDOWN:
-            if event.key in [pg.K_ESCAPE, pg.K_LSHIFT]:
+            if pg.key.name(event.key) in self.return_keys:
                 self.quit = True
-            elif event.key in [pg.K_UP, pg.K_z]:
-                self.change_selected_option(-1)
-            elif event.key in [pg.K_DOWN, pg.K_s]:
-                self.change_selected_option(1)
-            elif event.key in [pg.K_RETURN]:
+            elif pg.key.name(event.key) in self.confirm_keys:
                 self.select_option()
-        # self.get_event_menu(event)
+        self.get_event_menu(event)
     
     def update(self):
         """

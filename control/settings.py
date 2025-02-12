@@ -1,5 +1,7 @@
 import json
-from control.__control_settings__ import CONTROL_SETTINGS_PATH, LANGUAGE_DIALOG_PATH
+import os
+import pygame as pg
+from control.__control_settings__ import CONTROL_SETTINGS_PATH, LANGUAGE_DIALOG_PATH, SAVES_PATH
 
 class Settings:
     def load_language(self, language):
@@ -9,6 +11,17 @@ class Settings:
             dialogs = json.load(file)
         default_dialogs.update(dialogs)
         return default_dialogs
+
+    def load_player_data(self):
+        player_saves = []
+        for player_save in os.listdir(SAVES_PATH):
+            with open(SAVES_PATH + player_save, "r") as file:
+                try:
+                    player_saves.append(json.load(file))
+                except ValueError:
+                    player_saves.append("New game")
+                    break
+        return player_saves
 
     def load_settings(self):
         """

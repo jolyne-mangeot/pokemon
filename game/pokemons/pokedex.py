@@ -4,19 +4,18 @@ from game.__game_settings__ import POKEMON_DICT_PATH, SAVE_PATH
 
 class Pokedex:
     def __init__(self):
-        Pokedex.pokemon_dict = self.init_pokedex_data()
+        self.init_pokedex_data()
         self.player_team = []
 
     def init_pokedex_data(self):
         with open(POKEMON_DICT_PATH, "r") as file:
-            pokemon_dict = json.load(file)
-        return pokemon_dict
+            Pokedex.pokemon_dict = json.load(file)
     
-    def init_player_data(self, save):
-        with open(SAVE_PATH + save + ".json", "r") as file:
-            player_data = json.load(file)
-        self.__dict__.update(**player_data)
-        self.init_player_team()
+    # def init_player_data(self, save):
+    #     with open(SAVE_PATH + save + ".json", "r") as file:
+    #         player_data = json.load(file)
+    #     self.__dict__.update(**player_data)
+    #     self.init_player_team()
     
     def init_player_team(self):
         for pokemon_data in list(self.active_team.keys()):

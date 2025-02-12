@@ -2,8 +2,9 @@ class Pokemon:
     def __init__(self, pokedex_entry, experience_points):
         self.__dict__.update(pokedex_entry)
         self.experience_points = experience_points
-        self.level, self.current_experience = self.get_level()
+        self.get_level()
         self.get_stats()
+        self.current_health_points = self.health_points
     
     def print_stats(self):
         print(
@@ -43,10 +44,9 @@ class Pokemon:
         for level in range (1,101):
             level_experience = level ** 3
             if level_experience > self.experience_points:
-                pokemon_level = level-1
-                current_experience = self.experience_points - (pokemon_level**3)
+                self.pokemon_level = level-1
+                self.current_experience = self.experience_points - (self.pokemon_level**3)
                 break
-        return pokemon_level, current_experience
 
 pokedex = {
     "#0001" : {
