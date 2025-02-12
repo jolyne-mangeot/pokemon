@@ -1,16 +1,13 @@
 {
-    "player" : "Jolyne",
-    "player_pokedex" : ["#0001","#0002"],
-    "active_team" : {
-
-        "pokemon_1" : {
-            "entry" : "#0001",
-            "experience_points" : 12500
+    "player": "Jolyne",
+    "active_team": {
+        "pokemon_1": {
+            "entry": "0001",
+            "experience_points": 12500
         },
-
-        "pokemon_2" : {
-            "entry" : "#0002",
-            "experience_points" : 900000
+        "pokemon_2": {
+            "entry": "0002",
+            "experience_points": 900000
         }
     }
 }

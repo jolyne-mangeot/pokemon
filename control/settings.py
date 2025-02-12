@@ -16,12 +16,12 @@ class Settings:
         player_saves = []
         for player_save in os.listdir(SAVES_PATH):
             with open(SAVES_PATH + player_save, "r") as file:
-                try:
-                    player_saves.append(json.load(file))
-                except ValueError:
-                    player_saves.append("new game")
-                    break
+                player_saves.append(json.load(file))
         return player_saves
+    
+    def save_player_data(self, player_data, save):
+        with open(SAVES_PATH + "save_" + save + "_pokedex.json", "w") as file:
+            json.dump(player_data, file, indent=4)
 
     def load_settings(self):
         """

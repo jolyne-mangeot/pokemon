@@ -3,9 +3,9 @@
         "entry" : "0001",
         "name": "Bulbasaur",
         "type": ["grass", "poison"],
-        "defence": 49,
-        "attack": 49,
-        "health_points": 45,
+        "base_defence": 49,
+        "base_attack": 49,
+        "base_health_points": 45,
 
         "evolution_level" : 16,
         "yield_experience" : 64
@@ -14,9 +14,9 @@
         "entry" : "0002",
         "name": "Ivysaur",
         "type": ["grass", "poison"],
-        "defence": 63,
-        "attack": 62,
-        "health_points": 60,
+        "base_defence": 63,
+        "base_attack": 62,
+        "base_health_points": 60,
 
         "evolution_level" : 32,
         "yield_experience" : 142
@@ -25,9 +25,9 @@
         "entry" : "0003",
         "name": "Venusaur",
         "type": ["grass", "poison"],
-        "defence": 83,
-        "attack": 82,
-        "health_points": 80,
+        "base_defence": 83,
+        "base_attack": 82,
+        "base_health_points": 80,
 
         "yield_experience" : 263
     },
@@ -35,9 +35,9 @@
         "entry" : "0004",
         "name": "Charmander",
         "type": ["fire"],
-        "defence": 43,
-        "attack": 52,
-        "health_points": 39,
+        "base_defence": 43,
+        "base_attack": 52,
+        "base_health_points": 39,
 
         "evolution_level" : 16,
         "yield_experience" : 62
@@ -46,9 +46,9 @@
         "entry" : "0005",
         "name": "Charmeleon",
         "type": ["fire"],
-        "defence": 58,
-        "attack": 64,
-        "health_points": 58,
+        "base_defence": 58,
+        "base_attack": 64,
+        "base_health_points": 58,
 
         "evolution_level" : 36,
         "yield_experience" : 142
@@ -57,9 +57,9 @@
         "entry" : "0006",
         "name": "Charizard",
         "type": ["fire", "flying"],
-        "defence": 78,
-        "attack": 84,
-        "health_points": 78,
+        "base_defence": 78,
+        "base_attack": 84,
+        "base_health_points": 78,
 
         "yield_experience" : 267
     },
@@ -67,9 +67,9 @@
         "entry" : "0007",
         "name": "Squirtle",
         "type": ["water"],
-        "defence": 65,
-        "attack": 48,
-        "health_points": 44,
+        "base_defence": 65,
+        "base_attack": 48,
+        "base_health_points": 44,
 
         "evolution_level" : 16,
         "yield_experience" : 63
@@ -78,9 +78,9 @@
         "entry" : "0008",
         "name": "Wartortle",
         "type": ["water"],
-        "defence": 80,
-        "attack": 63,
-        "health_points": 59,
+        "base_defence": 80,
+        "base_attack": 63,
+        "base_health_points": 59,
 
         "evolution_level" : 36,
         "yield_experience" : 142
@@ -89,9 +89,9 @@
         "entry" : "0009",
         "name": "Blastoise",
         "type": ["water"],
-        "defence": 100,
-        "attack": 83,
-        "health_points": 79,
+        "base_defence": 100,
+        "base_attack": 83,
+        "base_health_points": 79,
 
         "yield_experience" : 265
     },
@@ -99,9 +99,9 @@
         "entry" : "0010",
         "name": "Caterpie",
         "type": ["bug"],
-        "defence": 35,
-        "attack": 30,
-        "health_points": 45,
+        "base_defence": 35,
+        "base_attack": 30,
+        "base_health_points": 45,
 
         "evolution_level" : 7,
         "yield_experience" : 39
@@ -110,9 +110,9 @@
         "entry" : "0011",
         "name": "Metapod",
         "type": ["bug"],
-        "defence": 55,
-        "attack": 20,
-        "health_points": 50,
+        "base_defence": 55,
+        "base_attack": 20,
+        "base_health_points": 50,
 
         "evolution_level" : 10,
         "yield_experience" : 72
@@ -121,9 +121,9 @@
         "entry" : "0012",
         "name": "Butterfree",
         "type": ["bug", "flying"],
-        "defence": 50,
-        "attack": 45,
-        "health_points": 60,
+        "base_defence": 50,
+        "base_attack": 45,
+        "base_health_points": 60,
 
         "yield_experience" : 198
     },
@@ -131,9 +131,9 @@
         "entry" : "0013",
         "name": "Weedle",
         "type": ["bug", "poison"],
-        "defence": 30,
-        "attack": 35,
-        "health_points": 40,
+        "base_defence": 30,
+        "base_attack": 35,
+        "base_health_points": 40,
 
         "evolution_level" : 7,
         "yield_experience" : 39
@@ -142,9 +142,9 @@
         "entry" : "0014",
         "name": "Kakuna",
         "type": ["bug", "poison"],
-        "defence": 50,
-        "attack": 25,
-        "health_points": 45,
+        "base_defence": 50,
+        "base_attack": 25,
+        "base_health_points": 45,
 
         "evolution_level" : 10,
         "yield_experience" : 72
@@ -153,9 +153,9 @@
         "entry" : "0015",
         "name": "Beedrill",
         "type": ["bug", "poison"],
-        "defence": 40,
-        "attack": 90,
-        "health_points": 65,
+        "base_defence": 40,
+        "base_attack": 90,
+        "base_health_points": 65,
 
         "yield_experience" : 198
     },
@@ -163,9 +163,9 @@
         "entry" : "0016",
         "name": "Pidgey",
         "type": ["normal", "flying"],
-        "defence": 40,
-        "attack": 45,
-        "health_points": 40,
+        "base_defence": 40,
+        "base_attack": 45,
+        "base_health_points": 40,
 
         "evolution_level" : 18,
         "yield_experience" : 50
@@ -174,9 +174,9 @@
         "entry" : "0017",
         "name": "Pidgeotto",
         "type": ["normal", "flying"],
-        "defence": 55,
-        "attack": 60,
-        "health_points": 63,
+        "base_defence": 55,
+        "base_attack": 60,
+        "base_health_points": 63,
 
         "evolution_level" : 36,
         "yield_experience" : 122
@@ -185,9 +185,9 @@
         "entry" : "0018",
         "name": "Pidgeot",
         "type": ["normal", "flying"],
-        "defence": 75,
-        "attack": 80,
-        "health_points": 83,
+        "base_defence": 75,
+        "base_attack": 80,
+        "base_health_points": 83,
 
         "yield_experience" : 240
     },
@@ -195,9 +195,9 @@
         "entry" : "0019",
         "name": "Rattata",
         "type": ["normal"],
-        "defence": 35,
-        "attack": 56,
-        "health_points": 30,
+        "base_defence": 35,
+        "base_attack": 56,
+        "base_health_points": 30,
 
         "evolution_level" : 20,
         "yield_experience" : 51
@@ -206,9 +206,9 @@
         "entry" : "0020",
         "name": "Raticate",
         "type": ["normal"],
-        "defence": 60,
-        "attack": 81,
-        "health_points": 55,
+        "base_defence": 60,
+        "base_attack": 81,
+        "base_health_points": 55,
 
         "yield_experience" : 145
     },
@@ -216,9 +216,9 @@
         "entry" : "0021",
         "name": "Spearow",
         "type": ["normal", "flying"],
-        "defence": 30,
-        "attack": 60,
-        "health_points": 40,
+        "base_defence": 30,
+        "base_attack": 60,
+        "base_health_points": 40,
 
         "evolution_level" : 20,
         "yield_experience" : 52
@@ -227,9 +227,9 @@
         "entry" : "0022",
         "name": "Fearow",
         "type": ["normal", "flying"],
-        "defence": 65,
-        "attack": 90,
-        "health_points": 65,
+        "base_defence": 65,
+        "base_attack": 90,
+        "base_health_points": 65,
 
         "yield_experience" : 155
     },
@@ -237,9 +237,9 @@
         "entry" : "0023",
         "name": "Ekans",
         "type": ["poison"],
-        "defence": 44,
-        "attack": 60,
-        "health_points": 35,
+        "base_defence": 44,
+        "base_attack": 60,
+        "base_health_points": 35,
 
         "evolution_level" : 22,
         "yield_experience" : 58
@@ -248,9 +248,9 @@
         "entry" : "0024",
         "name": "Arbok",
         "type": ["poison"],
-        "defence": 69,
-        "attack": 85,
-        "health_points": 60,
+        "base_defence": 69,
+        "base_attack": 85,
+        "base_health_points": 60,
 
         "yield_experience" : 157
     },
@@ -258,9 +258,9 @@
         "entry" : "0025",
         "name": "Pikachu",
         "type": ["electric"],
-        "defence": 40,
-        "attack": 55,
-        "health_points": 35,
+        "base_defence": 40,
+        "base_attack": 55,
+        "base_health_points": 35,
 
         "evolution_level" : 22,
         "yield_experience" : 112
@@ -269,9 +269,9 @@
         "entry" : "0026",
         "name": "Raichu",
         "type": ["electric"],
-        "defence": 55,
-        "attack": 90,
-        "health_points": 60,
+        "base_defence": 55,
+        "base_attack": 90,
+        "base_health_points": 60,
 
         "yield_experience" : 243
     },
@@ -279,9 +279,9 @@
         "entry" : "0027",
         "name": "Sandshrew",
         "type": ["ground"],
-        "defence": 85,
-        "attack": 75,
-        "health_points": 50,
+        "base_defence": 85,
+        "base_attack": 75,
+        "base_health_points": 50,
 
         "evolution_level" : 22,
         "yield_experience" : 60
@@ -290,9 +290,9 @@
         "entry" : "0028",
         "name": "Sandslash",
         "type": ["ground"],
-        "defence": 110,
-        "attack": 100,
-        "health_points": 75,
+        "base_defence": 110,
+        "base_attack": 100,
+        "base_health_points": 75,
 
         "yield_experience" : 158
     },
@@ -300,9 +300,9 @@
         "entry" : "0029",
         "name": "Nidoran♀",
         "type": ["poison"],
-        "defence": 52,
-        "attack": 47,
-        "health_points": 55,
+        "base_defence": 52,
+        "base_attack": 47,
+        "base_health_points": 55,
 
         "evolution_level" : 16,
         "yield_experience" : 55
@@ -311,9 +311,9 @@
         "entry" : "0030",
         "name": "Nidorina",
         "type": ["poison"],
-        "defence": 67,
-        "attack": 62,
-        "health_points": 70,
+        "base_defence": 67,
+        "base_attack": 62,
+        "base_health_points": 70,
 
         "evolution_level" : 36,
         "yield_experience" : 128
@@ -322,9 +322,9 @@
         "entry" : "0031",
         "name": "Nidoqueen",
         "type": ["poison", "ground"],
-        "defence": 87,
-        "attack": 92,
-        "health_points": 90,
+        "base_defence": 87,
+        "base_attack": 92,
+        "base_health_points": 90,
 
         "yield_experience" : 253
     },
@@ -332,9 +332,9 @@
         "entry" : "0032",
         "name": "Nidoran♂",
         "type": ["poison"],
-        "defence": 40,
-        "attack": 57,
-        "health_points": 46,
+        "base_defence": 40,
+        "base_attack": 57,
+        "base_health_points": 46,
 
         "evolution_level" : 16,
         "yield_experience" : 55
@@ -343,9 +343,9 @@
         "entry" : "0033",
         "name": "Nidorino",
         "type": ["poison"],
-        "defence": 57,
-        "attack": 72,
-        "health_points": 61,
+        "base_defence": 57,
+        "base_attack": 72,
+        "base_health_points": 61,
 
         "evolution_level" : 36,
         "yield_experience" : 128
@@ -354,9 +354,9 @@
         "entry" : "0034",
         "name": "Nidoking",
         "type": ["poison", "ground"],
-        "defence": 77,
-        "attack": 102,
-        "health_points": 81,
+        "base_defence": 77,
+        "base_attack": 102,
+        "base_health_points": 81,
 
         "yield_experience" : 253
     },
@@ -364,9 +364,9 @@
         "entry" : "0035",
         "name": "Clefairy",
         "type": ["fairy"],
-        "defence": 48,
-        "attack": 45,
-        "health_points": 70,
+        "base_defence": 48,
+        "base_attack": 45,
+        "base_health_points": 70,
 
         "evolution_level" : 28,
         "yield_experience" : 113
@@ -375,9 +375,9 @@
         "entry" : "0036",
         "name": "Clefable",
         "type": ["fairy"],
-        "defence": 73,
-        "attack": 70,
-        "health_points": 95,
+        "base_defence": 73,
+        "base_attack": 70,
+        "base_health_points": 95,
 
         "yield_experience" : 242
     },
@@ -385,9 +385,9 @@
         "entry" : "0037",
         "name": "Vulpix",
         "type": ["fire"],
-        "defence": 40,
-        "attack": 41,
-        "health_points": 38,
+        "base_defence": 40,
+        "base_attack": 41,
+        "base_health_points": 38,
 
         "evolution_level" : 22,
         "yield_experience" : 60
@@ -396,9 +396,9 @@
         "entry" : "0037A",
         "name": "Vulpix (Alolan Form)",
         "type": ["ice"],
-        "defence": 40,
-        "attack": 41,
-        "health_points": 38,
+        "base_defence": 40,
+        "base_attack": 41,
+        "base_health_points": 38,
 
         "evolution_level" : 22,
         "yield_experience" : 60
@@ -407,9 +407,9 @@
         "entry" : "0038",
         "name": "Ninetales",
         "type": ["fire"],
-        "defence": 75,
-        "attack": 76,
-        "health_points": 73,
+        "base_defence": 75,
+        "base_attack": 76,
+        "base_health_points": 73,
 
         "yield_experience" : 177
     },
@@ -417,9 +417,9 @@
         "entry" : "0038A",
         "name": "Ninetales (Alolan Form)",
         "type": ["ice", "fairy"],
-        "defence": 75,
-        "attack": 81,
-        "health_points": 73,
+        "base_defence": 75,
+        "base_attack": 81,
+        "base_health_points": 73,
 
         "yield_experience" : 177
     },
@@ -427,9 +427,9 @@
         "entry" : "0039",
         "name": "Jigglypuff",
         "type": ["normal", "fairy"],
-        "defence": 20,
-        "attack": 45,
-        "health_points": 115,
+        "base_defence": 20,
+        "base_attack": 45,
+        "base_health_points": 115,
 
         "evolution_level" : 28,
         "yield_experience" : 95
@@ -438,9 +438,9 @@
         "entry" : "0040",
         "name": "Wigglytuff",
         "type": ["normal", "fairy"],
-        "defence": 45,
-        "attack": 70,
-        "health_points": 140,
+        "base_defence": 45,
+        "base_attack": 70,
+        "base_health_points": 140,
 
         "yield_experience" : 218
     },
@@ -448,9 +448,9 @@
         "entry" : "0041",
         "name": "Zubat",
         "type": ["poison", "flying"],
-        "defence": 35,
-        "attack": 45,
-        "health_points": 40,
+        "base_defence": 35,
+        "base_attack": 45,
+        "base_health_points": 40,
 
         "evolution_level" : 22,
         "yield_experience" : 49
@@ -459,9 +459,9 @@
         "entry" : "0042",
         "name": "Golbat",
         "type": ["poison", "flying"],
-        "defence": 70,
-        "attack": 80,
-        "health_points": 75,
+        "base_defence": 70,
+        "base_attack": 80,
+        "base_health_points": 75,
 
         "yield_experience" : 159
     }

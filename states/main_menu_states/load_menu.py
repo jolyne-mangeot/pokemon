@@ -1,6 +1,7 @@
 import pygame as pg
 from control.states_control import States
 from states.main_menu_states.__main_menu_manager__ import Main_menu_manager
+from game.pokemons.pokedex import Pokedex
 
 pg.font.init()
 
@@ -21,12 +22,12 @@ class Load_menu(States, Main_menu_manager):
         self.options = []
         self.next_list = []
         for player_save in self.player_saves_state:
-            if player_save == "new game":
+            if player_save == {}:
                 self.options.append(self.dialogs['new game'])
-                self.next_list.append("")
+                self.next_list.append("new_game")
             else:
                 self.options.append(player_save['player'])
-                self.next_list.append("")
+                self.next_list.append("pause_menu")
         self.options.append(self.dialogs['back'])
         self.next_list.append("main_menu")
     
@@ -41,7 +42,7 @@ class Load_menu(States, Main_menu_manager):
             initiates all menu-related data
         """
         self.init_config()
-        self.player_saves_state = self.load_player_data() #None if no saves found, else a list with saves as indexes to check the number of saves
+        self.player_saves_state = self.load_player_data()
         self.init_render_option()
         self.pre_render_options()
         pass
@@ -54,12 +55,17 @@ class Load_menu(States, Main_menu_manager):
         if event.type == pg.QUIT:
             self.quit = True
         if event.type == pg.KEYDOWN:
-            # if event.key in [pg.K_ESCAPE, pg.K_LSHIFT, pg.K_RSHIFT] and not self.quit:
             if pg.key.name(event.key) in self.return_keys and not self.quit:
                 self.next = self.back
                 self.done = True
-            if pg.key.name(event.key) in self.confirm_keys:
-                pass
+            if pg.key.name(event.key) in self.confirm_keys and self.selected_index in (0,1):
+                if self.next_list[self.selected_index] == "new_game":
+                    self.select_option()
+                else:
+                    current_player = self.player_saves_state[self.selected_index]
+                    current_pokedex = Pokedex(current_player)
+                    States.player_pokedex = current_pokedex
+                    self.select_option()
 
         self.get_event_menu(event)
     
