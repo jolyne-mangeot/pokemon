@@ -1,6 +1,6 @@
 import pygame as pg
 
-class Main_menu_manager:
+class Game_menu_manager:
     def __init__(self):
         """
             inits selected option, last option to check for on-same-button
@@ -11,9 +11,6 @@ class Main_menu_manager:
         self.last_option = None
         self.selected_color = (255,255,0)
         self.deselected_color = (255,255,255)
-    
-    def draw_main_menu(self):
-        self.screen.fill((100,0,0))
     
     def update_menu(self):
         """

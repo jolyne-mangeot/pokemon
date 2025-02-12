@@ -131,5 +131,6 @@ class Preferences_menu(States, Main_menu_manager):
             launch all display related scripts proper to this menu back
             the main_menu states shared scripts
         """
+        self.draw_main_menu()
         # self.screen.blit(self.background)
         self.draw_menu_options()

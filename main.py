@@ -4,7 +4,7 @@ from states.main_menu_states.main_menu import Main_menu
 from states.main_menu_states.preferences_menu import Preferences_menu
 from states.main_menu_states.load_menu import Load_menu
 from states.in_game_states.in_fight import In_fight
-from states.in_game_states.pause_menu import Pause_menu
+from states.in_game_states.launch_menu import Launch_menu
 
 # import tracemalloc, linecache
 # def display_top(snapshot, key_type='lineno', limit=10):
@@ -41,7 +41,7 @@ STATE_DICT = {
     'options' : Preferences_menu(),
     'load_menu' : Load_menu(),
     'game' : In_fight(),
-    'pause_menu' : Pause_menu()
+    'pause_menu' : Launch_menu()
 }
 
 # snapshot1 = tracemalloc.take_snapshot()

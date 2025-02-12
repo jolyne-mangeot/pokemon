@@ -1,28 +1,16 @@
 import pygame as pg
 from control.states_control import States
-from states.main_menu_states.__main_menu_manager__ import Main_menu_manager
-from states.in_game_states.pause_menu_save_quit import Pause_menu_save_quit
+from states.in_game_states.__game_menu_manager__ import Game_menu_manager
+from states.in_game_states.launch_menu_states import Launch_menu_states
 
 pg.font.init()
 
-class Pause_menu(States, Main_menu_manager, Pause_menu_save_quit):
+class Launch_menu(States, Game_menu_manager, Launch_menu_states):
     def __init__(self):
         States.__init__(self)
-        Main_menu_manager.__init__(self)
+        Game_menu_manager.__init__(self)
         self.next = ""
         self.back = "main_menu"
-        self.from_top = self.screen_rect.height / 4
-        self.spacer = 75
-    
-    def init_render_option_main(self):
-        self.menu_state = "main"
-        self.options = ["launch", "manage team", "manage met pokemons", "save", "quit"]
-        self.next_list = ["in_fight", "manage_settings", "manage_settings", "save", "quit"]
-    
-    # def init_render_option_manage_team(self):
-    #     self.menu_state = "manage_team"
-    #     self.options = ["pokemon1", "pokemon2", self.dialogs["back"]]
-    #     self.next_list = ["", "", "pause_menu"]
 
     def cleanup(self):
         """
@@ -35,9 +23,8 @@ class Pause_menu(States, Main_menu_manager, Pause_menu_save_quit):
             initiates all menu-related data
         """
         self.init_config()
-        self.init_render_option_main()
-        self.pre_render_options()
         self.menu_state = "main"
+        self.update_options()
         pass
 
     def get_event(self, event):
@@ -51,44 +38,45 @@ class Pause_menu(States, Main_menu_manager, Pause_menu_save_quit):
         match self.menu_state:
             case "save":
                 self.chosen_save = self.get_event_save(event)
+                self.get_event_menu(event)
             case "save_confirm":
                 if self.get_event_save_confirm(event) == True:
                     player_data = States.player_pokedex.compress_data()
                     self.save_player_data(player_data, self.chosen_save)
+                self.get_event_confirm(event)
             case "quit":
                 self.get_event_quit(event)
+                self.get_event_confirm(event)
             case "main" | _:
                 self.get_event_main(event)
+                self.get_event_menu(event)
 
-        self.get_event_menu(event)
-    
-    def get_event_main(self, event):
-        if event.type == pg.KEYDOWN:
-            if pg.key.name(event.key) in self.return_keys and not self.quit:
-                self.menu_state = "quit"
-                self.update_options()
-            if pg.key.name(event.key) in self.confirm_keys and self.selected_index in (3,4):
-                self.menu_state = self.next_list[self.selected_index]
-                self.update_options()
+        
 
     def update_options(self):
         match self.menu_state:
             case "save":
+                self.from_top = self.screen_rect.height / 3
+                self.spacer = 60
                 self.init_render_option_save()
             case "save_confirm":
-                self.init_render_option_save_confirm()
+                self.from_top = self.screen_rect.height/2 - 60
+                self.spacer = 60
+                self.init_render_option_confirm()
             case "quit":
-                self.init_render_option_quit()
+                self.from_top = self.screen_rect.height/2 - 60
+                self.spacer = 60
+                self.init_render_option_confirm()
             case "main" | _:
+                self.from_top = self.screen_rect.height / 4
+                self.spacer = 60
                 self.init_render_option_main()
         self.selected_index = 0
         self.pre_render_options()
     
     def update(self):
         """
-            trigger all changes such as mouse hover or changing selected
-            option, done after having checked in control class change on
-            done and quit attribute from menu_manager inheritance
+            trigger all changes such as changing selected option
         """
         self.update_menu()
         self.draw()
@@ -97,4 +85,9 @@ class Pause_menu(States, Main_menu_manager, Pause_menu_save_quit):
         """
             init all display related script
         """
-        self.draw_menu_options()
+        self.screen.fill((0,100,0))
+        match self.menu_state:
+            case "main" | "save":
+                self.draw_menu_options()
+            case "save_confirm" | "quit":
+                self.draw_confirm_options()

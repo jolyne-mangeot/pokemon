@@ -82,4 +82,5 @@ class Load_menu(States, Main_menu_manager):
         """
             init all display related script
         """
+        self.draw_main_menu()
         self.draw_menu_options()
