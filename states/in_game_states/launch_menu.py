@@ -1,7 +1,7 @@
 import pygame as pg
 from control.states_control import States
 from states.in_game_states.__game_menu_manager__ import Game_menu_manager
-from states.in_game_states.launch_menu_states import Launch_menu_states
+from states.in_game_states.__launch_menu_states__ import Launch_menu_states
 
 pg.font.init()
 
@@ -25,7 +25,6 @@ class Launch_menu(States, Game_menu_manager, Launch_menu_states):
         self.init_config()
         self.menu_state = "main"
         self.update_options()
-        pass
 
     def get_event(self, event):
         """
@@ -41,38 +40,19 @@ class Launch_menu(States, Game_menu_manager, Launch_menu_states):
                 self.get_event_menu(event)
             case "save_confirm":
                 if self.get_event_save_confirm(event) == True:
-                    player_data = States.player_pokedex.compress_data()
+                    player_data = States.player_pokedex.compress_data(self.chosen_save)
                     self.save_player_data(player_data, self.chosen_save)
                 self.get_event_confirm(event)
             case "quit":
-                self.get_event_quit(event)
+                self.get_event_quit(event, "main")
+                self.get_event_confirm(event)
+            case "delete_save":
+                if self.get_event_delete_save(event) == True:
+                    self.reset_player_data(States.player_pokedex.save)
                 self.get_event_confirm(event)
             case "main" | _:
                 self.get_event_main(event)
                 self.get_event_menu(event)
-
-        
-
-    def update_options(self):
-        match self.menu_state:
-            case "save":
-                self.from_top = self.screen_rect.height / 3
-                self.spacer = 60
-                self.init_render_option_save()
-            case "save_confirm":
-                self.from_top = self.screen_rect.height/2 - 60
-                self.spacer = 60
-                self.init_render_option_confirm()
-            case "quit":
-                self.from_top = self.screen_rect.height/2 - 60
-                self.spacer = 60
-                self.init_render_option_confirm()
-            case "main" | _:
-                self.from_top = self.screen_rect.height / 4
-                self.spacer = 60
-                self.init_render_option_main()
-        self.selected_index = 0
-        self.pre_render_options()
     
     def update(self):
         """
@@ -89,5 +69,5 @@ class Launch_menu(States, Game_menu_manager, Launch_menu_states):
         match self.menu_state:
             case "main" | "save":
                 self.draw_menu_options()
-            case "save_confirm" | "quit":
+            case "save_confirm" | "quit" | "delete_save":
                 self.draw_confirm_options()

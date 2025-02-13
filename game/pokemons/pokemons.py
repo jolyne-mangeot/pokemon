@@ -1,5 +1,8 @@
 class Pokemon:
     def __init__(self, pokedex_entry, experience_points):
+        evolution = str(int(pokedex_entry['entry'])+1)
+        while len(evolution) < 4:
+            evolution = "0" + str(evolution)
         self.__dict__.update(pokedex_entry)
         self.experience_points = experience_points
         self.get_level()
@@ -25,9 +28,9 @@ class Pokemon:
         self.current_experience += gained_experience
         self.level_up()
 
-    def evolve(self, new_pokedex_entry):
+    def evolve(self):
         if self.level >= self.evolution_level:
-            self.__init__(new_pokedex_entry, self.experience_points)
+            self.__init__(self.evolution, self.experience_points)
     
     def level_up(self):
         if self.level == 1:

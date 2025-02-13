@@ -132,5 +132,4 @@ class Preferences_menu(States, Main_menu_manager):
             the main_menu states shared scripts
         """
         self.draw_main_menu()
-        # self.screen.blit(self.background)
         self.draw_menu_options()

@@ -12,8 +12,8 @@ class Control(Settings, Display):
         self.done = False
 
     def init_config(self):
-        self.settings = Control.settings #dict
-        self.dialogs = Control.dialogs
+        self.settings : dict = Control.settings
+        self.dialogs : dict = Control.dialogs
         self.__dict__.update(**Control.settings)
         self.screen_width, self.screen_height = map(int, self.settings['screen_resolution'].split(","))
         self.screen = pg.display.set_mode((self.screen_width, self.screen_height))

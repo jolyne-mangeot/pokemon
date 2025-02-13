@@ -12,9 +12,10 @@ class Pokedex:
         with open(POKEMON_DICT_PATH, "r") as file:
             Pokedex.pokemon_dict = json.load(file)
     
-    def compress_data(self):
+    def compress_data(self, chosen_save) -> dict:
         player_data = {
             "player" : self.player,
+            "save" : chosen_save,
             "active_team" : {}
         }
         for pokemon in self.player_team:
@@ -42,11 +43,7 @@ class Pokedex:
     def check_evolutions(self):
         for pokemon in self.player_team:
             if pokemon.level >= pokemon.evolution_level:
-                if bool(pokemon.evolution):
-                    new_entry = pokemon.evolution
-                else:
-                    new_entry = int(pokemon.entry)+1
-                    new_entry = "00" + str(new_entry)
+                new_entry = pokemon.evolution
                 pokemon.evolve(Pokedex.pokemon_dict[new_entry])
     
     def init_player_pokedex_data(self):

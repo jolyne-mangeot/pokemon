@@ -1,4 +1,5 @@
 import pygame as pg
+import string
 
 class Game_menu_manager:
     def __init__(self):
@@ -48,3 +49,41 @@ class Game_menu_manager:
             self.selected_index = max_indicator
         elif self.selected_index > max_indicator:
             self.selected_index = 0
+
+    def init_render_option_confirm(self):
+        self.from_top = self.screen_rect.height/2 - 60
+        self.spacer = 60
+        self.options = ["no", "yes"]
+
+    def get_event_quit(self, event, back : str):
+        if event.type == pg.KEYDOWN:
+            if pg.key.name(event.key) in self.return_keys and not self.quit or\
+                pg.key.name(event.key) in self.confirm_keys and self.selected_index == 0:
+                self.menu_state = back
+                self.update_options()
+            elif pg.key.name(event.key) in self.confirm_keys and self.selected_index == 1:
+                self.next = "main_menu"
+                self.done = True
+                self.selected_index = 0
+    
+    def get_event_player_input(self, event):
+        if event.type == pg.QUIT:
+            self.quit = True
+        if event.type == pg.KEYDOWN:
+            if event.key == pg.K_ESCAPE:
+                return False, user_input
+
+            if event.key == pg.K_RETURN and user_input != '':
+                return True, user_input
+
+            elif event.key == pg.K_BACKSPACE and user_input != '':
+                user_input = user_input[:-1]
+                return '', user_input
+
+            elif len(user_input) <= 9:
+                if str(event.unicode).upper() in string.ascii_uppercase or event.unicode in (" ", "-", "'"):
+                    user_input += event.unicode
+                    return '', user_input
+
+    def draw_player_input(self, dialog : str):
+        pass

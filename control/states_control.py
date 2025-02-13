@@ -1,7 +1,8 @@
 import pygame as pg
+import abc
 from control.control import Control
 
-class States(Control):
+class States(Control, abc.ABC):
     player_pokedex = None
     new_fight = None
 
@@ -68,3 +69,11 @@ class States(Control):
                 self.screen.blit(selected_render[0], selected_render[1])
             else:
                 self.screen.blit(option[0],option[1])
+    
+    @abc.abstractmethod
+    def cleanup(self):
+        pass
+    
+    @abc.abstractmethod
+    def startup(self):
+        pass

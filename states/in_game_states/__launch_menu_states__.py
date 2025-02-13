@@ -1,6 +1,26 @@
 import pygame as pg
 
 class Launch_menu_states:
+
+    def update_options(self):
+        match self.menu_state:
+            case "save":
+                self.from_top = self.screen_rect.height / 3
+                self.spacer = 60
+                self.init_render_option_save()
+            case "save_confirm":
+                self.init_render_option_confirm() # set from top, spacer and options
+            case "quit":
+                self.init_render_option_confirm()
+            case "delete_save":
+                self.init_render_option_confirm()
+            case "main" | _:
+                self.from_top = self.screen_rect.height / 4
+                self.spacer = 60
+                self.init_render_option_main()
+        self.selected_index = 0
+        self.pre_render_options()
+
     def init_render_option_main(self):
         self.menu_state = "main"
         self.options = ["launch", "manage team", "manage met pokemons", "save", "quit"]
@@ -8,10 +28,16 @@ class Launch_menu_states:
 
     def get_event_main(self, event):
         if event.type == pg.KEYDOWN:
-            if pg.key.name(event.key) in self.return_keys and not self.quit:
+            pressed_keys = pg.key.get_pressed()
+            if pressed_keys[pg.key.key_code(self.delete_save_keys[0])] \
+                and pressed_keys[pg.key.key_code(self.delete_save_keys[1])] \
+                    and pressed_keys[pg.key.key_code(self.delete_save_keys[2])]:
+                self.menu_state = "delete_save"
+                self.update_options()
+            elif pg.key.name(event.key) in self.return_keys and not self.quit:
                 self.menu_state = "quit"
                 self.update_options()
-            if pg.key.name(event.key) in self.confirm_keys and self.selected_index in (3,4):
+            elif pg.key.name(event.key) in self.confirm_keys and self.selected_index in (3,4):
                 self.menu_state = self.next_list[self.selected_index]
                 self.update_options()
 
@@ -37,9 +63,6 @@ class Launch_menu_states:
                 return chosen_save
         return None
 
-    def init_render_option_confirm(self):
-        self.options = ["no", "yes"]
-
     def get_event_save_confirm(self, event):
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit\
@@ -51,14 +74,16 @@ class Launch_menu_states:
                 self.menu_state = "main"
                 self.update_options()
                 return True
-
-    def get_event_quit(self, event):
+    
+    def get_event_delete_save(self, event):
         if event.type == pg.KEYDOWN:
-            if pg.key.name(event.key) in self.return_keys and not self.quit or\
-                pg.key.name(event.key) in self.confirm_keys and self.selected_index == 0:
+            if pg.key.name(event.key) in self.return_keys and not self.quit\
+                or pg.key.name(event.key) in self.confirm_keys and self.selected_index == 0:
                 self.menu_state = "main"
                 self.update_options()
-            elif pg.key.name(event.key) in self.confirm_keys and self.selected_index == 1:
+                return None
+            if pg.key.name(event.key) in self.confirm_keys and self.selected_index == 1:
                 self.next = "main_menu"
                 self.done = True
                 self.selected_index = 0
+                return True
