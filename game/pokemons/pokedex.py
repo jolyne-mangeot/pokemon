@@ -1,6 +1,6 @@
 import json
 from game.pokemons.pokemons import Pokemon
-from game.__game_settings__ import POKEMON_DICT_PATH, SAVE_PATH
+from game.__game_settings__ import POKEMON_DICT_PATH
 
 class Pokedex:
     def __init__(self, player_data):
@@ -10,7 +10,7 @@ class Pokedex:
 
     def init_pokedex_data(self):
         with open(POKEMON_DICT_PATH, "r") as file:
-            Pokedex.pokemon_dict = json.load(file)
+            self.pokemon_dict = json.load(file)
     
     def compress_data(self, chosen_save) -> dict:
         player_data = {
@@ -37,14 +37,17 @@ class Pokedex:
             self.player_team.append(pokemon)
 
     def add_pokemon(self, entry, experience_points=0):
-        pokemon = Pokemon(Pokedex.pokemon_dict[entry], experience_points)
+        pokemon = Pokemon(self.pokemon_dict[entry], experience_points)
         return pokemon
+
+    def switch_pokemon(self, old_index, new_index):
+        self.player_team.insert(new_index, self.player_team.pop(old_index))
     
     def check_evolutions(self):
         for pokemon in self.player_team:
             if pokemon.level >= pokemon.evolution_level:
                 new_entry = pokemon.evolution
-                pokemon.evolve(Pokedex.pokemon_dict[new_entry])
+                pokemon.evolve(self.pokemon_dict[new_entry])
     
     def init_player_pokedex_data(self):
         pass

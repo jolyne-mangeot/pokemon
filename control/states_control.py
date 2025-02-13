@@ -24,15 +24,23 @@ class States(Control, abc.ABC):
                 self.select_option()
             elif pg.key.name(event.key) in self.up_keys:
                 self.change_selected_option(-1)
+                while self.options[self.selected_index] == "":
+                    self.change_selected_option(-1)
             elif pg.key.name(event.key) in self.down_keys:
                 self.change_selected_option(1)
+                while self.options[self.selected_index] == "":
+                    self.change_selected_option(1)
     
     def get_event_confirm(self, event):
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.left_keys:
                 self.change_selected_option(-1)
+                while self.options[self.selected_index] == "":
+                    self.change_selected_option(-1)
             elif pg.key.name(event.key) in self.right_keys:
                 self.change_selected_option(1)
+                while self.options[self.selected_index] == "":
+                    self.change_selected_option(1)
 
     def select_option(self):
         """
@@ -62,13 +70,27 @@ class States(Control, abc.ABC):
     
     def draw_confirm_options(self):
         for index, option in enumerate(self.rendered["deselected"]):
-            option[1].center = (self.screen_rect.centerx-50 + index*100, self.screen_rect.centery)
+            if len(self.rendered["deselected"]) == 2:
+                option[1].center = (self.screen_rect.centerx-50 + index*100, self.from_top)
+            else:
+                option[1].center = (self.screen_rect.centerx-200 + index*200, self.from_top)
             if index == self.selected_index:
+                if bool(self.picked_index):
+                    if self.selected_index == self.picked_index:
+                        continue
                 selected_render = self.rendered["selected"][index]
                 selected_render[1].center = option[1].center
                 self.screen.blit(selected_render[0], selected_render[1])
             else:
                 self.screen.blit(option[0],option[1])
+    
+    def draw_picked(self):
+        for index, option in enumerate(self.rendered["picked"]):
+            option[1].center = (self.screen_rect.centerx, self.from_top + index*self.spacer)
+            if index == self.picked_index:
+                selected_render = self.rendered["picked"][index]
+                selected_render[1].center = option[1].center
+                self.screen.blit(selected_render[0], selected_render[1])
     
     @abc.abstractmethod
     def cleanup(self):

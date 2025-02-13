@@ -16,13 +16,16 @@ class Launch_menu(States, Game_menu_manager, Launch_menu_states):
         """
             cleans up all menu related data
         """
-        pass
+        self.picked_index = None
+        self.rendered_picked = {}
 
     def startup(self):
         """
             initiates all menu-related data
         """
         self.init_config()
+        self.picked_index = None
+        self.rendered_picked = {}
         self.menu_state = "main"
         self.update_options()
 
@@ -35,6 +38,9 @@ class Launch_menu(States, Game_menu_manager, Launch_menu_states):
             self.quit = True
 
         match self.menu_state:
+            case "manage_team":
+                self.get_event_manage_team(event)
+                self.get_event_menu(event)
             case "save":
                 self.chosen_save = self.get_event_save(event)
                 self.get_event_menu(event)
@@ -44,7 +50,8 @@ class Launch_menu(States, Game_menu_manager, Launch_menu_states):
                     self.save_player_data(player_data, self.chosen_save)
                 self.get_event_confirm(event)
             case "quit":
-                self.get_event_quit(event, "main")
+                self.back = "main"
+                self.get_event_quit(event)
                 self.get_event_confirm(event)
             case "delete_save":
                 if self.get_event_delete_save(event) == True:
@@ -69,5 +76,8 @@ class Launch_menu(States, Game_menu_manager, Launch_menu_states):
         match self.menu_state:
             case "main" | "save":
                 self.draw_menu_options()
+            case "manage_team":
+                self.draw_menu_options()
+                self.draw_picked()
             case "save_confirm" | "quit" | "delete_save":
                 self.draw_confirm_options()

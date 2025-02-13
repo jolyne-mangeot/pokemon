@@ -4,6 +4,10 @@ class Launch_menu_states:
 
     def update_options(self):
         match self.menu_state:
+            case "manage_team":
+                self.init_render_option_team()
+                self.pre_render_team()
+                self.picked_index = None
             case "save":
                 self.from_top = self.screen_rect.height / 3
                 self.spacer = 60
@@ -23,8 +27,14 @@ class Launch_menu_states:
 
     def init_render_option_main(self):
         self.menu_state = "main"
-        self.options = ["launch", "manage team", "manage met pokemons", "save", "quit"]
-        self.next_list = ["in_fight", "manage_settings", "manage_settings", "save", "quit"]
+        self.options = [
+            self.dialogs["launch"],
+            self.dialogs["manage met pokemons"],
+            self.dialogs["manage team"],
+            self.dialogs["save"],
+            self.dialogs["quit"]
+            ]
+        self.next_list = ["in_fight", "manage_settings", "manage_team", "save", "quit"]
 
     def get_event_main(self, event):
         if event.type == pg.KEYDOWN:
@@ -37,17 +47,31 @@ class Launch_menu_states:
             elif pg.key.name(event.key) in self.return_keys and not self.quit:
                 self.menu_state = "quit"
                 self.update_options()
-            elif pg.key.name(event.key) in self.confirm_keys and self.selected_index in (3,4):
+            elif pg.key.name(event.key) in self.confirm_keys and self.selected_index in (2,3,4):
                 self.menu_state = self.next_list[self.selected_index]
                 self.update_options()
-
-    def init_render_option_manage_team(self):
-        self.menu_state = "manage_team"
-        self.options = ["pokemon1", "pokemon2", self.dialogs["back"]]
-        self.next_list = ["", "", "pause_menu"]
+    
+    def get_event_manage_team(self, event):
+        if event.type == pg.KEYDOWN:
+            if pg.key.name(event.key) in self.return_keys and not self.quit\
+                or pg.key.name(event.key) in self.confirm_keys and self.selected_index == len(self.options) - 1:
+                self.menu_state = "main"
+                self.update_options()
+                return None
+            elif pg.key.name(event.key) in self.confirm_keys:
+                if type(self.picked_index) != int:
+                    self.picked_index = self.selected_index
+                else:
+                    self.player_pokedex.switch_pokemon(self.picked_index, self.selected_index)
+                    self.update_options()
+                    self.picked_index = None
 
     def init_render_option_save(self):
-        self.options = ["save_file_1", "save_file_2", self.dialogs["back"]]
+        self.options = [
+            self.dialogs["save_1"],
+            self.dialogs["save_2"],
+            self.dialogs["back"]
+            ]
 
     def get_event_save(self, event):
         if event.type == pg.KEYDOWN:

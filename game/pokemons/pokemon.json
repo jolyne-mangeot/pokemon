@@ -1,7 +1,7 @@
 {
     "0001" : {
         "entry" : "0001",
-        "name": "Bulbasaur",
+        "name": "bulbasaur",
         "type": ["grass", "poison"],
         "base_defence": 49,
         "base_attack": 49,
@@ -12,7 +12,7 @@
     },
     "0002" : {
         "entry" : "0002",
-        "name": "Ivysaur",
+        "name": "ivysaur",
         "type": ["grass", "poison"],
         "base_defence": 63,
         "base_attack": 62,
@@ -23,7 +23,7 @@
     },
     "0003" : {
         "entry" : "0003",
-        "name": "Venusaur",
+        "name": "venusaur",
         "type": ["grass", "poison"],
         "base_defence": 83,
         "base_attack": 82,
@@ -33,7 +33,7 @@
     },
     "0004" : {
         "entry" : "0004",
-        "name": "Charmander",
+        "name": "charmander",
         "type": ["fire"],
         "base_defence": 43,
         "base_attack": 52,
@@ -44,7 +44,7 @@
     },
     "0005" : {
         "entry" : "0005",
-        "name": "Charmeleon",
+        "name": "charmeleon",
         "type": ["fire"],
         "base_defence": 58,
         "base_attack": 64,
@@ -55,7 +55,7 @@
     },
     "0006" : {
         "entry" : "0006",
-        "name": "Charizard",
+        "name": "charizard",
         "type": ["fire", "flying"],
         "base_defence": 78,
         "base_attack": 84,
@@ -65,7 +65,7 @@
     },
     "0007" : {
         "entry" : "0007",
-        "name": "Squirtle",
+        "name": "squirtle",
         "type": ["water"],
         "base_defence": 65,
         "base_attack": 48,
@@ -76,7 +76,7 @@
     },
     "0008" : {
         "entry" : "0008",
-        "name": "Wartortle",
+        "name": "wartortle",
         "type": ["water"],
         "base_defence": 80,
         "base_attack": 63,
@@ -87,7 +87,7 @@
     },
     "0009" : {
         "entry" : "0009",
-        "name": "Blastoise",
+        "name": "blastoise",
         "type": ["water"],
         "base_defence": 100,
         "base_attack": 83,
@@ -97,7 +97,7 @@
     },
     "0010" : {
         "entry" : "0010",
-        "name": "Caterpie",
+        "name": "caterpie",
         "type": ["bug"],
         "base_defence": 35,
         "base_attack": 30,
@@ -108,7 +108,7 @@
     },
     "0011" : {
         "entry" : "0011",
-        "name": "Metapod",
+        "name": "metapod",
         "type": ["bug"],
         "base_defence": 55,
         "base_attack": 20,
@@ -119,7 +119,7 @@
     },
     "0012" : {
         "entry" : "0012",
-        "name": "Butterfree",
+        "name": "butterfree",
         "type": ["bug", "flying"],
         "base_defence": 50,
         "base_attack": 45,
@@ -129,7 +129,7 @@
     },
     "0013" : {
         "entry" : "0013",
-        "name": "Weedle",
+        "name": "weedle",
         "type": ["bug", "poison"],
         "base_defence": 30,
         "base_attack": 35,
@@ -140,7 +140,7 @@
     },
     "0014" : {
         "entry" : "0014",
-        "name": "Kakuna",
+        "name": "kakuna",
         "type": ["bug", "poison"],
         "base_defence": 50,
         "base_attack": 25,
@@ -151,7 +151,7 @@
     },
     "0015" : {
         "entry" : "0015",
-        "name": "Beedrill",
+        "name": "beedrill",
         "type": ["bug", "poison"],
         "base_defence": 40,
         "base_attack": 90,
@@ -161,7 +161,7 @@
     },
     "0016" : {
         "entry" : "0016",
-        "name": "Pidgey",
+        "name": "pidgey",
         "type": ["normal", "flying"],
         "base_defence": 40,
         "base_attack": 45,
@@ -172,7 +172,7 @@
     },
     "0017" : {
         "entry" : "0017",
-        "name": "Pidgeotto",
+        "name": "pidgeotto",
         "type": ["normal", "flying"],
         "base_defence": 55,
         "base_attack": 60,
@@ -183,7 +183,7 @@
     },
     "0018" : {
         "entry" : "0018",
-        "name": "Pidgeot",
+        "name": "pidgeot",
         "type": ["normal", "flying"],
         "base_defence": 75,
         "base_attack": 80,
@@ -193,7 +193,7 @@
     },
     "0019" : {
         "entry" : "0019",
-        "name": "Rattata",
+        "name": "rattata",
         "type": ["normal"],
         "base_defence": 35,
         "base_attack": 56,
@@ -204,7 +204,7 @@
     },
     "0020" : {
         "entry" : "0020",
-        "name": "Raticate",
+        "name": "raticate",
         "type": ["normal"],
         "base_defence": 60,
         "base_attack": 81,
@@ -214,7 +214,7 @@
     },
     "0021" : {
         "entry" : "0021",
-        "name": "Spearow",
+        "name": "spearow",
         "type": ["normal", "flying"],
         "base_defence": 30,
         "base_attack": 60,
@@ -225,7 +225,7 @@
     },
     "0022" : {
         "entry" : "0022",
-        "name": "Fearow",
+        "name": "fearow",
         "type": ["normal", "flying"],
         "base_defence": 65,
         "base_attack": 90,
@@ -235,7 +235,7 @@
     },
     "0023" : {
         "entry" : "0023",
-        "name": "Ekans",
+        "name": "ekans",
         "type": ["poison"],
         "base_defence": 44,
         "base_attack": 60,
@@ -246,7 +246,7 @@
     },
     "0024" : {
         "entry" : "0024",
-        "name": "Arbok",
+        "name": "arbok",
         "type": ["poison"],
         "base_defence": 69,
         "base_attack": 85,
@@ -256,7 +256,7 @@
     },
     "0025" : {
         "entry" : "0025",
-        "name": "Pikachu",
+        "name": "pikachu",
         "type": ["electric"],
         "base_defence": 40,
         "base_attack": 55,
@@ -267,7 +267,7 @@
     },
     "0026" : {
         "entry" : "0026",
-        "name": "Raichu",
+        "name": "raichu",
         "type": ["electric"],
         "base_defence": 55,
         "base_attack": 90,
@@ -277,7 +277,7 @@
     },
     "0027" : {
         "entry" : "0027",
-        "name": "Sandshrew",
+        "name": "sandshrew",
         "type": ["ground"],
         "base_defence": 85,
         "base_attack": 75,
@@ -288,7 +288,7 @@
     },
     "0028" : {
         "entry" : "0028",
-        "name": "Sandslash",
+        "name": "sandslash",
         "type": ["ground"],
         "base_defence": 110,
         "base_attack": 100,
@@ -298,7 +298,7 @@
     },
     "0029" : {
         "entry" : "0029",
-        "name": "Nidoran♀",
+        "name": "nidoran♀",
         "type": ["poison"],
         "base_defence": 52,
         "base_attack": 47,
@@ -309,7 +309,7 @@
     },
     "0030" : {
         "entry" : "0030",
-        "name": "Nidorina",
+        "name": "nidorina",
         "type": ["poison"],
         "base_defence": 67,
         "base_attack": 62,
@@ -320,7 +320,7 @@
     },
     "0031" : {
         "entry" : "0031",
-        "name": "Nidoqueen",
+        "name": "nidoqueen",
         "type": ["poison", "ground"],
         "base_defence": 87,
         "base_attack": 92,
@@ -330,7 +330,7 @@
     },
     "0032" : {
         "entry" : "0032",
-        "name": "Nidoran♂",
+        "name": "nidoran♂",
         "type": ["poison"],
         "base_defence": 40,
         "base_attack": 57,
@@ -341,7 +341,7 @@
     },
     "0033" : {
         "entry" : "0033",
-        "name": "Nidorino",
+        "name": "nidorino",
         "type": ["poison"],
         "base_defence": 57,
         "base_attack": 72,
@@ -352,7 +352,7 @@
     },
     "0034" : {
         "entry" : "0034",
-        "name": "Nidoking",
+        "name": "nidoking",
         "type": ["poison", "ground"],
         "base_defence": 77,
         "base_attack": 102,
@@ -362,7 +362,7 @@
     },
     "0035" : {
         "entry" : "0035",
-        "name": "Clefairy",
+        "name": "clefairy",
         "type": ["fairy"],
         "base_defence": 48,
         "base_attack": 45,
@@ -373,7 +373,7 @@
     },
     "0036" : {
         "entry" : "0036",
-        "name": "Clefable",
+        "name": "clefable",
         "type": ["fairy"],
         "base_defence": 73,
         "base_attack": 70,
@@ -383,7 +383,7 @@
     },
     "0037" : {
         "entry" : "0037",
-        "name": "Vulpix",
+        "name": "vulpix",
         "type": ["fire"],
         "base_defence": 40,
         "base_attack": 41,
@@ -392,9 +392,9 @@
         "evolution_level" : 22,
         "yield_experience" : 60
     },
-    "0037A" : {
-        "entry" : "0037A",
-        "name": "Vulpix (Alolan Form)",
+    "0037a" : {
+        "entry" : "0037a",
+        "name": "vulpix (alolan form)",
         "type": ["ice"],
         "base_defence": 40,
         "base_attack": 41,
@@ -405,7 +405,7 @@
     },
     "0038" : {
         "entry" : "0038",
-        "name": "Ninetales",
+        "name": "ninetales",
         "type": ["fire"],
         "base_defence": 75,
         "base_attack": 76,
@@ -413,9 +413,9 @@
 
         "yield_experience" : 177
     },
-    "0038A" : {
-        "entry" : "0038A",
-        "name": "Ninetales (Alolan Form)",
+    "0038a" : {
+        "entry" : "0038a",
+        "name": "ninetales (alolan form)",
         "type": ["ice", "fairy"],
         "base_defence": 75,
         "base_attack": 81,
@@ -425,7 +425,7 @@
     },
     "0039" : {
         "entry" : "0039",
-        "name": "Jigglypuff",
+        "name": "jigglypuff",
         "type": ["normal", "fairy"],
         "base_defence": 20,
         "base_attack": 45,
@@ -436,7 +436,7 @@
     },
     "0040" : {
         "entry" : "0040",
-        "name": "Wigglytuff",
+        "name": "wigglytuff",
         "type": ["normal", "fairy"],
         "base_defence": 45,
         "base_attack": 70,
@@ -446,7 +446,7 @@
     },
     "0041" : {
         "entry" : "0041",
-        "name": "Zubat",
+        "name": "zubat",
         "type": ["poison", "flying"],
         "base_defence": 35,
         "base_attack": 45,
@@ -457,7 +457,7 @@
     },
     "0042" : {
         "entry" : "0042",
-        "name": "Golbat",
+        "name": "golbat",
         "type": ["poison", "flying"],
         "base_defence": 70,
         "base_attack": 80,

@@ -10,7 +10,7 @@ class New_game(States, Game_menu_manager, New_game_states):
     def __init__(self):
         States.__init__(self)
         Game_menu_manager.__init__(self)
-        self.next = ""
+        self.next = "launch_menu"
         self.back = "main_menu"
 
     def cleanup(self):
@@ -24,7 +24,8 @@ class New_game(States, Game_menu_manager, New_game_states):
             initiates all menu-related data
         """
         self.init_config()
-        self.menu_state = "player_input"
+        self.player_input : str = ""
+        self.menu_state : str = "player_input"
         self.update_options()
 
     def init_render_option(self):
@@ -32,10 +33,10 @@ class New_game(States, Game_menu_manager, New_game_states):
         self.next_list = []
     
     def init_save_file(self):
-        current_player = {"player" : self.player, # get with input
+        current_player : dict = {"player" : self.player_input,
                           "active_team" : {
                               "pokemon_1" : {
-                                  "entry" : self.chosenpokemon, # get with choice
+                                  "entry" : self.chosen_pokemon,
                                   "experience_points" : 125
                               }
                           }}
@@ -52,19 +53,19 @@ class New_game(States, Game_menu_manager, New_game_states):
 
         match self.menu_state:
             case "pokemon_choice":
-                back = "pokemon_choice"
                 self.get_event_pokemon_choice(event)
-                self.get_event_menu(event)
-            case "player_input":
-                back = "player_input"
-                self.get_event_player_input(event)
-            case "quit":
-                self.get_event_quit(event, back)
                 self.get_event_confirm(event)
-            # case "main" | _:
-            #     back = "main"
-            #     self.get_event_main(event)
-            #     self.get_event_menu(event)
+            case "player_input":
+                player_done = self.get_event_player_input(event)
+                if player_done:
+                    self.menu_state = "pokemon_choice"
+                    self.update_options()
+                elif player_done == False:
+                    self.menu_state = "quit"
+                    self.update_options()
+            case "quit":
+                self.get_event_quit(event)
+                self.get_event_confirm(event)
 
     def update(self):
         """
@@ -79,8 +80,6 @@ class New_game(States, Game_menu_manager, New_game_states):
         """
         self.screen.fill((0,100,0))
         match self.menu_state:
-            case "main":
-                self.draw_menu_options()
             case "player_input":
                 self.draw_player_input(self.dialogs["your name"])
             case "pokemon_choice" | "quit":
