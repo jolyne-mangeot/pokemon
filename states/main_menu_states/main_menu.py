@@ -17,6 +17,7 @@ class Main_menu(States, Main_menu_manager):
 
         self.from_top = 200
         self.spacer = 75
+        self.from_left= 50
     
     def init_render_option(self):
         self.options = [self.dialogs['play'], self.dialogs['options'], self.dialogs['quit']]

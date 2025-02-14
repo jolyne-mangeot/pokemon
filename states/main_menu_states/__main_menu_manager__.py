@@ -12,6 +12,7 @@ class Main_menu_manager:
         self.selected_color = (255,255,0)
         self.deselected_color = (255,255,255)
         self.load_graphics_main_menues()
+        
     
     def draw_main_menu(self):
         self.screen.fill((100,0,0))
