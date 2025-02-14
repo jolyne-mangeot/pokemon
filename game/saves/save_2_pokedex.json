@@ -1,1 +1,15 @@
-{}
+{
+    "player": "prenom",
+    "save": "2",
+    "encounters" : {
+        "done" : 0,
+        "won" : 0,
+        "lost" : 0
+    },
+    "active_team": {
+        "pokemon_1": {
+            "entry": "0007",
+            "experience_points": 125
+        }
+    }
+}

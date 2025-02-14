@@ -33,13 +33,20 @@ class New_game(States, Game_menu_manager, New_game_states):
         self.next_list = []
     
     def init_save_file(self):
-        current_player : dict = {"player" : self.player_input,
-                          "active_team" : {
-                              "pokemon_1" : {
-                                  "entry" : self.chosen_pokemon,
-                                  "experience_points" : 125
-                              }
-                          }}
+        current_player : dict = {
+                    "player" : self.player_input,
+                    "encounters" : {
+                        "done" : 0,
+                        "won" : 0,
+                        "lost" : 0
+                    },
+                    "active_team" : {
+                        "pokemon_1" : {
+                            "entry" : self.chosen_pokemon,
+                            "experience_points" : 125
+                        }
+                    }}
+        Pokedex.init_pokedex_data()
         current_pokedex = Pokedex(current_player)
         States.player_pokedex = current_pokedex
 

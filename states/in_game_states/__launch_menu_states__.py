@@ -4,6 +4,8 @@ class Launch_menu_states:
 
     def update_options(self):
         match self.menu_state:
+            case "launch_fight_confirm":
+                self.init_render_option_confirm()
             case "manage_team":
                 self.init_render_option_team()
                 self.pre_render_team()
@@ -34,7 +36,7 @@ class Launch_menu_states:
             self.dialogs["save"],
             self.dialogs["quit"]
             ]
-        self.next_list = ["in_fight", "manage_settings", "manage_team", "save", "quit"]
+        self.next_list = ["launch_fight_confirm", "manage_settings", "manage_team", "save", "quit"]
 
     def get_event_main(self, event):
         if event.type == pg.KEYDOWN:
@@ -47,10 +49,10 @@ class Launch_menu_states:
             elif pg.key.name(event.key) in self.return_keys and not self.quit:
                 self.menu_state = "quit"
                 self.update_options()
-            elif pg.key.name(event.key) in self.confirm_keys and self.selected_index in (2,3,4):
+            elif pg.key.name(event.key) in self.confirm_keys and self.selected_index:
                 self.menu_state = self.next_list[self.selected_index]
                 self.update_options()
-    
+
     def get_event_manage_team(self, event):
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit\
@@ -71,7 +73,7 @@ class Launch_menu_states:
             self.dialogs["save_1"],
             self.dialogs["save_2"],
             self.dialogs["back"]
-            ]
+        ]
 
     def get_event_save(self, event):
         if event.type == pg.KEYDOWN:
@@ -108,6 +110,19 @@ class Launch_menu_states:
                 return None
             if pg.key.name(event.key) in self.confirm_keys and self.selected_index == 1:
                 self.next = "main_menu"
+                self.done = True
+                self.selected_index = 0
+                return True
+
+    def get_event_launch_fight_confirm(self, event):
+        if event.type == pg.KEYDOWN:
+            if pg.key.name(event.key) in self.return_keys and not self.quit\
+                or pg.key.name(event.key) in self.confirm_keys and self.selected_index == 0:
+                self.menu_state = "main"
+                self.update_options()
+                return None
+            if pg.key.name(event.key) in self.confirm_keys and self.selected_index == 1:
+                self.next = "in_fight"
                 self.done = True
                 self.selected_index = 0
                 return True
