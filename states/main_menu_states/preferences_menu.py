@@ -41,7 +41,6 @@ class Preferences_menu(States, Main_menu_manager):
             initiates all menu related data
         """
         self.load_graphics_main_menues()
-        self.load_graphics_preferences_menu()
 
         if self.previous == "game":
             self.back = "game"
