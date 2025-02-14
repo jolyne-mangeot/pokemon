@@ -1,6 +1,5 @@
 import json
 import os
-import pygame as pg
 from control.__control_settings__ import CONTROL_SETTINGS_PATH, LANGUAGE_DIALOG_PATH, SAVES_PATH
 
 class Settings:

@@ -12,6 +12,7 @@ class Control(Settings, Display):
         self.done = False
 
     def init_config(self):
+        Display.__init__(self)
         self.settings : dict = Control.settings
         self.dialogs : dict = Control.dialogs
         self.__dict__.update(**Control.settings)

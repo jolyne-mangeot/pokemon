@@ -40,6 +40,7 @@ class Preferences_menu(States, Main_menu_manager):
         """
             initiates all menu related data
         """
+        self.init_config()
         self.load_graphics_main_menues()
         self.load_graphics_preferences_menu()
 

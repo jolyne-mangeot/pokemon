@@ -1,10 +1,11 @@
 import random
 
 class Fight:
-    def __init__(self, player_pokedex, enemy_team):
+    def __init__(self, player_pokedex, enemy_team, types_chart):
         self.player_pokedex = player_pokedex
         self.player_team = player_pokedex.player_team
         self.enemy_team = enemy_team.player_team
+        self.type_chart = types_chart
     
     def spawn_pokemon(self, index, player=True):
         if player:
@@ -16,10 +17,12 @@ class Fight:
         if player:
             attacker = self.active_pokemon
             attacked = self.enemy_pokemon
-        if player:
-            type_multiplicator = "a"
-            damage = ((self.attacker.level*128/5+2) * self.attacker.attack/self.attacked.defence)/50+2 * type_multiplicator
-            self.enemy_pokemon_current_health_points -= damage
+        type_multiplicator = 1
+        for type in attacked.type:
+            type_multiplicator *= self.type_chart[attacker.type[0]][type]
+        damage = ((attacker.level*128/5+2) * attacker.attack/attacked.defense)/50+2 * type_multiplicator
+        attacked.current_health_points -= damage
+        return type_multiplicator
 
     def guard(self):
         pass
@@ -31,7 +34,7 @@ class Fight:
         pass
 
     def run_away(self):
-        if random.randint(0, 100) > ((((self.active_pokemon.level*128)/self.enemy_pokemon.level) + 50) / 256) * 100:
+        if random.randint(0, 100) > ((((self.active_pokemon.level*128)/self.enemy_pokemon.level) + 200) / 256) * 100:
             return True
         else:
             return False

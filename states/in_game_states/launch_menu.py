@@ -33,19 +33,22 @@ class Launch_menu(States, Game_menu_manager, Launch_menu_states):
         self.update_options()
     
     def launch_fight(self):
-        fight_level = ((self.player_pokedex.average_level*0.9) ** 3, 
-                        (self.player_pokedex.average_level*1.1) ** 3)
-        encounter = {
-            "active_team": {
-                "pokemon_1": {
-                    # "entry": random.choice(list(self.player_pokedex.pokemon_dict.keys())),
-                    "entry" : "0001",
-                    "experience_points": random.randrange(int(fight_level[0]), int(fight_level[1]))
+        if self.player_pokedex.encounters['done'] % 5 == 0:
+            pass #combat dresseur
+        else:
+            fight_level = ((self.player_pokedex.average_level*0.9) ** 3, 
+                            (self.player_pokedex.average_level*1.1) ** 3)
+            encounter = {
+                "active_team": {
+                    "pokemon_1": {
+                        # "entry": random.choice(list(self.player_pokedex.pokemon_dict.keys())),
+                        "entry" : "0001",
+                        "experience_points": random.randrange(int(fight_level[0]), int(fight_level[1]))
+                    }
                 }
             }
-        }
         enemy_team = Pokedex(True, encounter)
-        States.new_fight = Fight(self.player_pokedex, enemy_team)
+        States.new_fight = Fight(self.player_pokedex, enemy_team, Pokedex.types_chart)
 
     def get_event(self, event):
         """
