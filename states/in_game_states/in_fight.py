@@ -14,7 +14,8 @@ class In_fight(States):
     def startup(self):
         # initiates all menu related data
         # init new fight instance
-        pass
+        self.player_team : list = self.player_pokedex.player_team.copy()
+        self.enemy_team : list = "a"
 
     def get_event(self, event):
         # all input checks for in GAME

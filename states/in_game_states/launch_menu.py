@@ -1,5 +1,8 @@
 import pygame as pg
+import random
 from control.states_control import States
+from game.pokemons.pokedex import Pokedex
+from game.fight import Fight
 from states.in_game_states.__game_menu_manager__ import Game_menu_manager
 from states.in_game_states.__launch_menu_states__ import Launch_menu_states
 
@@ -28,6 +31,17 @@ class Launch_menu(States, Game_menu_manager, Launch_menu_states):
         self.rendered_picked = {}
         self.menu_state = "main"
         self.update_options()
+    
+    def launch_fight(self):
+        fight_level = (self.player_pokedex.average_level*0.9, self.player_pokedex.average_level*1.1)
+        encounter = {
+            "active_team": {
+                "entry" : random.randint(self.player_pokedex.pokemon_dict.keys()),
+                "experience_points" : random.randrange(fight_level**3)
+            }
+        }
+        enemy_team = Pokedex(wild=True, **encounter)
+        States.new_fight = Fight(self.player_pokedex.player_team, enemy_team)
 
     def get_event(self, event):
         """
@@ -38,6 +52,10 @@ class Launch_menu(States, Game_menu_manager, Launch_menu_states):
             self.quit = True
 
         match self.menu_state:
+            case "launch_fight_confirm":
+                if self.get_event_launch_fight_confirm(event):
+                    self.launch_fight()
+                self.get_event_confirm(event)
             case "manage_team":
                 self.get_event_manage_team(event)
                 self.get_event_menu(event)
@@ -45,7 +63,7 @@ class Launch_menu(States, Game_menu_manager, Launch_menu_states):
                 self.chosen_save = self.get_event_save(event)
                 self.get_event_menu(event)
             case "save_confirm":
-                if self.get_event_save_confirm(event) == True:
+                if self.get_event_save_confirm(event):
                     player_data = States.player_pokedex.compress_data(self.chosen_save)
                     self.save_player_data(player_data, self.chosen_save)
                 self.get_event_confirm(event)
@@ -54,7 +72,7 @@ class Launch_menu(States, Game_menu_manager, Launch_menu_states):
                 self.get_event_quit(event)
                 self.get_event_confirm(event)
             case "delete_save":
-                if self.get_event_delete_save(event) == True:
+                if self.get_event_delete_save(event):
                     self.reset_player_data(States.player_pokedex.save)
                 self.get_event_confirm(event)
             case "main" | _:

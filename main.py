@@ -42,7 +42,7 @@ STATE_DICT = {
     "options" : Preferences_menu(),
     "new_game" : New_game(),
     "load_menu" : Load_menu(),
-    "game" : In_fight(),
+    "in_fight" : In_fight(),
     "launch_menu" : Launch_menu()
 }
 

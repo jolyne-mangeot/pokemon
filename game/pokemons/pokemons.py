@@ -1,13 +1,14 @@
 class Pokemon:
-    def __init__(self, pokedex_entry, experience_points):
+    def __init__(self, pokedex_entry, experience_points, wild=False):
         evolution = str(int(pokedex_entry['entry'])+1)
         while len(evolution) < 4:
             evolution = "0" + str(evolution)
         self.__dict__.update(pokedex_entry)
+        if wild:
+            self.name = "Wild " + self.name
         self.experience_points = experience_points
         self.get_level()
         self.get_stats()
-        self.current_health_points = self.health_points
 
     def get_level(self):
         for potential_level in range (1,101):
@@ -21,6 +22,7 @@ class Pokemon:
         self.attack = round(((self.base_attack*2) * self.level)/100 + 5, 0)
         self.defense = round(((self.base_defence*2) * self.level)/100 + 5, 0)
         self.health_points = round(((self.base_health_points*2) * self.level)/100 + self.level+10, 0)
+        self.current_health_points = self.health_points
     
     def gain_experience(self, defeated_pokemon):
         gained_experience = round((defeated_pokemon.yield_experience*defeated_pokemon.level)/7 * 1.5,0)

@@ -3,7 +3,7 @@
     "sfx_volume": 10,
     "music_volume": 10,
     "language": "fr-fr",
-    "screen_resolution": "800,600",
+    "screen_resolution": "1024,768",
     "confirm_keys": [
         "return",
         "space",
