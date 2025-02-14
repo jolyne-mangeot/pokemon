@@ -3,15 +3,16 @@ from game.pokemons.pokemons import Pokemon
 from game.__game_settings__ import POKEMON_DICT_PATH
 
 class Pokedex:
-    def __init__(self, wild=False, **player_data):
+    pokemon_dict = {}
+    def __init__(self, wild, player_data):
         self.__dict__.update(**player_data)
         self.wild = wild
         self.init_player_team()
         self.get_average_level()
 
-    def init_pokedex_data(self):
+    def init_pokedex_data():
         with open(POKEMON_DICT_PATH, "r") as file:
-            Pokedex.pokemon_dict : dict = json.load(file)
+            Pokedex.pokemon_dict = json.load(file)
     
     def compress_data(self, chosen_save : str) -> dict:
         player_data : dict = {
@@ -57,11 +58,9 @@ class Pokedex:
                 self.check_evolutions()
     
     def get_average_level(self):
-        self.average_level_list : list = []
+        self.average_level : int = 0
         for pokemon in self.player_team:
-            self.average_level_list.append(pokemon.level)
-        for levels in self.average_level_list:
-            self.average_level += levels
+            self.average_level += pokemon.level
         self.average_level /= len(self.player_team)
     
     def init_player_pokedex_data(self):

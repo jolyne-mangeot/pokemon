@@ -64,7 +64,7 @@ class Load_menu(States, Main_menu_manager):
                 else:
                     current_player = self.player_saves_state[self.selected_index-1]
                     Pokedex.init_pokedex_data()
-                    current_pokedex = Pokedex(current_player)
+                    current_pokedex = Pokedex(False, current_player)
                     States.player_pokedex = current_pokedex
                     self.select_option()
 
