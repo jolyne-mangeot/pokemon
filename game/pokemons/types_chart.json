@@ -1,0 +1,81 @@
+{
+    "normal" : {
+        "weak_on" : ["rock", "steel"],
+        "no_damage_on" : ["ghost"]
+    },
+    "fighting" : {
+        "weak_on" : ["flying", "poison", "bug", "psychic", "fairy"],
+        "no_damage_on" : ["ghost"],
+        "strong_on" : ["normal", "rock", "steel", "ice", "dark"]
+    },
+    "flying" : {
+        "weak_on" : ["rock", "steel", "electric"],
+        "strong_on" : ["fighting", "bug", "grass"]
+    },
+    "poison" : {
+        "weak_on" : ["poison", "ground", "rock", "ghost"],
+        "no_damage_on" : ["steel"],
+        "strong_on" : ["grass", "fairy"]
+    },
+    "ground" : {
+        "weak_on" : ["bug", "grass"],
+        "no_damage_on" : ["flying"],
+        "strong_on" : ["poison", "rock", "steel", "fire", "electric"]
+    },
+    "rock" : {
+        "weak_on" : ["fighting", "ground", "steel"],
+        "strong_on" : ["flying", "bug", "fire", "ice"]
+    },
+    "bug" : {
+        "weak_on" : ["flying", "fighting", "poison", "ghost", "steel", "fire", "fairy"],
+        "strong_on" : ["grass", "psychic", "dark"]
+    },
+    "ghost" : {
+        "weak_on" : ["dark"],
+        "no_damage_on" : ["normal"],
+        "strong_on" : ["ghost", "psychic"]
+    },
+    "steel" : {
+        "weak_on" : ["steel", "fire", "water", "electric"],
+        "strong_on" : ["rock", "ice", "fairy"]
+    },
+    "fire" : {
+        "weak_on" : ["rock", "fire", "water", "dragon"],
+        "strong_on" : ["bug", "steel", "grass", "ice"]
+    },
+    "water" : {
+        "weak_on" : ["water", "grass", "dragon"],
+        "strong_on" : ["ground", "rock", "fire"]
+    },
+    "grass" : {
+        "weak_on" : ["flying", "poison", "bug", "steel", "fire", "grass", "dragon"],
+        "strong_on" : ["ground", "rock", "water"]
+    },
+    "electric" : {
+        "weak_on" : ["grass", "electric", "dragon"],
+        "no_damage_on" : ["ground"],
+        "strong_on" : ["flying", "water"]
+    },
+    "psychic" : {
+        "weak_on" : ["steel", "psychic"],
+        "no_damage_on" : ["dark"],
+        "strong_on" : ["fighting", "poison"]
+    },
+    "ice" : {
+        "weak_on" : ["steel", "fire", "water", "ice"],
+        "strong_on" : ["flying", "ground", "grass", "dragon"]
+    },
+    "dragon" : {
+        "weak_on" : ["steel"],
+        "no_damage_on" : ["fairy"],
+        "strong_on" : ["dragon"]
+    },
+    "dark" : {
+        "weak_on" : ["fighting", "dark", "fairy"],
+        "strong_on" : ["ghost", "psychic"]
+    },
+    "fairy" : {
+        "weak_on" : ["poison", "steel", "fire"],
+        "strong_on" : ["fighting", "dragon", "dark"]
+    }
+}

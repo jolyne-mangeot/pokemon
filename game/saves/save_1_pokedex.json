@@ -1,0 +1,14 @@
+{
+    "player": "Jolyne",
+    "save": "1",
+    "active_team": {
+        "pokemon_1": {
+            "entry": "0001",
+            "experience_points": 12500
+        },
+        "pokemon_2": {
+            "entry": "0002",
+            "experience_points": 900000
+        }
+    }
+}
