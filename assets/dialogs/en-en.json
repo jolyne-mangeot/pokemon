@@ -21,6 +21,12 @@
     "manage met pokemons" : "Manage encounters",
     "save" : "Save",
 
+    "attack" : "Attack",
+    "guard" : "Guard",
+    "team" : "Team",
+    "items" : "Items",
+    "run away" : "run away",
+
     "bulbasaur" : "Bulbasaur",
     "ivysaur" : "Ivysaur",
     "venusaur" : "Venusaur",

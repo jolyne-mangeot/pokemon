@@ -1,15 +1,19 @@
 {
-    "player": "prenom",
+    "player": "Jolyne",
     "save": "2",
-    "encounters" : {
-        "done" : 0,
-        "won" : 0,
-        "lost" : 0
+    "encounters": {
+        "done": 0,
+        "won": 0,
+        "lost": 0
     },
     "active_team": {
         "pokemon_1": {
-            "entry": "0007",
-            "experience_points": 125
+            "entry": "0002",
+            "experience_points": 900000
+        },
+        "pokemon_2": {
+            "entry": "0001",
+            "experience_points": 12500
         }
     }
 }

@@ -33,15 +33,19 @@ class Launch_menu(States, Game_menu_manager, Launch_menu_states):
         self.update_options()
     
     def launch_fight(self):
-        fight_level = (self.player_pokedex.average_level*0.9, self.player_pokedex.average_level*1.1)
+        fight_level = ((self.player_pokedex.average_level*0.9) ** 3, 
+                        (self.player_pokedex.average_level*1.1) ** 3)
         encounter = {
             "active_team": {
-                "entry" : random.randint(self.player_pokedex.pokemon_dict.keys()),
-                "experience_points" : random.randrange(fight_level**3)
+                "pokemon_1": {
+                    # "entry": random.choice(list(self.player_pokedex.pokemon_dict.keys())),
+                    "entry" : "0001",
+                    "experience_points": random.randrange(int(fight_level[0]), int(fight_level[1]))
+                }
             }
         }
-        enemy_team = Pokedex(wild=True, **encounter)
-        States.new_fight = Fight(self.player_pokedex.player_team, enemy_team)
+        enemy_team = Pokedex(True, encounter)
+        States.new_fight = Fight(self.player_pokedex, enemy_team)
 
     def get_event(self, event):
         """
@@ -97,5 +101,5 @@ class Launch_menu(States, Game_menu_manager, Launch_menu_states):
             case "manage_team":
                 self.draw_menu_options()
                 self.draw_picked()
-            case "save_confirm" | "quit" | "delete_save":
+            case "save_confirm" | "quit" | "delete_save" | "launch_fight_confirm":
                 self.draw_confirm_options()

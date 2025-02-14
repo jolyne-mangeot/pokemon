@@ -1,9 +1,10 @@
 import json
 from game.pokemons.pokemons import Pokemon
-from game.__game_settings__ import POKEMON_DICT_PATH
+from game.__game_settings__ import POKEMON_DICT_PATH, TYPES_CHART_PATH
 
 class Pokedex:
     pokemon_dict = {}
+    types_chart = {}
     def __init__(self, wild, player_data):
         self.__dict__.update(**player_data)
         self.wild = wild
@@ -13,6 +14,8 @@ class Pokedex:
     def init_pokedex_data():
         with open(POKEMON_DICT_PATH, "r") as file:
             Pokedex.pokemon_dict = json.load(file)
+        with open(TYPES_CHART_PATH, "r") as file:
+            Pokedex.types_chart = json.load(file)
     
     def compress_data(self, chosen_save : str) -> dict:
         player_data : dict = {

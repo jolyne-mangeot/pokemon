@@ -9,6 +9,7 @@ class Game_menu_manager:
             derived classes
         """
         self.selected_index = 0
+        self.picked_index = None
         self.rendered_picked = {}
         self.last_option = None
         self.picked_index = None
@@ -71,11 +72,11 @@ class Game_menu_manager:
             self.dialogs["yes"]
             ]
     
-    def init_render_option_team(self):
+    def init_render_option_team(self, team):
         self.from_top = self.screen_rect.height*0.1
         self.spacer = 50
         self.options = []
-        for pokemon in self.player_pokedex.player_team:
+        for pokemon in team:
             self.options.append(self.dialogs[pokemon.name])
         while len(self.options) < 6:
             self.options.append("")

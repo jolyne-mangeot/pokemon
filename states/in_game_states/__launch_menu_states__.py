@@ -7,19 +7,15 @@ class Launch_menu_states:
             case "launch_fight_confirm":
                 self.init_render_option_confirm()
             case "manage_team":
-                self.init_render_option_team()
+                self.init_render_option_team(self.player_pokedex.player_team)
                 self.pre_render_team()
                 self.picked_index = None
             case "save":
                 self.from_top = self.screen_rect.height / 3
                 self.spacer = 60
                 self.init_render_option_save()
-            case "save_confirm":
+            case "save_confirm" | "quit" | "delete_save":
                 self.init_render_option_confirm() # set from top, spacer and options
-            case "quit":
-                self.init_render_option_confirm()
-            case "delete_save":
-                self.init_render_option_confirm()
             case "main" | _:
                 self.from_top = self.screen_rect.height / 4
                 self.spacer = 60
@@ -49,7 +45,7 @@ class Launch_menu_states:
             elif pg.key.name(event.key) in self.return_keys and not self.quit:
                 self.menu_state = "quit"
                 self.update_options()
-            elif pg.key.name(event.key) in self.confirm_keys and self.selected_index:
+            elif pg.key.name(event.key) in self.confirm_keys:
                 self.menu_state = self.next_list[self.selected_index]
                 self.update_options()
 
