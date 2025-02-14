@@ -14,10 +14,13 @@ class Main_menu(States, Main_menu_manager):
         Main_menu_manager.__init__(self)
         self.next = ""
         self.next_list = ["load_menu", "options"]
+        self.selected_color = (255,255,0)
+        self.deselected_color = (0,0,0)
 
         self.from_top = 200
         self.spacer = 75
-        self.from_left= 50
+        self.from_left=75
+
     
     def init_render_option(self):
         self.options = [self.dialogs['play'], self.dialogs['options'], self.dialogs['quit']]
