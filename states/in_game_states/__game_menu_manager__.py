@@ -72,7 +72,7 @@ class Game_menu_manager:
             self.dialogs["yes"]
             ]
     
-    def init_render_option_team(self, team):
+    def init_render_option_team(self, team, forced=False):
         self.from_top = self.screen_rect.height*0.1
         self.spacer = 50
         self.options = []
@@ -80,7 +80,8 @@ class Game_menu_manager:
             self.options.append(self.dialogs[pokemon.name])
         while len(self.options) < 6:
             self.options.append("")
-        self.options.append(self.dialogs['back'])
+        if not forced:
+            self.options.append(self.dialogs['back'])
 
     def get_event_quit(self, event):
         if event.type == pg.KEYDOWN:

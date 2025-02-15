@@ -1,12 +1,11 @@
 class Pokemon:
-    def __init__(self, pokedex_entry, experience_points, wild=False):
+    pokemon_dict = {}
+    def __init__(self, pokedex_entry, experience_points):
         self.evolution_level = 100000000
         self.evolution = str(int(pokedex_entry['entry'])+1)
         while len(self.evolution) < 4:
             self.evolution = "0" + str(self.evolution)
         self.__dict__.update(pokedex_entry)
-        if wild:
-            self.name = "Wild " + self.name
         self.experience_points : int = experience_points
         self.get_graphics()
         self.get_level()
@@ -33,15 +32,15 @@ class Pokemon:
         self.defense = round(((self.base_defence*2) * self.level)/100 + 5, 0)
         self.health_points = round(((self.base_health_points*2) * self.level)/100 + self.level+10, 0)
     
-    def gain_experience(self, defeated_pokemon):
-        gained_experience = round((defeated_pokemon.yield_experience*defeated_pokemon.level)/7 * 1.5,0)
+    def gain_experience(self, defeated_pokemon, reduced=False):
+        gained_experience = round(((defeated_pokemon.yield_experience*defeated_pokemon.level)/7 * 1.5) * (0.5 if reduced else 1),0)
         self.experience_points += gained_experience
         self.current_experience += gained_experience
         self.level_up()
 
     def evolve(self):
         if self.level >= self.evolution_level:
-            self.__init__(self.evolution, self.experience_points)
+            self.__init__(Pokemon.pokemon_dict[self.evolution], self.experience_points)
     
     def level_up(self):
         if self.level == 1:

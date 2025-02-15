@@ -5,15 +5,15 @@ from game.__game_settings__ import POKEMON_DICT_PATH, TYPES_CHART_PATH
 class Pokedex:
     pokemon_dict = {}
     types_chart = {}
-    def __init__(self, wild, player_data):
+    def __init__(self, player_data):
         self.__dict__.update(**player_data)
-        self.wild = wild
         self.init_player_team()
         self.get_average_level()
 
     def init_pokedex_data():
         with open(POKEMON_DICT_PATH, "r") as file:
             Pokedex.pokemon_dict = json.load(file)
+            Pokemon.pokemon_dict = Pokedex.pokemon_dict
         with open(TYPES_CHART_PATH, "r") as file:
             Pokedex.types_chart = json.load(file)
     
@@ -47,18 +47,11 @@ class Pokedex:
             self.player_team.append(pokemon)
 
     def add_pokemon(self, entry, experience_points=0):
-        pokemon = Pokemon(Pokedex.pokemon_dict[entry], experience_points, self.wild)
+        pokemon = Pokemon(Pokedex.pokemon_dict[entry], experience_points)
         return pokemon
 
     def switch_pokemon(self, old_index, new_index):
         self.player_team.insert(new_index, self.player_team.pop(old_index))
-    
-    def check_evolutions(self):
-        for pokemon in self.player_team:
-            if pokemon.level >= pokemon.evolution_level:
-                new_entry = pokemon.evolution
-                pokemon.evolve(Pokedex.pokemon_dict[new_entry])
-                self.check_evolutions()
     
     def get_average_level(self):
         self.average_level : int = 0

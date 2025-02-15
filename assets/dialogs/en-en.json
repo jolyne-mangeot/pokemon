@@ -27,6 +27,9 @@
     "items" : "Items",
     "run away" : "run away",
 
+    "wild" : "Wild ",
+    "lvl" : "Lv",
+
     "bulbasaur" : "Bulbasaur",
     "ivysaur" : "Ivysaur",
     "venusaur" : "Venusaur",
@@ -64,9 +67,7 @@
     "clefairy" : "Clefairy",
     "clefable" : "Clefable",
     "vulpix" : "Vulpix",
-    "vulpix (alola)" : "Vulpix (alola)",
     "ninetales" : "Ninetales",
-    "ninetales (alola)" : "Ninetales (alola)",
     "jigglypuff" : "Jigglypuff",
     "wigglytuff" : "Wigglytuff",
     "zubat" : "Zubat",

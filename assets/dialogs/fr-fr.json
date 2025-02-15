@@ -27,6 +27,9 @@
     "items" : "Objets",
     "run away" : "fuir",
 
+    "wild" : " sauvage",
+    "lvl" : "Nv",
+
     "bulbasaur" : "Bulbizarre",
     "ivysaur" : "Herbizarre",
     "venusaur" : "Florizarre",

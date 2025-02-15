@@ -47,7 +47,7 @@ class New_game(States, Game_menu_manager, New_game_states):
                         }
                     }}
         Pokedex.init_pokedex_data()
-        current_pokedex = Pokedex(False, current_player)
+        current_pokedex = Pokedex(current_player)
         States.player_pokedex = current_pokedex
 
     def get_event(self, event):

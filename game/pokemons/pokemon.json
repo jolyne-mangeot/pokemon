@@ -392,33 +392,12 @@
         "evolution_level" : 22,
         "yield_experience" : 60
     },
-    "0037a" : {
-        "entry" : "0037a",
-        "name": "vulpix (alolan form)",
-        "type": ["ice"],
-        "base_defence": 40,
-        "base_attack": 41,
-        "base_health_points": 38,
-
-        "evolution_level" : 22,
-        "yield_experience" : 60
-    },
     "0038" : {
         "entry" : "0038",
         "name": "ninetales",
         "type": ["fire"],
         "base_defence": 75,
         "base_attack": 76,
-        "base_health_points": 73,
-
-        "yield_experience" : 177
-    },
-    "0038a" : {
-        "entry" : "0038a",
-        "name": "ninetales (alolan form)",
-        "type": ["ice", "fairy"],
-        "base_defence": 75,
-        "base_attack": 81,
         "base_health_points": 73,
 
         "yield_experience" : 177

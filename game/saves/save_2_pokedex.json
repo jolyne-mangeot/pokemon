@@ -2,18 +2,18 @@
     "player": "Jolyne",
     "save": "2",
     "encounters": {
-        "done": 0,
+        "done": 2,
         "won": 0,
         "lost": 0
     },
     "active_team": {
         "pokemon_1": {
             "entry": "0002",
-            "experience_points": 900000
+            "experience_points": 902979.0
         },
         "pokemon_2": {
             "entry": "0001",
-            "experience_points": 12500
+            "experience_points": 13989.0
         }
     }
 }

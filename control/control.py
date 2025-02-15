@@ -1,8 +1,11 @@
 import pygame as pg
 from control.settings import Settings
-from control.display import Display
+from views.display import Display
 
 class Control(Settings, Display):
+    def __init__(self):
+        pass
+
     def init_settings(self):
         """
             load game settings and init essential data related to Pygame
@@ -12,7 +15,6 @@ class Control(Settings, Display):
         self.done = False
 
     def init_config(self):
-        Display.__init__(self)
         self.settings : dict = Control.settings
         self.dialogs : dict = Control.dialogs
         self.__dict__.update(**Control.settings)
@@ -20,6 +22,7 @@ class Control(Settings, Display):
         self.screen = pg.display.set_mode((self.screen_width, self.screen_height))
         self.screen_rect = self.screen.get_rect()
         self.clock = pg.time.Clock()
+        Display.__init__(self)
 
     def setup_states(self, STATE_DICT, start_state):
         """
