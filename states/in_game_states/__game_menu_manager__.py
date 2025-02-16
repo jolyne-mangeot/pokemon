@@ -1,5 +1,6 @@
 import pygame as pg
 import string
+from assets.__fonts_settings__ import FONTS_PATH
 
 class Game_menu_manager:
     def __init__(self):
@@ -12,9 +13,11 @@ class Game_menu_manager:
         self.rendered_picked = {}
         self.last_option = None
         self.picked_index = None
-        self.selected_color = (255,255,0)
-        self.deselected_color = (255,255,255)
+        self.selected_color = (80,96,176)
+        self.deselected_color = (0,0,0)
         self.picked_color = (255,0,0)
+        self.from_left=self.screen_width/2
+        self.load_graphics_launch_menues()
     
     def update_menu(self):
         """
@@ -28,8 +31,8 @@ class Game_menu_manager:
             Selects a font and pre-renders it regardless of hovered / selected
             option. all for display
         """
-        font_selected = pg.font.SysFont("arial", 40)
-        font_deselected = pg.font.SysFont("arial", 40)
+        font_selected = pg.font.Font(FONTS_PATH+"Pokemon Classic.ttf", 40)
+        font_deselected = pg.font.Font(FONTS_PATH+"Pokemon Classic.ttf", 30)
         rendered_dialog = {"deselected":[], "selected":[]}
         if self.rendered_picked != {}:
             rendered_dialog.update(self.rendered_picked)
