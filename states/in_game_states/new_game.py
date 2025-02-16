@@ -1,12 +1,13 @@
 import pygame as pg
 from control.states_control import States
+from views.in_game_views.in_game_display import In_game_display
 from states.in_game_states.__game_menu_manager__ import Game_menu_manager
 from states.in_game_states.__new_game_states__ import New_game_states
 from game.pokemons.pokedex import Pokedex
 
 pg.font.init()
 
-class New_game(States, Game_menu_manager, New_game_states):
+class New_game(States, Game_menu_manager, In_game_display, New_game_states):
     def __init__(self):
         States.__init__(self)
         Game_menu_manager.__init__(self)
@@ -47,8 +48,9 @@ class New_game(States, Game_menu_manager, New_game_states):
                         }
                     }}
         Pokedex.init_pokedex_data()
-        current_pokedex = Pokedex(current_player)
-        States.player_pokedex = current_pokedex
+        self.player_pokedex = Pokedex(current_player)
+        self.init_in_game_display()
+        States.player_pokedex = self.player_pokedex
 
     def get_event(self, event):
         """

@@ -63,7 +63,10 @@ class Preferences_menu(States, Main_menu_manager):
             if pg.key.name(event.key) in self.return_keys and not self.quit:
                 self.next = self.back
                 self.done = True
-            if pg.key.name(event.key) in self.confirm_keys\
+            if pg.key.name(event.key) in self.confirm_keys and\
+                self.selected_index == len(self.next_list) - 1:
+                self.select_option()
+            elif pg.key.name(event.key) in self.confirm_keys\
                 and self.selected_index == 4 and\
                     self.settings_in_preferences != self.settings:
                 self.save_settings(self.settings_in_preferences)

@@ -45,6 +45,10 @@ class Pokedex:
             pokemon = self.add_pokemon(self.active_team[pokemon_data]["entry"],\
                                        self.active_team[pokemon_data]["experience_points"])
             self.player_team.append(pokemon)
+    
+    def catch_pokemon(self, entry, experience_points=0):
+        caught_pokemon = self.add_pokemon(entry, experience_points)
+        self.player_team.append(caught_pokemon)
 
     def add_pokemon(self, entry, experience_points=0):
         pokemon = Pokemon(Pokedex.pokemon_dict[entry], experience_points)

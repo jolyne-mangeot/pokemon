@@ -1,12 +1,13 @@
 import pygame as pg
 import random
+from views.in_game_views.in_fight_display import In_fight_display
 from control.states_control import States
 from states.in_game_states.__game_menu_manager__ import Game_menu_manager
 from states.in_game_states.__in_fight_states__ import In_fight_states
 
 pg.font.init()
 
-class In_fight(States, Game_menu_manager, In_fight_states):
+class In_fight(States, Game_menu_manager, In_fight_display, In_fight_states):
     def __init__(self):
         States.__init__(self)
         Game_menu_manager.__init__(self)
@@ -18,7 +19,6 @@ class In_fight(States, Game_menu_manager, In_fight_states):
         cleans up all menu related data
         """
         self.fight.player_pokedex.encounters["done"] +=1
-        self.unload_graphics_pokemons()
 
     def startup(self):
         """
@@ -38,6 +38,8 @@ class In_fight(States, Game_menu_manager, In_fight_states):
         self.guarded = False
         self.enemy_guarded = False
         self.forced_switch = False
+        self.caught = False
+        self.team_full = False
 
     def get_event(self, event):
         """
@@ -51,17 +53,25 @@ class In_fight(States, Game_menu_manager, In_fight_states):
             self.enemy_turn_action()
         else:
             match self.menu_state:
-                # case "display_items":
-                #     self.get_event_display_items(event)
-                #     self.get_event_menu(event)
+                case "display_items":
+                    self.get_event_display_items(event)
+                    if self.caught:
+                        self.update_battle_status()
+                    self.get_event_menu(event)
                 case "display_team":
                     self.get_event_display_team(event)
                     self.get_event_menu(event)
                 case "select_pokemon_confirm":
                     if self.get_event_select_pokemon_confirm(event):
-                        self.fight.spawn_pokemon(self.chosen_pokemon, True)
-                        self.forced_switch = False
-                        self.enemy_turn = True
+                        if self.team_full:
+                            self.fight.player_team.pop(self.chosen_pokemon)
+                            self.next = "launch_menu"
+                            self.done = True
+                            self.selected_index = 0
+                        else:
+                            self.fight.spawn_pokemon(self.chosen_pokemon, True)
+                            self.forced_switch = False
+                            self.enemy_turn = True
                     self.get_event_menu(event)
                 case "quit":
                     self.back = "battle_stage"
@@ -72,6 +82,7 @@ class In_fight(States, Game_menu_manager, In_fight_states):
                     self.get_event_menu(event)
    
     def enemy_turn_action(self):
+        self.update_battle_status()
         if random.randint(0,100) > 80:
             self.enemy_guarded = True
         else:
@@ -81,27 +92,38 @@ class In_fight(States, Game_menu_manager, In_fight_states):
         self.update_battle_status()
     
     def update_battle_status(self):
-        pokemon_status = self.fight.check_active_pokemon(self.put_out_pokemons, self.not_put_out_pokemons)
-        end_of_fight = self.fight.check_victory_defeat()
-        if pokemon_status == "active_beat":
-            if end_of_fight == "defeat":
-                self.next = "launch_menu"
-                self.done = True
-                self.selected_index = 0
-            else:
-                self.forced_switch = True
-                self.menu_state = "display_team"
-                self.update_options()
-                return "switch"
-        elif pokemon_status == "enemy_beat":
-            if end_of_fight == "victory":
-                self.fight.check_evolutions()
-                self.next = "launch_menu"
-                self.done = True
-                self.selected_index = 0
-            else:
-                self.enemy_active_index +=1
-                self.fight.spawn_pokemon(self.enemy_active_index, False)
+        pokemon_status = self.fight.check_active_pokemon(self.put_out_pokemons, self.not_put_out_pokemons, self.caught)
+        end_of_fight = self.fight.check_victory_defeat(self.caught)
+        match pokemon_status:
+            case "active_beat":
+                if end_of_fight == "defeat":
+                    self.next = "launch_menu"
+                    self.done = True
+                    self.selected_index = 0
+                else:
+                    self.forced_switch = True
+                    self.menu_state = "display_team"
+                    self.update_options()
+                    return "switch"
+            case "enemy_beat":
+                if end_of_fight == "victory":
+                    self.fight.check_evolutions()
+                    self.next = "launch_menu"
+                    self.done = True
+                    self.selected_index = 0
+                else:
+                    self.enemy_active_index +=1
+                    self.fight.spawn_pokemon(self.enemy_active_index, False)
+            case "enemy_caught":
+                self.fight.player_pokedex.catch_pokemon(self.fight.enemy_pokemon.entry, self.fight.enemy_pokemon.experience_points)
+                if len(self.fight.player_team) > 6:
+                    self.team_full = True
+                    self.menu_state = "display_team"
+                    self.update_options()
+                else:
+                    self.next = "launch_menu"
+                    self.done = True
+                    self.selected_index = 0
         return None
 
     def update(self):
@@ -115,5 +137,5 @@ class In_fight(States, Game_menu_manager, In_fight_states):
                 self.draw_menu_options()
             case "quit":
                 self.draw_menu_options()
-            case "display_team" | "select_pokemon_confirm":
+            case "display_items" | "display_team" | "select_pokemon_confirm":
                 self.draw_menu_options()

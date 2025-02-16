@@ -118,7 +118,4 @@ class Launch_menu_states:
                 self.update_options()
                 return None
             if pg.key.name(event.key) in self.confirm_keys and self.selected_index == 1:
-                self.next = "in_fight"
-                self.done = True
-                self.selected_index = 0
                 return True

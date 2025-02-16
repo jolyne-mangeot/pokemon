@@ -2,18 +2,26 @@
     "player": "Jolyne",
     "save": "2",
     "encounters": {
-        "done": 2,
+        "done": 4,
         "won": 0,
         "lost": 0
     },
     "active_team": {
         "pokemon_1": {
-            "entry": "0002",
-            "experience_points": 902979.0
+            "entry": "0001",
+            "experience_points": 19105.0
         },
         "pokemon_2": {
-            "entry": "0001",
-            "experience_points": 13989.0
+            "entry": "0002",
+            "experience_points": 905538.0
+        },
+        "pokemon_3": {
+            "entry": "0031",
+            "experience_points": 247637.0
+        },
+        "pokemon_4": {
+            "entry": "0033",
+            "experience_points": 272911
         }
     }
 }

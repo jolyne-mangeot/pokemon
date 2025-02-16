@@ -72,7 +72,7 @@ class Game_menu_manager:
             self.dialogs["yes"]
             ]
     
-    def init_render_option_team(self, team, forced=False):
+    def init_render_option_team(self, team, forced_switch=False, team_full=False):
         self.from_top = self.screen_rect.height*0.1
         self.spacer = 50
         self.options = []
@@ -80,7 +80,7 @@ class Game_menu_manager:
             self.options.append(self.dialogs[pokemon.name])
         while len(self.options) < 6:
             self.options.append("")
-        if not forced:
+        if not forced_switch and not team_full:
             self.options.append(self.dialogs['back'])
 
     def get_event_quit(self, event):

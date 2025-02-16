@@ -7,17 +7,12 @@ class Pokemon:
             self.evolution = "0" + str(self.evolution)
         self.__dict__.update(pokedex_entry)
         self.experience_points : int = experience_points
-        self.get_graphics()
         self.get_level()
         self.get_stats()
         self.restore_max_health()
     
     def restore_max_health(self):
         self.current_health_points = self.health_points
-    
-    def get_graphics(self):
-        self.front_image = str(self.entry + "/front.png")
-        self.back_image = str(self.entry + "/back.png")
 
     def get_level(self):
         for potential_level in range (1,101):

@@ -1,4 +1,5 @@
 import random
+import secrets
 
 class Fight:
     def __init__(self, player_pokedex, enemy_team, types_chart, pokemon_dict, wild):
@@ -27,9 +28,9 @@ class Fight:
             type_multiplicator *= self.type_chart[attacker.type[0]][type]
         damage = ((attacker.level*128/5+2) * attacker.attack\
                   /(attacked.defense if guarded == False else attacked.defense*1.5))/50+2 * type_multiplicator
-        attacked.current_health_points -= damage
-        print(type_multiplicator)
-        print(damage)
+        attacked.current_health_points -= int(damage)
+        # print(type_multiplicator)
+        # print(damage)
         return type_multiplicator
 
     def guard(self):
@@ -38,10 +39,16 @@ class Fight:
     def heal(self):
         pass
 
-    def capture(self):
-        pass
+    def catch_attempt(self):
+        odds = (((3*self.enemy_pokemon.health_points) - (2*self.enemy_pokemon.current_health_points)) * \
+                (1 - 1/self.enemy_pokemon.level)*self.enemy_pokemon.catch_rate) / (3*self.enemy_pokemon.health_points)
+        print(odds)
+        if secrets.randbelow(255) < odds:
+            return True
+        else:
+            return False
 
-    def check_victory_defeat(self):
+    def check_victory_defeat(self, caught):
         if all(pokemon.current_health_points <= 0 for pokemon in self.enemy_team):
             self.check_lost_pokemons()
             return "victory"
@@ -49,6 +56,9 @@ class Fight:
             self.check_lost_pokemons()
             self.player_pokedex
             return "defeat"
+        if caught:
+            self.check_lost_pokemons()
+            return "victory"
         # for pokemon in self.enemy_team:
         #     if pokemon.current_health_points <= 0:
         #         self.check_lost_pokemons()
@@ -58,12 +68,15 @@ class Fight:
         #         self.check_lost_pokemons()
         #         return "defeat"
     
-    def check_active_pokemon(self, put_out_pokemons, not_put_out_pokemons):
+    def check_active_pokemon(self, put_out_pokemons, not_put_out_pokemons, caught):
         if self.active_pokemon.current_health_points <= 0:
             return "active_beat"
         elif self.enemy_pokemon.current_health_points <= 0:
             self.gain_experience_all(put_out_pokemons, not_put_out_pokemons)
             return "enemy_beat"
+        elif caught:
+            self.gain_experience_all(put_out_pokemons, not_put_out_pokemons)
+            return "enemy_caught"
         else:
             return None
     

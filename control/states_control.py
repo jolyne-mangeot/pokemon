@@ -19,10 +19,10 @@ class States(Control, abc.ABC):
             in Control. is done after individual get_event from active menu
         """
         if event.type == pg.KEYDOWN:
-            if pg.key.name(event.key) in self.confirm_keys and\
-              self.selected_index == len(self.next_list) - 1:
-                self.select_option()
-            elif pg.key.name(event.key) in self.up_keys:
+            # if pg.key.name(event.key) in self.confirm_keys and\
+            #   self.selected_index == len(self.next_list) - 1:
+            #     self.select_option()
+            if pg.key.name(event.key) in self.up_keys:
                 self.change_selected_option(-1)
                 while self.options[self.selected_index] == "":
                     self.change_selected_option(-1)

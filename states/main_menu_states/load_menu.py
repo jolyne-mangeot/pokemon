@@ -1,11 +1,12 @@
 import pygame as pg
 from control.states_control import States
+from views.in_game_views.in_game_display import In_game_display
 from states.main_menu_states.__main_menu_manager__ import Main_menu_manager
 from game.pokemons.pokedex import Pokedex
 
 pg.font.init()
 
-class Load_menu(States, Main_menu_manager):
+class Load_menu(States, In_game_display, Main_menu_manager):
     def __init__(self):
         """
             inits values specific to the menu such as navigation and
@@ -47,6 +48,13 @@ class Load_menu(States, Main_menu_manager):
         self.pre_render_options()
         pass
 
+    def init_player_save(self):
+        current_player = self.player_saves_state[self.selected_index-1]
+        Pokedex.init_pokedex_data()
+        self.player_pokedex = Pokedex(current_player)
+        self.init_in_game_display()
+        States.player_pokedex = self.player_pokedex
+
     def get_event(self, event):
         """
             get all pygame-related events proper to the menu before
@@ -58,14 +66,14 @@ class Load_menu(States, Main_menu_manager):
             if pg.key.name(event.key) in self.return_keys and not self.quit:
                 self.next = self.back
                 self.done = True
-            if pg.key.name(event.key) in self.confirm_keys and self.selected_index in (0,1,2):
+            if pg.key.name(event.key) in self.confirm_keys and\
+                self.selected_index == len(self.next_list) - 1:
+                self.select_option()
+            elif pg.key.name(event.key) in self.confirm_keys:
                 if self.next_list[self.selected_index] == "new_game":
                     self.select_option()
                 else:
-                    current_player = self.player_saves_state[self.selected_index-1]
-                    Pokedex.init_pokedex_data()
-                    current_pokedex = Pokedex(current_player)
-                    States.player_pokedex = current_pokedex
+                    self.init_player_save()
                     self.select_option()
 
         self.get_event_menu(event)

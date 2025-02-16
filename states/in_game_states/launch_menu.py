@@ -1,14 +1,16 @@
 import pygame as pg
 import random
 from control.states_control import States
-from game.pokemons.pokedex import Pokedex
-from game.fight import Fight
+from views.in_game_views.in_game_display import In_game_display
 from states.in_game_states.__game_menu_manager__ import Game_menu_manager
 from states.in_game_states.__launch_menu_states__ import Launch_menu_states
 
+from game.pokemons.pokedex import Pokedex
+from game.fight import Fight
+
 pg.font.init()
 
-class Launch_menu(States, Game_menu_manager, Launch_menu_states):
+class Launch_menu(States, Game_menu_manager, In_game_display, Launch_menu_states):
     def __init__(self):
         States.__init__(self)
         Game_menu_manager.__init__(self)
@@ -62,6 +64,9 @@ class Launch_menu(States, Game_menu_manager, Launch_menu_states):
         match self.menu_state:
             case "launch_fight_confirm":
                 if self.get_event_launch_fight_confirm(event):
+                    self.next = "in_fight"
+                    self.done = True
+                    self.selected_index = 0
                     self.launch_fight()
                 self.get_event_confirm(event)
             case "manage_team":

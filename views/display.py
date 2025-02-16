@@ -1,9 +1,8 @@
 import pygame as pg
-from views.__in_fight_display__ import In_fight_display
 from assets.__graphics_settings__ import GRAPHICS_PATH
 from assets.__fonts_settings__ import FONTS_PATH, POKEMON_CLASSIC_FONT
 
-class Display(In_fight_display):
+class Display:
     def __init__(self):
         self.pixel_font = pg.font.Font(FONTS_PATH + POKEMON_CLASSIC_FONT, int(self.screen_rect.width*0.02))
 

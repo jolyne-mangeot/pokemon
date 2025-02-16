@@ -63,5 +63,8 @@ class Main_menu(States, Main_menu_manager):
         """
             init all display related script
         """
+        sicon = pg.image.load("assets/graphics/pokemon/0001/mini.png")
+        icon = pg.transform.scale (sicon, (250,250))
         self.draw_main_menu()
         self.draw_menu_options()
+        self.screen.blit(icon, (0,0))

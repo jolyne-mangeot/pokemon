@@ -1,5 +1,7 @@
 import pygame as pg
+
 from control.control import Control
+
 from states.main_menu_states.main_menu import Main_menu
 from states.main_menu_states.preferences_menu import Preferences_menu
 from states.main_menu_states.load_menu import Load_menu
