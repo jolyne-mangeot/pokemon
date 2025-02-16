@@ -17,9 +17,7 @@ class Main_menu(States, Main_menu_manager):
         self.selected_color = (255,255,0)
         self.deselected_color = (0,0,0)
 
-        self.from_top = 200
-        self.spacer = 75
-        self.from_left=75
+
 
     
     def init_render_option(self):
@@ -36,6 +34,10 @@ class Main_menu(States, Main_menu_manager):
             initiates all menu-related data
         """
         self.init_config()
+        self.from_top = 240
+        self.spacer = 75
+        self.from_left=250
+
         self.init_render_option()
         self.pre_render_options()
         pass

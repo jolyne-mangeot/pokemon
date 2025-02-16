@@ -49,6 +49,7 @@ STATE_DICT = {
 # snapshot1 = tracemalloc.take_snapshot()
 # STATE_DICT['load_menu'] = Load_menu()
 # STATE_DICT['game'] = Game()
+
 # STATE_DICT['pause_menu'] = Pause_menu()
 # snapshot2 = tracemalloc.take_snapshot()
 

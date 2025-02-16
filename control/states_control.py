@@ -60,7 +60,7 @@ class States(Control, abc.ABC):
             checking for selected index button to place it on the same position
         """
         for index, option in enumerate(self.rendered["deselected"]):
-            option[1].center = (self.screen_rect.centerx, self.from_top + index*self.spacer)
+            option[1].center = (self.from_left, self.from_top + index*self.spacer)
             if index == self.selected_index:
                 selected_render = self.rendered["selected"][index]
                 selected_render[1].center = option[1].center

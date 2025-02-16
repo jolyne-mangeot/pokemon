@@ -30,6 +30,7 @@ class Launch_menu(States, Game_menu_manager, Launch_menu_states):
         self.picked_index = None
         self.rendered_picked = {}
         self.menu_state = "main"
+        self.from_left= 75
         self.update_options()
     
     def launch_fight(self):
