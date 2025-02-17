@@ -1,13 +1,13 @@
 import pygame as pg
 
-from control.control import Control
+from game.control.control import Control
 
-from control.states.main_menu_states.title_menu import Title_menu
-from control.states.main_menu_states.preferences_menu import Preferences_menu
-from control.states.main_menu_states.load_menu import Load_menu
-from control.states.in_game_states.new_game import New_game
-from control.states.in_game_states.launch_menu import Launch_menu
-from control.states.in_game_states.in_fight import In_fight
+from game.models.main_menu_models.title_menu import Title_menu
+from game.models.main_menu_models.preferences_menu import Preferences_menu
+from game.models.main_menu_models.load_menu import Load_menu
+from game.models.in_game_models.new_game import New_game
+from game.models.in_game_models.launch_menu import Launch_menu
+from game.models.in_game_models.in_battle import In_battle
 
 pg.init()
 game = Control()
@@ -19,7 +19,7 @@ STATE_DICT = {
     "options" : Preferences_menu(),
     "new_game" : New_game(),
     "load_menu" : Load_menu(),
-    "in_fight" : In_fight(),
+    "in_battle" : In_battle(),
     "launch_menu" : Launch_menu()
 }
 
