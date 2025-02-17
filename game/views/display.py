@@ -12,7 +12,16 @@ class Display(Control):
         self.GRAPHICS_PATH = GRAPHICS_PATH
         self.FONTS_PATH = FONTS_PATH
         self.POKEMON_CLASSIC_FONT = POKEMON_CLASSIC_FONT
+        self.POKEMON_CLASSIC_PATH = self.FONTS_PATH + self.POKEMON_CLASSIC_FONT
 
-        self.pixel_font_pokemon_infos = pg.font.Font(self.FONTS_PATH + self.POKEMON_CLASSIC_FONT, int(self.screen_rect.width*0.022))
-        self.pixel_font_menu_deselected = pg.font.Font(self.FONTS_PATH + self.POKEMON_CLASSIC_FONT, int(self.screen_rect.width*0.022))
-        self.pixel_font_menu_selected = pg.font.Font(self.FONTS_PATH + self.POKEMON_CLASSIC_FONT, int(self.screen_rect.width*0.025))
+        self.pixel_font_pokemon_infos = pg.font.Font(self.POKEMON_CLASSIC_PATH, int(self.width*0.022))
+        self.pixel_font_menu_deselected = pg.font.Font(self.POKEMON_CLASSIC_PATH, int(self.width*0.022))
+        self.pixel_font_menu_selected = pg.font.Font(self.POKEMON_CLASSIC_PATH, int(self.width*0.025))
+    
+    def blit_dialog(self, dialog : str, size : int, from_left, from_top, color : tuple=(0,0,0), bold : bool=False):
+        font = pg.font.Font(self.POKEMON_CLASSIC_PATH, int(size))
+        font.set_bold(bold)
+        text = font.render(dialog, True, color)
+        text_rect = text.get_rect(midbottom=(from_left,from_top))
+        self.screen.blit(text, text_rect)
+

@@ -17,10 +17,10 @@ class Main_menues_display(Display):
             self.width*0.25, self.height*0.4, self.height*0.1
         )
         self.preferences_menu_variables : tuple = (
-            self.width/2, self.height*0.15, self.height*0.12
+            self.width*0.5, self.height*0.15, self.height*0.12
         )
         self.load_menu_variables : tuple = (
-            self.width/2, self.height/3, 75
+            self.width*0.5, self.height/3, 75
         )
 
     def init_title_menu_object(self):

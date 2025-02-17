@@ -21,6 +21,8 @@
     "manage met pokemons" : "Gerer les rencontres",
     "save" : "Sauvegarder",
 
+    "save menu" : "Menu de sauvegarde",
+
     "attack" : "Attaquer",
     "guard" : "Defendre",
     "team" : "Equipe",
@@ -58,10 +60,10 @@
     "raichu" : "Raichu",
     "sandshrew" : "Sabelette",
     "sandslash" : "Sablaireau",
-    "nidoran♀" : "Nidoran♀",
+    "nidoran♀" : "Nidoran (F)",
     "nidorina" : "Nidorina",
     "nidoqueen" : "Nidoqueen",
-    "nidoran♂" : "Nidoran♂",
+    "nidoran♂" : "Nidoran (M)",
     "nidorino" : "Nidorino",
     "nidoking" : "Nidoking",
     "clefairy" : "Melofee",

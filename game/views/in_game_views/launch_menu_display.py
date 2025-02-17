@@ -12,10 +12,13 @@ class Launch_menu_display(Game_menues_display):
     def init_root_variables_launch_menu(self):
 
         self.confirm_menu_variables : tuple = (
-            self.width/2, self.height/2, 60
+            self.width*0.5, self.height*0.5, self.height*0.09
         )
         self.main_menu_variables : tuple = (
-            self.width/2, self.height*0.36, self.height*0.09
+            self.width*0.5, self.height*0.36, self.height*0.09
+        )
+        self.save_menu_variables : tuple = (
+            self.width*0.5, self.height*0.44, self.height*0.09
         )
     
     def init_menues_objects(self):
@@ -39,7 +42,7 @@ class Launch_menu_display(Game_menues_display):
             [self.dialogs["no"], self.dialogs["yes"]],
         )
         self.save_menu = Option_menu_model(
-            self.main_menu_variables,
+            self.save_menu_variables,
             [
                 self.dialogs["save_1"],
                 self.dialogs["save_2"],

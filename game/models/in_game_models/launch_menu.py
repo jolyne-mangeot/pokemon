@@ -100,6 +100,11 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
                 self.main_launch_menu.draw_vertical_options()
             case "save":
                 self.save_menu.draw_vertical_options()
+                self.blit_dialog(
+                    self.dialogs["save menu"],
+                    self.width*0.025,
+                    self.width*0.5, self.height*0.29
+                )
             case "manage_team":
                 self.manage_team_menu.draw_picked_options()
             case "save_confirm" | "quit" | "delete_save" | "launch_battle_confirm":
