@@ -15,10 +15,11 @@ class Main_menu(States, Main_menu_manager):
         Main_menu_manager.__init__(self)
         self.next = ""
         self.next_list = ["load_menu", "options"]
+        self.selected_color = (255,255,0)
+        self.deselected_color = (0,0,0)
 
-        self.from_left = self.screen_rect.width/2
-        self.from_top = 200
-        self.spacer = 75
+
+
     
     def init_render_option(self):
         self.options = [self.dialogs['play'], self.dialogs['options'], self.dialogs['quit']]
@@ -34,6 +35,10 @@ class Main_menu(States, Main_menu_manager):
             initiates all menu-related data
         """
         self.init_config()
+        self.from_top = 240
+        self.spacer = 75
+        self.from_left=250
+
         self.init_render_option()
         self.pre_render_options()
         pass
@@ -67,6 +72,6 @@ class Main_menu(States, Main_menu_manager):
         """
         sicon = pg.image.load("assets/graphics/pokemon/0001/mini.png")
         icon = pg.transform.scale (sicon, (250,250))
-        self.draw_main_menu()
+        self.title_screen()
         self.draw_menu_options()
         self.screen.blit(icon, (0,0))

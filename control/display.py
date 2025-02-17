@@ -2,61 +2,65 @@ import pygame as pg
 from assets.__graphics_settings__ import GRAPHICS_PATH
 from assets.__fonts_settings__ import FONTS_PATH, POKEMON_CLASSIC_FONT
 
-class Display:
+class Display():
     def __init__(self):
-        self.pixel_font = pg.font.Font(FONTS_PATH + POKEMON_CLASSIC_FONT, int(self.screen_rect.width*0.02))
+        pass
 
+    def load_battlefield(self):
+        self.field_precombat=pg.image.load(GRAPHICS_PATH+"/media/"+"battlefield pre.png")
+        self.field_combat=pg.image.load(GRAPHICS_PATH+"/media/"+"battlefield combat.png")
+    
     def load_graphics_main_menues(self):
-        # self.background = pygame.
-        # 
-        # 
-        pass
+        self.titleimg=pg.image.load(GRAPHICS_PATH+"/media/"+"title screen.png")
+        self.titleimg=pg.transform.scale(self.titleimg,(self.screen_width,self.screen_height))
 
-    def load_graphics_preferences_menu(self):
-        # self.background = 
-        pass
+        self.preferencesimg = pg.image.load(GRAPHICS_PATH+"/media/"+"preferences screen.png")
+        self.preferencesimg=pg.transform.scale(self.preferencesimg,(self.screen_width,self.screen_height))
 
-    def load_graphics_in_fight(self):
-        pass
+        self.loadimg=pg.image.load(GRAPHICS_PATH+"/media/"+"load screen.png")
+        self.loadimg=pg.transform.scale(self.loadimg,(self.screen_width,self.screen_height))
 
-    def load_graphics_pokemons(self):
-        for pokemon in self.fight.player_team:
-            pokemon.back_image = pg.image.load(GRAPHICS_PATH + "pokemon/" + pokemon.back_image)
-            pokemon.back_image = pg.transform.scale(pokemon.back_image, (self.screen_rect.width*0.3,self.screen_rect.width*0.3))
-        for pokemon in self.fight.enemy_team:
-            pokemon.front_image = pg.image.load(GRAPHICS_PATH + "pokemon/" + pokemon.front_image)
-            pokemon.front_image = pg.transform.scale(pokemon.front_image, (self.screen_rect.width*0.2,self.screen_rect.width*0.2))
 
-    def unload_graphics_pokemons(self):
-        for pokemon in self.fight.player_team:
-            pokemon.get_graphics()
-        for pokemon in self.fight.enemy_team:
-            pokemon.get_graphics()
-
-    def draw_pokemons(self):
-        back_image_rect = self.fight.active_pokemon.back_image.get_rect(bottomleft=(self.screen_rect.width*0,self.screen_rect.height*0.8))
-        self.screen.blit(self.fight.active_pokemon.back_image, back_image_rect)
-        self.screen.blit(self.fight.enemy_pokemon.front_image, (self.screen_rect.width*0.65,self.screen_rect.height*0.22))
-
-    def draw_pokemons_infos(self):
-        player_pokemon_name = self.pixel_font.render(self.fight.active_pokemon.name, 1, (0,0,0))
-        player_pokemon_name_rect = player_pokemon_name.get_rect(bottomleft=(self.screen_rect.width*0.58,self.screen_rect.height*0.62))
     
-        enemy_pokemon_name = self.pixel_font.render(self.fight.enemy_pokemon.name, 1, (0,0,0))
-        enemy_pokemon_name_rect = enemy_pokemon_name.get_rect(bottomleft=(self.screen_rect.width*0.05, self.screen_rect.height*0.08))
-
-        self.screen.blit(player_pokemon_name, player_pokemon_name_rect)
-        self.screen.blit(enemy_pokemon_name, enemy_pokemon_name_rect)
     
-    def draw_pokemons_health_points(self):
-        player_pokemon_bar_rect = (self.screen_rect.width*0.65, self.screen_rect.height*0.65, 200, 20)
-        player_pokemon_health_rect = (self.screen_rect.width*0.65, self.screen_rect.height*0.65,\
-                    self.fight.active_pokemon.current_health_points / self.fight.active_pokemon.health_points *200, 20)
-        pg.draw.rect(self.screen, (255,0,0), player_pokemon_bar_rect)
-        pg.draw.rect(self.screen, (0,255,0), player_pokemon_health_rect)
+    def load_screen(self):
+        self.loadimg=pg.transform.scale(self.loadimg,(self.screen_width,self.screen_height))
+        self.screen.blit(self.loadimg,(0,0))
 
-        enemy_pokemon_bar_rect = (self.screen_rect.width*0.15, self.screen_rect.height*0.1, 200, 20)
-        enemy_pokemon_health_rect = (self.screen_rect.width*0.15, self.screen_rect.height*0.1,\
-                    self.fight.enemy_pokemon.current_health_points / self.fight.enemy_pokemon.health_points *200, 20)
-        pg.draw.rect(self.screen, (255,0,0), enemy_pokemon_bar_rect)
-        pg.draw.rect(self.screen, (0,255,0), enemy_pokemon_health_rect)
+    def title_screen(self):
+        self.titleimg=pg.transform.scale(self.titleimg,(self.screen_width,self.screen_height))
+        self.screen.blit(self.titleimg,(0,0))
+    
+    def preferences_screen(self):
+        self.preferencesimg=pg.transform.scale(self.preferencesimg,(self.screen_width,self.screen_height))
+        self.screen.blit(self.preferencesimg, (0,0))
+
+    def draw_precombat_field(self):
+        pg.transform.scale(self.field,(self.screen_width, self.screen_height))
+        self.screen.blit(self.field,(0,0))
+        
+    def draw_combat_screen(self):
+        pg.transform.scale(self.field,(self.screen_width, self.screen_height))
+        self.screen.blit(self.field,(0,0))
+
+    def load_graphics_launch_menues(self):
+        self.launch_menu_img=pg.image.load(GRAPHICS_PATH+"/media/"+"launch screen.png")
+        self.launch_menu_img=pg.transform.scale(self.launch_menu_img, (self.screen_width,self.screen_height))
+
+        self.pkmn_frame_img=pg.image.load(GRAPHICS_PATH+"/media/"+"pkmn frame.png")
+        self.pkmn_frame_img=pg.transform.scale(self.pkmn_frame_img, (self.screen_width,self.screen_height))
+
+        self.team_select_img=pg.image.load(GRAPHICS_PATH+"/media/"+"pkmn frame.png")
+        self.team_select_img=pg.transform.scale(self.team_select_img, (self.screen_width,self.screen_height))
+    
+    def draw_launch_menu(self):
+        self.launch_menu_img=pg.transform.scale(self.launch_menu_img, (self.screen_width,self.screen_height))
+        self.screen.blit(self.launch_menu_img,(0,0))
+    
+    def draw_pkmn_frame(self):
+        self.pkmn_frame_img=pg.transform.scale(self.pkmn_frame_img, (self.screen_width,self.screen_height))
+        self.screen.blit(self.pkmn_frame_img,(0,0))
+    
+    def draw_team_select_img(self):
+        self.team_select_img=pg.transform.scale(self.team_select_img, (self.screen_width,self.screen_height))
+        self.screen.blit(self.team_select_img,(0,0))

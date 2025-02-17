@@ -16,9 +16,7 @@ class Load_menu(States, Main_menu_manager):
         Main_menu_manager.__init__(self)
         self.next = ""
         self.back = "main_menu"
-        self.from_left = self.screen_rect.width/2
-        self.from_top = self.screen_rect.height / 4
-        self.spacer = 75
+        
     
     def init_render_option(self):
         self.options = [self.dialogs['new game']]
@@ -45,6 +43,9 @@ class Load_menu(States, Main_menu_manager):
         """
         self.init_config()
         self.player_saves_state = self.load_player_data()
+        self.from_top = self.screen_rect.height / 4
+        self.spacer = 75
+        self.from_left= self.screen_width/2
         self.init_render_option()
         self.pre_render_options()
         pass
@@ -91,5 +92,5 @@ class Load_menu(States, Main_menu_manager):
         """
             init all display related script
         """
-        self.draw_main_menu()
+        self.load_screen()
         self.draw_menu_options()

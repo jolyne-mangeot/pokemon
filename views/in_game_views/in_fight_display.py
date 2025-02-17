@@ -11,6 +11,10 @@ class In_fight_display(In_game_display):
         self.init_root_variables_in_fight()
         self.init_menues_objects()
         self.enemy_pokemon_load()
+
+    def load_graphics(self):
+        #load background tout ça tout ça
+        pass
     
     def init_menues_objects(self):
         self.battle_stage_menu = Option_menu_class(
@@ -144,43 +148,4 @@ class In_fight_display(In_game_display):
                                               self.health_bar_width, self.health_bar_height))
         pg.draw.rect(self.screen, (0,255,0), player_pokemon_current_hp_rect)
         pg.draw.rect(self.screen, (0,255,0), enemy_pokemon_current_hp_rect)
-
-    # def draw_battle_options(self):
-    #     """
-    #         for all launch_menu states, enumerate buttons and places them before
-    #         checking for selected index button to place it on the same position
-    #     """
-    #     for index, option in enumerate(self.render_battle_stage["deselected"]):
-    #         option[1].center = (self.from_left_battle, self.from_top_battle + index*self.spacer_battle)
-    #         if index == self.selected_option:
-    #             selected_render = self.render_battle_stage["selected"][index]
-    #             selected_render[1].center = option[1].center
-    #             self.screen.blit(selected_render[0], selected_render[1])
-    #         else:
-    #             self.screen.blit(option[0],option[1])
-
-    # def draw_team_options(self):
-    #     for index, option in enumerate(self.rendered_team["deselected"]):
-    #         if index%2 == 0:
-    #             option[1].center = (
-    #                 self.from_left_team,
-    #                 self.from_top_team + self.spacer_team*index/2
-    #             )
-    #         elif index == 6:
-    #             option[1].center = (
-    #                 self.from_left_team + (self.from_left_team*1.25),
-    #                 self.from_top_team + self.spacer_team*index/2
-    #             )
-    #         else:
-    #             option[1].center = (
-    #                 self.from_left_team + (self.from_left_team*1.5),
-    #                 self.from_top_team + self.spacer_team*(index-1)/2
-    #             )
-    #         if self.menu_state == "select_pokemon_confirm" and index == self.chosen_pokemon\
-    #             or self.menu_state == "display_team" and index == self.selected_index:
-    #             selected_render = self.rendered_team["selected"][index]
-    #             selected_render[1].center = option[1].center
-    #             self.screen.blit(selected_render[0], selected_render[1])
-    #         else:
-    #             self.screen.blit(option[0],option[1])
         

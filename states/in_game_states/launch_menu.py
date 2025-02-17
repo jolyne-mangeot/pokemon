@@ -95,7 +95,8 @@ class Launch_menu(States, Game_menu_manager, Launch_menu_display, Launch_menu_st
         """
             init all display related script
         """
-        self.screen.fill((0,100,0))
+        #self.screen.fill((0,100,0))
+        self.draw_launch_menu()
         match self.menu_state:
             case "main_launch_menu":
                 self.main_launch_menu.draw_vertical_options()

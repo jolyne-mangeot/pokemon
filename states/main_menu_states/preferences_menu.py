@@ -2,6 +2,8 @@ import pygame as pg
 from control.states_control import States
 from control.__control_settings__ import LANGUAGES_DICT, SCREEN_RESOLUTION_DICT
 from states.main_menu_states._main_menu_manager_ import Main_menu_manager
+from assets.__fonts_settings__ import FONTS_PATH
+
 
 pg.font.init()
 
@@ -17,10 +19,7 @@ class Preferences_menu(States, Main_menu_manager):
         self.back = "main_menu" # used for back button, never changes
         self.next_list = ["", "", "", "", "", "main_menu",]
 
-        self.from_left = self.screen_rect.width/2
-        self.from_top = self.screen_rect.height / 12.5
-        self.spacer = 60
-    
+        
     def init_render_options(self):
         self.options = [
             self.dialogs['sfx volume'] + str(self.settings_in_preferences['sfx_volume']),
@@ -37,13 +36,37 @@ class Preferences_menu(States, Main_menu_manager):
         """
         pass
 
+    def pre_render_options(self):
+        """
+        Override pre_render_options() to use extremely large fonts for debugging.
+        """
+        rendered_dialog = {"deselected": [], "selected": []}  
+    
+        for option in self.options:  
+            deselected_render = self.font_deselected.render(option, 1, self.deselected_color)  #
+            deselected_rect = deselected_render.get_rect()  
+        
+            selected_render = self.font_selected.render(option, 1, self.selected_color)  
+            selected_rect = selected_render.get_rect()  
+            
+            rendered_dialog["deselected"].append((deselected_render, deselected_rect))  
+            rendered_dialog["selected"].append((selected_render, selected_rect))  
+    
+        self.rendered = rendered_dialog 
+
     def startup(self):
         """
             initiates all menu related data
         """
         self.init_config()
+        self.init_config()
         self.load_graphics_main_menues()
-        self.load_graphics_preferences_menu()
+        self.from_top = 80
+        self.spacer = 75
+        self.from_left= self.screen_width/2
+        self.font_selected = pg.font.Font(FONTS_PATH+"Pokemon Classic.ttf", 30)
+        self.font_deselected = pg.font.Font(FONTS_PATH+"Pokemon Classic.ttf", 20)
+        
 
         if self.previous == "game":
             self.back = "game"
@@ -83,9 +106,9 @@ class Preferences_menu(States, Main_menu_manager):
     
     def change_settings(self, operant):
         OPTIONS = (("", self.settings_in_preferences['sfx_volume'], 'sfx_volume'),
-                   ("", self.settings_in_preferences['music_volume'], 'music_volume'),
-                   (LANGUAGES_DICT, self.settings_in_preferences['language'], 'language'),
-                   (SCREEN_RESOLUTION_DICT, self.settings_in_preferences['screen_resolution'], 'screen_resolution'))
+                ("", self.settings_in_preferences['music_volume'], 'music_volume'),
+                (LANGUAGES_DICT, self.settings_in_preferences['language'], 'language'),
+                (SCREEN_RESOLUTION_DICT, self.settings_in_preferences['screen_resolution'], 'screen_resolution'))
         index = self.selected_index
 
         if index in (0,1):
@@ -136,5 +159,5 @@ class Preferences_menu(States, Main_menu_manager):
             launch all display related scripts proper to this menu back
             the main_menu states shared scripts
         """
-        self.draw_main_menu()
+        self.preferences_screen()
         self.draw_menu_options()
