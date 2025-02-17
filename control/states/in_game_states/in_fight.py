@@ -2,9 +2,9 @@ import pygame as pg
 import random
 
 from control.states_control import States
-from views.in_game_views.in_fight_display import In_fight_display
-from states.in_game_states._game_menu_manager_ import Game_menu_manager
-from states.in_game_states._in_fight_states_ import In_fight_states
+from control.views.in_game_views.in_fight_display import In_fight_display
+from control.states.in_game_states._game_menu_manager_ import Game_menu_manager
+from control.states.in_game_states._in_fight_states_ import In_fight_states
 
 pg.font.init()
 

@@ -1,7 +1,7 @@
 import pygame as pg
 
-from views.display import Display
-from views._option_menu_class_ import Option_menu_class
+from control.views.display import Display
+from control.views._option_menu_class_ import Option_menu_class
 
 from control.__control_settings__ import LANGUAGES_DICT, SCREEN_RESOLUTION_DICT
 

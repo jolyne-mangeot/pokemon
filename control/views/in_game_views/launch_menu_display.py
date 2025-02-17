@@ -1,7 +1,7 @@
 import pygame as pg
 
-from views.in_game_views.in_game_display import In_game_display
-from views._option_menu_class_ import Option_menu_class
+from control.views.in_game_views.in_game_display import In_game_display
+from control.views._option_menu_class_ import Option_menu_class
 from assets._graphics_settings_ import GRAPHICS_PATH
 
 class Launch_menu_display(In_game_display):

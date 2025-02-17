@@ -2,12 +2,12 @@ import pygame as pg
 
 from control.control import Control
 
-from states.main_menu_states.title_menu import Title_menu
-from states.main_menu_states.preferences_menu import Preferences_menu
-from states.main_menu_states.load_menu import Load_menu
-from states.in_game_states.new_game import New_game
-from states.in_game_states.launch_menu import Launch_menu
-from states.in_game_states.in_fight import In_fight
+from control.states.main_menu_states.title_menu import Title_menu
+from control.states.main_menu_states.preferences_menu import Preferences_menu
+from control.states.main_menu_states.load_menu import Load_menu
+from control.states.in_game_states.new_game import New_game
+from control.states.in_game_states.launch_menu import Launch_menu
+from control.states.in_game_states.in_fight import In_fight
 
 pg.init()
 game = Control()

@@ -1,7 +1,7 @@
 import pygame as pg
 import string
 
-from views.in_game_views.in_game_display import In_game_display
+from control.views.in_game_views.in_game_display import In_game_display
 
 class Game_menu_manager(In_game_display):
     def __init__(self):

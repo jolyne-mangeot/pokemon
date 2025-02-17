@@ -1,8 +1,8 @@
 import pygame as pg
 
 from control.states_control import States
-from states.in_game_states._game_menu_manager_ import Game_menu_manager
-from states.in_game_states._new_game_states_ import New_game_states
+from control.states.in_game_states._game_menu_manager_ import Game_menu_manager
+from control.states.in_game_states._new_game_states_ import New_game_states
 
 from game.pokemons.pokedex import Pokedex
 

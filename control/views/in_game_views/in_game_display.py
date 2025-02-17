@@ -1,6 +1,6 @@
 import pygame as pg
 
-from views.display import Display
+from control.views.display import Display
 
 class In_game_display(Display):
     def init_in_game_display(self):

@@ -1,6 +1,6 @@
 import pygame as pg
 
-from views.display import Display
+from control.views.display import Display
 
 class Option_menu_class(Display):
     def __init__(self, margins, options, next_list=None):

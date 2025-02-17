@@ -2,9 +2,9 @@ import pygame as pg
 import random
 
 from control.states_control import States
-from views.in_game_views.launch_menu_display import Launch_menu_display
-from states.in_game_states._game_menu_manager_ import Game_menu_manager
-from states.in_game_states._launch_menu_states_ import Launch_menu_states
+from control.views.in_game_views.launch_menu_display import Launch_menu_display
+from control.states.in_game_states._game_menu_manager_ import Game_menu_manager
+from control.states.in_game_states._launch_menu_states_ import Launch_menu_states
 
 from game.pokemons.pokedex import Pokedex
 from game.fight import Fight

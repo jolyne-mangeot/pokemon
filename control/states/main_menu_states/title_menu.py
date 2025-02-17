@@ -1,8 +1,8 @@
 import pygame as pg
 
 from control.states_control import States
-from views.main_menu_views.main_menu_display import Main_menu_display
-from states.main_menu_states._main_menu_manager_ import Main_menu_manager
+from control.views.main_menu_views.main_menu_display import Main_menu_display
+from control.states.main_menu_states._main_menu_manager_ import Main_menu_manager
 
 pg.font.init()
 

@@ -1,7 +1,7 @@
 import pygame as pg
 
-from views.in_game_views.in_game_display import In_game_display
-from views._option_menu_class_ import Option_menu_class
+from control.views.in_game_views.in_game_display import In_game_display
+from control.views._option_menu_class_ import Option_menu_class
 
 class In_fight_display(In_game_display):
     def init_in_fight_display(self, wild):
