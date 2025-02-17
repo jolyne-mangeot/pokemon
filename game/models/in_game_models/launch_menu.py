@@ -29,8 +29,6 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
         """
         self.init_config()
         self.init_launch_menu_display()
-        self.picked_index = None
-        self.rendered_picked = {}
         self.menu_state = "main_launch_menu"
         self.update_options()
     

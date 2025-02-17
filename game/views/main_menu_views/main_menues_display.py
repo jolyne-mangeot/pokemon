@@ -12,17 +12,15 @@ class Main_menues_display(Display):
         self.load_graphics_main_menues()
     
     def init_root_variables_main_menu(self):
-        width : int = self.screen_rect.width
-        height : int = self.screen_rect.height
 
         self.title_menu_variables : tuple = (
-            width*0.25, 240, 75
+            self.width*0.25, 240, 75
         )
         self.preferences_menu_variables : tuple = (
-            width/2, 80, 75
+            self.width/2, 80, 75
         )
         self.load_menu_variables : tuple = (
-            width/2, height/4, 75
+            self.width/2, self.height/4, 75
         )
 
     def init_title_menu_object(self):

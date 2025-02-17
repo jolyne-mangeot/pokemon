@@ -3,12 +3,13 @@ import pygame as pg
 from game.control.models_controller import Models_controller
 from game.control.in_game_controllers.new_game_controller import New_game_controller
 from game.control.in_game_controllers.game_menues_controller import Game_menues_controller
+from game.views.in_game_views.new_game_display import New_game_display
 
 from game.models.pokemons.pokedex import Pokedex
 
 pg.font.init()
 
-class New_game(Models_controller, Game_menues_controller, New_game_controller):
+class New_game(Models_controller, Game_menues_controller, New_game_controller, New_game_display):
     def __init__(self):
         Models_controller.__init__(self)
         Game_menues_controller.__init__(self)

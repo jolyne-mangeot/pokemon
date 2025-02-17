@@ -10,11 +10,8 @@ class Game_menues_display(Display):
         self.load_graphics_pokemons()
 
     def init_root_variables_in_game(self):
-        width : int = self.screen_rect.width
-        height : int = self.screen_rect.height
-
-        self.active_pokemon_image_size : tuple = (width*0.3, width*0.3)
-        self.mini_image_size : tuple = (width*0.21, width*0.2)
+        self.active_pokemon_image_size : tuple = (self.width*0.3, self.width*0.3)
+        self.mini_image_size : tuple = (self.width*0.21, self.width*0.2)
 
     def load_graphics_pokemons(self):
         for pokemon in self.player_pokedex.player_team:

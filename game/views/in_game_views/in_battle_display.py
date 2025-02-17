@@ -1,58 +1,56 @@
 import pygame as pg
 
 from game.views.in_game_views.game_menues_display import Game_menues_display
-from game.views._option_menu_class_ import Option_menu_class
+from game.models.menu_models.option_menu_model import Option_menu_class
 
 class In_battle_display(Game_menues_display):
     def init_in_battle_display(self, wild):
         self.init_in_game_display()
         self.wild = wild
-        self.init_root_variables_in_game()
         self.init_root_variables_in_battle()
         self.init_menues_objects()
         self.enemy_pokemon_load()
 
     def init_root_variables_in_battle(self):
-        width : int = self.screen_rect.width
-        height : int = self.screen_rect.height
+        self.init_root_variables_in_game()
 
         self.battle_stage_menu_variables : tuple = (
-            width*0.8, height*0.72, 38
+            self.width*0.8, self.height*0.72, 38
         )
         self.confirm_menu_variables : tuple = (
-            width*0.6, height*0.9, 38
+            self.width*0.6, self.height*0.9, 38
         )
         self.display_team_variables : tuple = (
-            width*0.2, height*0.78, 38
+            self.width*0.2, self.height*0.78, 38
         )
-        self.enemy_pokemon_image_size : tuple = (width*0.2, width*0.2)
+        self.enemy_pokemon_image_size : tuple = (self.width*0.2, self.width*0.2)
 
-        self.active_pokemon_image_coords : tuple = (width*0, height*0.778 - self.active_pokemon_image_size[0])
-        self.enemy_pokemon_image_coords : tuple = (width*0.65, height*0.22)
+        self.active_pokemon_image_coords : tuple = (self.width*0, self.height*0.778 - self.active_pokemon_image_size[0])
+        self.enemy_pokemon_image_coords : tuple = (self.width*0.65, self.height*0.22)
 
-        self.active_pokemon_name_coords : tuple = (width*0.58, height*0.58)
-        self.enemy_pokemon_name_coords : tuple = (width*0.05, height*0.08)
+        self.active_pokemon_name_coords : tuple = (self.width*0.58, self.height*0.58)
+        self.enemy_pokemon_name_coords : tuple = (self.width*0.05, self.height*0.08)
 
         self.active_pokemon_level_coords : tuple = (
-            self.active_pokemon_name_coords[0] + width*0.28,
+            self.active_pokemon_name_coords[0] + self.width*0.28,
             self.active_pokemon_name_coords[1])
         self.enemy_pokemon_level_coords : tuple = (
-            self.enemy_pokemon_name_coords[0] + width*0.28,
+            self.enemy_pokemon_name_coords[0] + self.width*0.28,
             self.enemy_pokemon_name_coords[1])
 
-        self.health_bar_width : float = width * 0.21
-        self.health_bar_height : float = height * 0.02
+        self.health_bar_width : float = self.width * 0.21
+        self.health_bar_height : float = self.height * 0.02
 
         self.active_pokemon_hb_coords : tuple = (
-            self.active_pokemon_name_coords[0] + width*0.12,
-            self.active_pokemon_name_coords[1] + height*0.03)
+            self.active_pokemon_name_coords[0] + self.width*0.12,
+            self.active_pokemon_name_coords[1] + self.height*0.03)
         self.enemy_pokemon_hb_coords : tuple = (
-            self.enemy_pokemon_name_coords[0] + width*0.12,
-            self.enemy_pokemon_name_coords[1] + height*0.03)
+            self.enemy_pokemon_name_coords[0] + self.width*0.12,
+            self.enemy_pokemon_name_coords[1] + self.height*0.03)
         
         self.active_pokemon_hp_coords : tuple = (
-            self.active_pokemon_name_coords[0] + width*0.33, 
-            self.active_pokemon_name_coords[1] + height*0.05)
+            self.active_pokemon_name_coords[0] + self.width*0.33, 
+            self.active_pokemon_name_coords[1] + self.height*0.05)
     
     def init_menues_objects(self):
         self.battle_stage_menu = Option_menu_class(

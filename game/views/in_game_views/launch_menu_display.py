@@ -1,7 +1,7 @@
 import pygame as pg
 
 from game.views.in_game_views.game_menues_display import Game_menues_display
-from game.views._option_menu_class_ import Option_menu_class
+from game.models.menu_models.option_menu_model import Option_menu_class
 
 class Launch_menu_display(Game_menues_display):
     def init_launch_menu_display(self):
@@ -10,14 +10,12 @@ class Launch_menu_display(Game_menues_display):
         self.init_menues_objects()
 
     def init_root_variables_launch_menu(self):
-        width : int = self.screen_rect.width
-        height : int = self.screen_rect.height
 
         self.confirm_menu_variables : tuple = (
-            width/2, height/2, 60
+            self.width/2, self.height/2, 60
         )
         self.main_menu_variables : tuple = (
-            width/2, height/2, 60
+            self.width/2, self.height/2, 60
         )
     
     def init_menues_objects(self):
