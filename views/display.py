@@ -1,10 +1,16 @@
 import pygame as pg
+
 from assets.__graphics_settings__ import GRAPHICS_PATH
 from assets.__fonts_settings__ import FONTS_PATH, POKEMON_CLASSIC_FONT
 
 class Display:
     def __init__(self):
-        self.pixel_font = pg.font.Font(FONTS_PATH + POKEMON_CLASSIC_FONT, int(self.screen_rect.width*0.02))
+        self.pixel_font_pokemon_infos = pg.font.Font(FONTS_PATH + POKEMON_CLASSIC_FONT, int(self.screen_rect.width*0.02))
+        self.pixel_font_menu_deselected = pg.font.Font(FONTS_PATH + POKEMON_CLASSIC_FONT, int(self.screen_rect.width*0.02))
+        self.pixel_font_menu_selected = pg.font.Font(FONTS_PATH + POKEMON_CLASSIC_FONT, int(self.screen_rect.width*0.025))
+        self.from_left = self.screen_rect.width/2
+        self.from_top = self.screen_rect.width/2
+        self.spacer = 60
 
     def draw_menu_options(self):
         """

@@ -1,7 +1,7 @@
 import pygame as pg
 from control.states_control import States
 from control.__control_settings__ import LANGUAGES_DICT, SCREEN_RESOLUTION_DICT
-from states.main_menu_states.__main_menu_manager__ import Main_menu_manager
+from states.main_menu_states._main_menu_manager_ import Main_menu_manager
 
 pg.font.init()
 
@@ -17,6 +17,7 @@ class Preferences_menu(States, Main_menu_manager):
         self.back = "main_menu" # used for back button, never changes
         self.next_list = ["", "", "", "", "", "main_menu",]
 
+        self.from_left = self.screen_rect.width/2
         self.from_top = self.screen_rect.height / 12.5
         self.spacer = 60
     

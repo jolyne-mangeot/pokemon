@@ -5,114 +5,100 @@ class In_fight_states:
     def update_options(self):
         match self.menu_state:
             case "display_items":
-                self.init_render_option_display_items()
+                self.display_items_menu.selected_index = 0
             case "display_team":
-                self.init_render_option_team(self.fight.player_team, self.forced_switch, self.team_full)
-                self.pre_render_team()
+                self.display_team_menu.update_options(
+                    self.init_render_option_team(self.fight.player_team, self.forced_switch, self.team_full)
+                )
+                self.display_team_menu.selected_index = 0
                 self.picked_index = None
             case "select_pokemon_confirm":
-                self.init_render_option_confirm()
-            case "quit":
-                self.init_render_option_confirm()
+                self.confirm_action_menu.selected_index = 0
+            case "run_away":
+                self.confirm_action_menu.selected_index = 0
             case "battle_stage" | _:
-                self.from_top = self.screen_rect.height / 4
-                self.spacer = 60
-                self.init_render_option_battle_stage()
-        self.selected_index = 0
-        self.pre_render_options()
-
-    def init_render_option_battle_stage(self):
-        self.menu_state = "battle_stage"
-        self.options = [
-            self.dialogs["attack"],
-            self.dialogs["guard"],
-            self.dialogs["team"],
-            self.dialogs["items"],
-            self.dialogs["run away"]
-            ]
-        self.next_list = ["", "", "display_team", "display_items", "quit"]
+                self.battle_stage_menu.selected_index = 0
 
     def get_event_battle_stage(self, event):
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit:
-                self.menu_state = "quit"
+                self.menu_state = "run_away"
                 self.update_options()
-            elif pg.key.name(event.key) in self.confirm_keys and self.selected_index == 0:
+            elif pg.key.name(event.key) in self.confirm_keys and self.battle_stage_menu.selected_index == 0:
                 self.fight.attack(True, self.enemy_guarded)
                 if self.update_battle_status() != "switch":
                     self.enemy_turn = True
                     self.enemy_guarded = False
-            elif pg.key.name(event.key) in self.confirm_keys and self.selected_index == 1:
+            elif pg.key.name(event.key) in self.confirm_keys and self.battle_stage_menu.selected_index == 1:
                 self.guarded = True
                 self.enemy_turn = True
                 self.enemy_guarded = False
-            elif pg.key.name(event.key) in self.confirm_keys and self.selected_index in (2,3,4):
-                self.menu_state = self.next_list[self.selected_index]
+            elif pg.key.name(event.key) in self.confirm_keys and self.battle_stage_menu.selected_index in (2,3,4):
+                self.menu_state = self.battle_stage_menu.next_list[self.battle_stage_menu.selected_index]
                 self.update_options()
-
-    def init_render_option_display_items(self):
-        self.menu_state = "display_items"
-        self.options = ["pokeball", "potion", self.dialogs["back"]]
-        self.next = "battle_stage"
+        self.battle_stage_menu.get_event_vertical(event)
     
     def get_event_display_items(self, event):
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit\
-                or pg.key.name(event.key) in self.confirm_keys and self.selected_index == len(self.options) - 1:
+                or pg.key.name(event.key) in self.confirm_keys and self.display_items_menu.selected_index == len(self.display_items_menu.options) - 1:
                 self.menu_state = "battle_stage"
                 self.update_options()
-            elif pg.key.name(event.key) in self.confirm_keys and self.selected_index == 0:
+            elif pg.key.name(event.key) in self.confirm_keys and self.display_items_menu.selected_index == 0:
                 if self.fight.wild:
                     self.caught = self.fight.catch_attempt()
                     self.menu_state = "battle_stage"
                     self.update_options()
                     if not self.caught:
                         self.enemy_turn = True
+        self.display_items_menu.get_event_vertical(event)
 
     def get_event_display_team(self, event):
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit and not self.forced_switch\
-                or pg.key.name(event.key) in self.confirm_keys and self.selected_index == len(self.options) - 1\
+                or pg.key.name(event.key) in self.confirm_keys and self.display_team_menu.selected_index == len(self.display_team_menu.options) - 1\
                     and not self.forced_switch and not self.team_full:
                 self.menu_state = "battle_stage"
                 self.update_options()
             elif pg.key.name(event.key) in self.confirm_keys:
-                if self.selected_index == self.fight.player_team.index(self.fight.active_pokemon) and self.team_full:
-                    self.chosen_pokemon = self.selected_index
+                if self.display_team_menu.selected_index == self.fight.player_team.index(self.fight.active_pokemon) and self.team_full:
+                    self.chosen_pokemon = self.display_team_menu.selected_index
                     self.menu_state = "select_pokemon_confirm"
                     self.update_options()
-                elif self.selected_index == self.fight.player_team.index(self.fight.active_pokemon) or\
-                    self.fight.player_team[self.selected_index].current_health_points <= 0:
+                elif self.display_team_menu.selected_index == self.fight.player_team.index(self.fight.active_pokemon) or\
+                    self.fight.player_team[self.display_team_menu.selected_index].current_health_points <= 0:
                     pass
                 else:
-                    self.chosen_pokemon = self.selected_index
+                    self.chosen_pokemon = self.display_team_menu.selected_index
                     self.menu_state = "select_pokemon_confirm"
                     self.update_options()
+        self.display_team_menu.get_event_vertical(event)
     
     def get_event_run_away(self, event):
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit\
-                or pg.key.name(event.key) in self.confirm_keys and self.selected_index == 0:
-                self.menu_state = self.back
+                or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
+                self.menu_state = "battle_stage"
                 self.update_options()
-            if pg.key.name(event.key) in self.confirm_keys and self.selected_index == 1:
+            if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
                 if self.fight.run_away():
                     self.next = "launch_menu"
                     self.done = True
-                    self.selected_index = 0
                 else:
                     self.menu_state = "battle_stage"
                     self.update_options()
                     self.enemy_turn = True
+        self.confirm_action_menu.get_event_vertical(event)
 
     def get_event_select_pokemon_confirm(self, event):
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit\
-                or pg.key.name(event.key) in self.confirm_keys and self.selected_index == 0:
+                or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
                 self.menu_state = "display_team"
                 self.update_options()
                 return None
-            if pg.key.name(event.key) in self.confirm_keys and self.selected_index == 1:
-                self.menu_state = "in_fight"
+            if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
+                self.menu_state = "battle_stage"
                 self.update_options()
                 return True
+        self.confirm_action_menu.get_event_vertical(event)

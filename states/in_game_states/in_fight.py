@@ -1,9 +1,10 @@
 import pygame as pg
 import random
-from views.in_game_views.in_fight_display import In_fight_display
+
 from control.states_control import States
-from states.in_game_states.__game_menu_manager__ import Game_menu_manager
-from states.in_game_states.__in_fight_states__ import In_fight_states
+from views.in_game_views.in_fight_display import In_fight_display
+from states.in_game_states._game_menu_manager_ import Game_menu_manager
+from states.in_game_states._in_fight_states_ import In_fight_states
 
 pg.font.init()
 
@@ -26,20 +27,22 @@ class In_fight(States, Game_menu_manager, In_fight_display, In_fight_states):
         """
         self.init_config()
         self.fight = States.new_fight
-        self.menu_state = "battle_stage"
-        self.update_options()
+        self.init_in_fight_display(self.fight.wild)
         self.not_put_out_pokemons : list = self.fight.player_team.copy()
-        self.fight.spawn_pokemon(0, True)
         self.enemy_active_index = 0
+        self.fight.spawn_pokemon(0, True)
         self.fight.spawn_pokemon(self.enemy_active_index, False)
         self.put_out_pokemons : list = [self.not_put_out_pokemons.pop(0)]
-        self.init_in_fight_display(self.fight.wild)
+    
         self.enemy_turn = False
         self.guarded = False
         self.enemy_guarded = False
         self.forced_switch = False
         self.caught = False
         self.team_full = False
+
+        self.menu_state = "battle_stage"
+        self.update_options()
 
     def get_event(self, event):
         """
@@ -57,10 +60,8 @@ class In_fight(States, Game_menu_manager, In_fight_display, In_fight_states):
                     self.get_event_display_items(event)
                     if self.caught:
                         self.update_battle_status()
-                    self.get_event_menu(event)
                 case "display_team":
                     self.get_event_display_team(event)
-                    self.get_event_menu(event)
                 case "select_pokemon_confirm":
                     if self.get_event_select_pokemon_confirm(event):
                         if self.team_full:
@@ -72,14 +73,10 @@ class In_fight(States, Game_menu_manager, In_fight_display, In_fight_states):
                             self.fight.spawn_pokemon(self.chosen_pokemon, True)
                             self.forced_switch = False
                             self.enemy_turn = True
-                    self.get_event_menu(event)
-                case "quit":
-                    self.back = "battle_stage"
+                case "run_away":
                     self.get_event_run_away(event)
-                    self.get_event_menu(event)
                 case "battle_stage" | _:
                     self.get_event_battle_stage(event)
-                    self.get_event_menu(event)
    
     def enemy_turn_action(self):
         self.update_battle_status()
@@ -134,8 +131,17 @@ class In_fight(States, Game_menu_manager, In_fight_display, In_fight_states):
         self.draw_pokemons()
         match self.menu_state:
             case "battle_stage":
-                self.draw_menu_options()
-            case "quit":
-                self.draw_menu_options()
-            case "display_items" | "display_team" | "select_pokemon_confirm":
-                self.draw_menu_options()
+                self.battle_stage_menu.draw_vertical_options()
+            case "run_away":
+                self.battle_stage_menu.draw_vertical_options()
+                self.confirm_action_menu.draw_vertical_options()
+            case "display_items":
+                self.battle_stage_menu.draw_vertical_options()
+                self.display_items_menu.draw_chart_options()
+            case "display_team":
+                self.battle_stage_menu.draw_vertical_options()
+                self.display_team_menu.draw_chart_options()
+            case "select_pokemon_confirm":
+                self.battle_stage_menu.draw_vertical_options()
+                self.confirm_action_menu.draw_vertical_options()
+                self.display_team_menu.draw_chart_options()

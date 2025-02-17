@@ -1,12 +1,12 @@
 import pygame as pg
+
 from control.states_control import States
-from views.in_game_views.in_game_display import In_game_display
-from states.main_menu_states.__main_menu_manager__ import Main_menu_manager
+from states.main_menu_states._main_menu_manager_ import Main_menu_manager
 from game.pokemons.pokedex import Pokedex
 
 pg.font.init()
 
-class Load_menu(States, In_game_display, Main_menu_manager):
+class Load_menu(States, Main_menu_manager):
     def __init__(self):
         """
             inits values specific to the menu such as navigation and
@@ -16,6 +16,7 @@ class Load_menu(States, In_game_display, Main_menu_manager):
         Main_menu_manager.__init__(self)
         self.next = ""
         self.back = "main_menu"
+        self.from_left = self.screen_rect.width/2
         self.from_top = self.screen_rect.height / 4
         self.spacer = 75
     
@@ -52,7 +53,6 @@ class Load_menu(States, In_game_display, Main_menu_manager):
         current_player = self.player_saves_state[self.selected_index-1]
         Pokedex.init_pokedex_data()
         self.player_pokedex = Pokedex(current_player)
-        self.init_in_game_display()
         States.player_pokedex = self.player_pokedex
 
     def get_event(self, event):

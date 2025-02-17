@@ -1,16 +1,15 @@
 import pygame as pg
 import random
+
 from control.states_control import States
-from views.in_game_views.in_game_display import In_game_display
-from states.in_game_states.__game_menu_manager__ import Game_menu_manager
-from states.in_game_states.__launch_menu_states__ import Launch_menu_states
+from views.in_game_views.launch_menu_display import Launch_menu_display
+from states.in_game_states._game_menu_manager_ import Game_menu_manager
+from states.in_game_states._launch_menu_states_ import Launch_menu_states
 
 from game.pokemons.pokedex import Pokedex
 from game.fight import Fight
 
-pg.font.init()
-
-class Launch_menu(States, Game_menu_manager, In_game_display, Launch_menu_states):
+class Launch_menu(States, Game_menu_manager, Launch_menu_display, Launch_menu_states):
     def __init__(self):
         States.__init__(self)
         Game_menu_manager.__init__(self)
@@ -29,9 +28,10 @@ class Launch_menu(States, Game_menu_manager, In_game_display, Launch_menu_states
             initiates all menu-related data
         """
         self.init_config()
+        self.init_launch_menu_display()
         self.picked_index = None
         self.rendered_picked = {}
-        self.menu_state = "main"
+        self.menu_state = "main_launch_menu"
         self.update_options()
     
     def launch_fight(self):
@@ -66,31 +66,23 @@ class Launch_menu(States, Game_menu_manager, In_game_display, Launch_menu_states
                 if self.get_event_launch_fight_confirm(event):
                     self.next = "in_fight"
                     self.done = True
-                    self.selected_index = 0
                     self.launch_fight()
-                self.get_event_confirm(event)
             case "manage_team":
                 self.get_event_manage_team(event)
-                self.get_event_menu(event)
             case "save":
-                self.chosen_save = self.get_event_save(event)
-                self.get_event_menu(event)
+                self.get_event_save(event)
             case "save_confirm":
                 if self.get_event_save_confirm(event):
-                    player_data = States.player_pokedex.compress_data(self.chosen_save)
-                    self.save_player_data(player_data, self.chosen_save)
-                self.get_event_confirm(event)
+                    player_data = States.player_pokedex.compress_data(str(self.save_menu.selected_index + 1))
+                    self.save_player_data(player_data, str(self.save_menu.selected_index + 1))
             case "quit":
-                self.back = "main"
+                self.back = "main_launch_menu"
                 self.get_event_quit(event)
-                self.get_event_confirm(event)
             case "delete_save":
                 if self.get_event_delete_save(event):
                     self.reset_player_data(States.player_pokedex.save)
-                self.get_event_confirm(event)
-            case "main" | _:
-                self.get_event_main(event)
-                self.get_event_menu(event)
+            case "main_launch_menu" | _:
+                self.get_event_main_launch_menu(event)
     
     def update(self):
         """
@@ -105,10 +97,11 @@ class Launch_menu(States, Game_menu_manager, In_game_display, Launch_menu_states
         """
         self.screen.fill((0,100,0))
         match self.menu_state:
-            case "main" | "save":
-                self.draw_menu_options()
+            case "main_launch_menu":
+                self.main_launch_menu.draw_vertical_options()
+            case "save":
+                self.save_menu.draw_vertical_options()
             case "manage_team":
-                self.draw_menu_options()
-                self.draw_picked()
+                self.manage_team_menu.draw_picked_options()
             case "save_confirm" | "quit" | "delete_save" | "launch_fight_confirm":
-                self.draw_confirm_options()
+                self.confirm_action_menu.draw_vertical_options()

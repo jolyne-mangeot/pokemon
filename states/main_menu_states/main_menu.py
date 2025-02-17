@@ -1,6 +1,7 @@
 import pygame as pg
+
 from control.states_control import States
-from states.main_menu_states.__main_menu_manager__ import Main_menu_manager
+from states.main_menu_states._main_menu_manager_ import Main_menu_manager
 
 pg.font.init()
 
@@ -15,6 +16,7 @@ class Main_menu(States, Main_menu_manager):
         self.next = ""
         self.next_list = ["load_menu", "options"]
 
+        self.from_left = self.screen_rect.width/2
         self.from_top = 200
         self.spacer = 75
     

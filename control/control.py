@@ -1,4 +1,5 @@
 import pygame as pg
+
 from control.settings import Settings
 from views.display import Display
 
