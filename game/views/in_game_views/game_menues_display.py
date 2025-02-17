@@ -3,6 +3,9 @@ import pygame as pg
 from game.views.display import Display
 
 class Game_menues_display(Display):
+    def display_init(self):
+        Display.__init__(self)
+
     def init_in_game_display(self):
         Display.__init__(self)
         self.init_root_variables_in_game()

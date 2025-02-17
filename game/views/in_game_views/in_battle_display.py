@@ -25,11 +25,11 @@ class In_battle_display(Game_menues_display):
         )
         self.enemy_pokemon_image_size : tuple = (self.width*0.2, self.width*0.2)
 
-        self.active_pokemon_image_coords : tuple = (self.width*0, self.height*0.778 - self.active_pokemon_image_size[0])
-        self.enemy_pokemon_image_coords : tuple = (self.width*0.65, self.height*0.22)
+        self.active_pokemon_image_coords : tuple = (self.width*0, self.height*0.74 - self.active_pokemon_image_size[0])
+        self.enemy_pokemon_image_coords : tuple = (self.width*0.62, self.height*0.08)
 
-        self.active_pokemon_name_coords : tuple = (self.width*0.58, self.height*0.58)
-        self.enemy_pokemon_name_coords : tuple = (self.width*0.05, self.height*0.08)
+        self.active_pokemon_name_coords : tuple = (self.width*0.58, self.height*0.52)
+        self.enemy_pokemon_name_coords : tuple = (self.width*0.08, self.height*0.12)
 
         self.active_pokemon_level_coords : tuple = (
             self.active_pokemon_name_coords[0] + self.width*0.28,

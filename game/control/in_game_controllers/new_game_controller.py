@@ -5,37 +5,25 @@ class New_game_controller:
     def update_options(self):
         match self.menu_state:
             case "player_input":
-                self.from_top = self.screen_rect.height / 2
-                self.options = []
-            case "pokemon_choice":
-                self.from_top = self.screen_rect.height*0.7
-                self.spacer = 60
-                self.selected_index = 1
-                self.init_render_option_pokemon_choice()
-            case "quit":
-                self.from_top = self.screen_rect.height/2
-                self.spacer = 60
-                self.selected_index = 0
-                self.init_render_option_confirm()
-            case "player_input":
                 pass
-        self.pre_render_options()
-
-    def init_render_option_pokemon_choice(self):
-        self.options = [
-            self.dialogs["bulbasaur"],
-            self.dialogs["charmander"],
-            self.dialogs["squirtle"]
-            ]
+            case "pokemon_choice":
+                pass
 
     def get_event_pokemon_choice(self, event):
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit:
-                self.menu_state = "quit"
-                self.update_options()
+                self.next = "title_menu"
+                self.done = True
             elif pg.key.name(event.key) in self.confirm_keys:
-                self.chosen_pokemon = "000" + str(self.selected_index*3 + 1)
                 self.init_save_file()
                 self.next = "launch_menu"
                 self.done = True
-                self.selected_index = 0
+    
+    def get_event_player_input(self, event):
+        if event.type == pg.KEYDOWN:
+            if pg.key.name(event.key) in self.return_keys:
+                self.next = "title_menu"
+                self.done = True
+            elif pg.key.name(event.key) in self.confirm_keys and self.player_input != "":
+                self.menu_state = "pokemon_choice"
+                self.update_options()

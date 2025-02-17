@@ -10,8 +10,8 @@ class Option_menu_model(Display):
         self.next_list = next_list
         self.selected_index = 0
         self.picked_index = None
-        self.selected_color = (255,255,0)
-        self.deselected_color = (255,255,255)
+        self.selected_color = (0,0,0)
+        self.deselected_color = (0,0,0)
         self.picked_color = (255,0,0)
         self.pre_render()
     
@@ -42,13 +42,13 @@ class Option_menu_model(Display):
             picked_rect = picked_render.get_rect()
             deselected_render = self.pixel_font_menu_deselected.render(option, True, self.deselected_color)
             deselected_rect = deselected_render.get_rect()
+            self.pixel_font_menu_selected.set_bold(True)
             selected_render = self.pixel_font_menu_selected.render(option, True, self.selected_color)
             selected_rect = selected_render.get_rect()
             rendered_dialog["picked"].append((picked_render, picked_rect))
             rendered_dialog["deselected"].append((deselected_render, deselected_rect))
             rendered_dialog["selected"].append((selected_render, selected_rect))
         self.rendered = rendered_dialog
-        self.rendered_team = rendered_dialog
 
     def draw_vertical_options(self):
         """
@@ -59,7 +59,7 @@ class Option_menu_model(Display):
             option[1].center = (self.from_left, self.from_top + index*self.spacer)
             if index == self.selected_index:
                 selected_render = self.rendered["selected"][index]
-                selected_render[1].center = option[1].center
+                selected_render[1].midbottom = option[1].midbottom
                 self.screen.blit(selected_render[0], selected_render[1])
             else:
                 self.screen.blit(option[0],option[1])
@@ -75,7 +75,7 @@ class Option_menu_model(Display):
                     if self.selected_index == self.picked_index:
                         continue
                 selected_render = self.rendered["selected"][index]
-                selected_render[1].center = option[1].center
+                selected_render[1].midbottom = option[1].midbottom
                 self.screen.blit(selected_render[0], selected_render[1])
             else:
                 self.screen.blit(option[0],option[1])
@@ -112,7 +112,7 @@ class Option_menu_model(Display):
                     self.from_top + self.spacer*(index-1)/2
                 )
             if index == self.selected_index:
-                selected_render = self.rendered_team["selected"][index]
+                selected_render = self.rendered["selected"][index]
                 selected_render[1].center = option[1].center
                 self.screen.blit(selected_render[0], selected_render[1])
             else:
@@ -155,15 +155,3 @@ class Option_menu_model(Display):
             self.selected_index = max_indicator
         elif self.selected_index > max_indicator:
             self.selected_index = 0
-
-    # def select_option(self):
-    #     """
-    #         change the active state with done attribute and change it
-    #         to correct user input
-    #     """
-    #     if self.selected_index == len(self.next_list):
-    #         self.quit = True
-    #     else:
-    #         self.next = self.next_list[self.selected_index]
-    #         self.done = True
-    #         self.selected_index = 0

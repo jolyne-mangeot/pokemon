@@ -25,31 +25,15 @@ class New_game(Models_controller, Game_menues_controller, New_game_controller, N
             initiates all menu-related data
         """
         self.init_config()
-        self.player_input : str = ""
+        Pokedex.init_pokedex_data()
+        self.pokemon_starters = [
+            Pokedex.pokemon_dict["0001"],
+            Pokedex.pokemon_dict["0004"],
+            Pokedex.pokemon_dict["0007"]
+            ]
+        self.init_new_game_display()
         self.menu_state : str = "player_input"
         self.update_options()
-
-    def init_render_option(self):
-        self.options = []
-        self.next_list = []
-    
-    def init_save_file(self):
-        current_player : dict = {
-                    "player" : self.player_input,
-                    "encounters" : {
-                        "done" : 0,
-                        "won" : 0,
-                        "lost" : 0
-                    },
-                    "active_team" : {
-                        "pokemon_1" : {
-                            "entry" : self.chosen_pokemon,
-                            "experience_points" : 125
-                        }
-                    }}
-        Pokedex.init_pokedex_data()
-        self.player_pokedex = Pokedex(current_player)
-        Models_controller.player_pokedex = self.player_pokedex
 
     def get_event(self, event):
         """
@@ -62,18 +46,10 @@ class New_game(Models_controller, Game_menues_controller, New_game_controller, N
         match self.menu_state:
             case "pokemon_choice":
                 self.get_event_pokemon_choice(event)
-                self.get_event_confirm(event)
+                self.pokemon_choice.get_event_horizontal(event)
             case "player_input":
-                player_done = self.get_event_player_input(event)
-                if player_done:
-                    self.menu_state = "pokemon_choice"
-                    self.update_options()
-                elif player_done == False:
-                    self.menu_state = "quit"
-                    self.update_options()
-            case "quit":
-                self.get_event_quit(event)
-                self.get_event_confirm(event)
+                self.get_event_player_input(event)
+                self.player_input.get_event_input(event)
 
     def update(self):
         """
@@ -89,6 +65,25 @@ class New_game(Models_controller, Game_menues_controller, New_game_controller, N
         self.screen.fill((0,100,0))
         match self.menu_state:
             case "player_input":
-                self.draw_player_input(self.dialogs["your name"])
-            case "pokemon_choice" | "quit":
-                self.draw_confirm_options()
+                self.player_input.draw_input()
+            case "pokemon_choice":
+                self.pokemon_choice.draw_horizontal_options()
+                self.draw_starter_pokemon()
+
+    def init_save_file(self):
+        self.chosen_pokemon = "000" + str(self.pokemon_choice.selected_index*3 + 1)
+        current_player : dict = {
+                    "player" : self.player_input.input,
+                    "encounters" : {
+                        "done" : 0,
+                        "won" : 0,
+                        "lost" : 0
+                    },
+                    "active_team" : {
+                        "pokemon_1" : {
+                            "entry" : self.chosen_pokemon,
+                            "experience_points" : 125
+                        }
+                    }}
+        self.player_pokedex = Pokedex(current_player)
+        Models_controller.player_pokedex = self.player_pokedex
