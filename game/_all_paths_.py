@@ -3,7 +3,7 @@ TYPES_CHART_PATH = "game/models/pokemons/types_chart.json"
 
 GRAPHICS_PATH = "game/assets/graphics/"
 SFX_PATH = "game/assets/sfx/"
-BGM_PATH = "game/assets/bgm/"
+MUSIC_PATH = "game/assets/music/"
 FONTS_PATH = "game/assets/fonts/"
 POKEMON_CLASSIC_FONT = "Pokemon Classic.ttf"
 

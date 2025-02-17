@@ -2,7 +2,7 @@ import pygame as pg
 
 from game.views.display import Display
 
-class Option_menu_class(Display):
+class Option_menu_model(Display):
     def __init__(self, margins, options, next_list=None):
         Display.__init__(self)
         self.from_left, self.from_top, self.spacer = margins

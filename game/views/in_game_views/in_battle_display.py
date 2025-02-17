@@ -1,7 +1,7 @@
 import pygame as pg
 
 from game.views.in_game_views.game_menues_display import Game_menues_display
-from game.models.menu_models.option_menu_model import Option_menu_class
+from game.models.menu_models.option_menu_model import Option_menu_model
 
 class In_battle_display(Game_menues_display):
     def init_in_battle_display(self, wild):
@@ -53,7 +53,7 @@ class In_battle_display(Game_menues_display):
             self.active_pokemon_name_coords[1] + self.height*0.05)
     
     def init_menues_objects(self):
-        self.battle_stage_menu = Option_menu_class(
+        self.battle_stage_menu = Option_menu_model(
             self.battle_stage_menu_variables,
             [
                 self.dialogs["attack"],
@@ -64,19 +64,19 @@ class In_battle_display(Game_menues_display):
             ],
             ["", "", "display_team", "display_items", "run_away"]
         )
-        self.confirm_action_menu = Option_menu_class(
+        self.confirm_action_menu = Option_menu_model(
             self.confirm_menu_variables,
             [self.dialogs["no"], self.dialogs["yes"]],
         )
-        self.display_items_menu = Option_menu_class(
+        self.display_items_menu = Option_menu_model(
             self.display_team_variables,
             ["pokeball", "potion", self.dialogs["back"]]
         )
-        self.display_team_menu = Option_menu_class(
+        self.display_team_menu = Option_menu_model(
             self.display_team_variables,
             self.init_render_option_team(self.battle.player_team)
         )
-        self.select_pokemon_confirm_menu = Option_menu_class(
+        self.select_pokemon_confirm_menu = Option_menu_model(
             self.confirm_menu_variables,
             [self.dialogs["no"], self.dialogs["yes"]]
         )

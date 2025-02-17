@@ -1,7 +1,7 @@
 import pygame as pg
 
 from game.views.display import Display
-from game.views._option_menu_class_ import Option_menu_class
+from game.models.menu_models.option_menu_model import Option_menu_model
 
 from game._all_paths_ import LANGUAGES_DICT, SCREEN_RESOLUTION_DICT
 
@@ -24,7 +24,7 @@ class Main_menues_display(Display):
         )
 
     def init_title_menu_object(self):
-        self.title_menu = Option_menu_class(
+        self.title_menu = Option_menu_model(
             self.title_menu_variables,
             [self.dialogs['play'], self.dialogs['options'], self.dialogs['quit']],
             ["load_menu", "options", "quit"]
@@ -33,7 +33,7 @@ class Main_menues_display(Display):
     
     def init_preferences_menu_object(self):
         options, next_list = self.init_render_option_preferences_menu()
-        self.preferences_menu = Option_menu_class(
+        self.preferences_menu = Option_menu_model(
             self.preferences_menu_variables,
             options, next_list
         )
@@ -45,7 +45,7 @@ class Main_menues_display(Display):
 
     def init_load_menu_object(self):
         options, next_list = self.init_render_option_load_menu()
-        self.load_menu = Option_menu_class(
+        self.load_menu = Option_menu_model(
             self.load_menu_variables,
             options, next_list
         )

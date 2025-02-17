@@ -3,10 +3,12 @@ import random
 
 from game.control.models_controller import Models_controller
 from game.views.in_game_views.in_battle_display import In_battle_display
+from game.views.in_game_views.game_menues_sounds import Game_menues_sounds
 from game.control.in_game_controllers.game_menues_controller import Game_menues_controller
 from game.control.in_game_controllers.in_battle_controller import In_battle_controller
 
-class In_battle(Models_controller, Game_menues_controller, In_battle_display, In_battle_controller):
+class In_battle(Models_controller, Game_menues_controller, In_battle_controller, In_battle_display, Game_menues_sounds):
+    
     def __init__(self):
         Models_controller.__init__(self)
         Game_menues_controller.__init__(self)
@@ -26,9 +28,11 @@ class In_battle(Models_controller, Game_menues_controller, In_battle_display, In
         self.init_config()
         self.battle = Models_controller.new_battle
         self.init_in_battle_display(self.battle.wild)
+        self.init_in_game_sounds()
         self.not_put_out_pokemons : list = self.battle.player_team.copy()
         self.enemy_active_index = 0
         self.battle.spawn_pokemon(0, True)
+        self.play_active_pokemon_cry()
         self.battle.spawn_pokemon(self.enemy_active_index, False)
         self.put_out_pokemons : list = [self.not_put_out_pokemons.pop(0)]
     
