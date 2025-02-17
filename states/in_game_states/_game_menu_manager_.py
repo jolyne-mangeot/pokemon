@@ -10,14 +10,7 @@ class Game_menu_manager(In_game_display):
             mouse-hover, and misc. values like font color. for all main_menu
             derived classes
         """
-        self.selected_index = 0
-        self.picked_index = None
-        self.rendered_picked = {}
-        self.last_option = None
-        self.picked_index = None
-        self.selected_color = (255,255,0)
-        self.deselected_color = (255,255,255)
-        self.picked_color = (255,0,0)
+        pass
     
     def update_menu(self):
         """

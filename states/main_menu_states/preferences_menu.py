@@ -1,13 +1,12 @@
 import pygame as pg
+
 from control.states_control import States
-from control.__control_settings__ import LANGUAGES_DICT, SCREEN_RESOLUTION_DICT
 from states.main_menu_states._main_menu_manager_ import Main_menu_manager
-from assets.__fonts_settings__ import FONTS_PATH
+from views.main_menu_views.main_menu_display import Main_menu_display
 
+from control.__control_settings__ import LANGUAGES_DICT, SCREEN_RESOLUTION_DICT
 
-pg.font.init()
-
-class Preferences_menu(States, Main_menu_manager):
+class Preferences_menu(States, Main_menu_manager, Main_menu_display):
     def __init__(self):
         """
             states all navigation paths and options to create buttons for,
@@ -15,20 +14,6 @@ class Preferences_menu(States, Main_menu_manager):
         """
         States.__init__(self)
         Main_menu_manager.__init__(self)
-        self.next = "" # only for indication, changes based on chosen option
-        self.back = "main_menu" # used for back button, never changes
-        self.next_list = ["", "", "", "", "", "main_menu",]
-
-        
-    def init_render_options(self):
-        self.options = [
-            self.dialogs['sfx volume'] + str(self.settings_in_preferences['sfx_volume']),
-            self.dialogs['music volume'] + str(self.settings_in_preferences['music_volume']),
-            self.dialogs['language'] + LANGUAGES_DICT[self.settings_in_preferences['language']],
-            self.dialogs['screen resolution'] + SCREEN_RESOLUTION_DICT[self.settings_in_preferences['screen_resolution']],
-            self.dialogs['apply'], 
-            self.dialogs['back']
-        ]
     
     def cleanup(self):
         """
@@ -36,45 +21,14 @@ class Preferences_menu(States, Main_menu_manager):
         """
         pass
 
-    def pre_render_options(self):
-        """
-        Override pre_render_options() to use extremely large fonts for debugging.
-        """
-        rendered_dialog = {"deselected": [], "selected": []}  
-    
-        for option in self.options:  
-            deselected_render = self.font_deselected.render(option, 1, self.deselected_color)  #
-            deselected_rect = deselected_render.get_rect()  
-        
-            selected_render = self.font_selected.render(option, 1, self.selected_color)  
-            selected_rect = selected_render.get_rect()  
-            
-            rendered_dialog["deselected"].append((deselected_render, deselected_rect))  
-            rendered_dialog["selected"].append((selected_render, selected_rect))  
-    
-        self.rendered = rendered_dialog 
-
     def startup(self):
         """
             initiates all menu related data
         """
         self.init_config()
-        self.init_config()
-        self.load_graphics_main_menues()
-        self.from_top = 80
-        self.spacer = 75
-        self.from_left= self.screen_width/2
-        self.font_selected = pg.font.Font(FONTS_PATH+"Pokemon Classic.ttf", 30)
-        self.font_deselected = pg.font.Font(FONTS_PATH+"Pokemon Classic.ttf", 20)
-        
-
-        if self.previous == "game":
-            self.back = "game"
-        else:
-            self.back = "main_menu"
+        self.init_main_menu_display()
         self.settings_in_preferences = self.settings.copy()
-        self.init_render_options()
-        self.pre_render_options()
+        self.init_preferences_menu_object()
 
     def get_event(self, event):
         """
@@ -85,13 +39,13 @@ class Preferences_menu(States, Main_menu_manager):
             self.quit = True
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit:
-                self.next = self.back
+                self.next = "title_screen"
                 self.done = True
             if pg.key.name(event.key) in self.confirm_keys and\
-                self.selected_index == len(self.next_list) - 1:
-                self.select_option()
+                self.preferences_menu.selected_index == len(self.preferences_menu.next_list) - 1:
+                self.select_option(self.preferences_menu)
             elif pg.key.name(event.key) in self.confirm_keys\
-                and self.selected_index == 4 and\
+                and self.preferences_menu.selected_index == 4 and\
                     self.settings_in_preferences != self.settings:
                 self.save_settings(self.settings_in_preferences)
                 self.init_settings()
@@ -102,14 +56,14 @@ class Preferences_menu(States, Main_menu_manager):
             elif pg.key.name(event.key) in self.right_keys:
                 self.change_settings(1)
 
-        self.get_event_menu(event)
+        self.preferences_menu.get_event_vertical(event)
     
     def change_settings(self, operant):
         OPTIONS = (("", self.settings_in_preferences['sfx_volume'], 'sfx_volume'),
                 ("", self.settings_in_preferences['music_volume'], 'music_volume'),
                 (LANGUAGES_DICT, self.settings_in_preferences['language'], 'language'),
                 (SCREEN_RESOLUTION_DICT, self.settings_in_preferences['screen_resolution'], 'screen_resolution'))
-        index = self.selected_index
+        index = self.preferences_menu.selected_index
 
         if index in (0,1):
             current_setting_index = OPTIONS[index][1]
@@ -141,9 +95,8 @@ class Preferences_menu(States, Main_menu_manager):
             self.settings_in_preferences['language'] = options_list[selected_setting_index]
         elif index == 3:
             self.settings_in_preferences['screen_resolution'] = options_list[selected_setting_index]
-
-        self.init_render_options()
-        self.pre_render_options()
+        
+        self.update_preferences_menu_object()
 
     def update(self):
         """
@@ -159,5 +112,5 @@ class Preferences_menu(States, Main_menu_manager):
             launch all display related scripts proper to this menu back
             the main_menu states shared scripts
         """
-        self.preferences_screen()
-        self.draw_menu_options()
+        self.draw_preferences_screen()
+        self.preferences_menu.draw_vertical_options()

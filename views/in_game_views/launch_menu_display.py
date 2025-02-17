@@ -2,13 +2,24 @@ import pygame as pg
 
 from views.in_game_views.in_game_display import In_game_display
 from views._option_menu_class_ import Option_menu_class
-from assets.__graphics_settings__ import GRAPHICS_PATH
+from assets._graphics_settings_ import GRAPHICS_PATH
 
 class Launch_menu_display(In_game_display):
     def init_launch_menu_display(self):
         self.init_in_game_display()
         self.init_root_variables_launch_menu()
         self.init_menues_objects()
+
+    def init_root_variables_launch_menu(self):
+        width : int = self.screen_rect.width
+        height : int = self.screen_rect.height
+
+        self.confirm_menu_variables : tuple = (
+            width/2, height/2, 60
+        )
+        self.main_menu_variables : tuple = (
+            width/2, height/2, 60
+        )
     
     def init_menues_objects(self):
         self.main_launch_menu = Option_menu_class(
@@ -37,15 +48,4 @@ class Launch_menu_display(In_game_display):
                 self.dialogs["save_2"],
                 self.dialogs["back"]
             ]
-        )
-
-    def init_root_variables_launch_menu(self):
-        width : int = self.screen_rect.width
-        height : int = self.screen_rect.height
-
-        self.confirm_menu_variables : tuple = (
-            width/2, height/2, 60
-        )
-        self.main_menu_variables : tuple = (
-            width/2, height/2, 60
         )

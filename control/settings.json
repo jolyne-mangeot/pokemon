@@ -1,16 +1,9 @@
 {
     "fps": 60,
-<<<<<<< HEAD
-    "sfx_volume": 9,
-    "music_volume": 9,
+    "sfx_volume": 5,
+    "music_volume": 7,
     "language": "en-en",
     "screen_resolution": "1024,768",
-=======
-    "sfx_volume": 10,
-    "music_volume": 10,
-    "language": "en-en",
-    "screen_resolution": "800,600",
->>>>>>> origin/user_interface
     "confirm_keys": [
         "return",
         "space",

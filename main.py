@@ -2,7 +2,7 @@ import pygame as pg
 
 from control.control import Control
 
-from states.main_menu_states.main_menu import Main_menu
+from states.main_menu_states.title_menu import Title_menu
 from states.main_menu_states.preferences_menu import Preferences_menu
 from states.main_menu_states.load_menu import Load_menu
 from states.in_game_states.new_game import New_game
@@ -40,7 +40,7 @@ game.init_settings()
 game.init_config()
 
 STATE_DICT = {
-    "main_menu" : Main_menu(),
+    "title_menu" : Title_menu(),
     "options" : Preferences_menu(),
     "new_game" : New_game(),
     "load_menu" : Load_menu(),
@@ -55,7 +55,7 @@ STATE_DICT = {
 # STATE_DICT['pause_menu'] = Pause_menu()
 # snapshot2 = tracemalloc.take_snapshot()
 
-game.setup_states(STATE_DICT, "main_menu")
+game.setup_states(STATE_DICT, "title_menu")
 game.main_game_loop()
 
 # snapshot3 = tracemalloc.take_snapshot()

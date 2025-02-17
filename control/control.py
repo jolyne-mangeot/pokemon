@@ -1,9 +1,8 @@
 import pygame as pg
 
 from control.settings import Settings
-from views.display import Display
 
-class Control(Settings, Display):
+class Control(Settings):
     def __init__(self):
         pass
 
@@ -23,7 +22,7 @@ class Control(Settings, Display):
         self.screen = pg.display.set_mode((self.screen_width, self.screen_height))
         self.screen_rect = self.screen.get_rect()
         self.clock = pg.time.Clock()
-        Display.__init__(self)
+        # Display.__init__(self)
 
     def setup_states(self, STATE_DICT, start_state):
         """

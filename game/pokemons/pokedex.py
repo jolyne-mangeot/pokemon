@@ -1,7 +1,7 @@
 import json
 
 from game.pokemons.pokemons import Pokemon
-from game.__game_settings__ import POKEMON_DICT_PATH, TYPES_CHART_PATH
+from game._game_settings_ import POKEMON_DICT_PATH, TYPES_CHART_PATH
 
 class Pokedex:
     pokemon_dict = {}

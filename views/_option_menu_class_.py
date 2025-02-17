@@ -1,10 +1,10 @@
 import pygame as pg
 
-from control.control import Control
+from views.display import Display
 
-class Option_menu_class(Control):
+class Option_menu_class(Display):
     def __init__(self, margins, options, next_list=None):
-        self.init_config()
+        Display.__init__(self)
         self.from_left, self.from_top, self.spacer = margins
         self.options = options
         self.next_list = next_list
@@ -14,10 +14,25 @@ class Option_menu_class(Control):
         self.deselected_color = (255,255,255)
         self.picked_color = (255,0,0)
         self.pre_render()
+    
+    def update_colors(self, deselected_color, selected_color=None, picked_color=None):
+        self.deselected_color = deselected_color
+        
+        if selected_color != None:
+            self.selected_color = selected_color
+        else:
+            self.selected_color = deselected_color
+
+        if picked_color != None:
+            self.picked_color = picked_color
+        else:
+            self.picked_color = deselected_color
+        self.pre_render()
 
     def update_options(self, options, next_list = None):
         self.options = options
         self.next_list = next_list
+        self.pre_render()
 
     def pre_render(self):
         rendered_dialog = {"picked" : [], "deselected":[], "selected":[]}

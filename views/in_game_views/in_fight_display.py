@@ -2,48 +2,15 @@ import pygame as pg
 
 from views.in_game_views.in_game_display import In_game_display
 from views._option_menu_class_ import Option_menu_class
-from assets.__graphics_settings__ import GRAPHICS_PATH
 
 class In_fight_display(In_game_display):
     def init_in_fight_display(self, wild):
+        self.init_in_game_display()
         self.wild = wild
         self.init_root_variables_in_game()
         self.init_root_variables_in_fight()
         self.init_menues_objects()
         self.enemy_pokemon_load()
-
-    def load_graphics(self):
-        #load background tout ça tout ça
-        pass
-    
-    def init_menues_objects(self):
-        self.battle_stage_menu = Option_menu_class(
-            self.battle_stage_menu_variables,
-            [
-                self.dialogs["attack"],
-                self.dialogs["guard"],
-                self.dialogs["team"],
-                self.dialogs["items"],
-                self.dialogs["run away"]
-            ],
-            ["", "", "display_team", "display_items", "run_away"]
-        )
-        self.confirm_action_menu = Option_menu_class(
-            self.confirm_menu_variables,
-            [self.dialogs["no"], self.dialogs["yes"]],
-        )
-        self.display_items_menu = Option_menu_class(
-            self.display_team_variables,
-            ["pokeball", "potion", self.dialogs["back"]]
-        )
-        self.display_team_menu = Option_menu_class(
-            self.display_team_variables,
-            self.init_render_option_team(self.fight.player_team)
-        )
-        self.select_pokemon_confirm_menu = Option_menu_class(
-            self.confirm_menu_variables,
-            [self.dialogs["no"], self.dialogs["yes"]]
-        )
 
     def init_root_variables_in_fight(self):
         width : int = self.screen_rect.width
@@ -86,10 +53,39 @@ class In_fight_display(In_game_display):
         self.active_pokemon_hp_coords : tuple = (
             self.active_pokemon_name_coords[0] + width*0.33, 
             self.active_pokemon_name_coords[1] + height*0.05)
+    
+    def init_menues_objects(self):
+        self.battle_stage_menu = Option_menu_class(
+            self.battle_stage_menu_variables,
+            [
+                self.dialogs["attack"],
+                self.dialogs["guard"],
+                self.dialogs["team"],
+                self.dialogs["items"],
+                self.dialogs["run away"]
+            ],
+            ["", "", "display_team", "display_items", "run_away"]
+        )
+        self.confirm_action_menu = Option_menu_class(
+            self.confirm_menu_variables,
+            [self.dialogs["no"], self.dialogs["yes"]],
+        )
+        self.display_items_menu = Option_menu_class(
+            self.display_team_variables,
+            ["pokeball", "potion", self.dialogs["back"]]
+        )
+        self.display_team_menu = Option_menu_class(
+            self.display_team_variables,
+            self.init_render_option_team(self.fight.player_team)
+        )
+        self.select_pokemon_confirm_menu = Option_menu_class(
+            self.confirm_menu_variables,
+            [self.dialogs["no"], self.dialogs["yes"]]
+        )
 
     def enemy_pokemon_load(self):
         for pokemon in self.fight.enemy_team:
-            front_image = pg.image.load(GRAPHICS_PATH + "pokemon/" + pokemon.entry + "/front.png")
+            front_image = pg.image.load(self.GRAPHICS_PATH + "pokemon/" + pokemon.entry + "/front.png")
             pokemon.front_image = pg.transform.scale(front_image, self.enemy_pokemon_image_size)
 
     def draw_pokemons(self):

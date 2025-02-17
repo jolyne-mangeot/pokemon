@@ -5,11 +5,9 @@ class New_game_states:
     def update_options(self):
         match self.menu_state:
             case "player_input":
-                self.back = "player_input"
                 self.from_top = self.screen_rect.height / 2
                 self.options = []
             case "pokemon_choice":
-                self.back = "pokemon_choice"
                 self.from_top = self.screen_rect.height*0.7
                 self.spacer = 60
                 self.selected_index = 1

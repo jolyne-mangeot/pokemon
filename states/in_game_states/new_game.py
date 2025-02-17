@@ -12,8 +12,6 @@ class New_game(States, Game_menu_manager, New_game_states):
     def __init__(self):
         States.__init__(self)
         Game_menu_manager.__init__(self)
-        self.next = "launch_menu"
-        self.back = "main_menu"
 
     def cleanup(self):
         """

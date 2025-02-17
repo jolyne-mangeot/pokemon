@@ -2,11 +2,12 @@ import pygame as pg
 
 from control.states_control import States
 from states.main_menu_states._main_menu_manager_ import Main_menu_manager
+from views.main_menu_views.main_menu_display import Main_menu_display
 from game.pokemons.pokedex import Pokedex
 
 pg.font.init()
 
-class Load_menu(States, Main_menu_manager):
+class Load_menu(States, Main_menu_manager, Main_menu_display):
     def __init__(self):
         """
             inits values specific to the menu such as navigation and
@@ -14,23 +15,7 @@ class Load_menu(States, Main_menu_manager):
         """
         States.__init__(self)
         Main_menu_manager.__init__(self)
-        self.next = ""
-        self.back = "main_menu"
-        
-    
-    def init_render_option(self):
-        self.options = [self.dialogs['new game']]
-        self.next_list = ["new_game"]
-        for player_save in self.player_saves_state:
-            if player_save == {}:
-                self.options.append("")
-                self.next_list.append("")
-            else:
-                self.options.append(player_save['player'])
-                self.next_list.append("launch_menu")
-        self.options.append(self.dialogs['back'])
-        self.next_list.append("main_menu")
-    
+
     def cleanup(self):
         """
             cleans up all menu related data
@@ -42,16 +27,12 @@ class Load_menu(States, Main_menu_manager):
             initiates all menu-related data
         """
         self.init_config()
+        self.init_main_menu_display()
         self.player_saves_state = self.load_player_data()
-        self.from_top = self.screen_rect.height / 4
-        self.spacer = 75
-        self.from_left= self.screen_width/2
-        self.init_render_option()
-        self.pre_render_options()
-        pass
+        self.init_load_menu_object()
 
     def init_player_save(self):
-        current_player = self.player_saves_state[self.selected_index-1]
+        current_player = self.player_saves_state[self.load_menu.selected_index - 1]
         Pokedex.init_pokedex_data()
         self.player_pokedex = Pokedex(current_player)
         States.player_pokedex = self.player_pokedex
@@ -64,20 +45,19 @@ class Load_menu(States, Main_menu_manager):
         if event.type == pg.QUIT:
             self.quit = True
         if event.type == pg.KEYDOWN:
-            if pg.key.name(event.key) in self.return_keys and not self.quit:
-                self.next = self.back
-                self.done = True
-            if pg.key.name(event.key) in self.confirm_keys and\
-                self.selected_index == len(self.next_list) - 1:
-                self.select_option()
+            if pg.key.name(event.key) in self.return_keys and not self.quit\
+                or pg.key.name(event.key) in self.confirm_keys and\
+                    self.load_menu.selected_index == len(self.load_menu.next_list) - 1:
+                self.select_option(self.load_menu)
+
             elif pg.key.name(event.key) in self.confirm_keys:
-                if self.next_list[self.selected_index] == "new_game":
-                    self.select_option()
+                if self.load_menu.next_list[self.load_menu.selected_index] == "new_game":
+                    self.select_option(self.load_menu)
                 else:
                     self.init_player_save()
-                    self.select_option()
+                    self.select_option(self.load_menu)
 
-        self.get_event_menu(event)
+        self.load_menu.get_event_vertical(event)
     
     def update(self):
         """
@@ -92,5 +72,5 @@ class Load_menu(States, Main_menu_manager):
         """
             init all display related script
         """
-        self.load_screen()
-        self.draw_menu_options()
+        self.draw_load_screen()
+        self.load_menu.draw_vertical_options()

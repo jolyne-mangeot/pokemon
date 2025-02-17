@@ -1,11 +1,12 @@
 import pygame as pg
 
 from control.states_control import States
+from views.main_menu_views.main_menu_display import Main_menu_display
 from states.main_menu_states._main_menu_manager_ import Main_menu_manager
 
 pg.font.init()
 
-class Main_menu(States, Main_menu_manager):
+class Title_menu(States, Main_menu_manager, Main_menu_display):
     def __init__(self):
         """
             inits values specific to the menu such as navigation and
@@ -13,16 +14,6 @@ class Main_menu(States, Main_menu_manager):
         """
         States.__init__(self)
         Main_menu_manager.__init__(self)
-        self.next = ""
-        self.next_list = ["load_menu", "options"]
-        self.selected_color = (255,255,0)
-        self.deselected_color = (0,0,0)
-
-
-
-    
-    def init_render_option(self):
-        self.options = [self.dialogs['play'], self.dialogs['options'], self.dialogs['quit']]
 
     def cleanup(self):
         """
@@ -35,13 +26,8 @@ class Main_menu(States, Main_menu_manager):
             initiates all menu-related data
         """
         self.init_config()
-        self.from_top = 240
-        self.spacer = 75
-        self.from_left=250
-
-        self.init_render_option()
-        self.pre_render_options()
-        pass
+        self.init_main_menu_display()
+        self.init_title_menu_object()
 
     def get_event(self, event):
         """
@@ -53,9 +39,11 @@ class Main_menu(States, Main_menu_manager):
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys:
                 self.quit = True
+            if pg.key.name(event.key) in self.confirm_keys and self.title_menu.selected_index == 2:
+                self.quit = True
             elif pg.key.name(event.key) in self.confirm_keys:
-                self.select_option()
-        self.get_event_menu(event)
+                self.select_option(self.title_menu)
+        self.title_menu.get_event_vertical(event)
     
     def update(self):
         """
@@ -72,6 +60,6 @@ class Main_menu(States, Main_menu_manager):
         """
         sicon = pg.image.load("assets/graphics/pokemon/0001/mini.png")
         icon = pg.transform.scale (sicon, (250,250))
-        self.title_screen()
-        self.draw_menu_options()
+        self.draw_title_screen()
+        self.title_menu.draw_vertical_options()
         self.screen.blit(icon, (0,0))
