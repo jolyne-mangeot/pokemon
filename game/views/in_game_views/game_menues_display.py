@@ -35,8 +35,12 @@ class Game_menues_display(Display):
         self.screen.blit(self.field,(0,0))
         
     def draw_combat_screen(self):
-        pg.transform.scale(self.field,(self.screen_width, self.screen_height))
-        self.screen.blit(self.field,(0,0))
+        self.combat_field=pg.transform.scale(self.combat_field,(self.screen_width, self.screen_height))
+        self.screen.blit(self.combat_field,(0,0))
+
+    def load_graphics_combat(self):
+        self.combat_field=pg.image.load(self.GRAPHICS_PATH+"/media/"+"battlefield combat.png")
+        self.combat_field=pg.transform.scale(self.combat_field,(self.screen_width, self.screen_height))
 
     def load_graphics_launch_menues(self):
         self.launch_menu_img=pg.image.load(self.GRAPHICS_PATH+"/media/"+"launch screen.png")

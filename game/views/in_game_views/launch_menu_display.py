@@ -47,3 +47,5 @@ class Launch_menu_display(Game_menues_display):
             ]
         )
         self.main_launch_menu.update_colors((0,0,0),(80,96,176))
+        self.confirm_action_menu.update_colors((0,0,0),(80,96,176))
+        self.manage_team_menu.update_colors((0,0,0),(80,96,176),(255,0,0))
