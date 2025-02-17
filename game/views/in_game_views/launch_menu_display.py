@@ -15,7 +15,7 @@ class Launch_menu_display(Game_menues_display):
             self.width/2, self.height/2, 60
         )
         self.main_menu_variables : tuple = (
-            self.width/2, self.height/2, 60
+            self.width/2, self.height*0.36, self.height*0.09
         )
     
     def init_menues_objects(self):
@@ -46,3 +46,6 @@ class Launch_menu_display(Game_menues_display):
                 self.dialogs["back"]
             ]
         )
+        self.main_launch_menu.update_colors((0,0,0),(80,96,176))
+        self.confirm_action_menu.update_colors((0,0,0),(80,96,176))
+        self.manage_team_menu.update_colors((0,0,0),(80,96,176),(255,0,0))

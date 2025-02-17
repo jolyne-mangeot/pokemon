@@ -137,9 +137,10 @@ class In_battle_display(Game_menues_display):
         self.screen.blit(player_pokemon_health_print, player_pokemon_health_rect)
 
         pg.draw.rect(self.screen, (255,0,0), (self.active_pokemon_hb_coords[0], self.active_pokemon_hb_coords[1],
-                                              self.health_bar_width, self.health_bar_height))
+                                            self.health_bar_width, self.health_bar_height))
         pg.draw.rect(self.screen, (255,0,0), (self.enemy_pokemon_hb_coords[0], self.enemy_pokemon_hb_coords[1],
-                                              self.health_bar_width, self.health_bar_height))
+                                            self.health_bar_width, self.health_bar_height))
         pg.draw.rect(self.screen, (0,255,0), player_pokemon_current_hp_rect)
         pg.draw.rect(self.screen, (0,255,0), enemy_pokemon_current_hp_rect)
+        
         
