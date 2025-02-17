@@ -14,13 +14,13 @@ class Main_menues_display(Display):
     def init_root_variables_main_menu(self):
 
         self.title_menu_variables : tuple = (
-            self.width*0.25, 240, 75
+            self.width*0.25, self.height*0.4, self.height*0.1
         )
         self.preferences_menu_variables : tuple = (
-            self.width/2, 80, 75
+            self.width/2, self.height*0.15, self.height*0.12
         )
         self.load_menu_variables : tuple = (
-            self.width/2, self.height/4, 75
+            self.width/2, self.height/3, 75
         )
 
     def init_title_menu_object(self):
@@ -29,7 +29,7 @@ class Main_menues_display(Display):
             [self.dialogs['play'], self.dialogs['options'], self.dialogs['quit']],
             ["load_menu", "options", "quit"]
         )
-        self.title_menu.update_colors((255,255,255), (32,215,192))
+        self.title_menu.update_colors((0,0,0), (255,255,0))
     
     def init_preferences_menu_object(self):
         options, next_list = self.init_render_option_preferences_menu()
@@ -37,6 +37,7 @@ class Main_menues_display(Display):
             self.preferences_menu_variables,
             options, next_list
         )
+        self.preferences_menu.update_colors((255,255,255),(32,215,192))
     def update_preferences_menu_object(self):
         options, next_list = self.init_render_option_preferences_menu()
         self.preferences_menu.update_options(
@@ -49,6 +50,7 @@ class Main_menues_display(Display):
             self.load_menu_variables,
             options, next_list
         )
+        self.load_menu.update_colors((0,0,0),(80,96,176))
     def update_load_menu_object(self):
         options, next_list = self.init_render_option_load_menu()
         self.load_menu.update_options(
