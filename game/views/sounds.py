@@ -11,4 +11,5 @@ class Sounds(Control):
         self.GRAPHICS_PATH = GRAPHICS_PATH
     
     def init_sounds(self):
-        self.navigation_menu_sound = pg.mixer.Sound(self.SFX_PATH + "A_Button.mp3")
+        pass
+        # self.navigation_menu_sound = pg.mixer.Sound(self.SFX_PATH + "A_Button.mp3")

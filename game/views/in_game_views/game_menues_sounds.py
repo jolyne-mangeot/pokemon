@@ -4,6 +4,7 @@ from game.views.sounds import Sounds
 
 class Game_menues_sounds(Sounds):
     def init_in_game_sounds(self):
+        Sounds.__init__(self)
         self.init_sounds()
         self.init_pokemons_cry()
         pass
@@ -20,7 +21,7 @@ class Game_menues_sounds(Sounds):
     
     def init_actions_sounds(self):
         self.level_up_sound = pg.mixer.Sound(self.SFX_PATH + "level_up.mp3")
-        self.self.level_up2_sound = pg.mixer.Sound(self.SFX_PATH + "RBY_level_up.mp3")
+        self.level_up2_sound = pg.mixer.Sound(self.SFX_PATH + "RBY_level_up.mp3")
 
         self.caught_pokemon_sound = pg.mixer.Sound(self.SFX_PATH + "caught-a-pokemon.mp3")
         self.recovery_sound = pg.mixer.Sound(self.SFX_PATH + "recovery.mp3")

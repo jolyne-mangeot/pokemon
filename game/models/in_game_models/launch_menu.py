@@ -40,7 +40,7 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
         battle_level = ((self.player_pokedex.average_level*0.9) ** 3, 
                         (self.player_pokedex.average_level*1.1) ** 3)
         wild = True
-        battle_biome = self.player_pokedex.battle_biomes[random.choice(self.player_pokedex.battle_biomes.keys())]
+        battle_biome = self.player_pokedex.battle_biomes[random.choice(list(self.player_pokedex.battle_biomes.keys()))]
         enemy_entry = random.choice(battle_biome)
         encounter = {
             "active_team": {
