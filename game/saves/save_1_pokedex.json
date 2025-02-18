@@ -1,8 +1,8 @@
 {
-    "player": "deddeeeeee",
+    "player": "test",
     "save": "1",
     "encounters": {
-        "done": 1,
+        "done": 0,
         "won": 0,
         "lost": 0
     },

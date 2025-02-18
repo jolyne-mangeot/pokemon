@@ -68,7 +68,8 @@ class Control(Settings):
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 self.done = True
-            self.state.get_event(event)
+            if event.type == pg.KEYDOWN:
+                self.state.get_event(event)
     
     def main_game_loop(self):
         """

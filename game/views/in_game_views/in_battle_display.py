@@ -10,6 +10,8 @@ class In_battle_display(Game_menues_display):
         self.init_root_variables_in_battle()
         self.init_menues_objects()
         self.enemy_pokemon_load()
+        self.load_pkmn_info_box()
+
 
     def init_root_variables_in_battle(self):
         self.init_root_variables_in_game()
@@ -18,22 +20,23 @@ class In_battle_display(Game_menues_display):
             self.width*0.8, self.height*0.72, 38
         )
         self.confirm_menu_variables : tuple = (
-            self.width*0.6, self.height*0.9, 38
+            self.width*0.8, self.height*0.83, 42
         )
         self.display_team_variables : tuple = (
-            self.width*0.2, self.height*0.78, 38
+            self.width*0.3, self.height*0.74, 40
         )
         self.game_dialog_variables : tuple =(
-            self.width*0.022,
-            self.width*0.07, self.height*0.7
+            self.width*0.024,
+            self.width*0.06, self.height*0.76,
+            "bottomleft", (255,255,255), True
         )
         self.enemy_pokemon_image_size : tuple = (self.width*0.2, self.width*0.2)
 
         self.active_pokemon_image_coords : tuple = (self.width*0, self.height*0.74 - self.active_pokemon_image_size[0])
         self.enemy_pokemon_image_coords : tuple = (self.width*0.62, self.height*0.08)
 
-        self.active_pokemon_name_coords : tuple = (self.width*0.58, self.height*0.52)
-        self.enemy_pokemon_name_coords : tuple = (self.width*0.08, self.height*0.12)
+        self.active_pokemon_name_coords : tuple = (self.width*0.58, self.height*0.505)
+        self.enemy_pokemon_name_coords : tuple = (self.width*0.08, self.height*0.09)
 
         self.active_pokemon_level_coords : tuple = (
             self.active_pokemon_name_coords[0] + self.width*0.28,
@@ -66,23 +69,33 @@ class In_battle_display(Game_menues_display):
                 self.dialogs["items"],
                 self.dialogs["run away"]
             ],
-            ["", "", "display_team", "display_items", "run_away"]
+            ["", "", "display_team", "display_items", "run_away"],
+            deselected_color=(255,255,255),
+            selected_color=(255,255,255)
         )
         self.confirm_action_menu = Option_menu_model(
             self.confirm_menu_variables,
-            [self.dialogs["no"], self.dialogs["yes"]],
+            [self.dialogs["yes"], self.dialogs["no"]],
+            deselected_color=(255,255,255),
+            selected_color=(255,255,255)
         )
         self.display_items_menu = Option_menu_model(
             self.display_team_variables,
-            ["pokeball", "potion", self.dialogs["back"]]
+            ["pokeball", "potion", self.dialogs["back"]],
+            deselected_color=(255,255,255),
+            selected_color=(255,255,255)
         )
         self.display_team_menu = Option_menu_model(
             self.display_team_variables,
-            self.init_render_option_team(self.battle.player_team)
+            self.init_render_option_team(self.battle.player_team),
+            deselected_color=(255,255,255),
+            selected_color=(255,255,255)
         )
         self.select_pokemon_confirm_menu = Option_menu_model(
             self.confirm_menu_variables,
-            [self.dialogs["no"], self.dialogs["yes"]]
+            [self.dialogs["no"], self.dialogs["yes"]],
+            deselected_color=(255,255,255),
+            selected_color=(255,255,255)
         )
 
     def enemy_pokemon_load(self):
@@ -96,6 +109,8 @@ class In_battle_display(Game_menues_display):
         self.draw_pokemons_infos()
 
     def draw_pokemons_infos(self):
+        self.draw_pkmn_info_box_enemy()
+        self.draw_pkmn_info_box_player()
         self.draw_pokemons_names()
         self.draw_pokemons_levels()
         self.draw_pokemons_health_points()
@@ -150,19 +165,43 @@ class In_battle_display(Game_menues_display):
     def draw_options_menu(self):
         match self.options_states:
             case "battle_stage":
+                self.blit_dialog(
+                    self.dialogs["what to do_1"] +\
+                    self.battle.player_pokedex.player +\
+                    self.dialogs["what to do_2"],
+                    *self.game_dialog_variables
+                )
                 self.battle_stage_menu.draw_vertical_options()
             case "run_away":
-                self.battle_stage_menu.draw_vertical_options()
+                self.blit_dialog(
+                    self.dialogs["run away proceed"],
+                    *self.game_dialog_variables
+                )
                 self.confirm_action_menu.draw_vertical_options()
             case "display_items":
-                self.battle_stage_menu.draw_vertical_options()
                 self.display_items_menu.draw_chart_options()
             case "display_team":
-                self.battle_stage_menu.draw_vertical_options()
                 self.display_team_menu.draw_chart_options()
             case "select_pokemon_confirm":
+                self.blit_dialog_select_pokemon()
                 self.confirm_action_menu.draw_vertical_options()
     
+    def blit_dialog_select_pokemon(self):
+        if self.team_full:
+            self.blit_dialog(
+                self.dialogs["let pokemon go"] +\
+                self.dialogs[self.battle.player_team[self.chosen_pokemon].name] +\
+                self.dialogs["?"],
+                *self.game_dialog_variables
+            )
+        else:
+            self.blit_dialog(
+                self.dialogs["send pokemon_1"] +\
+                self.dialogs[self.battle.player_team[self.chosen_pokemon].name] +\
+                self.dialogs["send pokemon_2"],
+                *self.game_dialog_variables
+            )
+
     def animate_spawn(self, player=True, other_apparent=True):
         if player:
             if self.animation_frame < 90:
@@ -175,13 +214,12 @@ class In_battle_display(Game_menues_display):
                 )
                 if other_apparent:
                     self.screen.blit(self.battle.enemy_pokemon.front_image, self.enemy_pokemon_image_coords)
+                self.draw_dialogue_box()
                 self.blit_dialog(
-                    self.dialogs[self.battle.active_pokemon.name] + \
+                        self.dialogs[self.battle.active_pokemon.name] + \
                         self.dialogs["pokemon go"],
-                    self.game_dialog_variables[0],
-                    self.game_dialog_variables[1],
-                    self.game_dialog_variables[2],
-                    "bottomleft")
+                        *self.game_dialog_variables
+                    )
             else:
                 return True
         else:
@@ -195,16 +233,51 @@ class In_battle_display(Game_menues_display):
                 )
                 if other_apparent:
                     self.screen.blit(self.battle.active_pokemon.back_image, self.active_pokemon_image_coords)
+                self.draw_dialogue_box()
                 self.blit_dialog(
-                    self.dialogs["wild appears_1"] + \
+                        self.dialogs["wild appears_1"] + \
                         self.dialogs[self.battle.enemy_pokemon.name] + \
                         self.dialogs["wild appears_2"],
-                    self.game_dialog_variables[0],
-                    self.game_dialog_variables[1],
-                    self.game_dialog_variables[2],
-                    "bottomleft")
+                        *self.game_dialog_variables
+                    )
             else:
                 return True
+    
+    def animate_beat(self, player=True):
+        if self.animation_frame < 45:
+            self.animate_pokemon_beat(player)
+            self.draw_pokemons_infos()
+            self.draw_dialogue_box()
+            self.blit_dialog(
+                (self.dialogs["active beat_1"] +\
+                self.dialogs[self.battle.active_pokemon.name] +\
+                self.dialogs["active beat_2"] if player else\
+                self.dialogs["enemy beat_1"] +\
+                self.dialogs[self.battle.enemy_pokemon.name] +\
+                self.dialogs["enemy beat_2"]),
+                *self.game_dialog_variables
+            )
+
+    def animate_pokemon_beat(self, player=True):
+        if player:
+            self.screen.blit(
+                self.battle.active_pokemon.back_image,
+                (
+                    self.active_pokemon_image_coords[0] + self.width*self.animation_frame/100,
+                    self.active_pokemon_image_coords[1]
+                )
+            )
+            self.screen.blit(self.battle.enemy_pokemon.front_image, self.enemy_pokemon_image_coords)
+        else:
+            self.screen.blit(
+                self.battle.enemy_pokemon.front_image,
+                (
+                    self.enemy_pokemon_image_coords[0],
+                    self.enemy_pokemon_image_coords[1] + self.width*self.animation_frame/100
+                )
+            )
+            self.screen.blit(self.battle.active_pokemon.back_image, self.active_pokemon_image_coords)
+    
 
     def animate_attack(self, player=True):
         if player:
@@ -215,19 +288,15 @@ class In_battle_display(Game_menues_display):
             attacked = self.battle.active_pokemon
         self.animate_pokemon_attack(player)
         if self.animation_frame < 60:
+            self.draw_dialogue_box()
             self.blit_dialog(
-                self.dialogs[attacker.name] + self.dialogs["attacked"],
-                self.game_dialog_variables[0],
-                self.game_dialog_variables[1],
-                self.game_dialog_variables[2],
-                "bottomleft")
+                self.dialogs[attacker.name] + self.dialogs["pokemon attack"],
+                *self.game_dialog_variables)
         elif self.animation_frame < 180:
+            self.draw_dialogue_box()
             self.blit_dialog(
                 self.dialogs["effective " + str(self.efficiency)],
-                self.game_dialog_variables[0],
-                self.game_dialog_variables[1],
-                self.game_dialog_variables[2],
-                "bottomleft")
+                *self.game_dialog_variables)
         elif self.animation_frame > 180:
             return True
 
@@ -286,11 +355,11 @@ class In_battle_display(Game_menues_display):
     def animate_guard(self, player=True):
         if self.animation_frame < 140:
             self.draw_pokemons()
+            self.draw_dialogue_box()
             self.blit_dialog(
-                (self.dialogs[self.battle.active_pokemon.name] if player else self.dialogs[self.battle.enemy_pokemon.name]) + self.dialogs["guarded"],
-                self.game_dialog_variables[0],
-                self.game_dialog_variables[1],
-                self.game_dialog_variables[2],
-                "bottomleft")
+                (self.dialogs[self.battle.active_pokemon.name] if player\
+                else self.dialogs[self.battle.enemy_pokemon.name]) + \
+                self.dialogs["guarded"],
+                *self.game_dialog_variables)
         else:
             return True

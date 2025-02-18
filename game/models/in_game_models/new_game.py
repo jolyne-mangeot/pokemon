@@ -62,7 +62,7 @@ class New_game(Models_controller, Game_menues_controller, New_game_controller, N
         """
             init all display related script
         """
-        self.screen.fill((0,100,0))
+        self.draw_action_background()
         match self.menu_state:
             case "player_input":
                 self.player_input.draw_input()
