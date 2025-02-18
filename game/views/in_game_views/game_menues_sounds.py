@@ -4,6 +4,7 @@ from game.views.sounds import Sounds
 
 class Game_menues_sounds(Sounds):
     def init_in_game_sounds(self):
+        self.init_sounds()
         self.init_pokemons_cry()
         pass
 
@@ -17,7 +18,7 @@ class Game_menues_sounds(Sounds):
         self.init_in_game_sounds()
         self.init_actions_sounds()
     
-    def init_actions_souneds(self):
+    def init_actions_sounds(self):
         self.level_up_sound = pg.mixer.Sound(self.SFX_PATH + "level_up.mp3")
         self.self.level_up2_sound = pg.mixer.Sound(self.SFX_PATH + "RBY_level_up.mp3")
 
@@ -38,6 +39,7 @@ class Game_menues_sounds(Sounds):
        
         self.hit_weak_not_very_effective_sound = pg.mixer.Sound(self.SFX_PATH + "hit_weak_not_very_effective.mp3")
         self.hit_super_effective_sound = pg.mixer.Sound(self.SFX_PATH + "hit_super_effective.mp3 ")
+
 
 
     def play_hit_weak_not_very_effective_sound(self):
