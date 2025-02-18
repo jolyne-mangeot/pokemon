@@ -50,8 +50,10 @@ class In_battle(
         self.forced_switch = False
         self.caught = False
         self.ran_away = False
+        self.ran_away = False
         self.team_full = False
 
+        self.update_options("battle_stage", True)
         self.update_options("battle_stage", True)
 
     def get_event(self, event):
@@ -88,6 +90,7 @@ class In_battle(
                 case "battle_stage":
                     self.get_event_battle_stage(event)
 
+
     def update_battle_status(self):
         pokemon_status = self.battle.check_active_pokemon(self.put_out_pokemons, self.not_put_out_pokemons, self.caught)
         end_of_battle = self.battle.check_victory_defeat(self.caught, self.ran_away)
@@ -107,6 +110,7 @@ class In_battle(
                     self.battle.spawn_pokemon(self.enemy_active_index, False)
         match end_of_battle:
             case "enemy_caught":
+                self.battle.player_pokedex.catch_pokemon(self.battle.enemy_pokemon.entry, self.battle.enemy_pokemon.experience_points)
                 if len(self.battle.player_team) > 6:
                     self.team_full = True
                     self.game_state = "player_turn"

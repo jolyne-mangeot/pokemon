@@ -2,8 +2,9 @@ import random
 import secrets
 
 class Battle:
-    def __init__(self, player_pokedex, enemy_team, types_chart, pokemon_dict, wild):
+    def __init__(self, player_pokedex, enemy_team, types_chart, pokemon_dict, battle_biome, wild):
         self.wild = wild
+        self.battle_biome = battle_biome
         self.player_pokedex = player_pokedex
         self.player_team = player_pokedex.player_team
         self.enemy_team = enemy_team.player_team
@@ -60,6 +61,7 @@ class Battle:
         if all(pokemon.current_health_points <=0 for pokemon in self.player_team):
             self.check_lost_pokemons()
             return "defeat"
+    def check_victory_defeat(self, caught, ran_away):
         if all(pokemon.current_health_points <= 0 for pokemon in self.enemy_team):
             self.check_lost_pokemons()
             return "victory"
@@ -68,6 +70,9 @@ class Battle:
             return "enemy_caught"
         if ran_away:
             self.check_lost_pokemons()
+            return "ran_away"
+            return "caught"
+        if ran_away:
             return "ran_away"
     
     def check_active_pokemon(self, put_out_pokemons, not_put_out_pokemons, caught):

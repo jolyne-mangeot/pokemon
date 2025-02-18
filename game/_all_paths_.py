@@ -1,5 +1,6 @@
 POKEMON_DICT_PATH = "game/models/pokemons/pokemon.json"
 TYPES_CHART_PATH = "game/models/pokemons/types_chart.json"
+BATTLE_BIOMES_PATH = "game/models/pokemons/battle_biomes.json"
 
 GRAPHICS_PATH = "game/assets/graphics/"
 SFX_PATH = "game/assets/sfx/"

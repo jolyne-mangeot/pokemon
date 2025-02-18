@@ -26,9 +26,13 @@ class In_battle_controller:
             pass
         else:
             self.battle.player_guarded = False
+<<<<<<< HEAD
         if not self.ran_away and not self.caught:
             self.game_state = "enemy_turn"
         self.update_battle_status()
+=======
+        self.game_state = "enemy_turn"
+>>>>>>> preprod
     
     def end_enemy_turn(self, action=None):
         if action == "guarded":
@@ -37,13 +41,17 @@ class In_battle_controller:
             self.battle.enemy_guarded = False
         self.update_options("battle_stage", True)
         self.game_state = "player_turn"
+<<<<<<< HEAD
         self.update_battle_status()
+=======
+>>>>>>> preprod
 
     def update_turn(self, game_state):
         self.game_state = game_state
 
         match self.game_state:
             case "player_attack":
+<<<<<<< HEAD
                 self.animation_frame = 0
             case "player_guard":
                 self.battle.guard(True)
@@ -54,6 +62,20 @@ class In_battle_controller:
             case "enemy_guard":
                 self.battle.guard(False)
                 self.animation_frame = 0
+=======
+                self.battle.attack(True)
+                self.end_player_turn()
+            case "player_guard":
+                self.battle.guard(True)
+                self.end_player_turn("guarded")
+
+            case "enemy_attack":
+                self.battle.attack(False)
+                self.end_enemy_turn()
+            case "enemy_guard":
+                self.battle.guard(False)
+                self.end_enemy_turn("guarded")
+>>>>>>> preprod
 
             case "catch_attempt":
                 if self.battle.wild:
@@ -64,14 +86,20 @@ class In_battle_controller:
                             self.battle.enemy_pokemon.entry, 
                             self.battle.enemy_pokemon.experience_points
                         )
+<<<<<<< HEAD
                         self.end_player_turn()
+=======
+>>>>>>> preprod
                     else:
                         self.end_player_turn()
                 
             case "switch_pokemon_confirmed":
                 if self.team_full:
                     self.battle.player_team.pop(self.chosen_pokemon)
+<<<<<<< HEAD
                     self.update_battle_status()
+=======
+>>>>>>> preprod
                 else:
                     self.battle.spawn_pokemon(self.chosen_pokemon, True)
                     self.forced_switch = False
@@ -80,11 +108,19 @@ class In_battle_controller:
             case "run_away_attempt":
                 if self.battle.run_away():
                     self.ran_away = True
+<<<<<<< HEAD
                     self.end_player_turn()
+=======
+>>>>>>> preprod
                 else:
                     self.update_options("battle_stage")
                     self.end_player_turn()
 
+<<<<<<< HEAD
+=======
+        self.update_battle_status()
+
+>>>>>>> preprod
 
     def get_event_battle_stage(self, event):
         if event.type == pg.KEYDOWN:

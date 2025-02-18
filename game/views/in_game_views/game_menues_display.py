@@ -23,10 +23,15 @@ class Game_menues_display(Display):
             mini_image = pg.image.load(self.GRAPHICS_PATH + "pokemon/" + pokemon.entry + "/mini.png")
             pokemon.mini_image = pg.transform.scale(mini_image, self.mini_image_size)
 
-    def init_render_option_team(self, team, forced_switch=False, team_full=False):
+    def init_render_option_team(self, team, forced_switch=False, team_full=False, menu="in_battle"):
         options = []
         for pokemon in team:
             options.append(self.dialogs[pokemon.name])
+            level_display = self.dialogs["lvl"] + str(int(pokemon.level))
+            while len(options[-1]) + len(level_display) < 25:
+                options[-1] += " "
+            options[-1] += level_display
+
         while len(options) < 6:
             options.append("")
         if not forced_switch and not team_full:
