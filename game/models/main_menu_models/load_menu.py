@@ -47,7 +47,8 @@ class Load_menu(Models_controller, Main_menues_controller, Main_menues_display):
             if pg.key.name(event.key) in self.return_keys and not self.quit\
                 or pg.key.name(event.key) in self.confirm_keys and\
                     self.load_menu.selected_index == len(self.load_menu.next_list) - 1:
-                self.select_option(self.load_menu)
+                self.next = "title_menu"
+                self.done = True
 
             elif pg.key.name(event.key) in self.confirm_keys:
                 if self.load_menu.next_list[self.load_menu.selected_index] == "new_game":

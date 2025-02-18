@@ -23,6 +23,10 @@ class In_battle_display(Game_menues_display):
         self.display_team_variables : tuple = (
             self.width*0.2, self.height*0.78, 38
         )
+        self.game_dialog_variables : tuple =(
+            self.width*0.022,
+            self.width*0.07, self.height*0.7
+        )
         self.enemy_pokemon_image_size : tuple = (self.width*0.2, self.width*0.2)
 
         self.active_pokemon_image_coords : tuple = (self.width*0, self.height*0.74 - self.active_pokemon_image_size[0])
@@ -143,4 +147,150 @@ class In_battle_display(Game_menues_display):
         pg.draw.rect(self.screen, (0,255,0), player_pokemon_current_hp_rect)
         pg.draw.rect(self.screen, (0,255,0), enemy_pokemon_current_hp_rect)
         
-        
+    def draw_options_menu(self):
+        match self.options_states:
+            case "battle_stage":
+                self.battle_stage_menu.draw_vertical_options()
+            case "run_away":
+                self.battle_stage_menu.draw_vertical_options()
+                self.confirm_action_menu.draw_vertical_options()
+            case "display_items":
+                self.battle_stage_menu.draw_vertical_options()
+                self.display_items_menu.draw_chart_options()
+            case "display_team":
+                self.battle_stage_menu.draw_vertical_options()
+                self.display_team_menu.draw_chart_options()
+            case "select_pokemon_confirm":
+                self.confirm_action_menu.draw_vertical_options()
+    
+    def animate_spawn(self, player=True, other_apparent=True):
+        if player:
+            if self.animation_frame < 90:
+                self.screen.blit(
+                    self.battle.active_pokemon.back_image,
+                    (
+                        self.active_pokemon_image_coords[0] - self.width*0.6 + self.width*self.animation_frame/150,
+                        self.active_pokemon_image_coords[1]
+                    )
+                )
+                if other_apparent:
+                    self.screen.blit(self.battle.enemy_pokemon.front_image, self.enemy_pokemon_image_coords)
+                self.blit_dialog(
+                    self.dialogs[self.battle.active_pokemon.name] + \
+                        self.dialogs["pokemon go"],
+                    self.game_dialog_variables[0],
+                    self.game_dialog_variables[1],
+                    self.game_dialog_variables[2],
+                    "bottomleft")
+            else:
+                return True
+        else:
+            if self.animation_frame < 120:
+                self.screen.blit(
+                    self.battle.enemy_pokemon.front_image,
+                    (
+                        self.enemy_pokemon_image_coords[0] + self.width*1.2 - self.width*self.animation_frame/100,
+                        self.enemy_pokemon_image_coords[1]
+                    )
+                )
+                if other_apparent:
+                    self.screen.blit(self.battle.active_pokemon.back_image, self.active_pokemon_image_coords)
+                self.blit_dialog(
+                    self.dialogs["wild appears_1"] + \
+                        self.dialogs[self.battle.enemy_pokemon.name] + \
+                        self.dialogs["wild appears_2"],
+                    self.game_dialog_variables[0],
+                    self.game_dialog_variables[1],
+                    self.game_dialog_variables[2],
+                    "bottomleft")
+            else:
+                return True
+
+    def animate_attack(self, player=True):
+        if player:
+            attacker = self.battle.active_pokemon
+            attacked = self.battle.enemy_pokemon
+        else:
+            attacker = self.battle.enemy_pokemon
+            attacked = self.battle.active_pokemon
+        self.animate_pokemon_attack(player)
+        if self.animation_frame < 60:
+            self.blit_dialog(
+                self.dialogs[attacker.name] + self.dialogs["attacked"],
+                self.game_dialog_variables[0],
+                self.game_dialog_variables[1],
+                self.game_dialog_variables[2],
+                "bottomleft")
+        elif self.animation_frame < 180:
+            self.blit_dialog(
+                self.dialogs["effective " + str(self.efficiency)],
+                self.game_dialog_variables[0],
+                self.game_dialog_variables[1],
+                self.game_dialog_variables[2],
+                "bottomleft")
+        elif self.animation_frame > 180:
+            return True
+
+    #self.screen.blit(self.battle.active_pokemon.back_image, self.active_pokemon_image_coords)
+    #self.screen.blit(self.battle.enemy_pokemon.front_image, self.enemy_pokemon_image_coords)
+    def animate_pokemon_attack(self, player):
+        if player:
+            if self.animation_frame < 45:
+                self.screen.blit(
+                    self.battle.active_pokemon.back_image,
+                    (
+                        self.active_pokemon_image_coords[0],
+                        self.active_pokemon_image_coords[1] + (-abs(self.animation_frame) if self.animation_frame < 30 else (self.animation_frame-30)/5)
+                    )
+                )
+                self.screen.blit(self.battle.enemy_pokemon.front_image, self.enemy_pokemon_image_coords)
+                self.draw_pokemons_infos()
+            elif self.animation_frame < 180:
+                self.screen.blit(self.battle.active_pokemon.back_image, self.active_pokemon_image_coords)
+                if self.animation_frame not in (60,61,62,63,64,65,80,81,82,83,84,85):
+                    self.screen.blit(
+                        self.battle.enemy_pokemon.front_image,
+                        (
+                            self.enemy_pokemon_image_coords[0],
+                            self.enemy_pokemon_image_coords[1]
+                        )
+                    )
+                self.draw_pokemons_infos()
+            else:
+                self.draw_pokemons()
+        else:
+            if self.animation_frame < 45:
+                self.screen.blit(
+                    self.battle.enemy_pokemon.front_image,
+                    (
+                        self.enemy_pokemon_image_coords[0],
+                        self.enemy_pokemon_image_coords[1] + (-abs(self.animation_frame) if self.animation_frame < 30 else (self.animation_frame-30)/5)
+                    )
+                )
+                self.screen.blit(self.battle.active_pokemon.back_image, self.active_pokemon_image_coords)
+                self.draw_pokemons_infos()
+            elif self.animation_frame < 180:
+                self.screen.blit(self.battle.enemy_pokemon.front_image, self.enemy_pokemon_image_coords)
+                if self.animation_frame not in (60,61,62,63,64,80,81,82,83,84):
+                    self.screen.blit(
+                        self.battle.active_pokemon.back_image,
+                        (
+                            self.active_pokemon_image_coords[0],
+                            self.active_pokemon_image_coords[1]
+                        )
+                    )
+                self.draw_pokemons_infos()
+            else:
+                self.draw_pokemons()
+
+    def animate_guard(self, player=True):
+        if self.animation_frame < 140:
+            self.draw_pokemons()
+            self.blit_dialog(
+                (self.dialogs[self.battle.active_pokemon.name] if player else self.dialogs[self.battle.enemy_pokemon.name]) + self.dialogs["guarded"],
+                self.game_dialog_variables[0],
+                self.game_dialog_variables[1],
+                self.game_dialog_variables[2],
+                "bottomleft")
+        else:
+            return True

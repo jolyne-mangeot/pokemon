@@ -10,6 +10,7 @@ class Pokedex:
         self.__dict__.update(**player_data)
         self.init_player_team()
         self.get_average_level()
+        self.save = False
 
     def init_pokedex_data():
         with open(POKEMON_DICT_PATH, "r") as file:

@@ -96,20 +96,21 @@ class Option_menu_model(Display):
 
     def draw_chart_options(self):
         for index, option in enumerate(self.rendered["deselected"]):
-            if index%2 == 0:
+            if index == len(self.rendered["deselected"]) - 1 and\
+                    len(self.rendered["deselected"]) % 2 != 0:
+                option[1].center = (
+                    self.from_left*1.75,
+                    self.from_top + self.spacer*index*0.56
+                )
+            elif index%2 == 0:
                 option[1].center = (
                     self.from_left,
-                    self.from_top + self.spacer*index/2
-                )
-            elif index == 6:
-                option[1].center = (
-                    self.from_left + (self.from_left*1.25),
-                    self.from_top + self.spacer*index/2
+                    self.from_top + self.spacer*index*0.5
                 )
             else:
                 option[1].center = (
-                    self.from_left + (self.from_left*1.5),
-                    self.from_top + self.spacer*(index-1)/2
+                    self.from_left*2.5,
+                    self.from_top + self.spacer*(index-1)*0.5
                 )
             if index == self.selected_index:
                 selected_render = self.rendered["selected"][index]

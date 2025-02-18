@@ -22,12 +22,27 @@
     "save" : "Save",
 
     "save menu" : "Save menu",
+    "lost save" : "You lost all your pokemons !",
+    "delete save tip" : "press D, E and L to erase save file",
 
     "attack" : "Attack",
     "guard" : "Guard",
     "team" : "Team",
     "items" : "Items",
     "run away" : "run away",
+
+    "wild appears_1" : "A wild ",
+    "wild appears_2" : " appears !",
+    "pokemon go" : ", go !",
+    "attacked" : " attacked !",
+    "effective 0" : "The attack does no damage.",
+    "effective 0.25" : "The attack is non-effective...",
+    "effective 0.5" : "It isn't very effective..",
+    "effective 1" : "It's not especially effective.",
+    "effective 1.0" : "It's not especially effective.",
+    "effective 2" : "It's effective !",
+    "effective 4" : "It's super effective !",
+    "guarded" : " guarded ! Its defense goes up.",
 
     "wild" : "Wild ",
     "lvl" : "Lv",
