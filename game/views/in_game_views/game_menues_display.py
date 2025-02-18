@@ -32,15 +32,7 @@ class Game_menues_display(Display):
         if not forced_switch and not team_full:
             options.append(self.dialogs['back'])
         return options
-
-    def draw_precombat_field(self):
-        pg.transform.scale(self.field,(self.screen_width, self.screen_height))
-        self.screen.blit(self.field,(0,0))
-        
-    def draw_combat_screen(self):
-        self.combat_field=pg.transform.scale(self.combat_field,(self.screen_width, self.screen_height))
-        self.screen.blit(self.combat_field,(0,0))
-
+    
     def load_graphics_combat(self):
         self.combat_field=pg.image.load(self.GRAPHICS_PATH+"/media/"+"battlefield combat.png")
         self.combat_field=pg.transform.scale(self.combat_field,(self.screen_width, self.screen_height))
@@ -52,17 +44,34 @@ class Game_menues_display(Display):
         self.pkmn_frame_img=pg.image.load(self.GRAPHICS_PATH+"/media/"+"pkmn frame.png")
         self.pkmn_frame_img=pg.transform.scale(self.pkmn_frame_img, (self.screen_width,self.screen_height))
 
-        self.team_select_img=pg.image.load(self.GRAPHICS_PATH+"/media/"+"pkmn frame.png")
-        self.team_select_img=pg.transform.scale(self.team_select_img, (self.screen_width,self.screen_height))
+
+        self.action_bg_img=pg.image.load(self.GRAPHICS_PATH+"/media/"+"pkmn choice bg.png")
+        self.action_bg_img=pg.transform.scale(self.action_bg_img,(self.screen_width,self.screen_height))
+    
+
+        #########↑load, system,etc.#######↓draw##
+
+    def draw_precombat_field(self):
+        pg.transform.scale(self.field,(self.screen_width, self.screen_height))
+        self.screen.blit(self.field,(0,0))
+        
+    def draw_combat_screen(self):
+        self.combat_field=pg.transform.scale(self.combat_field,(self.screen_width, self.screen_height))
+        self.screen.blit(self.combat_field,(0,0))
+
     
     def draw_launch_menu(self):
         self.launch_menu_img=pg.transform.scale(self.launch_menu_img, (self.screen_width,self.screen_height))
         self.screen.blit(self.launch_menu_img,(0,0))
     
-    def draw_pkmn_frame(self):
-        self.pkmn_frame_img=pg.transform.scale(self.pkmn_frame_img, (self.screen_width,self.screen_height))
-        self.screen.blit(self.pkmn_frame_img,(0,0))
+    def draw_pkmn_frame(self,x:int, y:int):
+        self.pkmn_frame_img=pg.transform.scale(self.pkmn_frame_img, (self.width*0.2, self.width*0.2))
+        self.screen.blit(self.pkmn_frame_img,(x,y))
     
     def draw_team_select_img(self):
         self.team_select_img=pg.transform.scale(self.team_select_img, (self.screen_width,self.screen_height))
         self.screen.blit(self.team_select_img,(0,0))
+        
+    def draw_action_background(self):
+        self.action_bg_img=pg.transform.scale(self.action_bg_img,(self.screen_width,self.screen_height))
+        self.screen.blit(self.action_bg_img,(0,0))
