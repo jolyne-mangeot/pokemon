@@ -9,6 +9,8 @@ class Battle:
         self.enemy_team = enemy_team.player_team
         self.type_chart = types_chart
         self.pokemon_dict = pokemon_dict
+        self.player_guarded = False
+        self.enemy_guarded = False
     
     def spawn_pokemon(self, index, player=True):
         if player:
@@ -16,7 +18,7 @@ class Battle:
         else:
             self.enemy_pokemon = self.enemy_team[index]
 
-    def attack(self, player=True, guarded=False):
+    def attack(self, player=True):
         if player:
             attacker = self.active_pokemon
             attacked = self.enemy_pokemon
@@ -27,14 +29,19 @@ class Battle:
         for type in attacked.type:
             type_multiplicator *= self.type_chart[attacker.type[0]][type]
         damage = ((attacker.level*128/5+2) * attacker.attack\
-                  /(attacked.defense if guarded == False else attacked.defense*1.5))/50+2 * type_multiplicator
+                  /(attacked.defense if (self.enemy_guarded if player else self.player_guarded) == False else attacked.defense*2))/50+2 * type_multiplicator
         attacked.current_health_points -= int(damage)
-        # print(type_multiplicator)
-        # print(damage)
+        if attacked.current_health_points < 0:
+            attacked.current_health_points = 0
+        self.player_guarded = False
+        self.enemy_guarded = False
         return type_multiplicator
 
-    def guard(self):
-        pass
+    def guard(self, player=True):
+        if player:
+            self.player_guarded = True
+        else:
+            self.enemy_guarded = True
 
     def heal(self):
         pass
@@ -48,7 +55,7 @@ class Battle:
         else:
             return False
 
-    def check_victory_defeat(self, caught):
+    def check_victory_defeat(self, caught, ran_away):
         if all(pokemon.current_health_points <= 0 for pokemon in self.enemy_team):
             self.check_lost_pokemons()
             return "victory"
@@ -58,15 +65,9 @@ class Battle:
             return "defeat"
         if caught:
             self.check_lost_pokemons()
-            return "victory"
-        # for pokemon in self.enemy_team:
-        #     if pokemon.current_health_points <= 0:
-        #         self.check_lost_pokemons()
-        #         return "victory"
-        # for pokemon in self.player_team:
-        #     if pokemon.current_health_points <=0:
-        #         self.check_lost_pokemons()
-        #         return "defeat"
+            return "caught"
+        if ran_away:
+            return "ran_away"
     
     def check_active_pokemon(self, put_out_pokemons, not_put_out_pokemons, caught):
         if self.active_pokemon.current_health_points <= 0:

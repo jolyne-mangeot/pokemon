@@ -20,8 +20,7 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
         """
             cleans up all menu related data
         """
-        self.picked_index = None
-        self.rendered_picked = {}
+        pass
 
     def startup(self):
         """
@@ -29,8 +28,9 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
         """
         self.init_config()
         self.init_launch_menu_display()
-        self.menu_state = "main_launch_menu"
+        self.check_game_status()
         self.update_options()
+        self.pressed_keys = None
     
     def launch_battle(self):
         # if self.player_pokedex.encounters['done'] % 5 == 0:
@@ -60,6 +60,8 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
             self.quit = True
 
         match self.menu_state:
+            case "lost_game":
+                self.get_event_lost_game(event)
             case "launch_battle_confirm":
                 if self.get_event_launch_battle_confirm(event):
                     self.next = "in_battle"
@@ -79,13 +81,14 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
             case "delete_save":
                 if self.get_event_delete_save(event):
                     self.reset_player_data(Models_controller.player_pokedex.save)
-            case "main_launch_menu" | _:
+            case "main_launch_menu":
                 self.get_event_main_launch_menu(event)
     
     def update(self):
         """
             trigger all changes such as changing selected option
         """
+        self.pressed_keys = pg.key.get_pressed()
         self.update_menu()
         self.draw()
     
@@ -93,9 +96,10 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
         """
             init all display related script
         """
-        #self.screen.fill((0,100,0))
         self.draw_launch_menu()
         match self.menu_state:
+            case "lost_game":
+                self.draw_launch_menu_lost_game()
             case "main_launch_menu":
                 self.main_launch_menu.draw_vertical_options()
             case "save":

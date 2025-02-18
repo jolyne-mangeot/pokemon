@@ -16,16 +16,30 @@ class Launch_menu_controller:
                 self.confirm_action_menu.selected_index = 0
             case "main_launch_menu" | _:
                 self.main_launch_menu.selected_index = 0
+    
+    def check_game_status(self):
+        if len(self.player_pokedex.player_team) == 0:
+            self.menu_state = "lost_game"
+        else:
+            self.menu_state = "main_launch_menu"
+            
+    def get_event_lost_game(self, event):
+        if self.pressed_keys[pg.key.key_code(self.delete_save_keys[0])] \
+            and self.pressed_keys[pg.key.key_code(self.delete_save_keys[1])] \
+                and self.pressed_keys[pg.key.key_code(self.delete_save_keys[2])]:
+            self.menu_state = "delete_save"
+        elif event.type == pg.KEYDOWN:
+            if pg.key.name(event.key) in self.return_keys and not self.quit:
+                self.menu_state = "quit"
 
     def get_event_main_launch_menu(self, event):
-        if event.type == pg.KEYDOWN:
-            pressed_keys = pg.key.get_pressed()
-            if pressed_keys[pg.key.key_code(self.delete_save_keys[0])] \
-                and pressed_keys[pg.key.key_code(self.delete_save_keys[1])] \
-                    and pressed_keys[pg.key.key_code(self.delete_save_keys[2])]:
-                self.menu_state = "delete_save"
-                self.update_options()
-            elif pg.key.name(event.key) in self.return_keys and not self.quit:
+        if self.pressed_keys[pg.key.key_code(self.delete_save_keys[0])] \
+            and self.pressed_keys[pg.key.key_code(self.delete_save_keys[1])] \
+                and self.pressed_keys[pg.key.key_code(self.delete_save_keys[2])]:
+            self.menu_state = "delete_save"
+            self.update_options()
+        elif event.type == pg.KEYDOWN:
+            if pg.key.name(event.key) in self.return_keys and not self.quit:
                 self.menu_state = "quit"
                 self.update_options()
             elif pg.key.name(event.key) in self.confirm_keys:
@@ -77,7 +91,7 @@ class Launch_menu_controller:
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit\
                 or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
-                self.menu_state = "main_launch_menu"
+                self.check_game_status()
                 self.update_options()
                 return None
             if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
@@ -96,12 +110,12 @@ class Launch_menu_controller:
             if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
                 return True
         self.confirm_action_menu.get_event_vertical(event)
-        
+
     def get_event_quit(self, event):
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit or\
                 pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
-                self.menu_state = "main_launch_menu"
+                self.check_game_status()
                 self.update_options()
             elif pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
                 self.next = "title_menu"

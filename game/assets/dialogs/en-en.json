@@ -22,6 +22,8 @@
     "save" : "Save",
 
     "save menu" : "Save menu",
+    "lost save" : "You lost all your pokemons !",
+    "delete save tip" : "press D, E and L to erase save file",
 
     "attack" : "Attack",
     "guard" : "Guard",
