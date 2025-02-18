@@ -1,7 +1,7 @@
 import json
 
 from game.models.pokemons.pokemons import Pokemon
-from game._all_paths_ import POKEMON_DICT_PATH, TYPES_CHART_PATH
+from game._all_paths_ import POKEMON_DICT_PATH, TYPES_CHART_PATH, BATTLE_BIOMES_PATH
 
 class Pokedex:
     pokemon_dict = {}
@@ -17,6 +17,8 @@ class Pokedex:
             Pokemon.pokemon_dict = Pokedex.pokemon_dict
         with open(TYPES_CHART_PATH, "r") as file:
             Pokedex.types_chart = json.load(file)
+        with open(BATTLE_BIOMES_PATH,"r") as file:
+            Pokedex.battle_biomes = json.load(file)
     
     def compress_data(self, chosen_save : str) -> dict:
         player_data : dict = {

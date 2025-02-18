@@ -2,8 +2,9 @@ import random
 import secrets
 
 class Battle:
-    def __init__(self, player_pokedex, enemy_team, types_chart, pokemon_dict, wild):
+    def __init__(self, player_pokedex, enemy_team, types_chart, pokemon_dict, battle_biome, wild):
         self.wild = wild
+        self.battle_biome = battle_biome
         self.player_pokedex = player_pokedex
         self.player_team = player_pokedex.player_team
         self.enemy_team = enemy_team.player_team
