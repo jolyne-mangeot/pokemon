@@ -38,6 +38,7 @@ class In_battle(Models_controller, Game_menues_controller, In_battle_controller,
         self.enemy_active_index = 0
         self.battle.spawn_pokemon(self.enemy_active_index, False)
         self.battle.spawn_pokemon(0, True)
+        self.load_graphics_combat()
 
         self.game_state = "player_turn"
 
@@ -112,8 +113,10 @@ class In_battle(Models_controller, Game_menues_controller, In_battle_controller,
         self.draw()
     
     def draw(self):
-        self.screen.fill((0,0,255))
+        self.draw_action_background()
         self.draw_pokemons()
+        
+        self.draw_dialogue_box()
         match self.options_states:
             case "battle_stage":
                 self.battle_stage_menu.draw_vertical_options()

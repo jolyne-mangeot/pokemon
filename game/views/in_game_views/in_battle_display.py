@@ -10,6 +10,8 @@ class In_battle_display(Game_menues_display):
         self.init_root_variables_in_battle()
         self.init_menues_objects()
         self.enemy_pokemon_load()
+        self.load_pkmn_info_box()
+
 
     def init_root_variables_in_battle(self):
         self.init_root_variables_in_game()
@@ -92,6 +94,8 @@ class In_battle_display(Game_menues_display):
         self.draw_pokemons_infos()
 
     def draw_pokemons_infos(self):
+        self.draw_pkmn_info_box_enemy()
+        self.draw_pkmn_info_box_player()
         self.draw_pokemons_names()
         self.draw_pokemons_levels()
         self.draw_pokemons_health_points()
