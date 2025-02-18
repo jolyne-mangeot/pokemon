@@ -13,15 +13,15 @@
         },
         "pokemon_2": {
             "entry": "0001",
-            "experience_points": 165.0
+            "experience_points": 165000.0
         },
         "pokemon_3": {
             "entry": "0027",
-            "experience_points": 127.0
+            "experience_points": 127000.0
         },
         "pokemon_4": {
             "entry": "0027",
-            "experience_points": 154
+            "experience_points": 154000
         }
     }
 }

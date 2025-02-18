@@ -33,8 +33,10 @@ class In_battle(
             "player_guard": self.pokemon_guard_scene,
             "enemy_attack": self.pokemon_attack_scene,
             "enemy_guard": self.pokemon_guard_scene,
+            "switch_pokemon_confirmed" : self.pokemon_switch_scene,
             "active_beat": self.pokemon_beat_scene,
-            "enemy_beat": self.pokemon_beat_scene
+            "enemy_beat": self.pokemon_beat_scene,
+            "catch_attempt": self.catch_attempt_scene,
         }
 
     def cleanup(self):
@@ -42,6 +44,7 @@ class In_battle(
         cleans up all menu related data
         """
         self.battle.player_pokedex.encounters["done"] +=1
+        self.battle.heal_all()
     
     def leave_battle(self):
         self.next = "launch_menu"
@@ -64,6 +67,7 @@ class In_battle(
         self.enemy_spawn_animation_done = False
         self.player_spawn_animation_done = False
         self.beat_animation_done = False
+        self.remove_animation_done = False
         self.load_graphics_combat()
 
         self.game_state = "start"
@@ -87,25 +91,23 @@ class In_battle(
         else:
             pass
 
-
     def update_battle_status(self):
         pokemon_status = self.battle.check_active_pokemon(self.put_out_pokemons, self.not_put_out_pokemons, self.caught)
         end_of_battle = self.battle.check_victory_defeat(self.caught, self.ran_away)
         match pokemon_status:
             case "active_beat":
                 if not self.beat_animation_done:
-                    self.animation_frame = 0
-                    self.game_state = "active_beat"
+                    self.update_turn("active_beat")
                 elif end_of_battle == "defeat":
                     self.leave_battle()
                 else:
                     self.forced_switch = True
+                    self.game_state = "player_turn"
                     self.update_options("display_team")
                     self.beat_animation_done = False
             case "enemy_beat":
                 if not self.beat_animation_done:
-                    self.animation_frame = 0
-                    self.game_state = "enemy_beat"
+                    self.update_turn("enemy_beat")
                 elif end_of_battle == "victory":
                     self.battle.check_evolutions()
                     self.leave_battle()
@@ -117,7 +119,7 @@ class In_battle(
             case "enemy_caught":
                 if len(self.battle.player_team) > 6:
                     self.team_full = True
-                    self.game_state = "player_turn"
+                    self.update_turn("player_turn")
                     self.update_options("display_team")
                 else:
                     self.leave_battle()
@@ -135,6 +137,12 @@ class In_battle(
         try:
             self.game_state_dict[self.game_state](self.game_state)
         except KeyError:
-            self.draw_pokemons()
+            if self.forced_switch:
+                self.draw_enemy_pokemon()
+                self.draw_player_pokemon_ground()
+                self.draw_pokemons_infos()
+            else:
+                self.draw_pokemons()
+                self.draw_pokemons_infos()
             self.draw_dialogue_box()
             self.draw_options_menu()

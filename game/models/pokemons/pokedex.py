@@ -53,6 +53,12 @@ class Pokedex:
     def catch_pokemon(self, entry, experience_points=0):
         caught_pokemon = self.add_pokemon(entry, experience_points)
         self.player_team.append(caught_pokemon)
+    
+    def check_evolutions(self):
+        for pokemon in self.player_team:
+            if pokemon.level >= pokemon.evolution_level:
+                pokemon.evolve()
+                self.check_evolutions()
 
     def add_pokemon(self, entry, experience_points=0):
         pokemon = Pokemon(Pokedex.pokemon_dict[entry], experience_points)

@@ -19,6 +19,10 @@ class Battle:
             self.active_pokemon = self.player_team[index]
         else:
             self.enemy_pokemon = self.enemy_team[index]
+    
+    def heal_all(self):
+        for pokemon in self.player_team:
+            pokemon.current_health_points = pokemon.health_points
 
     def attack(self, player=True):
         if player:
@@ -51,7 +55,6 @@ class Battle:
     def catch_attempt(self):
         odds = (((3*self.enemy_pokemon.health_points) - (2*self.enemy_pokemon.current_health_points)) * \
                 3*self.enemy_pokemon.catch_rate) / (3*self.enemy_pokemon.health_points)
-        print(odds)
         if secrets.randbelow(255) < odds:
             return True
         else:
@@ -110,7 +113,6 @@ class Battle:
     def run_away(self):
         self.run_away_attempts +=1
         run_odds = ((((self.active_pokemon.level*128)/self.enemy_pokemon.level)) / 256) * (100 + 10*self.run_away_attempts)
-        print(run_odds)
         if random.randint(0, 100) < run_odds:
             return True
         else:

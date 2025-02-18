@@ -17,9 +17,9 @@ class In_battle_controller:
                 )
             case "select_pokemon_confirm":
                 self.chosen_pokemon = self.display_team_menu.selected_index
-                self.confirm_action_menu.selected_index = 0
+                self.confirm_action_menu.selected_index = 1
             case "run_away":
-                self.confirm_action_menu.selected_index = 0
+                self.confirm_action_menu.selected_index = 1
     
     def end_player_turn(self, action=None):
         if action == "guarded":
@@ -41,41 +41,26 @@ class In_battle_controller:
 
     def update_turn(self, game_state):
         self.game_state = game_state
+        self.animation_frame = 0
 
         match self.game_state:
             case "player_attack":
                 self.animation_frame = 0
             case "player_guard":
-                self.battle.guard(True)
+                
                 self.animation_frame = 0
 
             case "enemy_attack":
                 self.animation_frame = 0
             case "enemy_guard":
-                self.battle.guard(False)
+                
                 self.animation_frame = 0
 
             case "catch_attempt":
-                if self.battle.wild:
-                    self.caught = self.battle.catch_attempt()
-                    self.update_options("battle_stage")
-                    if self.caught:
-                        self.battle.player_pokedex.catch_pokemon(
-                            self.battle.enemy_pokemon.entry, 
-                            self.battle.enemy_pokemon.experience_points
-                        )
-                        self.update_battle_status()
-                    else:
-                        self.end_player_turn()
+                pass
                 
             case "switch_pokemon_confirmed":
-                if self.team_full:
-                    self.battle.player_team.pop(self.chosen_pokemon)
-                    self.update_battle_status()
-                else:
-                    self.battle.spawn_pokemon(self.chosen_pokemon, True)
-                    self.forced_switch = False
-                    self.end_player_turn()
+                pass
 
             case "run_away_attempt":
                 if self.battle.run_away():
@@ -118,24 +103,71 @@ class In_battle_controller:
                     self.efficiency = self.battle.attack(False)
     
     def pokemon_guard_scene(self, guarding="player_guard"):
-        if self.animate_guard(True):
-            self.end_player_turn("guarded")
+        if guarding == "player_guard":
+            self.battle.guard(True)
+            if self.animate_guard(True):
+                self.end_player_turn("guarded")
+            else:
+                self.animation_frame += 1
         else:
-            self.animation_frame += 1
-        if self.animate_guard(False):
-            self.end_enemy_turn("guarded")
+            self.battle.guard(False)
+            if self.animate_guard(False):
+                self.end_enemy_turn("guarded")
+            else:
+                self.animation_frame += 1
+    
+    def pokemon_switch_scene(self, none=None):
+        if self.team_full:
+            self.battle.player_team.pop(self.chosen_pokemon)
+            self.update_battle_status()
         else:
-            self.animation_frame += 1
+            if not self.remove_animation_done:
+                if self.forced_switch or self.animate_remove():
+                    self.battle.spawn_pokemon(self.chosen_pokemon, True)
+                    self.remove_animation_done = True
+                    self.animation_frame = 0
+                else:
+                    self.animation_frame +=1
+            elif self.animate_spawn(True, True, True):
+                if self.forced_switch:
+                    self.update_options("battle_stage")
+                    self.game_state = "player_turn"
+                else:
+                    self.end_player_turn()
+                self.forced_switch = False
+                self.remove_animation_done = False
+            else:
+                self.animation_frame +=1
     
     def pokemon_beat_scene(self, beat="active_beat"):
-        if self.animate_beat(True):
-            self.beat_animation_done = True
-            self.update_battle_status()
+        if beat == "active_beat":
+            if self.animate_beat(True):
+                self.beat_animation_done = True
+                self.update_battle_status()
+            else:
+                self.animation_frame +=1
         else:
-            self.animation_frame +=1
-        if self.animate_beat(False):
-            self.beat_animation_done = True
-            self.update_battle_status()
+            if self.animate_beat(False):
+                self.beat_animation_done = True
+                self.update_battle_status()
+            else:
+                self.animation_frame +=1
+    
+    def catch_attempt_scene(self, none=None):
+        if self.animation_frame == 150 and self.battle.wild:
+            self.caught = self.battle.catch_attempt()
+        if self.animate_catch_attempt():
+            if not self.battle.wild:
+                self.game_state = "player_turn"
+            else:
+                if self.caught:
+                    self.battle.player_pokedex.catch_pokemon(
+                        self.battle.enemy_pokemon.entry, 
+                        self.battle.enemy_pokemon.experience_points
+                    )
+                    self.update_battle_status()
+                else:
+                    self.end_player_turn()
         else:
             self.animation_frame +=1
 

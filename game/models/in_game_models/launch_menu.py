@@ -41,7 +41,7 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
                         (self.player_pokedex.average_level*1.1) ** 3)
         wild = True
         battle_biome = self.player_pokedex.battle_biomes[random.choice(list(self.player_pokedex.battle_biomes.keys()))]
-        enemy_entry = random.choice(battle_biome)
+        enemy_entry = random.choice(battle_biome["pokemons"])
         encounter = {
             "active_team": {
                 "pokemon_1": {
@@ -51,6 +51,7 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
             }
         }
         enemy_team = Pokedex(encounter)
+        enemy_team.check_evolutions()
         Models_controller.new_battle = Battle(self.player_pokedex, enemy_team, Pokedex.types_chart, Pokedex.pokemon_dict, battle_biome, wild)
 
     def get_event(self, event):
