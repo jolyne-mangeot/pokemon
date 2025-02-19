@@ -18,9 +18,9 @@
     "no" : "NON",
     "launch" : "COMMENCER LE COMBAT",
     "manage team" : "GERER L'EQUIPE",
-    "manage met pokemons" : "GERER LES RENCONTRES",
+    "pokedex" : "CONSULTER LE POKEDEX",
+    "focused pokemon": "Pokemon suivi : ",
     "save" : "SAUVEGARDER",
-
     "save menu" : "MENU DE SAUVEGARDE",
 
     "attack" : "ATTAQUE",
