@@ -4,6 +4,10 @@ from game.control.control import Control
 from game._all_paths_ import MUSIC_PATH, SFX_PATH, GRAPHICS_PATH
 
 class Sounds(Control):
+    """
+        The Sounds class inherits from Control and is responsible for managing sound effects and music.
+        It initializes paths to the sound assets and provides methods to load and manage sounds.
+    """
     def __init__(self):
         self.init_config()
         self.MUSIC_PATH = MUSIC_PATH

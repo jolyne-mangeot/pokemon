@@ -9,18 +9,17 @@ from game._all_paths_ import LANGUAGES_DICT, SCREEN_RESOLUTION_DICT
 class Preferences_menu(
     Models_controller, Main_menues_controller, 
     Main_menues_display):
-    
+    """
+        A class representing the preferences menu, allowing the user to adjust various settings
+        such as volume, language, and screen resolution.
+    """
     def __init__(self):
-        """
-            states all navigation paths and options to create buttons for,
-            as well as their placement on the screen
-        """
         Models_controller.__init__(self)
         Main_menues_controller.__init__(self)
 
     def startup(self):
         """
-            initiates all menu related data
+            Initializes all menu-related data, loads settings, and prepares the menu display.
         """
         self.init_config()
         self.init_main_menu_display()
@@ -35,8 +34,7 @@ class Preferences_menu(
 
     def get_event(self, event):
         """
-            get all events and checks for custom conditions for the active
-            menu only
+           Handles user inputs and responds to key events for menu navigation and settings adjustments
         """
         if event.type == pg.QUIT:
             self.quit = True
@@ -62,6 +60,9 @@ class Preferences_menu(
         self.preferences_menu.get_event_vertical(event)
     
     def change_settings(self, operant):
+        """
+        Modifies the selected setting value based on user input.
+        """
         OPTIONS = (("", self.settings_in_preferences['sfx_volume'], 'sfx_volume'),
                 ("", self.settings_in_preferences['music_volume'], 'music_volume'),
                 (LANGUAGES_DICT, self.settings_in_preferences['language'], 'language'),

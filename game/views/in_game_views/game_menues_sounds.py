@@ -3,12 +3,18 @@ import pygame as pg
 from game.views.sounds import Sounds
 
 class Game_menues_sounds(Sounds):
+    """
+    This class handles the initialization of various sounds in the game, including Pokémon cries and in-game sounds
+    """
     def init_in_game_sounds(self):
         Sounds.__init__(self)
         self.init_sounds()
         self.init_pokemons_cry()
 
     def init_pokemons_cry(self):
+        """
+        Initialize Pokémon cry sounds based on the player's team
+        """
         for pokemon in self.player_pokedex.player_team:
             cry_path : str = self.GRAPHICS_PATH + "pokemon/" + pokemon.entry + "/cry.ogg"
             pokemon.sound = pg.mixer.Sound(cry_path)
@@ -27,6 +33,9 @@ class Game_menues_sounds(Sounds):
         self.battle.active_pokemon.sound.play()
 
     def init_in_battle_sounds(self):
+        """
+        Initialize sound effects for in-game actions, such as leveling up
+        """
         self.init_in_game_sounds()
         self.init_enemy_pokemons_cry()
         self.init_battle_actions_sounds()

@@ -4,7 +4,13 @@ from game.views.in_game_views.game_menues_display import Game_menues_display
 from game.models.menu_models.option_menu_model import Option_menu_model
 
 class In_battle_display(Game_menues_display):
+    """
+        This class represents the display settings and behavior during a battle in the game.
+    """
     def init_in_battle_display(self, wild):
+        """
+        Initializes the battle display
+        """
         self.init_in_game_display()
         self.wild = wild
         self.init_root_variables_in_battle()
@@ -14,6 +20,10 @@ class In_battle_display(Game_menues_display):
 
 
     def init_root_variables_in_battle(self):
+        """
+            Sets up the root variables used specifically for battle, such as menu dimensions,
+            Pokémon image sizes, coordinates for displaying health bars, names, and levels.
+        """
         self.init_root_variables_in_game()
 
         self.battle_stage_menu_variables : tuple = (
@@ -92,6 +102,10 @@ class In_battle_display(Game_menues_display):
         )
     
     def init_menues_objects(self):
+        """
+            Initializes the various menu objects for the battle stage, such as the main action menu,
+            confirmation menu, items menu, and team menu.
+        """
         self.battle_stage_menu = Option_menu_model(
             self.battle_stage_menu_variables,
             [
@@ -131,6 +145,10 @@ class In_battle_display(Game_menues_display):
         )
 
     def enemy_pokemon_load(self):
+        """
+            Loads and scales the front-facing images for the enemy Pokémon team.
+            Images are loaded from the specified path and resized to fit the defined dimensions.
+        """
         for pokemon in self.battle.enemy_team:
             front_image = pg.image.load(self.GRAPHICS_PATH + "pokemon/" + pokemon.entry + "/front.png")
             pokemon.front_image = pg.transform.scale(front_image, self.enemy_pokemon_image_size)
@@ -161,6 +179,9 @@ class In_battle_display(Game_menues_display):
         self.draw_pokemons_health_points()
     
     def draw_pokemons_levels(self):
+        """
+            Renders the levels of both the player's and enemy's Pokémon and displays them on the screen.
+        """
         player_pokemon_level = self.pixel_font_pokemon_infos.render(self.dialogs["lvl"] + str(self.battle.active_pokemon.level), True, (0,0,0))
         player_pokemon_level_rect = player_pokemon_level.get_rect(bottomleft=(self.active_pokemon_level_coords))
     
@@ -171,6 +192,9 @@ class In_battle_display(Game_menues_display):
         self.screen.blit(enemy_pokemon_level, enemy_pokemon_level_rect)
     
     def draw_pokemons_names(self):
+        """
+            Renders the names of both the player's and enemy's Pokémon, handling different cases for wild Pokémon
+        """
         player_pokemon_name = self.pixel_font_pokemon_infos.render(self.dialogs[self.battle.active_pokemon.name], True, (0,0,0))
         player_pokemon_name_rect = player_pokemon_name.get_rect(bottomleft=self.active_pokemon_name_coords)
     
@@ -185,6 +209,10 @@ class In_battle_display(Game_menues_display):
         self.screen.blit(enemy_pokemon_name, enemy_pokemon_name_rect)
     
     def draw_pokemons_health_points(self):
+        """
+            Draws the health points of both the player's and enemy's Pokémon using green bars
+            that decrease based on the current health relative to max health.
+        """
         player_pokemon_current_hp_rect = (
             self.active_pokemon_health_bar_coords[0], self.active_pokemon_health_bar_coords[1],
             self.battle.active_pokemon.current_health_points/self.battle.active_pokemon.health_points * self.health_bar_width,

@@ -13,6 +13,9 @@ class In_battle(
     In_battle_display, Game_menues_sounds):
 
     def __init__(self):
+        """
+        Initializes the battle state, including menu controllers and battle variables.
+        """
         Models_controller.__init__(self)
         Game_menues_controller.__init__(self)
         self.next = "launch_menu"
@@ -41,7 +44,7 @@ class In_battle(
 
     def startup(self):
         """
-        initiates all menu related data
+        Initializes battle elements, setting up player and enemy Pokémon.
         """
         self.init_config()
         self.battle = Models_controller.new_battle
@@ -92,6 +95,9 @@ class In_battle(
             pass
 
     def update_battle_status(self):
+        """
+        Updates battle progress by checking Pokémon status and battle outcome
+        """
         pokemon_status = self.battle.check_active_pokemon(self.put_out_pokemons, self.not_put_out_pokemons, self.caught)
         end_of_battle = self.battle.check_victory_defeat(self.caught, self.ran_away)
         match pokemon_status:

@@ -4,7 +4,14 @@ import string
 from game.views.display import Display
 
 class Input_menu_model(Display):
+    """
+    A class for handling user text input in a menu.
+    Inherits from the Display class.
+    """
     def __init__(self, margins : tuple, dialog : str):
+        """
+        Initializes the input menu model.
+        """
         Display.__init__(self)
         self.from_left, self.from_top = margins
         self.dialog = dialog
@@ -21,6 +28,10 @@ class Input_menu_model(Display):
         self.screen.blit(self.rendered_input, self.rendered_input_rect)
 
     def get_event_input(self, event):
+        """
+        Handles user keyboard input
+        """
+
         if event.type == pg.KEYDOWN:
             if event.key == pg.K_BACKSPACE and self.input != "":
                 self.input = self.input[:-1]

@@ -12,14 +12,17 @@ pg.font.init()
 class New_game(
     Models_controller, Game_menues_controller, 
     New_game_controller, New_game_display):
-
+    """
+        Initializes the New_game class by calling the constructors of parent classes.
+    """
     def __init__(self):
         Models_controller.__init__(self)
         Game_menues_controller.__init__(self)
 
     def startup(self):
         """
-            initiates all menu-related data
+            iInitializes all menu-related data, including configuring the game,
+            loading starter Pokémon, and setting the menu state.
         """
         self.init_config()
         Pokedex.init_pokedex_data()
@@ -75,6 +78,9 @@ class New_game(
                 self.draw_starter_pokemon()
 
     def init_save_file(self):
+        """
+        Creates a save file containing the player's name, starter Pokémon, and initial stats.
+        """
         self.chosen_pokemon = "000" + str(self.pokemon_choice.selected_index*3 + 1)
         current_player : dict = {
                     "player" : self.player_input.input,
