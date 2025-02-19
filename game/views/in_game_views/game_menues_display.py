@@ -72,10 +72,16 @@ class Game_menues_display(Display):
         self.action_bg_img=pg.image.load(self.GRAPHICS_PATH+"/media/"+"pkmn choice bg.png")
         self.action_bg_img=pg.transform.scale(self.action_bg_img,(self.width,self.height))
 
+        self.pokedex_background=pg.image.load(self.GRAPHICS_PATH+"/media/"+"team select.png")
+        self.pokedex_background=pg.transform.scale(self.pokedex_background, (self.width, self.height))
+
 
         #########↑load, system,etc.#######↓draw##
     def draw_launch_menu(self):
         self.screen.blit(self.launch_menu_img,(0,0))
+    
+    def draw_pokedex_background(self):
+        self.screen.blit(self.pokedex_background,(0,0))
     
     def draw_pkmn_frame(self,x:int, y:int):
         self.screen.blit(self.pkmn_frame_img,(x,y))

@@ -6,7 +6,7 @@ class Option_menu_model(Display):
     def __init__(self, 
             margins, options, next_list=None, 
             deselected_color=(0,0,0), selected_color=(0,0,0), 
-            picked_color=(255,0,0)):
+            picked_color=(255,0,0), images=False):
         Display.__init__(self)
         self.from_left, self.from_top, self.spacer = margins
         self.options = options
@@ -16,6 +16,7 @@ class Option_menu_model(Display):
         self.selected_color = selected_color
         self.deselected_color = deselected_color
         self.picked_color = picked_color
+        self.images = images
         self.pre_render()
 
     def pre_render(self):
@@ -66,6 +67,41 @@ class Option_menu_model(Display):
                 self.screen.blit(selected_render[0], selected_render[1])
             else:
                 self.screen.blit(option[0],option[1])
+
+    def draw_list_options(self):
+        """
+            for all launch_menu states, enumerate buttons and places them before
+            checking for selected index button to place it on the same position
+        """
+        for index, option in enumerate(self.rendered["deselected"]):
+            if self.selected_index-3 < index < self.selected_index:
+                option[1].midbottom = (
+                    self.from_left, 
+                    self.from_top - (self.selected_index-index)*self.spacer
+                )
+                self.screen.blit(option[0],option[1])
+            elif index == self.selected_index:
+                selected_render = self.rendered["selected"][index]
+                option[1].midbottom = selected_render[1].midbottom = (
+                    self.from_left, 
+                    self.from_top
+                )
+                self.screen.blit(selected_render[0], selected_render[1])
+            elif self.selected_index < index < self.selected_index+3:
+                option[1].midbottom = (
+                    self.from_left,
+                    self.from_top + (index-self.selected_index)*self.spacer
+                )
+                self.screen.blit(option[0],option[1])
+            if bool(self.images) and\
+                  self.selected_index-3 < index < self.selected_index+3 :
+                self.screen.blit(
+                    self.images[index],
+                    (
+                        self.from_left*0.49,
+                        option[1].centery-self.height*0.17
+                    )
+                )
     
     def draw_horizontal_options(self):
         for index, option in enumerate(self.rendered["deselected"]):

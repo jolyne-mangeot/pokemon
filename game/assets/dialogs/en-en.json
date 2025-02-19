@@ -19,12 +19,16 @@
     "?" : " ?",
     "launch" : "Start fight",
     "manage team" : "Manage Pokemons",
-    "manage met pokemons" : "Manage encounters",
+    "pokedex" : "Check Pokedex",
     "save" : "Save",
 
     "save menu" : "Save menu",
     "lost save" : "You lost all your pokemons !",
     "delete save tip" : "press D, E and L to erase save file",
+
+    "stat attack" : "Attack : ",
+    "stat defense" : "Defense : ",
+    "stat health points" : "HP : ",
 
     "wild appears_1" : "A wild ",
     "wild appears_2" : " appears !",
