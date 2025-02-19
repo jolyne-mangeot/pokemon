@@ -35,21 +35,24 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
     def launch_battle(self):
         # if self.player_pokedex.encounters['done'] % 5 == 0:
         #     wild = False
-        #     pass #combat dresseur
+        #     pass # trainer fight
         # else:
         battle_level = ((self.player_pokedex.average_level*0.9) ** 3, 
                         (self.player_pokedex.average_level*1.1) ** 3)
         wild = True
+        battle_biome = self.player_pokedex.battle_biomes[random.choice(list(self.player_pokedex.battle_biomes.keys()))]
+        enemy_entry = random.choice(battle_biome["pokemons"])
         encounter = {
             "active_team": {
                 "pokemon_1": {
-                    "entry": random.choice(list(self.player_pokedex.pokemon_dict.keys())),
+                    "entry": enemy_entry,
                     "experience_points": random.randrange(int(battle_level[0]), int(battle_level[1]))
                 }
             }
         }
         enemy_team = Pokedex(encounter)
-        Models_controller.new_battle = Battle(self.player_pokedex, enemy_team, Pokedex.types_chart, Pokedex.pokemon_dict, wild)
+        enemy_team.check_evolutions()
+        Models_controller.new_battle = Battle(self.player_pokedex, enemy_team, Pokedex.types_chart, Pokedex.pokemon_dict, battle_biome, wild)
 
     def get_event(self, event):
         """
@@ -67,6 +70,8 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
                     self.next = "in_battle"
                     self.done = True
                     self.launch_battle()
+            # case "manage_encounters":
+            #     pass
             case "manage_team":
                 self.get_event_manage_team(event)
             case "save":
@@ -80,7 +85,11 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
                 self.get_event_quit(event)
             case "delete_save":
                 if self.get_event_delete_save(event):
-                    self.reset_player_data(Models_controller.player_pokedex.save)
+                    if bool(Models_controller.player_pokedex.save):
+                        self.reset_player_data(Models_controller.player_pokedex.save)
+                    else:
+                        self.next = "title_menu"
+                        self.done = True
             case "main_launch_menu":
                 self.get_event_main_launch_menu(event)
     

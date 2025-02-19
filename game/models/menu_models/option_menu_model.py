@@ -3,16 +3,19 @@ import pygame as pg
 from game.views.display import Display
 
 class Option_menu_model(Display):
-    def __init__(self, margins, options, next_list=None):
+    def __init__(self, 
+            margins, options, next_list=None, 
+            deselected_color=(0,0,0), selected_color=(0,0,0), 
+            picked_color=(255,0,0)):
         Display.__init__(self)
         self.from_left, self.from_top, self.spacer = margins
         self.options = options
         self.next_list = next_list
         self.selected_index = 0
         self.picked_index = None
-        self.selected_color = (0,0,0)
-        self.deselected_color = (0,0,0)
-        self.picked_color = (255,0,0)
+        self.selected_color = selected_color
+        self.deselected_color = deselected_color
+        self.picked_color = picked_color
         self.pre_render()
     
     def update_colors(self, deselected_color, selected_color=None, picked_color=None):

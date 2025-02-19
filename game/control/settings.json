@@ -1,9 +1,9 @@
 {
     "fps": 60,
-    "sfx_volume": 2,
+    "sfx_volume": 10,
     "music_volume": 7,
     "language": "en-en",
-    "screen_resolution": "800,600",
+    "screen_resolution": "1024,768",
     "confirm_keys": [
         "return",
         "space",

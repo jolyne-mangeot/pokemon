@@ -2,8 +2,9 @@ import random
 import secrets
 
 class Battle:
-    def __init__(self, player_pokedex, enemy_team, types_chart, pokemon_dict, wild):
+    def __init__(self, player_pokedex, enemy_team, types_chart, pokemon_dict, battle_biome, wild):
         self.wild = wild
+        self.battle_biome = battle_biome
         self.player_pokedex = player_pokedex
         self.player_team = player_pokedex.player_team
         self.enemy_team = enemy_team.player_team
@@ -11,12 +12,17 @@ class Battle:
         self.pokemon_dict = pokemon_dict
         self.player_guarded = False
         self.enemy_guarded = False
+        self.run_away_attempts = 0
     
     def spawn_pokemon(self, index, player=True):
         if player:
             self.active_pokemon = self.player_team[index]
         else:
             self.enemy_pokemon = self.enemy_team[index]
+    
+    def heal_all(self):
+        for pokemon in self.player_team:
+            pokemon.current_health_points = pokemon.health_points
 
     def attack(self, player=True):
         if player:
@@ -48,23 +54,26 @@ class Battle:
 
     def catch_attempt(self):
         odds = (((3*self.enemy_pokemon.health_points) - (2*self.enemy_pokemon.current_health_points)) * \
-                (1 - 1/self.enemy_pokemon.level)*self.enemy_pokemon.catch_rate) / (3*self.enemy_pokemon.health_points)
-        print(odds)
+                3*self.enemy_pokemon.catch_rate) / (3*self.enemy_pokemon.health_points)
         if secrets.randbelow(255) < odds:
             return True
         else:
             return False
 
     def check_victory_defeat(self, caught, ran_away):
+        if all(pokemon.current_health_points <=0 for pokemon in self.player_team):
+            self.check_lost_pokemons()
+            return "defeat"
+    def check_victory_defeat(self, caught, ran_away):
         if all(pokemon.current_health_points <= 0 for pokemon in self.enemy_team):
             self.check_lost_pokemons()
             return "victory"
-        if all(pokemon.current_health_points <=0 for pokemon in self.player_team):
-            self.check_lost_pokemons()
-            self.player_pokedex
-            return "defeat"
         if caught:
             self.check_lost_pokemons()
+            return "enemy_caught"
+        if ran_away:
+            self.check_lost_pokemons()
+            return "ran_away"
             return "caught"
         if ran_away:
             return "ran_away"
@@ -102,8 +111,8 @@ class Battle:
                 self.check_evolutions()
 
     def run_away(self):
-        run_odds = ((((self.active_pokemon.level*128)/self.enemy_pokemon.level)) / 256) * 100
-        print(run_odds)
+        self.run_away_attempts +=1
+        run_odds = ((((self.active_pokemon.level*128)/self.enemy_pokemon.level)) / 256) * (100 + 10*self.run_away_attempts)
         if random.randint(0, 100) < run_odds:
             return True
         else:

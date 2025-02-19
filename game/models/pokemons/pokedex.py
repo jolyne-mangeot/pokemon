@@ -1,7 +1,7 @@
 import json
 
 from game.models.pokemons.pokemons import Pokemon
-from game._all_paths_ import POKEMON_DICT_PATH, TYPES_CHART_PATH
+from game._all_paths_ import POKEMON_DICT_PATH, TYPES_CHART_PATH, BATTLE_BIOMES_PATH
 
 class Pokedex:
     pokemon_dict = {}
@@ -10,6 +10,7 @@ class Pokedex:
         self.__dict__.update(**player_data)
         self.init_player_team()
         self.get_average_level()
+        self.save = False
 
     def init_pokedex_data():
         with open(POKEMON_DICT_PATH, "r") as file:
@@ -17,6 +18,8 @@ class Pokedex:
             Pokemon.pokemon_dict = Pokedex.pokemon_dict
         with open(TYPES_CHART_PATH, "r") as file:
             Pokedex.types_chart = json.load(file)
+        with open(BATTLE_BIOMES_PATH,"r") as file:
+            Pokedex.battle_biomes = json.load(file)
     
     def compress_data(self, chosen_save : str) -> dict:
         player_data : dict = {
@@ -50,6 +53,12 @@ class Pokedex:
     def catch_pokemon(self, entry, experience_points=0):
         caught_pokemon = self.add_pokemon(entry, experience_points)
         self.player_team.append(caught_pokemon)
+    
+    def check_evolutions(self):
+        for pokemon in self.player_team:
+            if pokemon.level >= pokemon.evolution_level:
+                pokemon.evolve()
+                self.check_evolutions()
 
     def add_pokemon(self, entry, experience_points=0):
         pokemon = Pokemon(Pokedex.pokemon_dict[entry], experience_points)
