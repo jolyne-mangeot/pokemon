@@ -278,7 +278,7 @@ class In_battle_display(Game_menues_display):
 
     def animate_spawn(self, player=True, other_apparent=True, infos_apparent=False):
         if player:
-            if self.animation_frame < 90:
+            if self.animation_frame <= 90:
                 pokemon_coords=(
                     self.active_pokemon_image_coords[0] - self.width*0.6 + self.width*self.animation_frame/150,
                     self.active_pokemon_image_coords[1]
@@ -298,10 +298,12 @@ class In_battle_display(Game_menues_display):
                         self.dialogs["pokemon go"],
                         *self.game_dialog_variables
                     )
-            else:
+            if self.animation_frame == 90:
                 return True
+            else:
+                return False
         else:
-            if self.animation_frame < 120:
+            if self.animation_frame <= 120:
                 pokemon_coords=(
                     self.enemy_pokemon_image_coords[0] + self.width*1.2 - self.width*self.animation_frame/100,
                     self.enemy_pokemon_image_coords[1]
@@ -332,11 +334,13 @@ class In_battle_display(Game_menues_display):
                     self.dialogs["wild appears_2"],
                     *self.game_dialog_variables
                 )
-            else:
+            if self.animation_frame == 120:
                 return True
+            else:
+                return False
     
     def animate_remove(self):
-        if self.animation_frame < 50:
+        if self.animation_frame <= 50:
             self.draw_player_pokemon_ground()
             pokemon_coords = (
                 self.active_pokemon_image_coords[0] - self.animation_frame*2,
@@ -354,12 +358,13 @@ class In_battle_display(Game_menues_display):
                 self.dialogs["come back"],
                 *self.game_dialog_variables
             )
-            return False
-        else:
+        if self.animation_frame == 50:
             return True
+        else:
+            return False
     
     def animate_beat(self, player=True):
-        if self.animation_frame < 90:
+        if self.animation_frame <= 90:
             self.animate_pokemon_beat(player)
             self.draw_pokemons_infos()
             self.draw_dialogue_box()
@@ -372,14 +377,15 @@ class In_battle_display(Game_menues_display):
                 self.dialogs["enemy beat_2"]),
                 *self.game_dialog_variables
             )
-            return False
-        else:
+        if self.animation_frame == 90:
             return True
+        else:
+            return False
 
     def animate_pokemon_beat(self, player=True):
         if player:
             self.draw_player_pokemon_ground()
-            if self.animation_frame < 45:
+            if self.animation_frame <= 45:
                 pokemon_coords=(
                     self.active_pokemon_image_coords[0],
                     self.active_pokemon_image_coords[1] + self.width*self.animation_frame/100
@@ -390,7 +396,7 @@ class In_battle_display(Game_menues_display):
                 )
             self.draw_enemy_pokemon()
         else:
-            if self.animation_frame < 45:
+            if self.animation_frame <= 45:
                 pokemon_coords=(
                     self.enemy_pokemon_image_coords[0],
                     self.enemy_pokemon_image_coords[1] + self.width*self.animation_frame/100
@@ -405,27 +411,27 @@ class In_battle_display(Game_menues_display):
     def animate_attack(self, player=True):
         if player:
             attacker = self.battle.active_pokemon
-            attacked = self.battle.enemy_pokemon
         else:
             attacker = self.battle.enemy_pokemon
-            attacked = self.battle.active_pokemon
         self.animate_pokemon_attack(player)
-        if self.animation_frame < 60:
-            self.draw_dialogue_box()
-            self.blit_dialog(
-                self.dialogs[attacker.name] + self.dialogs["pokemon attack"],
-                *self.game_dialog_variables)
-        elif self.animation_frame < 150:
-            self.draw_dialogue_box()
-            self.blit_dialog(
-                self.dialogs["effective " + str(self.efficiency)],
-                *self.game_dialog_variables)
-        elif self.animation_frame > 150:
+        self.draw_dialogue_box()
+        if self.animation_frame <= 150:
+            if self.animation_frame <= 60:
+                self.blit_dialog(
+                    self.dialogs[attacker.name] + self.dialogs["pokemon attack"],
+                    *self.game_dialog_variables)
+            else:
+                self.blit_dialog(
+                    self.dialogs["effective " + str(self.efficiency)],
+                    *self.game_dialog_variables)
+        if self.animation_frame == 150:
             return True
+        else:
+            return False
 
     def animate_pokemon_attack(self, player):
         if player:
-            if self.animation_frame < 45:
+            if self.animation_frame <= 45:
                 pokemon_coords=(
                     self.active_pokemon_image_coords[0],
                     self.active_pokemon_image_coords[1] + (-abs(self.animation_frame) if self.animation_frame < 30 else (self.animation_frame-30)/5)
@@ -437,7 +443,7 @@ class In_battle_display(Game_menues_display):
                 )
                 self.draw_enemy_pokemon()
                 self.draw_pokemons_infos()
-            elif self.animation_frame < 150:
+            elif self.animation_frame <= 150:
                 self.draw_player_pokemon()
                 self.draw_enemy_pokemon_ground()
                 if self.animation_frame not in (60,61,62,63,70,71,72,73):
@@ -447,7 +453,7 @@ class In_battle_display(Game_menues_display):
                 self.draw_pokemons()
                 self.draw_pokemons_infos()
         else:
-            if self.animation_frame < 45:
+            if self.animation_frame <= 45:
                 pokemon_coords=(
                     self.enemy_pokemon_image_coords[0],
                     self.enemy_pokemon_image_coords[1] + (-abs(self.animation_frame) if self.animation_frame < 30 else (self.animation_frame-30)/5)
@@ -459,7 +465,7 @@ class In_battle_display(Game_menues_display):
                 )
                 self.draw_player_pokemon()
                 self.draw_pokemons_infos()
-            elif self.animation_frame < 180:
+            elif self.animation_frame <= 150:
                 self.draw_enemy_pokemon()
                 self.draw_player_pokemon_ground()
                 if self.animation_frame not in (60,61,62,63,70,71,72,73):
@@ -470,7 +476,7 @@ class In_battle_display(Game_menues_display):
                 self.draw_pokemons_infos()
 
     def animate_guard(self, player=True):
-        if self.animation_frame < 140:
+        if self.animation_frame <= 140:
             self.draw_pokemons()
             self.draw_pokemons_infos()
             self.draw_dialogue_box()
@@ -479,15 +485,15 @@ class In_battle_display(Game_menues_display):
                 else self.dialogs[self.battle.enemy_pokemon.name]) + \
                 self.dialogs["guarded"],
                 *self.game_dialog_variables)
-        else:
-            return True
+            if self.animation_frame == 140:
+                return True
     
     def animate_catch_attempt(self):
         if self.battle.wild:
-            if self.animation_frame < 270:
-                if self.animation_frame < 45:
+            if self.animation_frame <= 270:
+                if self.animation_frame <= 45:
                     self.draw_pokemons()
-                if 45 < self.animation_frame < 150:
+                if 45 < self.animation_frame <= 150:
                     self.draw_player_pokemon()
                     self.draw_enemy_pokemon_ground()
                     self.draw_pokeball_thrown()
@@ -500,7 +506,7 @@ class In_battle_display(Game_menues_display):
                         self.draw_pokemons()
                 self.draw_pokemons_infos()
                 self.draw_dialogue_box()
-                if self.animation_frame < 150:
+                if self.animation_frame <= 150:
                     self.blit_dialog(
                         self.battle.player_pokedex.player +\
                         self.dialogs["catch attempt"],
@@ -519,7 +525,7 @@ class In_battle_display(Game_menues_display):
                             self.dialogs["broke free"],
                             *self.game_dialog_variables
                         )
-            if self.animation_frame > 270:
+            if self.animation_frame == 270:
                 return True
             else:
                 return False
@@ -537,4 +543,36 @@ class In_battle_display(Game_menues_display):
                 return False
 
     def animate_run_away(self):
-        pass
+        if self.animation_frame <= 90:
+            self.draw_pokemons()
+            self.draw_pokemons_infos()
+            self.draw_dialogue_box()
+            if self.animation_frame <= 45:
+                if not self.battle.wild:
+                    self.blit_dialog(
+                        self.dialogs["run away impossible"],
+                        *self.game_dialog_variables
+                    )
+                    if self.animation_frame == 45:
+                        return True
+                else:
+                    self.blit_dialog(
+                        self.battle.player_pokedex.player +\
+                        self.dialogs["run away attempt"],
+                        *self.game_dialog_variables
+                    )
+            else:
+                if self.ran_away:
+                    self.blit_dialog(
+                        self.dialogs["run away success"],
+                        *self.game_dialog_variables
+                    )
+                else:
+                    self.blit_dialog(
+                        self.dialogs["run away fail"],
+                        *self.game_dialog_variables
+                    )
+        if self.animation_frame == 90:
+            return True
+        else:
+            return False

@@ -74,11 +74,10 @@ class In_battle_controller:
                 self.in_game_actions_sounds["pokemon out"].play()
                 self.play_active_pokemon_cry()
                 self.player_spawn_animation_done = True
-                self.animation_frame = 0
+                self.end_enemy_turn()
             else:
                 self.animation_frame +=1
-        else:
-            self.end_enemy_turn()
+            
     
     def pokemon_attack_scene(self, attacker="player_attack"):
         if attacker == "player_attack":
@@ -91,9 +90,9 @@ class In_battle_controller:
                     if self.efficiency >= 2:
                         self.in_game_actions_sounds["hit very effective"].play()
                     elif self.efficiency >=0.5:
-                        self.in_game_actions_sounds["hit not very effective"].play()
+                        self.in_game_actions_sounds["hit no effective"].play()
                     else:
-                        self.in_game_actions_sounds["hit non effective"].play()
+                        self.in_game_actions_sounds["hit not very effective"].play()
         else:
             if self.animate_attack(False):
                 self.end_enemy_turn()
@@ -106,7 +105,9 @@ class In_battle_controller:
                     elif self.efficiency >=0.5:
                         self.in_game_actions_sounds["hit not very effective"].play()
                     else:
-                        self.in_game_actions_sounds["hit non effective"].play()
+                        self.in_game_actions_sounds["hit no effective"].play()
+                    if self.battle.active_pokemon.current_health_points <=30:
+                        self.in_game_actions_sounds["low health"].play()
     
     def pokemon_guard_scene(self, guarding="player_guard"):
         if guarding == "player_guard":
@@ -184,7 +185,9 @@ class In_battle_controller:
     def run_away_attempt_scene(self, none=None):
         if self.animation_frame == 45 and self.battle.wild:
             self.ran_away = self.battle.run_away()
-        if self.run_away_animation():
+            if self.ran_away:
+                self.in_game_actions_sounds["run away"].play()
+        if self.animate_run_away():
             if not self.battle.wild:
                 self.game_state = "player_turn"
             else:

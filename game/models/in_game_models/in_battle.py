@@ -40,6 +40,7 @@ class In_battle(
             "active_beat": self.pokemon_beat_scene,
             "enemy_beat": self.pokemon_beat_scene,
             "catch_attempt": self.catch_attempt_scene,
+            "run_away_attempt": self.run_away_attempt_scene,
         }
 
     def startup(self):
@@ -150,5 +151,4 @@ class In_battle(
                 self.draw_pokemons()
                 self.draw_pokemons_infos()
             self.draw_dialogue_box()
-            
             self.draw_options_menu()

@@ -62,7 +62,7 @@ class Game_menues_sounds(Sounds):
             # "stat raise" : pg.mixer.Sound(self.SFX_PATH + "Stat_Raise_Fell.mp3"),
             "low health" : pg.mixer.Sound(self.SFX_PATH + "low_hp_pokemon.mp3"),
             "hit no effective" : pg.mixer.Sound(self.SFX_PATH + "hit_no_effective.mp3"),
-            "hit not very effectivd" : pg.mixer.Sound(self.SFX_PATH + "hit_weak_not_very_effective.mp3"),
+            "hit not very effective" : pg.mixer.Sound(self.SFX_PATH + "hit_weak_not_very_effective.mp3"),
             "hit very effective" : pg.mixer.Sound(self.SFX_PATH + "hit_super_effective.mp3 ")
         }
         for sound in list(self.in_game_actions_sounds.keys()):
