@@ -535,3 +535,6 @@ class In_battle_display(Game_menues_display):
                 return True
             else:
                 return False
+
+    def animate_run_away(self):
+        pass
