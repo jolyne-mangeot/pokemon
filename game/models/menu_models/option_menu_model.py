@@ -17,7 +17,23 @@ class Option_menu_model(Display):
         self.deselected_color = deselected_color
         self.picked_color = picked_color
         self.pre_render()
-    
+
+    def pre_render(self):
+        rendered_dialog = {"picked" : [], "deselected":[], "selected":[]}
+
+        for option in self.options:
+            picked_render = self.pixel_font_menu_selected.render(option, True, self.picked_color)
+            picked_rect = picked_render.get_rect()
+            deselected_render = self.pixel_font_menu_deselected.render(option, True, self.deselected_color)
+            deselected_rect = deselected_render.get_rect()
+            self.pixel_font_menu_selected.set_bold(True)
+            selected_render = self.pixel_font_menu_selected.render(option, True, self.selected_color)
+            selected_rect = selected_render.get_rect()
+            rendered_dialog["picked"].append((picked_render, picked_rect))
+            rendered_dialog["deselected"].append((deselected_render, deselected_rect))
+            rendered_dialog["selected"].append((selected_render, selected_rect))
+        self.rendered = rendered_dialog
+
     def update_colors(self, deselected_color, selected_color=None, picked_color=None):
         self.deselected_color = deselected_color
         
@@ -36,22 +52,6 @@ class Option_menu_model(Display):
         self.options = options
         self.next_list = next_list
         self.pre_render()
-
-    def pre_render(self):
-        rendered_dialog = {"picked" : [], "deselected":[], "selected":[]}
-
-        for option in self.options:
-            picked_render = self.pixel_font_menu_selected.render(option, True, self.picked_color)
-            picked_rect = picked_render.get_rect()
-            deselected_render = self.pixel_font_menu_deselected.render(option, True, self.deselected_color)
-            deselected_rect = deselected_render.get_rect()
-            self.pixel_font_menu_selected.set_bold(True)
-            selected_render = self.pixel_font_menu_selected.render(option, True, self.selected_color)
-            selected_rect = selected_render.get_rect()
-            rendered_dialog["picked"].append((picked_render, picked_rect))
-            rendered_dialog["deselected"].append((deselected_render, deselected_rect))
-            rendered_dialog["selected"].append((selected_render, selected_rect))
-        self.rendered = rendered_dialog
 
     def draw_vertical_options(self):
         """
