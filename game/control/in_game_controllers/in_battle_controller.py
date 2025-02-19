@@ -1,8 +1,15 @@
 import pygame as pg
 
 class In_battle_controller:
+    """
+    Controls the battle system, including turn-based mechanics, menu navigation, 
+    and interaction handling for a Pokémon-style game.
+    """
 
     def update_options(self, options_states, player_turn_start=False):
+        """
+        Updates battle menu options depending on the game state.
+        """
         self.options_states = options_states
         match self.options_states:
             case "battle_stage":
@@ -40,6 +47,9 @@ class In_battle_controller:
         self.update_battle_status()
 
     def update_turn(self, game_state):
+        """
+        Updates the turn state and executes appropriate actions.
+        """
         self.game_state = game_state
         self.animation_frame = 0
 
@@ -71,6 +81,9 @@ class In_battle_controller:
                     self.end_player_turn()
 
     def start_game_scene(self, none=None):
+        """
+        Handles player input in the battle stage.
+        """
         if not self.enemy_spawn_animation_done:
             if self.animate_spawn(False, False):
                 self.play_enemy_pokemon_cry()
@@ -191,33 +204,42 @@ class In_battle_controller:
             self.animation_frame +=1
 
     def get_event_battle_stage(self, event):
-            if event.type == pg.KEYDOWN:
-                if pg.key.name(event.key) in self.return_keys and not self.quit:
-                    self.update_options("run_away")
+        """
+            Handles player input in the battle stage.
+        """
+        if event.type == pg.KEYDOWN:
+            if pg.key.name(event.key) in self.return_keys and not self.quit:
+                self.update_options("run_away")
 
-                elif pg.key.name(event.key) in self.confirm_keys and self.battle_stage_menu.selected_index == 0:
-                    self.update_turn("player_attack")
+            elif pg.key.name(event.key) in self.confirm_keys and self.battle_stage_menu.selected_index == 0:
+                self.update_turn("player_attack")
 
-                elif pg.key.name(event.key) in self.confirm_keys and self.battle_stage_menu.selected_index == 1:
-                    self.update_turn("player_guard")
+            elif pg.key.name(event.key) in self.confirm_keys and self.battle_stage_menu.selected_index == 1:
+                self.update_turn("player_guard")
 
-                elif pg.key.name(event.key) in self.confirm_keys and self.battle_stage_menu.selected_index in (2,3,4):
-                    self.update_options(self.battle_stage_menu.next_list[self.battle_stage_menu.selected_index])
-            self.battle_stage_menu.get_event_vertical(event)
+            elif pg.key.name(event.key) in self.confirm_keys and self.battle_stage_menu.selected_index in (2,3,4):
+                self.update_options(self.battle_stage_menu.next_list[self.battle_stage_menu.selected_index])
+        self.battle_stage_menu.get_event_vertical(event)
 
 
     def get_event_display_items(self, event):
-            if event.type == pg.KEYDOWN:
-                if pg.key.name(event.key) in self.return_keys and not self.quit\
-                    or pg.key.name(event.key) in self.confirm_keys and self.display_items_menu.selected_index == len(self.display_items_menu.options) - 1:
-                    self.update_options("battle_stage")
+        """
+            Handles player input in the item menu.
+        """
+        if event.type == pg.KEYDOWN:
+            if pg.key.name(event.key) in self.return_keys and not self.quit\
+                or pg.key.name(event.key) in self.confirm_keys and self.display_items_menu.selected_index == len(self.display_items_menu.options) - 1:
+                self.update_options("battle_stage")
 
-                elif pg.key.name(event.key) in self.confirm_keys and self.display_items_menu.selected_index == 0:
-                    self.update_turn("catch_attempt")
-            self.display_items_menu.get_event_vertical(event)
+            elif pg.key.name(event.key) in self.confirm_keys and self.display_items_menu.selected_index == 0:
+                self.update_turn("catch_attempt")
+        self.display_items_menu.get_event_vertical(event)
 
 
     def get_event_display_team(self, event):
+            """
+                Handles player input in the team selection menu.
+            """
             if event.type == pg.KEYDOWN:
                 if pg.key.name(event.key) in self.return_keys:
                     if not self.quit and not self.forced_switch and not self.team_full:
@@ -239,22 +261,28 @@ class In_battle_controller:
 
 
     def get_event_select_pokemon_confirm(self, event):
-            if event.type == pg.KEYDOWN:
-                if pg.key.name(event.key) in self.return_keys and not self.quit\
-                    or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
-                    self.update_options("display_team")
+        """
+            Handles player input when confirming Pokémon selection.
+        """
+        if event.type == pg.KEYDOWN:
+            if pg.key.name(event.key) in self.return_keys and not self.quit\
+                or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
+                self.update_options("display_team")
 
-                if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
-                    self.update_turn("switch_pokemon_confirmed")
-            self.confirm_action_menu.get_event_vertical(event)
+            if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
+                self.update_turn("switch_pokemon_confirmed")
+        self.confirm_action_menu.get_event_vertical(event)
 
 
     def get_event_run_away(self, event):
-            if event.type == pg.KEYDOWN:
-                if pg.key.name(event.key) in self.return_keys and not self.quit\
-                        or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
-                    self.update_options("battle_stage")
+        """
+            Handles player input when attempting to run away from battle.
+        """
+        if event.type == pg.KEYDOWN:
+            if pg.key.name(event.key) in self.return_keys and not self.quit\
+                    or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
+                self.update_options("battle_stage")
 
-                if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
-                    self.update_turn("run_away_attempt")
-            self.confirm_action_menu.get_event_vertical(event)
+            if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
+                self.update_turn("run_away_attempt")
+        self.confirm_action_menu.get_event_vertical(event)

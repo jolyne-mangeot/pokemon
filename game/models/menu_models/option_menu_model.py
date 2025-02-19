@@ -3,10 +3,16 @@ import pygame as pg
 from game.views.display import Display
 
 class Option_menu_model(Display):
+    """
+        A class that represents an options menu model, inheriting from Display.   
+    """
     def __init__(self, 
             margins, options, next_list=None, 
             deselected_color=(0,0,0), selected_color=(0,0,0), 
             picked_color=(255,0,0), images=False):
+        """
+         Initializes the menu with margins, a list of options, and optionally a next list.  
+        """
         Display.__init__(self)
         self.from_left, self.from_top, self.spacer = margins
         self.options = options
@@ -20,6 +26,9 @@ class Option_menu_model(Display):
         self.pre_render()
 
     def pre_render(self):
+        """
+            Pre-renders the options in three states: picked, deselected, and selected.
+        """
         rendered_dialog = {"picked" : [], "deselected":[], "selected":[]}
 
         for option in self.options:
@@ -36,6 +45,10 @@ class Option_menu_model(Display):
         self.rendered = rendered_dialog
 
     def update_colors(self, deselected_color, selected_color=None, picked_color=None):
+        """
+            Updates the colors for deselected, selected, and picked options.
+        """
+        
         self.deselected_color = deselected_color
         
         if selected_color != None:
@@ -50,6 +63,10 @@ class Option_menu_model(Display):
         self.pre_render()
 
     def update_options(self, options, next_list = None):
+        """
+            Updates the list of options and optionally the next list
+        """
+        
         self.options = options
         self.next_list = next_list
         self.pre_render()
@@ -104,6 +121,10 @@ class Option_menu_model(Display):
                 )
     
     def draw_horizontal_options(self):
+        """
+            Draws the menu options in a horizontal arrangement.
+            The selected option is highlighted based on its index.
+        """
         for index, option in enumerate(self.rendered["deselected"]):
             if len(self.rendered["deselected"]) == 2:
                 option[1].center = (self.screen_rect.centerx-50 + index*100, self.from_top)
@@ -120,6 +141,10 @@ class Option_menu_model(Display):
                 self.screen.blit(option[0],option[1])
     
     def draw_picked_options(self):
+        """
+            Draws the menu options with a picked option highlighted in red.
+            Also highlights the currently selected option.
+        """
         for index, option in enumerate(self.rendered["deselected"]):
             option[1].center = (self.from_left, self.from_top + index*self.spacer)
             if index == self.picked_index:
@@ -134,6 +159,10 @@ class Option_menu_model(Display):
                 self.screen.blit(option[0],option[1])
 
     def draw_chart_options(self):
+        """
+            Draws the menu options in a chart-like arrangement.
+        """
+
         for index, option in enumerate(self.rendered["deselected"]):
             if index == len(self.rendered["deselected"]) - 1 and\
                     len(self.rendered["deselected"]) % 2 != 0:
@@ -160,8 +189,7 @@ class Option_menu_model(Display):
 
     def get_event_vertical(self, event):
         """
-            get all events for Main_menu states from the main_game_loop
-            in Control. is done after individual get_event from active menu
+            Processes vertical movement (up and down) in the menu based on key events.
         """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.up_keys:
@@ -174,6 +202,9 @@ class Option_menu_model(Display):
                     self.change_selected_option(1)
     
     def get_event_horizontal(self, event):
+        """
+            Processes horizontal movement (left and right) in the menu based on key events.
+        """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.left_keys:
                 self.change_selected_option(-1)

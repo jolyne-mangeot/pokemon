@@ -3,20 +3,34 @@ import pygame as pg
 from game.views.display import Display
 
 class Game_menues_display(Display):
+    """
+        This class handles the display of various game menus, initialization of in-game display elements, 
+        and the loading of graphical assets like Pokémon images and combat screens.
+    """
     def display_init(self):
         Display.__init__(self)
 
     def init_in_game_display(self):
+        """
+            Initializes the in-game display, root variables, and loads the graphics for both launch menus and Pokémon.
+        """
         Display.__init__(self)
         self.init_root_variables_in_game()
         self.load_graphics_launch_menues()
         self.load_graphics_pokemons()
 
     def init_root_variables_in_game(self):
+        """
+            Initializes root variables such as image sizes for active and mini Pokémon.
+        """
         self.active_pokemon_image_size : tuple = (self.width*0.3, self.width*0.3)
         self.mini_image_size : tuple = (self.width*0.21, self.width*0.2)
 
     def load_graphics_pokemons(self):
+        """
+            Loads and scales the graphics for the Pokémon in the player's team, 
+            including their back and mini images.
+        """
         for pokemon in self.player_pokedex.player_team:
             back_image = pg.image.load(self.GRAPHICS_PATH + "pokemon/" + pokemon.entry + "/back.png")
             pokemon.back_image = pg.transform.scale(back_image, self.active_pokemon_image_size)
@@ -24,6 +38,10 @@ class Game_menues_display(Display):
             pokemon.mini_image = pg.transform.scale(mini_image, self.mini_image_size)
 
     def init_render_option_team(self, team, forced_switch=False, team_full=False, menu="in_battle"):
+        """
+            Prepares a list of options for rendering the player's team selection. 
+            It includes options for each Pokémon in the team, and possibly an option to go back.
+        """
         options = []
         for pokemon in team:
             options.append(self.dialogs[pokemon.name])

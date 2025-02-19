@@ -3,6 +3,10 @@ import pygame as pg
 from game.control.settings import Settings
 
 class Control(Settings):
+    """
+        Control class manages game states, settings, and event loops.
+        It extends Settings and initializes essential configurations for the game.
+    """
     def init_settings(self):
         """
             load game settings and init essential data related to Pygame
@@ -12,6 +16,10 @@ class Control(Settings):
         self.done = False
 
     def init_config(self):
+        """
+            Initialize configuration settings such as screen resolution, 
+            Pygame display, and clock.
+        """
         self.settings : dict = Control.settings
         self.dialogs : dict = Control.dialogs
         self.__dict__.update(**Control.settings)

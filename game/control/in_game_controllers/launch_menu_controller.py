@@ -1,8 +1,14 @@
 import pygame as pg
 
 class Launch_menu_controller:
-
+    """
+    This class manages the launch menu of the game. It updates menu options, handles user input,
+     and manages game states.
+    """
     def update_options(self):
+        """
+        Updates the menu options based on the current menu state.
+        """   
         match self.menu_state:
             case "manage_team":
                 self.manage_team_menu.update_options(
@@ -26,7 +32,7 @@ class Launch_menu_controller:
     def get_event(self, event):
         """
             get all pygame-related events proper to the menu before
-            checking main menu shared events
+            checking launched menu shared events
         """
         if event.type == pg.QUIT:
             self.quit = True
@@ -42,6 +48,10 @@ class Launch_menu_controller:
                 self.menu_state = "quit"
 
     def get_event_main_launch_menu(self, event):
+        """
+        Handles user input in the "main_launch_menu" state.
+        Allows navigation and selection of menu options.
+        """
         if self.pressed_keys[pg.key.key_code(self.delete_save_keys[0])] \
             and self.pressed_keys[pg.key.key_code(self.delete_save_keys[1])] \
                 and self.pressed_keys[pg.key.key_code(self.delete_save_keys[2])]:
@@ -57,6 +67,11 @@ class Launch_menu_controller:
         self.main_launch_menu.get_event_vertical(event)
 
     def get_event_manage_team(self, event):
+        """
+        Handles user input in the "manage_team" menu.
+        Allows switching Pokémon in the team.
+        """
+
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit\
                 or pg.key.name(event.key) in self.confirm_keys and self.manage_team_menu.selected_index == len(self.manage_team_menu.options) - 1:
@@ -88,6 +103,10 @@ class Launch_menu_controller:
         self.display_pokedex_menu.get_event_vertical(event)
 
     def get_event_save(self, event):
+        """
+        Handles user input in the "save" menu.
+        Allows selection between saving, exiting, or confirming save.
+        """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit\
                 or pg.key.name(event.key) in self.confirm_keys and self.save_menu.selected_index == 2:
@@ -99,6 +118,9 @@ class Launch_menu_controller:
         self.save_menu.get_event_vertical(event)
 
     def get_event_save_confirm(self, event):
+        """
+        Handles user input in the "save_confirm" menu.
+        """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit\
                 or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
@@ -113,6 +135,10 @@ class Launch_menu_controller:
         self.confirm_action_menu.get_event_vertical(event)
     
     def get_event_delete_save(self, event):
+        """
+        Handles user input in the "delete_save" menu.
+        Allows user to confirm or cancel save deletion.
+        """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit\
                 or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
@@ -129,6 +155,10 @@ class Launch_menu_controller:
         self.confirm_action_menu.get_event_vertical(event)
 
     def get_event_launch_battle_confirm(self, event):
+        
+        """
+        Handles user input in the "launch_battle_confirm" menu.
+        """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit\
                 or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
@@ -141,6 +171,9 @@ class Launch_menu_controller:
         self.confirm_action_menu.get_event_vertical(event)
 
     def get_event_quit(self, event):
+        """
+        Handles user input in the "quit" menu.
+        """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit or\
                 pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:

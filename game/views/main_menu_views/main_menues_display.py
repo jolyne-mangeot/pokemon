@@ -6,12 +6,18 @@ from game.models.menu_models.option_menu_model import Option_menu_model
 from game._all_paths_ import LANGUAGES_DICT, SCREEN_RESOLUTION_DICT
 
 class Main_menues_display(Display):
+    """
+        Class for managing the main menus display. It includes the title menu, preferences menu, and load menu.
+    """
     def init_main_menu_display(self):
         Display.__init__(self)
         self.init_root_variables_main_menu()
         self.load_graphics_main_menues()
     
     def init_root_variables_main_menu(self):
+        """
+            Sets up initial variables for title menu, preferences menu, and load menu
+        """
 
         self.title_menu_variables : tuple = (
             self.width*0.25, self.height*0.4, self.height*0.1
@@ -58,6 +64,9 @@ class Main_menues_display(Display):
         )
 
     def init_render_option_preferences_menu(self):
+        """
+            Generates the options for the preferences menu based on the current settings
+        """
         options = [
             self.dialogs['sfx volume'] + str(self.settings_in_preferences['sfx_volume']),
             self.dialogs['music volume'] + str(self.settings_in_preferences['music_volume']),
@@ -70,6 +79,9 @@ class Main_menues_display(Display):
         return options, next_list
 
     def init_render_option_load_menu(self):
+        """
+            Generates the options for the load menu based on available saved games
+        """
         options = [self.dialogs['new game']]
         next_list = ["new_game"]
         for player_save in self.player_saves_state:
@@ -84,6 +96,9 @@ class Main_menues_display(Display):
         return options, next_list
 
     def load_graphics_main_menues(self):
+        """
+            Loads and scales the graphics for the title, preferences, and load menus.
+        """
         self.titleimg=pg.image.load(self.GRAPHICS_PATH+"/media/"+"title screen.png")
         self.titleimg=pg.transform.scale(self.titleimg,(self.screen_width,self.screen_height))
 

@@ -4,12 +4,20 @@ from game.views.in_game_views.game_menues_display import Game_menues_display
 from game.models.menu_models.option_menu_model import Option_menu_model
 
 class Launch_menu_display(Game_menues_display):
+    """
+        The Launch_menu_display class is responsible for displaying and managing the in-game launch menu.
+        It inherits from Game_menues_display.
+    """
     def init_launch_menu_display(self):
         self.init_in_game_display()
         self.init_root_variables_launch_menu()
         self.init_menues_objects()
 
     def init_root_variables_launch_menu(self):
+        """
+            Initializes the root variables for the launch menu, including positions and dimensions 
+            for various menus such as confirm, main, and save menus.
+        """
 
         self.confirm_menu_variables : tuple = (
             self.width*0.5, self.height*0.5, self.height*0.09
@@ -53,6 +61,10 @@ class Launch_menu_display(Game_menues_display):
         return mini_images
     
     def init_menues_objects(self):
+        """
+            Initializes the menu objects used in the launch menu.
+            Each menu object is created with its corresponding variables and options.
+        """
         self.main_launch_menu = Option_menu_model(
             self.main_menu_variables,
             [
@@ -162,6 +174,9 @@ class Launch_menu_display(Game_menues_display):
         self.confirm_action_menu.draw_vertical_options()
 
     def draw_launch_menu_lost_game(self):
+        """
+            Draws the UI elements related to a lost game state, displaying messages about a lost save and how to delete it.
+        """
         self.blit_dialog(
             self.dialogs["lost save"],
             self.width*0.032,

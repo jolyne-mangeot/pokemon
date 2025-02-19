@@ -10,7 +10,15 @@ from game.models.pokemons.pokedex import Pokedex
 from game.models.pokemons.battle import Battle
 
 class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display, Launch_menu_controller):
+    """
+        The Launch_menu class manages the game's launch menu.
+        It handles menu initialization, updates, event handling, and launching battles.
+    """
+    
     def __init__(self):
+        """
+            Initializes the Launch_menu with default values.
+        """
         Models_controller.__init__(self)
         Game_menues_controller.__init__(self)
         self.back = "title_menu"
@@ -42,7 +50,7 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
 
     def startup(self):
         """
-            initiates all menu-related data
+           Initializes all menu-related configurations and settings.
         """
         self.init_config()
         self.init_in_launch_config()
@@ -66,6 +74,9 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
         pass
     
     def launch_battle(self):
+        """
+        Starts a new battle by selecting an enemy Pokémon based on the player's Pokedex.
+        """
         # if self.player_pokedex.encounters['done'] % 5 == 0:
         #     wild = False
         #     pass # trainer fight

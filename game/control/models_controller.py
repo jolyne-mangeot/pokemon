@@ -4,6 +4,11 @@ import abc
 from game.control.control import Control
 
 class Models_controller(Control, abc.ABC):
+    """
+    Base controller class for handling game models. 
+    This class serves as an abstract controller for managing different game states and interactions.
+    """
+
     player_pokedex = None
     new_battle = None
 

@@ -5,6 +5,10 @@ from game.models.menu_models.option_menu_model import Option_menu_model
 from game.models.menu_models.input_menu_model import Input_menu_model
 
 class New_game_display(Game_menues_display):
+    """
+        This class is responsible for displaying the New Game screen where the player can 
+        select their starter Pokémon and input their name.
+    """
     def init_new_game_display(self):
         self.display_init()
         self.init_root_variables_new_game()
@@ -13,6 +17,11 @@ class New_game_display(Game_menues_display):
         self.load_graphics_launch_menues()
 
     def init_root_variables_new_game(self):
+        """
+        Initializes root variables specifically for the New Game screen, such as positions
+        for player input and Pokémon choice.
+        """
+
         self.init_root_variables_in_game()
         
         self.player_input_variables : tuple = (
@@ -23,6 +32,9 @@ class New_game_display(Game_menues_display):
         )
 
     def init_menues_objects(self):
+        """
+        Initializes the menu objects for player name input and Pokémon selection.
+        """
         self.player_input = Input_menu_model(
             self.player_input_variables,
             self.dialogs["your name"]
@@ -34,6 +46,10 @@ class New_game_display(Game_menues_display):
         )
 
     def init_pokemon_starters_mini(self):
+        """
+        Loads mini-images of starter Pokémon, scales them to fit the display, 
+        and stores them in a list for later drawing
+        """
         self.pokemon_starters_image = []
         for pokemon in self.pokemon_starters:
             mini_image = pg.image.load(self.GRAPHICS_PATH + "pokemon/" + pokemon["entry"] + "/mini.png")
