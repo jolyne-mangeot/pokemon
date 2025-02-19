@@ -54,35 +54,13 @@ class In_battle_controller:
         self.animation_frame = 0
 
         match self.game_state:
-            case "player_attack":
-                self.animation_frame = 0
-            case "player_guard":
-                
-                self.animation_frame = 0
-
-            case "enemy_attack":
-                self.animation_frame = 0
-            case "enemy_guard":
-                
-                self.animation_frame = 0
-
-            case "catch_attempt":
-                pass
-                
-            case "switch_pokemon_confirmed":
-                pass
 
             case "run_away_attempt":
-                if self.battle.run_away():
-                    self.ran_away = True
-                    self.end_player_turn()
-                else:
-                    self.update_options("battle_stage")
-                    self.end_player_turn()
+                pass
 
     def start_game_scene(self, none=None):
         """
-        Handles player input in the battle stage.
+            Handles player input in the battle stage.
         """
         if not self.enemy_spawn_animation_done:
             if self.animate_spawn(False, False):
@@ -197,6 +175,20 @@ class In_battle_controller:
                         self.battle.enemy_pokemon.entry, 
                         self.battle.enemy_pokemon.experience_points
                     )
+                    self.update_battle_status()
+                else:
+                    self.end_player_turn()
+        else:
+            self.animation_frame +=1
+    
+    def run_away_attempt_scene(self, none=None):
+        if self.animation_frame == 45 and self.battle.wild:
+            self.ran_away = self.battle.run_away()
+        if self.run_away_animation():
+            if not self.battle.wild:
+                self.game_state = "player_turn"
+            else:
+                if self.ran_away:
                     self.update_battle_status()
                 else:
                     self.end_player_turn()

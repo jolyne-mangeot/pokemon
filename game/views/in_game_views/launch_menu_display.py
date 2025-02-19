@@ -32,7 +32,7 @@ class Launch_menu_display(Game_menues_display):
             self.width*0.75, self.height*0.45, self.height*0.15,
         )
         self.pokedex_menu_colors : tuple = (
-            None, (255,255,255), (43,250,250)
+            (255,255,255), (255,255,255)
         )
     
     def init_render_option_pokedex(self):
@@ -40,8 +40,8 @@ class Launch_menu_display(Game_menues_display):
         for pokemon in list(self.player_pokedex.pokemon_dict.keys()):
             entry = "#" + self.player_pokedex.pokemon_dict[pokemon]["entry"]
             name = self.dialogs[self.player_pokedex.pokemon_dict[pokemon]["name"]]
-            option = entry
-            while len(option) < 16:
+            option = entry + " "
+            while len(option) + len(name) < 17:
                 option += " "
             option += name
             options.append(option)
@@ -83,6 +83,7 @@ class Launch_menu_display(Game_menues_display):
         self.display_pokedex_menu = Option_menu_model(
             self.pokedex_menu_variables,
             self.init_render_option_pokedex(),
+            None,
             *self.pokedex_menu_colors,
             images=self.load_pokedex_mini_images()
         )
@@ -118,43 +119,99 @@ class Launch_menu_display(Game_menues_display):
     def draw_pokedex_menu(self):
         self.draw_pokedex_background()
         self.display_pokedex_menu.draw_list_options()
+        self.draw_pokedex_infos()
         self.draw_focused_pokemon()
+    
+    def draw_pokedex_infos(self):
+        selected_entry = self.player_pokedex.pokemon_dict[
+            list(self.player_pokedex.pokemon_dict.keys())[self.display_pokedex_menu.selected_index]
+        ]
+        self.screen.blit(
+            pg.transform.scale(
+                self.display_pokedex_menu.images[self.display_pokedex_menu.selected_index],
+                (self.width*0.25, self.width*0.25)
+            ),
+            (self.width*0.18, self.height*-abs(0.05))
+        )
+        self.blit_dialog(
+            "#" +\
+                selected_entry["entry"],
+            self.width*0.027, self.width*0.1, self.height*0.24,
+            "bottomleft", bold=True,
+        )
+        self.blit_dialog(
+            self.dialogs[selected_entry["name"]],
+            self.width*0.022, self.width*0.196, self.height*0.31,
+            bold=True,
+        )
+        self.blit_dialog(
+            self.dialogs["stat attack"] +\
+                str(selected_entry["base_attack"]),
+            self.width*0.022, self.width*0.06, self.height*0.36,
+            "bottomleft"
+        )
+        self.blit_dialog(
+            self.dialogs["stat defense"] +\
+                str(selected_entry["base_defence"]),
+            self.width*0.022, self.width*0.06, self.height*0.4,
+            "bottomleft"
+        )
+        self.blit_dialog(
+            self.dialogs["stat health points"] +\
+                str(selected_entry["base_health_points"]),
+            self.width*0.022, self.width*0.06, self.height*0.44,
+            "bottomleft"
+        )
     
     def draw_focused_pokemon(self):
         if self.focused_pokemon != None:
-            self.screen.blit(
-                self.display_pokedex_menu.images[int(self.focused_pokemon)-1],
-                (self.width*0.18, self.height*0.16)
-            )
             self.blit_dialog(
-                "#" +\
-                    self.player_pokedex.pokemon_dict[self.focused_pokemon]["entry"],
-                self.width*0.027, self.width*0.1, self.height*0.23,
-                "bottomleft", bold=True,
+                self.dialogs["focused pokemon"],
+                self.width*0.022, self.width*0.2, self.height*0.53,
+                "midbottom", (255,255,255), True
             )
             self.blit_dialog(
                 self.dialogs[self.player_pokedex.pokemon_dict[self.focused_pokemon]["name"]],
-                self.width*0.022, self.width*0.06, self.height*0.31,
-                "bottomleft", bold=True,
+                self.width*0.025, self.width*0.2, self.height*0.57,
+                "midbottom", (255,255,255), True
             )
-            self.blit_dialog(
-                self.dialogs["stat attack"] +\
-                    str(self.player_pokedex.pokemon_dict[self.focused_pokemon]["base_attack"]),
-                self.width*0.022, self.width*0.06, self.height*0.36,
-                "bottomleft", bold=True,
-            )
-            self.blit_dialog(
-                self.dialogs["stat defense"] +\
-                    str(self.player_pokedex.pokemon_dict[self.focused_pokemon]["base_defence"]),
-                self.width*0.022, self.width*0.06, self.height*0.4,
-                "bottomleft", bold=True,
-            )
-            self.blit_dialog(
-                self.dialogs["stat health points"] +\
-                    str(self.player_pokedex.pokemon_dict[self.focused_pokemon]["base_health_points"]),
-                self.width*0.022, self.width*0.06, self.height*0.45,
-                "bottomleft", bold=True,
-            )
+            if self.focused_pokemon == list(self.player_pokedex.pokemon_dict.keys())[self.display_pokedex_menu.selected_index]:
+                self.screen.blit(
+                    pg.transform.scale(
+                        self.display_pokedex_menu.images[int(self.focused_pokemon)-1],
+                        (self.width*0.25, self.width*0.25)
+                    ),
+                    (self.width*0.18, self.height*-abs(0.05))
+                )
+                self.blit_dialog(
+                    "#" +\
+                        self.player_pokedex.pokemon_dict[self.focused_pokemon]["entry"],
+                    self.width*0.027, self.width*0.1, self.height*0.24,
+                    "bottomleft", (248,112,48), bold=True,
+                )
+                self.blit_dialog(
+                    self.dialogs[self.player_pokedex.pokemon_dict[self.focused_pokemon]["name"]],
+                    self.width*0.022, self.width*0.196, self.height*0.31,
+                    color=(248,112,48), bold=True,
+                )
+                self.blit_dialog(
+                    self.dialogs["stat attack"] +\
+                        str(self.player_pokedex.pokemon_dict[self.focused_pokemon]["base_attack"]),
+                    self.width*0.022, self.width*0.06, self.height*0.36,
+                    "bottomleft", (240,176,120)
+                )
+                self.blit_dialog(
+                    self.dialogs["stat defense"] +\
+                        str(self.player_pokedex.pokemon_dict[self.focused_pokemon]["base_defence"]),
+                    self.width*0.022, self.width*0.06, self.height*0.4,
+                    "bottomleft", (240,176,120)
+                )
+                self.blit_dialog(
+                    self.dialogs["stat health points"] +\
+                        str(self.player_pokedex.pokemon_dict[self.focused_pokemon]["base_health_points"]),
+                    self.width*0.022, self.width*0.06, self.height*0.44,
+                    "bottomleft", (240,176,120)
+                )
 
     def draw_manage_team_menu(self):
         self.manage_team_menu.draw_picked_options()

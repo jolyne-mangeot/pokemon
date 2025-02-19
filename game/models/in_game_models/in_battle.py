@@ -123,7 +123,7 @@ class In_battle(
                     self.beat_animation_done = False
         match end_of_battle:
             case "enemy_caught":
-                if len(self.battle.player_team) > 6:
+                if len(self.battle.player_team) > 5:
                     self.team_full = True
                     self.update_turn("player_turn")
                     self.update_options("display_team")

@@ -58,6 +58,7 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
         self.check_game_status()
         self.update_options()
         self.pressed_keys = None
+        self.focused_found = False
 
     def update(self):
         """
@@ -71,6 +72,7 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
         """
             cleans up all menu related data
         """
+        self.focused_found = False
         pass
     
     def launch_battle(self):
@@ -86,6 +88,11 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
         wild = True
         battle_biome = self.player_pokedex.battle_biomes[random.choice(list(self.player_pokedex.battle_biomes.keys()))]
         enemy_entry = random.choice(battle_biome["pokemons"])
+        if self.focused_pokemon != None:
+            if random.randint(0,100) > 60:
+                enemy_entry = self.focused_pokemon
+                self.focused_found = True
+                self.focused_pokemon = None
         encounter = {
             "active_team": {
                 "pokemon_1": {
@@ -95,5 +102,6 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
             }
         }
         enemy_team = Pokedex(encounter)
-        enemy_team.check_evolutions()
+        if not self.focused_found:
+            enemy_team.check_evolutions()
         Models_controller.new_battle = Battle(self.player_pokedex, enemy_team, Pokedex.types_chart, Pokedex.pokemon_dict, battle_biome, wild)
