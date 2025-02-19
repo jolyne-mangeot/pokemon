@@ -1,19 +1,15 @@
 {
-    "player": "test",
+    "player": "",
     "save": "1",
     "encounters": {
-        "done": 2,
+        "done": 0,
         "won": 0,
         "lost": 0
     },
     "active_team": {
         "pokemon_1": {
-            "entry": "0004",
-            "experience_points": 331.0
-        },
-        "pokemon_2": {
-            "entry": "0025",
-            "experience_points": 117
+            "entry": "0001",
+            "experience_points": 125
         }
     }
 }

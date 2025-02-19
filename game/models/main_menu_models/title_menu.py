@@ -63,4 +63,4 @@ class Title_menu(
         icon = pg.transform.scale (sicon, (250,250))
         self.draw_title_screen()
         self.title_menu.draw_vertical_options()
-        self.screen.blit(icon, (0,0))
+        self.screen.blit(icon, (0,self.height*0.6))
