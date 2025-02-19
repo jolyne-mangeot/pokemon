@@ -35,17 +35,20 @@ class Game_menues_display(Display):
     
     def load_graphics_combat(self):
         self.text_box_empty=pg.image.load(self.GRAPHICS_PATH+"/media/"+"textbox pre combat.png")
-        self.text_box_empty=pg.transform.scale(self.text_box_empty, (self.screen_width,self.screen_height/4))
+        self.text_box_empty=pg.transform.scale(self.text_box_empty, (self.screen_width,self.screen_height*0.35))
 
         self.action_bg_img=pg.image.load(self.GRAPHICS_PATH+"/media/"+"pkmn choice bg.png")
         self.action_bg_img=pg.transform.scale(self.action_bg_img,(self.screen_width,self.screen_height))
 
+        self.action_box=pg.image.load(self.GRAPHICS_PATH+"/media/"+"textbox_combat.png")
+        self.action_box=pg.transform.scale(self.action_box,(self.screen_width, self.screen_height*0.35))
+
     def load_pkmn_info_box(self):
         self.pkmn_info_box_enemy=pg.image.load(self.GRAPHICS_PATH+"/media/"+"pkmn info enemy.png")
-        self.pkmn_info_box_enemy=pg.transform.scale(self.pkmn_info_box_enemy,(self.screen_width*0.1,self.screen_height*0.1))
+        self.pkmn_info_box_enemy=pg.transform.scale(self.pkmn_info_box_enemy,(self.screen_width*0.43,self.screen_height*0.23))
 
         self.pkmn_info_box_player=pg.image.load(self.GRAPHICS_PATH+"/media/"+"pkmn info player.png")
-        self.pkmn_info_box_player=pg.transform.scale(self.pkmn_info_box_player,(self.screen_width*0.1,self.screen_height*0.1))
+        self.pkmn_info_box_player=pg.transform.scale(self.pkmn_info_box_player,(self.screen_width*0.43,self.screen_height*0.23))
 
 
     def load_graphics_launch_menues(self):
@@ -53,7 +56,7 @@ class Game_menues_display(Display):
         self.launch_menu_img=pg.transform.scale(self.launch_menu_img, (self.screen_width,self.screen_height))
 
         self.pkmn_frame_img=pg.image.load(self.GRAPHICS_PATH+"/media/"+"pkmn frame.png")
-        self.pkmn_frame_img=pg.transform.scale(self.pkmn_frame_img, (self.screen_width,self.screen_height))
+        self.pkmn_frame_img=pg.transform.scale(self.pkmn_frame_img, (self.width*0.2, self.width*0.2))
 
 
         self.action_bg_img=pg.image.load(self.GRAPHICS_PATH+"/media/"+"pkmn choice bg.png")
@@ -80,6 +83,10 @@ class Game_menues_display(Display):
     def draw_dialogue_box(self):
         self.text_box_empty=pg.transform.scale(self.text_box_empty, (self.screen_width,self.screen_height*0.35))
         self.screen.blit(self.text_box_empty,(0,self.screen_height*0.65))
+    
+    def draw_action_box(self):
+        self.action_box=pg.transform.scale(self.action_box,(self.screen_width, self.screen_height*0.35))
+        self.screen.blit(self.action_box(0,self.screen_height*0.65))
 
     def draw_pkmn_info_box_enemy(self):
         self.pkmn_info_box_enemy=pg.transform.scale(self.pkmn_info_box_enemy,(self.screen_width*0.43,self.screen_height*0.23))
