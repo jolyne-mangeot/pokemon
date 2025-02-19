@@ -35,7 +35,7 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
     def launch_battle(self):
         # if self.player_pokedex.encounters['done'] % 5 == 0:
         #     wild = False
-        #     pass #combat dresseur
+        #     pass # trainer fight
         # else:
         battle_level = ((self.player_pokedex.average_level*0.9) ** 3, 
                         (self.player_pokedex.average_level*1.1) ** 3)

@@ -17,7 +17,7 @@ class Display(Control):
         self.pixel_font_pokemon_infos = pg.font.Font(self.POKEMON_CLASSIC_PATH, int(self.width*0.022))
         self.pixel_font_menu_deselected = pg.font.Font(self.POKEMON_CLASSIC_PATH, int(self.width*0.022))
         self.pixel_font_menu_selected = pg.font.Font(self.POKEMON_CLASSIC_PATH, int(self.width*0.025))
-    
+
     def blit_dialog(self, dialog : str, size : int, from_left, from_top, placement_origin : str = "midbottom", color : tuple=(0,0,0), bold : bool=False):
         font = pg.font.Font(self.POKEMON_CLASSIC_PATH, int(size))
         font.set_bold(bold)

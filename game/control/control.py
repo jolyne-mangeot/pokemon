@@ -3,9 +3,6 @@ import pygame as pg
 from game.control.settings import Settings
 
 class Control(Settings):
-    def __init__(self):
-        pass
-
     def init_settings(self):
         """
             load game settings and init essential data related to Pygame
@@ -22,7 +19,6 @@ class Control(Settings):
         self.screen = pg.display.set_mode((self.screen_width, self.screen_height))
         self.screen_rect = self.screen.get_rect()
         self.clock = pg.time.Clock()
-        # Display.__init__(self)
 
     def setup_states(self, STATE_DICT, start_state):
         """

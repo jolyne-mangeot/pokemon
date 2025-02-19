@@ -57,7 +57,7 @@ class In_battle(
         self.init_config()
         self.battle = Models_controller.new_battle
         self.init_in_battle_display(self.battle.wild)
-        self.init_in_game_sounds()
+        self.init_in_battle_sounds()
         self.not_put_out_pokemons : list = self.battle.player_team.copy()
         self.put_out_pokemons : list = [self.not_put_out_pokemons.pop(0)]
         self.enemy_active_index = 0

@@ -73,12 +73,15 @@ class In_battle_controller:
     def start_game_scene(self, none=None):
         if not self.enemy_spawn_animation_done:
             if self.animate_spawn(False, False):
+                self.play_enemy_pokemon_cry()
                 self.enemy_spawn_animation_done = True
                 self.animation_frame = 0
             else:
                 self.animation_frame +=1
         elif not self.player_spawn_animation_done:
             if self.animate_spawn(True, True):
+                self.in_game_actions_sounds["pokemon out"].play()
+                self.play_active_pokemon_cry()
                 self.player_spawn_animation_done = True
                 self.animation_frame = 0
             else:
@@ -94,6 +97,12 @@ class In_battle_controller:
                 self.animation_frame +=1
                 if self.animation_frame == 60:
                     self.efficiency = self.battle.attack(True)
+                    if self.efficiency >= 2:
+                        self.in_game_actions_sounds["hit very effective"].play()
+                    elif self.efficiency >=0.5:
+                        self.in_game_actions_sounds["hit not very effective"].play()
+                    else:
+                        self.in_game_actions_sounds["hit non effective"].play()
         else:
             if self.animate_attack(False):
                 self.end_enemy_turn()
@@ -101,6 +110,12 @@ class In_battle_controller:
                 self.animation_frame +=1
                 if self.animation_frame == 60:
                     self.efficiency = self.battle.attack(False)
+                    if self.efficiency >= 2:
+                        self.in_game_actions_sounds["hit very effective"].play()
+                    elif self.efficiency >=0.5:
+                        self.in_game_actions_sounds["hit not very effective"].play()
+                    else:
+                        self.in_game_actions_sounds["hit non effective"].play()
     
     def pokemon_guard_scene(self, guarding="player_guard"):
         if guarding == "player_guard":
@@ -124,6 +139,8 @@ class In_battle_controller:
             if not self.remove_animation_done:
                 if self.forced_switch or self.animate_remove():
                     self.battle.spawn_pokemon(self.chosen_pokemon, True)
+                    self.in_game_actions_sounds["pokemon out"].play()
+                    self.play_active_pokemon_cry()
                     self.remove_animation_done = True
                     self.animation_frame = 0
                 else:
@@ -156,6 +173,8 @@ class In_battle_controller:
     def catch_attempt_scene(self, none=None):
         if self.animation_frame == 150 and self.battle.wild:
             self.caught = self.battle.catch_attempt()
+            if self.caught:
+                self.in_battle_musics["caught pokemon"].play()
         if self.animate_catch_attempt():
             if not self.battle.wild:
                 self.game_state = "player_turn"

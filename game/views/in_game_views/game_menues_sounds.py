@@ -7,103 +7,50 @@ class Game_menues_sounds(Sounds):
         Sounds.__init__(self)
         self.init_sounds()
         self.init_pokemons_cry()
-        pass
 
     def init_pokemons_cry(self):
         for pokemon in self.player_pokedex.player_team:
             cry_path : str = self.GRAPHICS_PATH + "pokemon/" + pokemon.entry + "/cry.ogg"
             pokemon.sound = pg.mixer.Sound(cry_path)
             pokemon.sound.set_volume(0.1*self.sfx_volume)
+    
+    def init_enemy_pokemons_cry(self):
+        for pokemon in self.battle.enemy_team:
+            cry_path : str = self.GRAPHICS_PATH + "pokemon/" + pokemon.entry + "/cry.ogg"
+            pokemon.sound = pg.mixer.Sound(cry_path)
+            pokemon.sound.set_volume(0.1*self.sfx_volume)
 
     def init_in_battle_sounds(self):
         self.init_in_game_sounds()
-        self.init_actions_sounds()
+        self.init_enemy_pokemons_cry()
+        self.init_battle_actions_sounds()
+        self.init_battle_music()
     
-    def init_actions_sounds(self):
-        self.level_up_sound = pg.mixer.Sound(self.SFX_PATH + "level_up.mp3")
-        self.level_up2_sound = pg.mixer.Sound(self.SFX_PATH + "RBY_level_up.mp3")
-
-        self.caught_pokemon_sound = pg.mixer.Sound(self.SFX_PATH + "caught-a-pokemon.mp3")
-        self.recovery_sound = pg.mixer.Sound(self.SFX_PATH + "recovery.mp3")
-        self.bump_wall_sound = pg.mixer.Sound(self.SFX_PATH + "bump_wall.mp3")
-        self.battle_sound = pg.mixer.Sound(self.SFX_PATH + "batttle.mp3")
-        self.item_found_sound = pg.mixer.Sound(self.SFX_PATH + "RBY_item-found.mp3")
-        self.run_away_sound = pg.mixer.Sound(self.SFX_PATH + "run-away.mp3")
-        self.pokemon_out_sound = pg.mixer.Sound(self.SFX_PATH + "pokemon-out.mp3")
-        
-        self.evolve_sound = pg.mixer.Sound(self.SFX_PATH + "evolve.mp3")
-        self.evolving_theme_sound = pg.mixer.Sound(self.SFX_PATH + "evolving.mp3")
+    def init_battle_music(self):
+        self.in_battle_musics = {
+            "caught pokemon" : pg.mixer.Sound(self.SFX_PATH + "caught-a-pokemon.mp3"),
+            "battle music" : pg.mixer.Sound(self.SFX_PATH + "battle.mp3"),
+        }
+        for sound in list(self.in_battle_musics.keys()):
+            self.in_battle_musics[sound].set_volume(0.1*self.music_volume)
+        self.in_battle_musics["pokemon out"].set_volume(0.03*self.music_volume)
     
-
-        self.Stat_Raise_Fell_sound = pg.mixer.Sound(self.SFX_PATH + "Stat_Raise_Fell.mp3")
-        self.low_hp_pokemon_sound = pg.mixer.Sound(self.SFX_PATH + "low_hp_pokemon.mp3")
-       
-        self.hit_weak_not_very_effective_sound = pg.mixer.Sound(self.SFX_PATH + "hit_weak_not_very_effective.mp3")
-        self.hit_super_effective_sound = pg.mixer.Sound(self.SFX_PATH + "hit_super_effective.mp3 ")
-
-
-
-    def play_hit_weak_not_very_effective_sound(self):
-        self.hit_weak_not_very_effective_sound.play()   
-    
-    def play_hit_super_effective_sound(self):
-        self.hit_super_effective_sound.play()
-
-    
-
-    def play_caught_pokemon_sound(self):
-        self.caught_pokemon_sound.play()
-
-    def play_recovery_sound(self):
-        self.recovery_sound.play()
-
-    def play_bump_wall_sound(self):
-        self.bump_wall_sound.play()
-        
-    def play_battle_sound(self):
-        self.battle_sound.play()
-
-    def play_item_found_sound(self):
-        self.item_found_sound.play()
-
-    def play_run_away_sound(self):
-        self.run_away_sound.play()
-
-    def play_pokemon_out_sound(self):
-        self.pokemon_out_sound.play()
-
-    def play_evolving_theme_sound(self):
-        self.evolving_theme_sound.play() 
-
-    def play_evolve_sound(self):
-        self.evolve_sound.play()
-
-        
-  
-    def play_Stat_Raise_Fell_sound(self):
-        self.Stat_Raise_Fell_sound.play()
-
-    def play_low_hp_pokemon_sound(self):
-        self.low_hp_pokemon_sound.play()
-    
-
-    def play_active_pokemon_cry(self):
-        self.battle.active_pokemon.sound.play()
-
-
-    
-
-    #     # self.sound_path = f"pokemon/assets/graphics/media/pokemon/{pokemon_entry}/cry.ogg"
-        
-
-    #     if os.path.exists(self.sound_path):
-    #         self.sound = pg.mixer.Sound(self.sound_path)
-    #         self.sound.set_volume(0.7)
-    #     else:
-    #         self.sound = None
-    #         print(f"Sound file not Found: {self.sound_path}")
-    # def play(self):
-    #     if self.sound:
-    #         self.sound.play()
-    #     else:
-    #         print("Error: Sound non loaded.")
+    def init_battle_actions_sounds(self):
+        self.in_game_actions_sounds = {
+            "levelup" : pg.mixer.Sound(self.SFX_PATH + "level_up.mp3"),
+            "RBY levelup" : pg.mixer.Sound(self.SFX_PATH + "RBY_level-up.mp3"),
+            "health recovery" : pg.mixer.Sound(self.SFX_PATH + "recovery.mp3"),
+            "RBY item found" : pg.mixer.Sound(self.SFX_PATH + "RBY_item-found.mp3"),
+            "run away" : pg.mixer.Sound(self.SFX_PATH + "run-away.mp3"),
+            "pokemon out" : pg.mixer.Sound(self.SFX_PATH + "pokemon-out.mp3"),
+            "evolve" : pg.mixer.Sound(self.SFX_PATH + "evolve.mp3"),
+            "evolving" : pg.mixer.Sound(self.SFX_PATH + "evolving.mp3"),
+            # "stat raise" : pg.mixer.Sound(self.SFX_PATH + "Stat_Raise_Fell.mp3"),
+            "low health" : pg.mixer.Sound(self.SFX_PATH + "low_hp_pokemon.mp3"),
+            "hit no effective" : pg.mixer.Sound(self.SFX_PATH + "hit_no_effective.mp3"),
+            "hit not very effectivd" : pg.mixer.Sound(self.SFX_PATH + "hit_weak_not_very_effective.mp3"),
+            "hit very effective" : pg.mixer.Sound(self.SFX_PATH + "hit_super_effective.mp3 ")
+        }
+        for sound in list(self.in_game_actions_sounds.keys()):
+            self.in_game_actions_sounds[sound].set_volume(0.1*self.sfx_volume)
+        self.in_game_actions_sounds["pokemon out"].set_volume(0.03*self.sfx_volume)
