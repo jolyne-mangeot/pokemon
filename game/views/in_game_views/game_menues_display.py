@@ -73,6 +73,10 @@ class Game_menues_display(Display):
         self.action_bg_img=pg.image.load(self.GRAPHICS_PATH+"/media/"+"pkmn choice bg.png")
         self.action_bg_img=pg.transform.scale(self.action_bg_img,(self.width,self.height))
 
+        self.action_box=pg.image.load(self.GRAPHICS_PATH+"/media/"+"textbox_combat.png")
+        self.action_box=pg.transform.scale(self.action_box,(self.width, self.height*0.35))
+
+        
     def load_pkmn_info_box(self):
         self.pkmn_info_box_enemy=pg.image.load(self.GRAPHICS_PATH+"/media/"+"pkmn info enemy.png")
         self.pkmn_info_box_enemy=pg.transform.scale(self.pkmn_info_box_enemy,(self.width*0.47,self.height*0.23))
@@ -80,12 +84,17 @@ class Game_menues_display(Display):
         self.pkmn_info_box_player=pg.image.load(self.GRAPHICS_PATH+"/media/"+"pkmn info player.png")
         self.pkmn_info_box_player=pg.transform.scale(self.pkmn_info_box_player,(self.width*0.47,self.height*0.23))
 
+        self.action_box=pg.image.load(self.GRAPHICS_PATH+"/media/"+"textbox_combat.png")
+        self.action_box=pg.transform.scale(self.action_box,(self.width, self.height*0.35))
+
+
     def load_graphics_launch_menues(self):
         self.launch_menu_img=pg.image.load(self.GRAPHICS_PATH+"/media/"+"launch screen.png")
         self.launch_menu_img=pg.transform.scale(self.launch_menu_img, (self.width,self.height))
 
         self.pkmn_frame_img=pg.image.load(self.GRAPHICS_PATH+"/media/"+"pkmn frame.png")
         self.pkmn_frame_img=pg.transform.scale(self.pkmn_frame_img, (self.width*0.2, self.width*0.2))
+
 
         self.action_bg_img=pg.image.load(self.GRAPHICS_PATH+"/media/"+"pkmn choice bg.png")
         self.action_bg_img=pg.transform.scale(self.action_bg_img,(self.width,self.height))
@@ -103,6 +112,12 @@ class Game_menues_display(Display):
     
     def draw_pkmn_frame(self,x:int, y:int):
         self.screen.blit(self.pkmn_frame_img,(x,y))
+
+    def draw_name_frame(self,x:int, y:int, width:int, height:int):
+        self.name_frame_img=pg.transform.scale(self.pkmn_frame_img, (width,height))
+        self.screen.blit(self.name_frame_img,(x,y))
+    
+    
     
     def draw_team_select_img(self):
         self.team_select_img=pg.transform.scale(self.team_select_img, (self.width,self.height))
@@ -118,7 +133,12 @@ class Game_menues_display(Display):
         self.screen.blit(self.pokeball_caught_img, (self.width*0.72, self.height*0.26))
 
     def draw_dialogue_box(self):
+        self.text_box_empty=pg.transform.scale(self.text_box_empty, (self.width,self.height*0.35))
         self.screen.blit(self.text_box_empty,(0,self.height*0.65))
+    
+    def draw_action_box(self):
+        self.action_box=pg.transform.scale(self.action_box,(self.width*0.22, self.height*0.4))
+        self.screen.blit(self.action_box,(self.width*0.687,self.height*0.62))
 
     def draw_pkmn_info_box_enemy(self):
         self.screen.blit(self.pkmn_info_box_enemy,(self.width*0.05,0))

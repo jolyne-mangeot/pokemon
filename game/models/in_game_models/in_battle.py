@@ -138,7 +138,6 @@ class In_battle(
         self.draw()
     
     def draw(self):
-        self.screen.fill((0,0,0))
         self.draw_action_background()
         try:
             self.game_state_dict[self.game_state](self.game_state)
@@ -151,4 +150,5 @@ class In_battle(
                 self.draw_pokemons()
                 self.draw_pokemons_infos()
             self.draw_dialogue_box()
+            
             self.draw_options_menu()

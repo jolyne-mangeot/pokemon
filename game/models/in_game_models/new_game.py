@@ -71,6 +71,7 @@ class New_game(
         self.draw_action_background()
         match self.menu_state:
             case "player_input":
+                self.draw_name_frame(self.width*0.188,self.height*0.475,self.width*0.62,self.height*0.07)
                 self.player_input.draw_input()
             case "pokemon_choice":
                 self.pokemon_choice.draw_horizontal_options()
