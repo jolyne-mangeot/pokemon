@@ -88,6 +88,12 @@ class Game_menues_display(Display):
     
     def draw_pkmn_frame(self,x:int, y:int):
         self.screen.blit(self.pkmn_frame_img,(x,y))
+
+    def draw_name_frame(self,x:int, y:int, width:int, height:int):
+        self.name_frame_img=pg.transform.scale(self.pkmn_frame_img, (width,height))
+        self.screen.blit(self.name_frame_img,(x,y))
+    
+    
     
     def draw_team_select_img(self):
         self.team_select_img=pg.transform.scale(self.team_select_img, (self.width,self.height))
