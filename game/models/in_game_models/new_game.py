@@ -9,16 +9,13 @@ from game.models.pokemons.pokedex import Pokedex
 
 pg.font.init()
 
-class New_game(Models_controller, Game_menues_controller, New_game_controller, New_game_display):
+class New_game(
+    Models_controller, Game_menues_controller, 
+    New_game_controller, New_game_display):
+
     def __init__(self):
         Models_controller.__init__(self)
         Game_menues_controller.__init__(self)
-
-    def cleanup(self):
-        """
-            cleans up all menu related data
-        """
-        pass
 
     def startup(self):
         """
@@ -34,6 +31,12 @@ class New_game(Models_controller, Game_menues_controller, New_game_controller, N
         self.init_new_game_display()
         self.menu_state : str = "player_input"
         self.update_options()
+
+    def cleanup(self):
+        """
+            cleans up all menu related data
+        """
+        pass
 
     def get_event(self, event):
         """

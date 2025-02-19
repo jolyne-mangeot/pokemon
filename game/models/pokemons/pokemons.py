@@ -1,4 +1,5 @@
 class Pokemon:
+
     pokemon_dict = {}
     def __init__(self, pokedex_entry, experience_points):
         self.evolution_level = 100000000

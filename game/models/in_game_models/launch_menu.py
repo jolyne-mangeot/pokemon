@@ -13,14 +13,7 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
     def __init__(self):
         Models_controller.__init__(self)
         Game_menues_controller.__init__(self)
-        self.next = ""
         self.back = "title_menu"
-
-    def cleanup(self):
-        """
-            cleans up all menu related data
-        """
-        pass
 
     def startup(self):
         """
@@ -31,6 +24,12 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
         self.check_game_status()
         self.update_options()
         self.pressed_keys = None
+
+    def cleanup(self):
+        """
+            cleans up all menu related data
+        """
+        pass
     
     def launch_battle(self):
         # if self.player_pokedex.encounters['done'] % 5 == 0:

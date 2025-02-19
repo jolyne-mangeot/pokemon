@@ -39,17 +39,6 @@ class In_battle(
             "catch_attempt": self.catch_attempt_scene,
         }
 
-    def cleanup(self):
-        """
-        cleans up all menu related data
-        """
-        self.battle.player_pokedex.encounters["done"] +=1
-        self.battle.heal_all()
-    
-    def leave_battle(self):
-        self.next = "launch_menu"
-        self.done = True
-
     def startup(self):
         """
         initiates all menu related data
@@ -78,6 +67,17 @@ class In_battle(
         self.ran_away = False
         self.ran_away = False
         self.team_full = False
+
+    def cleanup(self):
+        """
+        cleans up all menu related data
+        """
+        self.battle.player_pokedex.encounters["done"] +=1
+        self.battle.heal_all()
+    
+    def leave_battle(self):
+        self.next = "launch_menu"
+        self.done = True
 
     def enemy_turn_action(self):
         if random.randint(0,100) > 40:

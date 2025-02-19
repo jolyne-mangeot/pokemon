@@ -11,13 +11,6 @@ class New_game_display(Game_menues_display):
         self.init_menues_objects()
         self.init_pokemon_starters_mini()
         self.load_graphics_launch_menues()
-    
-    def init_pokemon_starters_mini(self):
-        self.pokemon_starters_image = []
-        for pokemon in self.pokemon_starters:
-            mini_image = pg.image.load(self.GRAPHICS_PATH + "pokemon/" + pokemon["entry"] + "/mini.png")
-            mini_image = pg.transform.scale(mini_image, (self.width*0.5, self.width*0.42))
-            self.pokemon_starters_image.append(mini_image)
 
     def init_root_variables_new_game(self):
         self.init_root_variables_in_game()
@@ -37,12 +30,16 @@ class New_game_display(Game_menues_display):
         options = [self.dialogs[pokemon["name"]] for pokemon in self.pokemon_starters]
         self.pokemon_choice = Option_menu_model(
             self.pokemon_choice_variables,
-            options
+            options, (0,0,0), (43,255,255)
         )
-        self.pokemon_choice.update_colors(
-            (0,0,0), (43,255,255)
-        )
-    
+
+    def init_pokemon_starters_mini(self):
+        self.pokemon_starters_image = []
+        for pokemon in self.pokemon_starters:
+            mini_image = pg.image.load(self.GRAPHICS_PATH + "pokemon/" + pokemon["entry"] + "/mini.png")
+            mini_image = pg.transform.scale(mini_image, (self.width*0.5, self.width*0.42))
+            self.pokemon_starters_image.append(mini_image)
+
     def draw_starter_pokemon(self):
         for index, image in enumerate(self.pokemon_starters_image):
             self.draw_pkmn_frame(self.width/6 + index*self.width*0.24, self.height*0.3)

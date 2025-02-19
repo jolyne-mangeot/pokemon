@@ -6,7 +6,10 @@ from game.control.main_game_controllers.main_menues_controller import Main_menue
 
 from game.models.pokemons.pokedex import Pokedex
 
-class Load_menu(Models_controller, Main_menues_controller, Main_menues_display):
+class Load_menu(
+    Models_controller, Main_menues_controller, 
+    Main_menues_display):
+
     def __init__(self):
         """
             inits values specific to the menu such as navigation and
@@ -14,12 +17,6 @@ class Load_menu(Models_controller, Main_menues_controller, Main_menues_display):
         """
         Models_controller.__init__(self)
         Main_menues_controller.__init__(self)
-
-    def cleanup(self):
-        """
-            cleans up all menu related data
-        """
-        pass
 
     def startup(self):
         """
@@ -29,6 +26,12 @@ class Load_menu(Models_controller, Main_menues_controller, Main_menues_display):
         self.init_main_menu_display()
         self.player_saves_state = self.load_player_data()
         self.init_load_menu_object()
+
+    def cleanup(self):
+        """
+            cleans up all menu related data
+        """
+        pass
 
     def init_player_save(self):
         current_player = self.player_saves_state[self.load_menu.selected_index - 1]

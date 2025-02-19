@@ -4,7 +4,10 @@ from game.control.models_controller import Models_controller
 from game.views.main_menu_views.main_menues_display import Main_menues_display
 from game.control.main_game_controllers.main_menues_controller import Main_menues_controller
 
-class Title_menu(Models_controller, Main_menues_controller, Main_menues_display):
+class Title_menu(
+    Models_controller, Main_menues_controller, 
+    Main_menues_display):
+    
     def __init__(self):
         """
             inits values specific to the menu such as navigation and
@@ -13,12 +16,6 @@ class Title_menu(Models_controller, Main_menues_controller, Main_menues_display)
         Models_controller.__init__(self)
         Main_menues_controller.__init__(self)
 
-    def cleanup(self):
-        """
-            cleans up all menu related data
-        """
-        pass
-
     def startup(self):
         """
             initiates all menu-related data
@@ -26,6 +23,12 @@ class Title_menu(Models_controller, Main_menues_controller, Main_menues_display)
         self.init_config()
         self.init_main_menu_display()
         self.init_title_menu_object()
+
+    def cleanup(self):
+        """
+            cleans up all menu related data
+        """
+        pass
 
     def get_event(self, event):
         """

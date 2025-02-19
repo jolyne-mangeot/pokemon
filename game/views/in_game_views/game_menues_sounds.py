@@ -19,6 +19,12 @@ class Game_menues_sounds(Sounds):
             cry_path : str = self.GRAPHICS_PATH + "pokemon/" + pokemon.entry + "/cry.ogg"
             pokemon.sound = pg.mixer.Sound(cry_path)
             pokemon.sound.set_volume(0.1*self.sfx_volume)
+    
+    def play_enemy_pokemon_cry(self):
+        self.battle.enemy_pokemon.sound.play()
+
+    def play_active_pokemon_cry(self):
+        self.battle.active_pokemon.sound.play()
 
     def init_in_battle_sounds(self):
         self.init_in_game_sounds()
@@ -33,7 +39,6 @@ class Game_menues_sounds(Sounds):
         }
         for sound in list(self.in_battle_musics.keys()):
             self.in_battle_musics[sound].set_volume(0.1*self.music_volume)
-        self.in_battle_musics["pokemon out"].set_volume(0.03*self.music_volume)
     
     def init_battle_actions_sounds(self):
         self.in_game_actions_sounds = {

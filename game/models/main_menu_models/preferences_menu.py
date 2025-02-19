@@ -6,7 +6,10 @@ from game.control.main_game_controllers.main_menues_controller import Main_menue
 
 from game._all_paths_ import LANGUAGES_DICT, SCREEN_RESOLUTION_DICT
 
-class Preferences_menu(Models_controller, Main_menues_controller, Main_menues_display):
+class Preferences_menu(
+    Models_controller, Main_menues_controller, 
+    Main_menues_display):
+    
     def __init__(self):
         """
             states all navigation paths and options to create buttons for,
@@ -14,12 +17,6 @@ class Preferences_menu(Models_controller, Main_menues_controller, Main_menues_di
         """
         Models_controller.__init__(self)
         Main_menues_controller.__init__(self)
-    
-    def cleanup(self):
-        """
-            cleans up all menu related data
-        """
-        pass
 
     def startup(self):
         """
@@ -29,6 +26,12 @@ class Preferences_menu(Models_controller, Main_menues_controller, Main_menues_di
         self.init_main_menu_display()
         self.settings_in_preferences = self.settings.copy()
         self.init_preferences_menu_object()
+    
+    def cleanup(self):
+        """
+            cleans up all menu related data
+        """
+        pass
 
     def get_event(self, event):
         """
