@@ -23,11 +23,11 @@
 
     "save menu" : "Menu de sauvegarde",
 
-    "attack" : "Attaquer",
-    "guard" : "Defendre",
-    "team" : "Equipe",
-    "items" : "Objets",
-    "run away" : "fuir",
+    "attack" : "ATTAQUE",
+    "guard" : "DEFENSE",
+    "team" : "EQUIPE",
+    "items" : "OBJETS",
+    "run away" : "FUIR",
 
     "wild" : " sauvage",
     "lvl" : "Nv",

@@ -17,13 +17,13 @@ class In_battle_display(Game_menues_display):
         self.init_root_variables_in_game()
 
         self.battle_stage_menu_variables : tuple = (
-            self.width*0.8, self.height*0.72, 38
+            self.width*0.8, self.height*0.69, 38
         )
         self.confirm_menu_variables : tuple = (
             self.width*0.8, self.height*0.83, 42
         )
         self.display_team_variables : tuple = (
-            self.width*0.3, self.height*0.74, 40
+            self.width*0.3, self.height*0.74, 30
         )
         self.game_dialog_variables : tuple =(
             self.width*0.024,
@@ -102,32 +102,32 @@ class In_battle_display(Game_menues_display):
                 self.dialogs["run away"]
             ],
             ["", "", "display_team", "display_items", "run_away"],
-            deselected_color=(255,255,255),
-            selected_color=(255,255,255)
+            deselected_color=(0,0,0),
+            selected_color=(48,84,109)
         )
         self.confirm_action_menu = Option_menu_model(
             self.confirm_menu_variables,
             [self.dialogs["yes"], self.dialogs["no"]],
             deselected_color=(255,255,255),
-            selected_color=(255,255,255)
+            selected_color=(248,232,0)
         )
         self.display_items_menu = Option_menu_model(
             self.display_team_variables,
             ["pokeball", "potion", self.dialogs["back"]],
             deselected_color=(255,255,255),
-            selected_color=(255,255,255)
+            selected_color=(248,232,0)
         )
         self.display_team_menu = Option_menu_model(
             self.display_team_variables,
             self.init_render_option_team(self.battle.player_team),
             deselected_color=(255,255,255),
-            selected_color=(255,255,255)
+            selected_color=(248,232,0)
         )
         self.select_pokemon_confirm_menu = Option_menu_model(
             self.confirm_menu_variables,
             [self.dialogs["no"], self.dialogs["yes"]],
             deselected_color=(255,255,255),
-            selected_color=(255,255,255)
+            selected_color=(248,232,0)
         )
 
     def enemy_pokemon_load(self):
@@ -210,6 +210,7 @@ class In_battle_display(Game_menues_display):
     def draw_options_menu(self):
         match self.options_states:
             case "battle_stage":
+                self.draw_action_box()
                 self.blit_dialog(
                     self.dialogs["what to do_1"] +\
                     self.battle.player_pokedex.player +\

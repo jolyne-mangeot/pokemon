@@ -36,11 +36,11 @@
     "what to do_2" : " do ?",
     "run away proceed" : "Try and run away ?",
 
-    "attack" : "Attack",
-    "guard" : "Guard",
-    "team" : "Team",
-    "items" : "Items",
-    "run away" : "run away",
+    "attack" : "ATTACK",
+    "guard" : "GUARD",
+    "team" : "TEAM",
+    "items" : "ITEMS",
+    "run away" : "RUN",
 
     "pokemon attack" : " attacks !",
     "effective 0" : "The attack does no damage.",
