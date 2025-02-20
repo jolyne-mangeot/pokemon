@@ -1,8 +1,9 @@
 import pygame as pg
 
 from game.views.display import Display
+from game.views.sounds import Sounds
 
-class Option_menu_model(Display):
+class Option_menu_model(Display, Sounds):
     """
         A class that represents an options menu model, inheriting from Display.   
     """
@@ -14,6 +15,7 @@ class Option_menu_model(Display):
          Initializes the menu with margins, a list of options, and optionally a next list.  
         """
         Display.__init__(self)
+        Sounds.__init__(self)
         self.from_left, self.from_top, self.spacer = margins
         self.options = options
         self.next_list = next_list
@@ -253,10 +255,12 @@ class Option_menu_model(Display):
         """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.up_keys:
+                self.effects_channel.play(self.menues_sounds["cursor move"])
                 self.change_selected_option(-1)
                 while self.options[self.selected_index] == "":
                     self.change_selected_option(-1)
             elif pg.key.name(event.key) in self.down_keys:
+                self.effects_channel.play(self.menues_sounds["cursor move"])
                 self.change_selected_option(1)
                 while self.options[self.selected_index] == "":
                     self.change_selected_option(1)
@@ -267,10 +271,12 @@ class Option_menu_model(Display):
         """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.left_keys:
+                self.effects_channel.play(self.menues_sounds["cursor move"])
                 self.change_selected_option(-1)
                 while self.options[self.selected_index] == "":
                     self.change_selected_option(-1)
             elif pg.key.name(event.key) in self.right_keys:
+                self.effects_channel.play(self.menues_sounds["cursor move"])
                 self.change_selected_option(1)
                 while self.options[self.selected_index] == "":
                     self.change_selected_option(1)
@@ -278,18 +284,22 @@ class Option_menu_model(Display):
     def get_event_chart(self, event):
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.up_keys:
+                self.effects_channel.play(self.menues_sounds["cursor move"])
                 self.change_selected_option(-2)
                 while self.options[self.selected_index] == "":
                     self.change_selected_option(-2)
             elif pg.key.name(event.key) in self.down_keys:
+                self.effects_channel.play(self.menues_sounds["cursor move"])
                 self.change_selected_option(2)
                 while self.options[self.selected_index] == "":
                     self.change_selected_option(2)
             elif pg.key.name(event.key) in self.left_keys:
+                self.effects_channel.play(self.menues_sounds["cursor move"])
                 self.change_selected_option(-1)
                 while self.options[self.selected_index] == "":
                     self.change_selected_option(-1)
             elif pg.key.name(event.key) in self.right_keys:
+                self.effects_channel.play(self.menues_sounds["cursor move"])
                 self.change_selected_option(1)
                 while self.options[self.selected_index] == "":
                     self.change_selected_option(1)

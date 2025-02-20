@@ -2,8 +2,8 @@ import pygame as pg
 
 class Launch_menu_controller:
     """
-    This class manages the launch menu of the game. It updates menu options, handles user input,
-     and manages game states.
+        This class manages the launch menu of the game. It updates menu options,
+        handles user input, and manages game states.
     """
     def update_options(self):
         """
@@ -58,11 +58,14 @@ class Launch_menu_controller:
             self.menu_state = "delete_save"
             self.update_options()
         elif event.type == pg.KEYDOWN:
-            if pg.key.name(event.key) in self.return_keys and not self.quit:
+            if pg.key.name(event.key) in self.return_keys\
+                    and not self.quit:
                 self.menu_state = "quit"
                 self.update_options()
             elif pg.key.name(event.key) in self.confirm_keys:
-                self.menu_state = self.main_launch_menu.next_list[self.main_launch_menu.selected_index]
+                
+                self.menu_state = self.main_launch_menu.next_list\
+                    [self.main_launch_menu.selected_index]
                 self.update_options()
         self.main_launch_menu.get_event_vertical(event)
 
@@ -72,26 +75,33 @@ class Launch_menu_controller:
         Allows switching Pokémon in the team.
         """
         if event.type == pg.KEYDOWN:
-            if pg.key.name(event.key) in self.return_keys and not self.quit:
+            if pg.key.name(event.key) in self.return_keys and\
+                    not self.quit:
                 self.menu_state = "main_launch_menu"
                 self.update_options()
             elif pg.key.name(event.key) in self.confirm_keys:
                 if type(self.manage_team_menu.picked_index) != int:
-                    self.manage_team_menu.picked_index = self.manage_team_menu.selected_index
+                    self.manage_team_menu.picked_index = \
+                    self.manage_team_menu.selected_index
                 else:
-                    self.player_pokedex.switch_pokemon(self.manage_team_menu.picked_index, self.manage_team_menu.selected_index)
+                    self.player_pokedex.switch_pokemon(
+                        self.manage_team_menu.picked_index,
+                        self.manage_team_menu.selected_index
+                    )
                     self.update_options()
                     self.manage_team_menu.picked_index = None
         self.manage_team_menu.get_event_vertical(event)
     
     def get_event_pokedex_menu(self, event):
         if event.type == pg.KEYDOWN:
-            if pg.key.name(event.key) in self.return_keys and not self.quit:
+            if pg.key.name(event.key) in self.return_keys and not\
+                    self.quit:
                 self.menu_state = "main_launch_menu"
                 self.update_options()
             elif pg.key.name(event.key) in self.confirm_keys:
                 selected_entry = self.player_pokedex.pokemon_dict[
-                    list(self.player_pokedex.pokemon_dict.keys())[self.display_pokedex_menu.selected_index]
+                    list(self.player_pokedex.pokemon_dict.keys())\
+                        [self.display_pokedex_menu.selected_index]
                 ]["entry"]
                 if self.focused_pokemon == selected_entry:
                     self.focused_pokemon = None
@@ -106,10 +116,12 @@ class Launch_menu_controller:
         """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit\
-                or pg.key.name(event.key) in self.confirm_keys and self.save_menu.selected_index == 2:
+                or pg.key.name(event.key) in self.confirm_keys and \
+                    self.save_menu.selected_index == 2:
                 self.menu_state = "main_launch_menu"
                 self.update_options()
-            elif pg.key.name(event.key) in self.confirm_keys and self.save_menu.selected_index in (0,1):
+            elif pg.key.name(event.key) in self.confirm_keys and \
+                    self.save_menu.selected_index in (0,1):
                 self.menu_state = "save_confirm"
                 self.update_options()
         self.save_menu.get_event_vertical(event)
@@ -119,8 +131,10 @@ class Launch_menu_controller:
         Handles user input in the "save_confirm" menu.
         """
         if event.type == pg.KEYDOWN:
-            if pg.key.name(event.key) in self.return_keys and not self.quit\
-                or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
+            if pg.key.name(event.key) in self.return_keys and\
+                    not self.quit\
+                or pg.key.name(event.key) in self.confirm_keys and\
+                    self.confirm_action_menu.selected_index == 1:
                 self.menu_state = "main_launch_menu"
                 self.update_options()
                 return None
@@ -137,8 +151,10 @@ class Launch_menu_controller:
         Allows user to confirm or cancel save deletion.
         """
         if event.type == pg.KEYDOWN:
-            if pg.key.name(event.key) in self.return_keys and not self.quit\
-                or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
+            if pg.key.name(event.key) in self.return_keys and\
+                    not self.quit\
+                or pg.key.name(event.key) in self.confirm_keys and\
+                    self.confirm_action_menu.selected_index == 1:
                 self.check_game_status()
                 self.update_options()
             if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
@@ -157,8 +173,10 @@ class Launch_menu_controller:
         Handles user input in the "launch_battle_confirm" menu.
         """
         if event.type == pg.KEYDOWN:
-            if pg.key.name(event.key) in self.return_keys and not self.quit\
-                or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
+            if pg.key.name(event.key) in self.return_keys and\
+                    not self.quit\
+                or pg.key.name(event.key) in self.confirm_keys and\
+                    self.confirm_action_menu.selected_index == 1:
                 self.menu_state = "main_launch_menu"
                 self.update_options()
             if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
@@ -173,11 +191,14 @@ class Launch_menu_controller:
         Handles user input in the "quit" menu.
         """
         if event.type == pg.KEYDOWN:
-            if pg.key.name(event.key) in self.return_keys and not self.quit or\
-                pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
+            if pg.key.name(event.key) in self.return_keys and\
+                    not self.quit or\
+                pg.key.name(event.key) in self.confirm_keys and\
+                    self.confirm_action_menu.selected_index == 1:
                 self.check_game_status()
                 self.update_options()
-            elif pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
+            elif pg.key.name(event.key) in self.confirm_keys and\
+                  self.confirm_action_menu.selected_index == 0:
                 self.next = "title_menu"
                 self.done = True
         self.confirm_action_menu.get_event_vertical(event)

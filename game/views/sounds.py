@@ -13,9 +13,15 @@ class Sounds(Control):
         self.MUSIC_PATH = MUSIC_PATH
         self.SFX_PATH = SFX_PATH
         self.GRAPHICS_PATH = GRAPHICS_PATH
+        self.init_sounds()
     
     def init_sounds(self):
         self.music_channel = pg.mixer.Channel(0)
         self.music_channel.set_volume(self.music_volume*0.1)
         self.effects_channel = pg.mixer.Channel(1)
         self.effects_channel.set_volume(self.sfx_volume*0.4)
+
+        self.menues_sounds : dict = {
+            "cursor move" : pg.mixer.Sound(self.SFX_PATH+"cursor move.wav"),
+            "confirm" : pg.mixer.Sound(self.SFX_PATH+"confirm sound.wav")
+        }
