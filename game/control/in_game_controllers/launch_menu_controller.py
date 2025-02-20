@@ -12,14 +12,14 @@ class Launch_menu_controller:
         match self.menu_state:
             case "manage_team":
                 self.manage_team_menu.update_options(
-                    self.init_render_option_team(self.player_pokedex.player_team, menu="launch_menu")
+                    self.init_render_option_team(self.player_pokedex.player_team, True)
                 )
                 self.manage_team_menu.pre_render()
                 self.manage_team_menu.picked_index = None
             case "save":
                 self.save_menu.selected_index = 0
             case "save_confirm" | "quit" | "delete_save" | "launch_battle_confirm":
-                self.confirm_action_menu.selected_index = 0
+                self.confirm_action_menu.selected_index = 1
             case "main_launch_menu" | _:
                 self.main_launch_menu.selected_index = 0
     
@@ -71,13 +71,10 @@ class Launch_menu_controller:
         Handles user input in the "manage_team" menu.
         Allows switching Pokémon in the team.
         """
-
         if event.type == pg.KEYDOWN:
-            if pg.key.name(event.key) in self.return_keys and not self.quit\
-                or pg.key.name(event.key) in self.confirm_keys and self.manage_team_menu.selected_index == len(self.manage_team_menu.options) - 1:
+            if pg.key.name(event.key) in self.return_keys and not self.quit:
                 self.menu_state = "main_launch_menu"
                 self.update_options()
-                return None
             elif pg.key.name(event.key) in self.confirm_keys:
                 if type(self.manage_team_menu.picked_index) != int:
                     self.manage_team_menu.picked_index = self.manage_team_menu.selected_index
@@ -123,11 +120,11 @@ class Launch_menu_controller:
         """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit\
-                or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
+                or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
                 self.menu_state = "main_launch_menu"
                 self.update_options()
                 return None
-            if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
+            if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
                 self.menu_state = "main_launch_menu"
                 self.update_options()
                 player_data = self.player_pokedex.compress_data(str(self.save_menu.selected_index + 1))
@@ -141,10 +138,10 @@ class Launch_menu_controller:
         """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit\
-                or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
+                or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
                 self.check_game_status()
                 self.update_options()
-            if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
+            if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
                 self.next = "title_menu"
                 self.done = True
                 if bool(self.player_pokedex.save):
@@ -161,13 +158,14 @@ class Launch_menu_controller:
         """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit\
-                or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
+                or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
                 self.menu_state = "main_launch_menu"
                 self.update_options()
-            if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
+            if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
                 self.next = "in_battle"
                 self.done = True
                 self.launch_battle()
+                self.music_channel.stop()
         self.confirm_action_menu.get_event_vertical(event)
 
     def get_event_quit(self, event):

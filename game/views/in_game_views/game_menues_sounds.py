@@ -10,6 +10,17 @@ class Game_menues_sounds(Sounds):
         Sounds.__init__(self)
         self.init_sounds()
         self.init_pokemons_cry()
+    
+    def init_game_menu_sounds(self):
+        Sounds.__init__(self)
+        self.init_sounds()
+        self.init_launch_menu_musics()
+    
+    def init_launch_menu_musics(self):
+        self.launch_menu_musics_dict : dict = {
+            "launch_menu" : pg.mixer.Sound(self.MUSIC_PATH + "launch_menu_sound_track.mp3"),
+            "launch_menu_night" : pg.mixer.Sound(self.MUSIC_PATH + "launch_menu_night_sound_track.wav"),
+        }
 
     def init_pokemons_cry(self):
         """
@@ -18,19 +29,19 @@ class Game_menues_sounds(Sounds):
         for pokemon in self.player_pokedex.player_team:
             cry_path : str = self.GRAPHICS_PATH + "pokemon/" + pokemon.entry + "/cry.ogg"
             pokemon.sound = pg.mixer.Sound(cry_path)
-            pokemon.sound.set_volume(0.4*self.sfx_volume)
+            pokemon.sound.set_volume(0.2*self.sfx_volume)
     
     def init_evolved_pokemon_cry(self):
         pokemon = self.battle.active_pokemon
         cry_path : str = self.GRAPHICS_PATH + "pokemon/" + pokemon.entry + "/cry.ogg"
         pokemon.sound = pg.mixer.Sound(cry_path)
-        pokemon.sound.set_volume(0.4*self.sfx_volume)
+        pokemon.sound.set_volume(0.2*self.sfx_volume)
     
     def init_enemy_pokemons_cry(self):
         for pokemon in self.battle.enemy_team:
             cry_path : str = self.GRAPHICS_PATH + "pokemon/" + pokemon.entry + "/cry.ogg"
             pokemon.sound = pg.mixer.Sound(cry_path)
-            pokemon.sound.set_volume(0.4*self.sfx_volume)
+            pokemon.sound.set_volume(0.2*self.sfx_volume)
     
     def play_enemy_pokemon_cry(self):
         self.battle.enemy_pokemon.sound.play()
@@ -57,8 +68,6 @@ class Game_menues_sounds(Sounds):
             "victory" : pg.mixer.Sound(self.MUSIC_PATH + "victory_sound_track.wav"),
             "evolving" : pg.mixer.Sound(self.MUSIC_PATH + "evolving_sound_track.mp3")
         }
-        for sound in list(self.in_battle_musics.keys()):
-            self.in_battle_musics[sound].set_volume(0.1*self.music_volume)
     
     def init_battle_actions_sounds(self):
         self.in_game_actions_sounds = {

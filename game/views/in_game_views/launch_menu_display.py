@@ -35,6 +35,7 @@ class Launch_menu_display(Game_menues_display):
             (255,255,255), (255,255,255)
         )
     
+    
     def init_render_option_pokedex(self):
         options = []
         for pokemon in list(self.player_pokedex.pokemon_dict.keys()):
@@ -47,7 +48,6 @@ class Launch_menu_display(Game_menues_display):
             options.append(option)
         return options
 
-    
     def load_pokedex_mini_images(self):
         mini_images = []
         for pokemon in list(self.player_pokedex.pokemon_dict.keys()):
@@ -77,8 +77,8 @@ class Launch_menu_display(Game_menues_display):
             ["launch_battle_confirm", "pokedex_menu", "manage_team", "save", "quit"]
         )
         self.manage_team_menu = Option_menu_model(
-            self.main_menu_variables,
-            self.init_render_option_team(self.player_pokedex.player_team)
+            self.pokedex_menu_variables,
+            self.init_render_option_team(self.player_pokedex.player_team, True)
         )
         self.display_pokedex_menu = Option_menu_model(
             self.pokedex_menu_variables,
@@ -89,7 +89,7 @@ class Launch_menu_display(Game_menues_display):
         )
         self.confirm_action_menu = Option_menu_model(
             self.confirm_menu_variables,
-            [self.dialogs["no"], self.dialogs["yes"]],
+            [self.dialogs["yes"], self.dialogs["no"]],
         )
         self.save_menu = Option_menu_model(
             self.save_menu_variables,
@@ -101,7 +101,9 @@ class Launch_menu_display(Game_menues_display):
         )
         self.main_launch_menu.update_colors((0,0,0),(80,96,176))
         self.confirm_action_menu.update_colors((0,0,0),(80,96,176))
-        self.manage_team_menu.update_colors((0,0,0),(80,96,176),(255,0,0))
+        self.manage_team_menu.update_colors(
+            (255,255,255),(255,255,255),(248,112,48)
+        )
 
     def draw(self):
         """
@@ -214,8 +216,52 @@ class Launch_menu_display(Game_menues_display):
                 )
 
     def draw_manage_team_menu(self):
-        self.manage_team_menu.draw_picked_options()
-    
+        self.draw_pokedex_background()
+        self.manage_team_menu.draw_picked_list_options()
+        self.draw_pokemon_infos()
+
+
+    def draw_pokemon_infos(self):
+        selected_entry = self.player_pokedex.player_team[
+            self.manage_team_menu.selected_index
+        ]
+        self.screen.blit(
+            pg.transform.scale(
+                self.display_pokedex_menu.images[int(selected_entry.entry)-1],
+                (self.width*0.25, self.width*0.25)
+            ),
+            (self.width*0.18, self.height*-abs(0.05))
+        )
+        self.blit_dialog(
+            "#" +\
+                selected_entry.entry,
+            self.width*0.027, self.width*0.1, self.height*0.24,
+            "bottomleft", bold=True,
+        )
+        self.blit_dialog(
+            self.dialogs[selected_entry.name],
+            self.width*0.022, self.width*0.196, self.height*0.31,
+            bold=True,
+        )
+        self.blit_dialog(
+            self.dialogs["stat attack"] +\
+                str(selected_entry.attack),
+            self.width*0.022, self.width*0.06, self.height*0.36,
+            "bottomleft"
+        )
+        self.blit_dialog(
+            self.dialogs["stat defense"] +\
+                str(selected_entry.defense),
+            self.width*0.022, self.width*0.06, self.height*0.4,
+            "bottomleft"
+        )
+        self.blit_dialog(
+            self.dialogs["stat health points"] +\
+                str(selected_entry.health_points),
+            self.width*0.022, self.width*0.06, self.height*0.44,
+            "bottomleft"
+        )
+
     def draw_save_menu(self):
         self.save_menu.draw_vertical_options()
         self.blit_dialog(

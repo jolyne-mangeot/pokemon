@@ -28,7 +28,7 @@ class Title_menu(
         self.init_main_menues_sounds()
         if not self.previous == "preferences_menu" or\
                 self.previous == "load_menu":
-            self.music_channel.play(self.main_menues_musics["title screen"])
+            self.music_channel.play(self.main_menues_musics["title_screen"], -1)
 
     def cleanup(self):
         """

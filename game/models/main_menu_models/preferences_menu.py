@@ -40,7 +40,7 @@ class Preferences_menu(
             self.quit = True
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit:
-                self.next = "title_screen"
+                self.next = "title_menu"
                 self.done = True
             if pg.key.name(event.key) in self.confirm_keys and\
                 self.preferences_menu.selected_index == len(self.preferences_menu.next_list) - 1:

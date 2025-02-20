@@ -1,5 +1,4 @@
 import pygame as pg
-import random
 
 from game.views.in_game_views.game_menues_display import Game_menues_display
 from game.models.menu_models.option_menu_model import Option_menu_model
@@ -13,6 +12,7 @@ class In_battle_display(Game_menues_display):
         Initializes the battle display
         """
         self.init_in_game_display()
+        self.load_graphics_combat()
         self.wild = wild
         self.init_root_variables_in_battle()
         self.init_menues_objects()
@@ -153,6 +153,21 @@ class In_battle_display(Game_menues_display):
         for pokemon in self.battle.enemy_team:
             front_image = pg.image.load(self.GRAPHICS_PATH + "pokemon/" + pokemon.entry + "/front.png")
             pokemon.front_image = pg.transform.scale(front_image, self.enemy_pokemon_image_size)
+
+    def draw(self):
+        self.draw_action_background()
+        if not self.game_state == "player_turn":
+            self.game_state_dict[self.game_state](self.game_state)
+        else:
+            if self.forced_switch:
+                self.draw_enemy_pokemon()
+                self.draw_player_pokemon_ground()
+                self.draw_pokemons_infos()
+            else:
+                self.draw_pokemons()
+                self.draw_pokemons_infos()
+            self.draw_dialogue_box()
+            self.draw_options_menu()
 
     def draw_pokemons(self):
         self.screen.blit(self.active_pokemon_ground_img, self.active_pokemon_ground_coords)
@@ -418,7 +433,7 @@ class In_battle_display(Game_menues_display):
             self.blit_dialog(
                 self.dialogs[self.battle.active_pokemon.name] +\
                 self.dialogs["gain experience_1"] +\
-                str(self.gained_experience) +\
+                str(int(self.gained_experience)) +\
                 self.dialogs["gain experience_2"],
                 *self.game_dialog_variables
             )
@@ -521,7 +536,7 @@ class In_battle_display(Game_menues_display):
         if player == "player_idle":
             pokemon_coords=(
                 self.active_pokemon_image_coords[0],
-                self.active_pokemon_image_coords[1] + self.height*self.animation_frame/3
+                self.active_pokemon_image_coords[1] + self.height*self.animation_frame/2
             )
             self.draw_player_pokemon_ground()
             self.screen.blit(
@@ -532,7 +547,7 @@ class In_battle_display(Game_menues_display):
         else:
             pokemon_coords=(
                 self.enemy_pokemon_image_coords[0],
-                self.enemy_pokemon_image_coords[1] + self.height*self.animation_frame/3
+                self.enemy_pokemon_image_coords[1] + self.height*self.animation_frame/2
             )
             self.draw_enemy_pokemon_ground()
             self.screen.blit(
@@ -543,7 +558,7 @@ class In_battle_display(Game_menues_display):
         self.draw_pokemons()
         self.draw_pokemons_infos()
         self.draw_dialogue_box()
-        if player == "enemy_idle":
+        if player == "player_idle":
             self.blit_dialog(
                 self.dialogs[self.battle.active_pokemon.name] +\
                 message,
@@ -668,7 +683,7 @@ class In_battle_display(Game_menues_display):
                 self.dialogs["victory message"],
                 *self.game_dialog_variables
             )
-        elif self.evolved and self.animation_frame <= 800:
+        elif self.evolved and self.animation_frame <= 1000:
             if self.animation_frame <= 420:
                 self.blit_dialog(
                     self.dialogs["evolution surprise"],
@@ -683,7 +698,7 @@ class In_battle_display(Game_menues_display):
                     *self.game_dialog_variables
                 )
         elif self.team_full and self.animation_frame <= (
-            500 if not self.evolved else 1000):
+            500 if not self.evolved else 1350):
                 self.blit_dialog(
                     self.dialogs["team full"],
                     *self.game_dialog_variables

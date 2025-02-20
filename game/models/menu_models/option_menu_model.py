@@ -158,6 +158,66 @@ class Option_menu_model(Display):
             else:
                 self.screen.blit(option[0],option[1])
 
+
+    def draw_picked_list_options(self):
+        """
+            for all launch_menu states, enumerate buttons and places them before
+            checking for selected index button to place it on the same position
+        """
+        for index, option in enumerate(self.rendered["deselected"]):
+            if self.selected_index-3 < index < self.selected_index:
+                if index == self.picked_index:
+                    selected_render = self.rendered["picked"][index]
+                    selected_render[1].midbottom = (
+                        self.from_left, 
+                        self.from_top - (self.selected_index-index)*self.spacer
+                    )
+                    self.screen.blit(selected_render[0],selected_render[1])
+                else:
+                    option[1].midbottom = (
+                        self.from_left, 
+                        self.from_top - (self.selected_index-index)*self.spacer
+                    )
+                    self.screen.blit(option[0],option[1])
+            elif index == self.selected_index:
+                if index == self.picked_index:
+                    selected_render = self.rendered["picked"][index]
+                    selected_render[1].midbottom = (
+                        self.from_left, 
+                        self.from_top
+                    )
+                    self.screen.blit(selected_render[0],selected_render[1])
+                else:
+                    selected_render = self.rendered["selected"][index]
+                    option[1].midbottom = selected_render[1].midbottom = (
+                        self.from_left, 
+                        self.from_top
+                    )
+                    self.screen.blit(selected_render[0], selected_render[1])
+            elif self.selected_index < index < self.selected_index+3:
+                if index == self.picked_index:
+                    selected_render = self.rendered["picked"][index]
+                    selected_render[1].midbottom = (
+                        self.from_left, 
+                        self.from_top + (index-self.selected_index)*self.spacer
+                    )
+                    self.screen.blit(selected_render[0],selected_render[1])
+                else:
+                    option[1].midbottom = (
+                        self.from_left,
+                        self.from_top + (index-self.selected_index)*self.spacer
+                    )
+                    self.screen.blit(option[0],option[1])
+            if bool(self.images) and\
+                  self.selected_index-3 < index < self.selected_index+3 :
+                self.screen.blit(
+                    self.images[index],
+                    (
+                        self.from_left*0.49,
+                        option[1].centery-self.height*0.17
+                    )
+                )
+
     def draw_chart_options(self):
         """
             Draws the menu options in a chart-like arrangement.
@@ -207,6 +267,25 @@ class Option_menu_model(Display):
         """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.left_keys:
+                self.change_selected_option(-1)
+                while self.options[self.selected_index] == "":
+                    self.change_selected_option(-1)
+            elif pg.key.name(event.key) in self.right_keys:
+                self.change_selected_option(1)
+                while self.options[self.selected_index] == "":
+                    self.change_selected_option(1)
+
+    def get_event_chart(self, event):
+        if event.type == pg.KEYDOWN:
+            if pg.key.name(event.key) in self.up_keys:
+                self.change_selected_option(-2)
+                while self.options[self.selected_index] == "":
+                    self.change_selected_option(-2)
+            elif pg.key.name(event.key) in self.down_keys:
+                self.change_selected_option(2)
+                while self.options[self.selected_index] == "":
+                    self.change_selected_option(2)
+            elif pg.key.name(event.key) in self.left_keys:
                 self.change_selected_option(-1)
                 while self.options[self.selected_index] == "":
                     self.change_selected_option(-1)
