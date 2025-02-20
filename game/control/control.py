@@ -1,7 +1,12 @@
 import pygame as pg
-
+import random
 from game.control.settings import Settings
-
+caption_list=["Not Digimon", "You thought it was Pokemon, but it was me! DIO!!!",\
+    "Is this Pokemon?", "Pokeballs are infinite here", "Animal slavery for children",\
+        "We don't know how legal this is but here's Pokemon",\
+            "Nintendo pls don't sue","If you see this you have to give 4 stars",\
+                "10 Push ups for every battle lost"]
+caption_choice=random.choice(caption_list)
 class Control(Settings):
     """
         Control class manages game states, settings, and event loops.
@@ -25,6 +30,9 @@ class Control(Settings):
         self.__dict__.update(**Control.settings)
         self.screen_width, self.screen_height = map(int, self.settings['screen_resolution'].split(","))
         self.screen = pg.display.set_mode((self.screen_width, self.screen_height))
+        self.title= pg.display.set_caption(caption_choice)
+        self.icon=pg.image.load("game/assets/graphics/media/mini.png")
+        pg.display.set_icon(self.icon)
         self.screen_rect = self.screen.get_rect()
         self.clock = pg.time.Clock()
 

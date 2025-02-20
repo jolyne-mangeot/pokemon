@@ -2,7 +2,6 @@ import pygame as pg
 
 from game.control.models_controller import Models_controller
 from game.control.in_game_controllers.new_game_controller import New_game_controller
-from game.control.in_game_controllers.game_menues_controller import Game_menues_controller
 from game.views.in_game_views.new_game_display import New_game_display
 
 from game.models.pokemons.pokedex import Pokedex
@@ -10,14 +9,13 @@ from game.models.pokemons.pokedex import Pokedex
 pg.font.init()
 
 class New_game(
-    Models_controller, Game_menues_controller, 
-    New_game_controller, New_game_display):
+    Models_controller, New_game_controller,
+    New_game_display):
     """
         Initializes the New_game class by calling the constructors of parent classes.
     """
     def __init__(self):
         Models_controller.__init__(self)
-        Game_menues_controller.__init__(self)
 
     def startup(self):
         """
@@ -61,7 +59,6 @@ class New_game(
         """
             trigger all changes such as changing selected option
         """
-        self.update_menu()
         self.draw()
     
     def draw(self):
@@ -89,6 +86,9 @@ class New_game(
                         "won" : 0,
                         "lost" : 0
                     },
+                    "pokedex" : [
+                        
+                    ],
                     "active_team" : {
                         "pokemon_1" : {
                             "entry" : self.chosen_pokemon,

@@ -100,8 +100,9 @@ class Launch_menu_controller:
                 self.update_options()
             elif pg.key.name(event.key) in self.confirm_keys:
                 selected_entry = self.player_pokedex.pokemon_dict[
-                    list(self.player_pokedex.pokemon_dict.keys())\
-                        [self.display_pokedex_menu.selected_index]
+                    list(self.player_pokedex.pokemon_dict.keys())[
+                        int(self.player_pokedex.pokedex[self.display_pokedex_menu.selected_index])-1
+                        ]
                 ]["entry"]
                 if self.focused_pokemon == selected_entry:
                     self.focused_pokemon = None

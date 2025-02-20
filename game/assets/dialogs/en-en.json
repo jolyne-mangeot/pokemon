@@ -23,6 +23,14 @@
     "focused pokemon": "Tracked Pokemon : ",
     "save" : "SAVE",
 
+    "confirm save": "OVERWRITE EXISTING FILE?",
+    "confirm battle": "START COMBAT?",
+    "confirm quit":"RETURN TO TITLE?",
+    "confirm delete": "DELETE SAVE FILE?",
+    "main menu":"MAIN MENU",
+    "save select":"SELECT A SAVE FILE",
+
+
     "save menu" : "SAVE MENU",
     "lost save" : "YOU LOST ALL YOUR POKEMONS !",
     "delete save tip" : "PRESS D, E AND L TO ERASE SAVE FILE",

@@ -121,7 +121,7 @@ class Option_menu_model(Display, Sounds):
                         option[1].centery-self.height*0.17
                     )
                 )
-    
+
     def draw_horizontal_options(self):
         """
             Draws the menu options in a horizontal arrangement.

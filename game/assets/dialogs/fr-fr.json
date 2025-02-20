@@ -23,6 +23,13 @@
     "focused pokemon" : "Pokemon suivi : ",
     "save" : "Sauvegarder",
 
+    "confirm save": "SURCHARGER LE FICHIER?",
+    "confirm battle": "COMMENCE LE COMBAT?",
+    "confirm quit":"RETOURNEZ AU MENU DE TITRE?",
+    "confirm delete": "EFFACER LE SAUVEGARDE?",
+    "main menu":"MENU PRINCIPALE",
+    "save select":"CHOISISSEZ UNE PARTIE",
+
     "save menu" : "Menu de sauvegarde",
     "lost save" : "Vous n'avez plus de pokemon !",
     "delete save tip" : "Appuyez sur D, E et L pour supprimer la sauvegarde",
