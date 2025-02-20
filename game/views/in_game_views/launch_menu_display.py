@@ -125,11 +125,11 @@ class Launch_menu_display(Game_menues_display):
         self.options_menu_draw_dict[self.menu_state]()
 
     def draw_main_launch_menu(self):
-        self.blit_dialog("MAIN MENU",self.width*0.032,self.width*0.5,self.height*0.3,"midbottom", (0,0,0),True)
+        self.blit_dialog(self.dialogs["main menu"],self.width*0.032,self.width*0.5,self.height*0.3,"midbottom", (0,0,0),True)
         self.main_launch_menu.draw_vertical_options()
 
     def draw_launch_battle_confirm_menu(self):
-        self.blit_dialog("START BATTLE?",self.width*0.032,self.width*0.5,self.height*0.3,"midbottom", (0,0,0),True)
+        self.blit_dialog(self.dialogs["confirm battle"],self.width*0.032,self.width*0.5,self.height*0.3,"midbottom", (0,0,0),True)
         self.confirm_action_menu.draw_vertical_options()
     
     def draw_pokedex_menu(self):
@@ -286,11 +286,11 @@ class Launch_menu_display(Game_menues_display):
         )
     
     def draw_save_confirm_menu(self):
-        self.blit_dialog("OVERWRITE EXISTING SAVE?",self.width*0.032,self.width*0.5,self.height*0.3,"midbottom", (0,0,0),True)
+        self.blit_dialog(self.dialogs["confirm save"],self.width*0.032,self.width*0.5,self.height*0.3,"midbottom", (0,0,0),True)
         self.confirm_action_menu.draw_vertical_options()
 
     def draw_delete_save_confirm_menu(self):
-        self.blit_dialog("DELETE SAVE FILE?",self.width*0.032,self.width*0.5,self.height*0.3,"midbottom", (0,0,0),True)
+        self.blit_dialog(self.dialogs["confirm delete"],self.width*0.032,self.width*0.5,self.height*0.3,"midbottom", (0,0,0),True)
         self.confirm_action_menu.draw_vertical_options()
 
     def draw_launch_menu_lost_game(self):
@@ -311,5 +311,5 @@ class Launch_menu_display(Game_menues_display):
         )
     
     def draw_quit_confirm_menu(self):
-        self.blit_dialog("RETURN TO TITLE MENU?",self.width*0.032,self.width*0.5,self.height*0.3,"midbottom", (0,0,0),True)
+        self.blit_dialog(self.dialogs["confirm quit"],self.width*0.032,self.width*0.5,self.height*0.3,"midbottom", (0,0,0),True)
         self.confirm_action_menu.draw_vertical_options()
