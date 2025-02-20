@@ -76,4 +76,5 @@ class Load_menu(
             init all display related script
         """
         self.draw_load_screen()
+        self.blit_dialog(self.dialogs["save select"], self.width*0.032,self.width*0.5,self.height*0.2,"midbottom", (0,0,0),True)
         self.load_menu.draw_vertical_options()
