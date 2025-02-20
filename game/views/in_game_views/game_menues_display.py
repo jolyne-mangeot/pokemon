@@ -57,9 +57,6 @@ class Game_menues_display(Display):
         return options
     
     def load_graphics_combat(self):
-        self.launch_menu_encounter_image=pg.image.load(self.GRAPHICS_PATH+"/media/"+"wild_encounter.jpg")
-        self.launch_menu_encounter_image=pg.transform.scale(self.launch_menu_encounter_image, (self.width,self.height))
-
         self.pokemon_ground_img=pg.image.load(self.GRAPHICS_PATH+"/media/"+"battle_"+self.battle.battle_biome["name"]+"_ground.png")
         self.pokemon_ground_img=pg.transform.scale(self.pokemon_ground_img, (self.width*0.31,self.width*0.116))
         self.active_pokemon_ground_img=pg.transform.scale(self.pokemon_ground_img, (self.width*0.523,self.width*0.196))
