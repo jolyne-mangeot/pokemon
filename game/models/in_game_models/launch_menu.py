@@ -1,15 +1,19 @@
 import pygame as pg
+from datetime import datetime
 import random
 
 from game.control.models_controller import Models_controller
 from game.control.in_game_controllers.game_menues_controller import Game_menues_controller
 from game.control.in_game_controllers.launch_menu_controller import Launch_menu_controller
 from game.views.in_game_views.launch_menu_display import Launch_menu_display
+from game.views.in_game_views.game_menues_sounds import Game_menues_sounds
 
 from game.models.pokemons.pokedex import Pokedex
 from game.models.pokemons.battle import Battle
 
-class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display, Launch_menu_controller):
+class Launch_menu(
+    Models_controller, Game_menues_controller, Launch_menu_controller,
+    Launch_menu_display, Game_menues_sounds):
     """
         The Launch_menu class manages the game's launch menu.
         It handles menu initialization, updates, event handling, and launching battles.
@@ -57,6 +61,14 @@ class Launch_menu(Models_controller, Game_menues_controller, Launch_menu_display
         self.init_launch_menu_display()
         self.check_game_status()
         self.update_options()
+        self.init_game_menu_sounds()
+        if not self.previous == "new_game" or\
+                not self.previous == "load_menu":
+            now_time = datetime.now()
+            if 9 > int(now_time.strftime("%H")) > 17:
+                self.music_channel.play(self.launch_menu_musics_dict["launch_menu"], -1)
+            else:
+                self.music_channel.play(self.launch_menu_musics_dict["launch_menu_night"], -1)
         self.pressed_keys = None
         self.focused_found = False
 

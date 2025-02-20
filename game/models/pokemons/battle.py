@@ -43,17 +43,20 @@ class Battle:
         else:
             attacker = self.enemy_pokemon
             attacked = self.active_pokemon
-        type_multiplicator = 1
-        for type in attacked.type:
-            type_multiplicator *= self.type_chart[attacker.type[0]][type]
-        damage = ((attacker.level*128/5+2) * attacker.attack\
-                  /(attacked.defense if (self.enemy_guarded if player else self.player_guarded) == False else attacked.defense*2))/50+2 * type_multiplicator
-        attacked.current_health_points -= int(damage)
-        if attacked.current_health_points < 0:
-            attacked.current_health_points = 0
-        self.player_guarded = False
-        self.enemy_guarded = False
-        return type_multiplicator
+        if random.randint(0,100) > 93 + attacker.level*0.05:
+            return -1
+        else:
+            type_multiplicator = 1
+            for type in attacked.type:
+                type_multiplicator *= self.type_chart[attacker.type[0]][type]
+            damage = ((attacker.level*128/5+2) * attacker.attack\
+                    /(attacked.defense if (self.enemy_guarded if player else self.player_guarded) == False else attacked.defense*1.6))/50+2 * type_multiplicator
+            attacked.current_health_points -= int(damage)
+            if attacked.current_health_points < 0:
+                attacked.current_health_points = 0
+            self.player_guarded = False
+            self.enemy_guarded = False
+            return type_multiplicator
 
     def guard(self, player=True):
         """
@@ -78,48 +81,40 @@ class Battle:
         else:
             return False
 
-    def check_victory_defeat(self, caught, ran_away):
-        if all(pokemon.current_health_points <=0 for pokemon in self.player_team):
-            self.check_lost_pokemons()
-            return "defeat"
-    def check_victory_defeat(self, caught, ran_away):
+    def check_victory_defeat(self, caught=False):
+        if caught:
+            return True
         if all(pokemon.current_health_points <= 0 for pokemon in self.enemy_team):
             self.check_lost_pokemons()
-            return "victory"
-        if caught:
+            return True
+        if all(pokemon.current_health_points <= 0 for pokemon in self.player_team):
             self.check_lost_pokemons()
-            return "enemy_caught"
-        if ran_away:
-            self.check_lost_pokemons()
-            return "ran_away"
-            return "caught"
-        if ran_away:
-            return "ran_away"
+            return True
+        return False
     
-    def check_active_pokemon(self, put_out_pokemons, not_put_out_pokemons, caught):
+    def check_active_pokemon(self):
         """
             Checks the status of the active Pokémon and whether the enemy was defeated or caught.
         """
         if self.active_pokemon.current_health_points <= 0:
-            return "active_beat"
-        elif self.enemy_pokemon.current_health_points <= 0:
-            self.gain_experience_all(put_out_pokemons, not_put_out_pokemons)
-            return "enemy_beat"
-        elif caught:
-            self.gain_experience_all(put_out_pokemons, not_put_out_pokemons)
-            return "enemy_caught"
+            return True
+        if self.enemy_pokemon.current_health_points <= 0:
+            return True
         else:
-            return None
+            return False
     
     def gain_experience_all(self, put_out_pokemons, not_put_out_pokemons):
         """
             Grants experience to all participating and non-participating Pokémon
         """
         for pokemon in put_out_pokemons:
-            pokemon.gain_experience(self.enemy_pokemon)
-            pokemon.level_up()
+            gained_experience = pokemon.gain_experience(self.enemy_pokemon)
         for pokemon in not_put_out_pokemons:
             pokemon.gain_experience(self.enemy_pokemon, True)
+        return gained_experience
+
+    def level_up_all(self):
+        for pokemon in self.player_team:
             pokemon.level_up()
 
     def check_lost_pokemons(self):

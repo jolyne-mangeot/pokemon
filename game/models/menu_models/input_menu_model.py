@@ -2,8 +2,9 @@ import pygame as pg
 import string
 
 from game.views.display import Display
+from game.views.sounds import Sounds
 
-class Input_menu_model(Display):
+class Input_menu_model(Display, Sounds):
     """
     A class for handling user text input in a menu.
     Inherits from the Display class.
@@ -13,6 +14,7 @@ class Input_menu_model(Display):
         Initializes the input menu model.
         """
         Display.__init__(self)
+        Sounds.__init__(self)
         self.from_left, self.from_top = margins
         self.dialog = dialog
         self.input = ""
@@ -33,6 +35,7 @@ class Input_menu_model(Display):
         """
 
         if event.type == pg.KEYDOWN:
+            self.effects_channel.play(self.menues_sounds["cursor move"])
             if event.key == pg.K_BACKSPACE and self.input != "":
                 self.input = self.input[:-1]
 

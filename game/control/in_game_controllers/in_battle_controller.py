@@ -1,4 +1,5 @@
 import pygame as pg
+import random
 
 class In_battle_controller:
     """
@@ -27,24 +28,6 @@ class In_battle_controller:
                 self.confirm_action_menu.selected_index = 1
             case "run_away":
                 self.confirm_action_menu.selected_index = 1
-    
-    def end_player_turn(self, action=None):
-        if action == "guarded":
-            pass
-        else:
-            self.battle.player_guarded = False
-        if not self.ran_away and not self.caught:
-            self.game_state = "enemy_turn"
-        self.update_battle_status()
-    
-    def end_enemy_turn(self, action=None):
-        if action == "guarded":
-            pass
-        else:
-            self.battle.enemy_guarded = False
-        self.update_options("battle_stage", True)
-        self.game_state = "player_turn"
-        self.update_battle_status()
 
     def update_turn(self, game_state):
         """
@@ -52,148 +35,41 @@ class In_battle_controller:
         """
         self.game_state = game_state
         self.animation_frame = 0
+    
+    def end_player_turn(self, action=None):
+        if action == "guarded":
+            pass
+        else:
+            self.battle.player_guarded = False
+        if self.battle.check_active_pokemon():
+            self.update_turn("enemy_beat")
+        else:
+            self.update_turn("enemy_turn")
 
-        match self.game_state:
+    def enemy_turn_action(self):
+        if random.randint(0,100) > 80 + self.battle.enemy_pokemon.level/2:
+            self.update_turn("enemy_idle")
+        elif random.randint(0,100) < 40 + self.battle.enemy_pokemon.level:
+            self.update_turn("enemy_guard")
+        else:
+            self.update_turn("enemy_attack") 
 
-            case "run_away_attempt":
-                pass
+    def end_enemy_turn(self, action=None):
+        if action == "guarded":
+            pass
+        else:
+            self.battle.enemy_guarded = False
+        if self.battle.check_active_pokemon():
+            self.update_turn("active_beat")
+        else:
+            self.update_options("battle_stage", True)
+            self.update_turn("player_turn")
 
-    def start_game_scene(self, none=None):
-        """
-            Handles player input in the battle stage.
-        """
-        if not self.enemy_spawn_animation_done:
-            if self.animate_spawn(False, False):
-                self.play_enemy_pokemon_cry()
-                self.enemy_spawn_animation_done = True
-                self.animation_frame = 0
-            else:
-                self.animation_frame +=1
-        elif not self.player_spawn_animation_done:
-            if self.animate_spawn(True, True):
-                self.in_game_actions_sounds["pokemon out"].play()
-                self.play_active_pokemon_cry()
-                self.player_spawn_animation_done = True
-                self.animation_frame = 0
-            else:
-                self.animation_frame +=1
+    def get_event(self, event):
+        if self.game_state == "player_turn":
+            self.options_states_dict[self.options_states](event)
         else:
-            self.end_enemy_turn()
-    
-    def pokemon_attack_scene(self, attacker="player_attack"):
-        if attacker == "player_attack":
-            if self.animate_attack(True):
-                self.end_player_turn()
-            else:
-                self.animation_frame +=1
-                if self.animation_frame == 60:
-                    self.efficiency = self.battle.attack(True)
-                    if self.efficiency >= 2:
-                        self.in_game_actions_sounds["hit very effective"].play()
-                    elif self.efficiency >=0.5:
-                        self.in_game_actions_sounds["hit not very effective"].play()
-                    else:
-                        self.in_game_actions_sounds["hit non effective"].play()
-        else:
-            if self.animate_attack(False):
-                self.end_enemy_turn()
-            else:
-                self.animation_frame +=1
-                if self.animation_frame == 60:
-                    self.efficiency = self.battle.attack(False)
-                    if self.efficiency >= 2:
-                        self.in_game_actions_sounds["hit very effective"].play()
-                    elif self.efficiency >=0.5:
-                        self.in_game_actions_sounds["hit not very effective"].play()
-                    else:
-                        self.in_game_actions_sounds["hit non effective"].play()
-    
-    def pokemon_guard_scene(self, guarding="player_guard"):
-        if guarding == "player_guard":
-            self.battle.guard(True)
-            if self.animate_guard(True):
-                self.end_player_turn("guarded")
-            else:
-                self.animation_frame += 1
-        else:
-            self.battle.guard(False)
-            if self.animate_guard(False):
-                self.end_enemy_turn("guarded")
-            else:
-                self.animation_frame += 1
-    
-    def pokemon_switch_scene(self, none=None):
-        if self.team_full:
-            self.battle.player_team.pop(self.chosen_pokemon)
-            self.update_battle_status()
-        else:
-            if not self.remove_animation_done:
-                if self.forced_switch or self.animate_remove():
-                    self.battle.spawn_pokemon(self.chosen_pokemon, True)
-                    self.in_game_actions_sounds["pokemon out"].play()
-                    self.play_active_pokemon_cry()
-                    self.remove_animation_done = True
-                    self.animation_frame = 0
-                else:
-                    self.animation_frame +=1
-            elif self.animate_spawn(True, True, True):
-                if self.forced_switch:
-                    self.update_options("battle_stage")
-                    self.game_state = "player_turn"
-                else:
-                    self.end_player_turn()
-                self.forced_switch = False
-                self.remove_animation_done = False
-            else:
-                self.animation_frame +=1
-    
-    def pokemon_beat_scene(self, beat="active_beat"):
-        if beat == "active_beat":
-            if self.animate_beat(True):
-                self.beat_animation_done = True
-                self.update_battle_status()
-            else:
-                self.animation_frame +=1
-        else:
-            if self.animate_beat(False):
-                self.beat_animation_done = True
-                self.update_battle_status()
-            else:
-                self.animation_frame +=1
-    
-    def catch_attempt_scene(self, none=None):
-        if self.animation_frame == 150 and self.battle.wild:
-            self.caught = self.battle.catch_attempt()
-            if self.caught:
-                self.in_battle_musics["caught pokemon"].play()
-        if self.animate_catch_attempt():
-            if not self.battle.wild:
-                self.game_state = "player_turn"
-            else:
-                if self.caught:
-                    self.battle.player_pokedex.catch_pokemon(
-                        self.battle.enemy_pokemon.entry, 
-                        self.battle.enemy_pokemon.experience_points
-                    )
-                    self.update_battle_status()
-                else:
-                    self.end_player_turn()
-        else:
-            self.animation_frame +=1
-    
-    def run_away_attempt_scene(self, none=None):
-        if self.animation_frame == 45 and self.battle.wild:
-            self.ran_away = self.battle.run_away()
-        if self.run_away_animation():
-            if not self.battle.wild:
-                self.game_state = "player_turn"
-            else:
-                if self.ran_away:
-                    self.update_battle_status()
-                else:
-                    self.end_player_turn()
-        else:
-            self.animation_frame +=1
+            pass
 
     def get_event_battle_stage(self, event):
         """
@@ -204,15 +80,20 @@ class In_battle_controller:
                 self.update_options("run_away")
 
             elif pg.key.name(event.key) in self.confirm_keys and self.battle_stage_menu.selected_index == 0:
-                self.update_turn("player_attack")
+                if random.randint(0,100) > 90 + self.battle.active_pokemon.level/100:
+                    self.update_turn("player_idle")
+                else:
+                    self.update_turn("player_attack")
 
             elif pg.key.name(event.key) in self.confirm_keys and self.battle_stage_menu.selected_index == 1:
-                self.update_turn("player_guard")
+                if random.randint(0,100) < 90 + self.battle.active_pokemon.level/100:
+                    self.update_turn("player_idle")
+                else:
+                    self.update_turn("player_guard")
 
             elif pg.key.name(event.key) in self.confirm_keys and self.battle_stage_menu.selected_index in (2,3,4):
                 self.update_options(self.battle_stage_menu.next_list[self.battle_stage_menu.selected_index])
         self.battle_stage_menu.get_event_vertical(event)
-
 
     def get_event_display_items(self, event):
         """
@@ -225,8 +106,7 @@ class In_battle_controller:
 
             elif pg.key.name(event.key) in self.confirm_keys and self.display_items_menu.selected_index == 0:
                 self.update_turn("catch_attempt")
-        self.display_items_menu.get_event_vertical(event)
-
+        self.display_items_menu.get_event_chart(event)
 
     def get_event_display_team(self, event):
             """
@@ -249,8 +129,7 @@ class In_battle_controller:
                         pass
                     else:
                         self.update_options("select_pokemon_confirm")
-            self.display_team_menu.get_event_vertical(event)
-
+            self.display_team_menu.get_event_chart(event)
 
     def get_event_select_pokemon_confirm(self, event):
         """
@@ -264,7 +143,6 @@ class In_battle_controller:
             if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
                 self.update_turn("switch_pokemon_confirmed")
         self.confirm_action_menu.get_event_vertical(event)
-
 
     def get_event_run_away(self, event):
         """

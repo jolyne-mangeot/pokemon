@@ -1,8 +1,9 @@
 import pygame as pg
 
 from game.views.display import Display
+from game.views.sounds import Sounds
 
-class Option_menu_model(Display):
+class Option_menu_model(Display, Sounds):
     """
         A class that represents an options menu model, inheriting from Display.   
     """
@@ -14,6 +15,7 @@ class Option_menu_model(Display):
          Initializes the menu with margins, a list of options, and optionally a next list.  
         """
         Display.__init__(self)
+        Sounds.__init__(self)
         self.from_left, self.from_top, self.spacer = margins
         self.options = options
         self.next_list = next_list
@@ -158,6 +160,66 @@ class Option_menu_model(Display):
             else:
                 self.screen.blit(option[0],option[1])
 
+
+    def draw_picked_list_options(self):
+        """
+            for all launch_menu states, enumerate buttons and places them before
+            checking for selected index button to place it on the same position
+        """
+        for index, option in enumerate(self.rendered["deselected"]):
+            if self.selected_index-3 < index < self.selected_index:
+                if index == self.picked_index:
+                    selected_render = self.rendered["picked"][index]
+                    selected_render[1].midbottom = (
+                        self.from_left, 
+                        self.from_top - (self.selected_index-index)*self.spacer
+                    )
+                    self.screen.blit(selected_render[0],selected_render[1])
+                else:
+                    option[1].midbottom = (
+                        self.from_left, 
+                        self.from_top - (self.selected_index-index)*self.spacer
+                    )
+                    self.screen.blit(option[0],option[1])
+            elif index == self.selected_index:
+                if index == self.picked_index:
+                    selected_render = self.rendered["picked"][index]
+                    selected_render[1].midbottom = (
+                        self.from_left, 
+                        self.from_top
+                    )
+                    self.screen.blit(selected_render[0],selected_render[1])
+                else:
+                    selected_render = self.rendered["selected"][index]
+                    option[1].midbottom = selected_render[1].midbottom = (
+                        self.from_left, 
+                        self.from_top
+                    )
+                    self.screen.blit(selected_render[0], selected_render[1])
+            elif self.selected_index < index < self.selected_index+3:
+                if index == self.picked_index:
+                    selected_render = self.rendered["picked"][index]
+                    selected_render[1].midbottom = (
+                        self.from_left, 
+                        self.from_top + (index-self.selected_index)*self.spacer
+                    )
+                    self.screen.blit(selected_render[0],selected_render[1])
+                else:
+                    option[1].midbottom = (
+                        self.from_left,
+                        self.from_top + (index-self.selected_index)*self.spacer
+                    )
+                    self.screen.blit(option[0],option[1])
+            if bool(self.images) and\
+                  self.selected_index-3 < index < self.selected_index+3 :
+                self.screen.blit(
+                    self.images[index],
+                    (
+                        self.from_left*0.49,
+                        option[1].centery-self.height*0.17
+                    )
+                )
+
     def draw_chart_options(self):
         """
             Draws the menu options in a chart-like arrangement.
@@ -193,10 +255,12 @@ class Option_menu_model(Display):
         """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.up_keys:
+                self.effects_channel.play(self.menues_sounds["cursor move"])
                 self.change_selected_option(-1)
                 while self.options[self.selected_index] == "":
                     self.change_selected_option(-1)
             elif pg.key.name(event.key) in self.down_keys:
+                self.effects_channel.play(self.menues_sounds["cursor move"])
                 self.change_selected_option(1)
                 while self.options[self.selected_index] == "":
                     self.change_selected_option(1)
@@ -207,10 +271,35 @@ class Option_menu_model(Display):
         """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.left_keys:
+                self.effects_channel.play(self.menues_sounds["cursor move"])
                 self.change_selected_option(-1)
                 while self.options[self.selected_index] == "":
                     self.change_selected_option(-1)
             elif pg.key.name(event.key) in self.right_keys:
+                self.effects_channel.play(self.menues_sounds["cursor move"])
+                self.change_selected_option(1)
+                while self.options[self.selected_index] == "":
+                    self.change_selected_option(1)
+
+    def get_event_chart(self, event):
+        if event.type == pg.KEYDOWN:
+            if pg.key.name(event.key) in self.up_keys:
+                self.effects_channel.play(self.menues_sounds["cursor move"])
+                self.change_selected_option(-2)
+                while self.options[self.selected_index] == "":
+                    self.change_selected_option(-2)
+            elif pg.key.name(event.key) in self.down_keys:
+                self.effects_channel.play(self.menues_sounds["cursor move"])
+                self.change_selected_option(2)
+                while self.options[self.selected_index] == "":
+                    self.change_selected_option(2)
+            elif pg.key.name(event.key) in self.left_keys:
+                self.effects_channel.play(self.menues_sounds["cursor move"])
+                self.change_selected_option(-1)
+                while self.options[self.selected_index] == "":
+                    self.change_selected_option(-1)
+            elif pg.key.name(event.key) in self.right_keys:
+                self.effects_channel.play(self.menues_sounds["cursor move"])
                 self.change_selected_option(1)
                 while self.options[self.selected_index] == "":
                     self.change_selected_option(1)

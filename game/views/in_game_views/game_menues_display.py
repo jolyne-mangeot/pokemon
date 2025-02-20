@@ -57,6 +57,9 @@ class Game_menues_display(Display):
         return options
     
     def load_graphics_combat(self):
+        self.launch_menu_encounter_image=pg.image.load(self.GRAPHICS_PATH+"/media/"+"wild_encounter.jpg")
+        self.launch_menu_encounter_image=pg.transform.scale(self.launch_menu_encounter_image, (self.width,self.height))
+
         self.pokemon_ground_img=pg.image.load(self.GRAPHICS_PATH+"/media/"+"battle_"+self.battle.battle_biome["name"]+"_ground.png")
         self.pokemon_ground_img=pg.transform.scale(self.pokemon_ground_img, (self.width*0.31,self.width*0.116))
         self.active_pokemon_ground_img=pg.transform.scale(self.pokemon_ground_img, (self.width*0.523,self.width*0.196))
@@ -76,6 +79,11 @@ class Game_menues_display(Display):
         self.action_box=pg.image.load(self.GRAPHICS_PATH+"/media/"+"textbox_combat.png")
         self.action_box=pg.transform.scale(self.action_box,(self.width, self.height*0.35))
 
+    def load_evolution_combat(self):
+        back_image = pg.image.load(self.GRAPHICS_PATH + "pokemon/" + self.battle.active_pokemon.entry + "/back.png")
+        self.battle.active_pokemon.back_image = pg.transform.scale(back_image, self.active_pokemon_image_size)
+        mini_image = pg.image.load(self.GRAPHICS_PATH + "pokemon/" + self.battle.active_pokemon.entry + "/mini.png")
+        self.battle.active_pokemon.mini_image = pg.transform.scale(mini_image, self.mini_image_size)
         
     def load_pkmn_info_box(self):
         self.pkmn_info_box_enemy=pg.image.load(self.GRAPHICS_PATH+"/media/"+"pkmn info enemy.png")

@@ -88,7 +88,8 @@ class Pokedex:
         return pokemon
 
     def switch_pokemon(self, old_index, new_index):
-        self.player_team.insert(new_index, self.player_team.pop(old_index))
+        self.player_team[old_index], self.player_team[new_index] =\
+            self.player_team[new_index], self.player_team[old_index]
     
     def get_average_level(self):
         """
