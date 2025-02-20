@@ -28,13 +28,13 @@ class In_battle_display(Game_menues_display):
         self.init_root_variables_in_game()
 
         self.battle_stage_menu_variables : tuple = (
-            self.width*0.8, self.height*0.706, 42
+            self.width*0.8, self.height*0.706, self.height*0.06
         )
         self.confirm_menu_variables : tuple = (
-            self.width*0.8, self.height*0.83, 42
+            self.width*0.8, self.height*0.83, self.height*0.07
         )
         self.display_team_variables : tuple = (
-            self.width*0.3, self.height*0.74, 30
+            self.width*0.3, self.height*0.74, self.height*0.05
         )
         self.game_dialog_variables : tuple =(
             self.width*0.024,

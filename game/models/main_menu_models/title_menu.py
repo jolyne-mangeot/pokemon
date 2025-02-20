@@ -66,7 +66,7 @@ class Title_menu(
             init all display related script
         """
         sicon = pg.image.load("game/assets/graphics/pokemon/0001/mini.png")
-        icon = pg.transform.scale (sicon, (250,250))
+        icon = pg.transform.scale (sicon, (self.width*0.3125,self.height*0.416))
         self.draw_title_screen()
         self.title_menu.draw_vertical_options()
         self.screen.blit(icon, (0,self.height*0.6))

@@ -20,10 +20,10 @@ class Main_menues_display(Display):
         """
 
         self.title_menu_variables : tuple = (
-            self.width*0.25, self.height*0.4, self.height*0.1
+            self.width*0.3, self.height*0.42, self.height*0.1
         )
         self.preferences_menu_variables : tuple = (
-            self.width*0.5, self.height*0.15, self.height*0.12
+            self.width*0.5, self.height*0.146, self.height*0.1243
         )
         self.load_menu_variables : tuple = (
             self.width*0.5, self.height/3, 75
