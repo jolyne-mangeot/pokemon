@@ -25,6 +25,9 @@ class Control(Settings):
         self.__dict__.update(**Control.settings)
         self.screen_width, self.screen_height = map(int, self.settings['screen_resolution'].split(","))
         self.screen = pg.display.set_mode((self.screen_width, self.screen_height))
+        self.title= pg.display.set_caption("Not Digimon")
+        self.icon=pg.image.load("game/assets/graphics/media/mini.png")
+        pg.display.set_icon(self.icon)
         self.screen_rect = self.screen.get_rect()
         self.clock = pg.time.Clock()
 
