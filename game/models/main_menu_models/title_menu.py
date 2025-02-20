@@ -1,12 +1,13 @@
 import pygame as pg
 
 from game.control.models_controller import Models_controller
-from game.views.main_menu_views.main_menues_display import Main_menues_display
 from game.control.main_game_controllers.main_menues_controller import Main_menues_controller
+from game.views.main_menu_views.main_menues_display import Main_menues_display
+from game.views.main_menu_views.main_menues_sounds import Main_menues_sounds
 
 class Title_menu(
     Models_controller, Main_menues_controller, 
-    Main_menues_display):
+    Main_menues_display, Main_menues_sounds):
     
     def __init__(self):
         """
@@ -15,6 +16,7 @@ class Title_menu(
         """
         Models_controller.__init__(self)
         Main_menues_controller.__init__(self)
+        self.previous = "start"
 
     def startup(self):
         """
@@ -23,6 +25,10 @@ class Title_menu(
         self.init_config()
         self.init_main_menu_display()
         self.init_title_menu_object()
+        self.init_main_menues_sounds()
+        if not self.previous == "preferences_menu" or\
+                self.previous == "load_menu":
+            self.music_channel.play(self.main_menues_musics["title screen"])
 
     def cleanup(self):
         """

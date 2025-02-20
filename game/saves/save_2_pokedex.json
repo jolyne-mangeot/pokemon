@@ -8,20 +8,24 @@
     },
     "active_team": {
         "pokemon_1": {
-            "entry": "0004",
-            "experience_points": 295.0
+            "entry": "0001",
+            "experience_points": 8000
         },
         "pokemon_2": {
             "entry": "0001",
-            "experience_points": 165000.0
+            "experience_points": 287494.0
         },
         "pokemon_3": {
             "entry": "0027",
-            "experience_points": 127000.0
+            "experience_points": 1
         },
         "pokemon_4": {
             "entry": "0027",
-            "experience_points": 154000
+            "experience_points": 1
+        },
+        "pokemon_5": {
+            "entry": "0027",
+            "experience_points": 1
         }
     }
 }
