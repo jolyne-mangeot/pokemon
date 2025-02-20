@@ -50,7 +50,7 @@ class Game_menues_display(Display):
                 options[-1] += " "
             options[-1] += level_display
 
-        while len(options) < 6:
+        while len(options) < 6 and not forced_switch and not team_full:
             options.append("")
         if not forced_switch and not team_full:
             options.append(self.dialogs['back'])

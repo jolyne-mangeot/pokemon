@@ -14,10 +14,11 @@ class Pokedex:
         """
             Initializes the Pokedex instance with player data and sets up the player's team.
         """
+        self.save = False
         self.__dict__.update(**player_data)
         self.init_player_team()
+        self.add_entry(self.player_team)
         self.get_average_level()
-        self.save = False
 
     def init_pokedex_data():
         """
@@ -31,6 +32,11 @@ class Pokedex:
         with open(BATTLE_BIOMES_PATH,"r") as file:
             Pokedex.battle_biomes = json.load(file)
     
+    def add_entry(self, enemy_team):
+        for pokemon in enemy_team:
+            if pokemon.entry not in self.pokedex:
+                self.pokedex.append(pokemon.entry)
+    
     def compress_data(self, chosen_save : str) -> dict:
         """
              Compress player data into a dictionary, including team data and encounter history.
@@ -38,6 +44,7 @@ class Pokedex:
         player_data : dict = {
             "player" : self.player,
             "save" : chosen_save,
+            "pokedex" : self.pokedex,
             "encounters" : {
                 "done" : self.encounters["done"],
                 "won" : self.encounters["won"],

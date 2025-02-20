@@ -4,12 +4,10 @@ import random
 from game.control.models_controller import Models_controller
 from game.views.in_game_views.in_battle_display import In_battle_display
 from game.views.in_game_views.game_menues_sounds import Game_menues_sounds
-from game.control.in_game_controllers.game_menues_controller import Game_menues_controller
 from game.control.in_game_controllers.in_battle_controller import In_battle_controller
 
 class In_battle(
-    Models_controller,
-    Game_menues_controller, In_battle_controller, 
+    Models_controller, In_battle_controller, 
     In_battle_display, Game_menues_sounds):
 
     def __init__(self):
@@ -17,7 +15,6 @@ class In_battle(
         Initializes the battle state, including menu controllers and battle variables.
         """
         Models_controller.__init__(self)
-        Game_menues_controller.__init__(self)
         self.next = "launch_menu"
         self.back = "launch_menu"
         self.event = None
@@ -88,7 +85,6 @@ class In_battle(
         """
         cleans up all menu related data
         """
-        self.battle.player_pokedex.encounters["done"] +=1
         self.music_channel.stop()
         self.battle.heal_all()
 
@@ -275,7 +271,7 @@ class In_battle(
                 self.update_turn("player_turn")
             else:
                 if self.ran_away:
-                    self.leave_battle()
+                    self.leave_battle(False)
                 else:
                     self.end_player_turn()
         else:
@@ -304,14 +300,21 @@ class In_battle(
                     self.update_turn("player_turn")
                     self.update_options("display_team")
                 else:
-                    self.leave_battle()
+                    self.leave_battle(True)
             else:
                 self.animation_frame +=1
         else:
             if self.animate_defeat_message():
                 self.leave_battle()
 
-    def leave_battle(self):
+    def leave_battle(self, victory):
         self.battle.check_lost_pokemons()
+        if victory:
+            self.battle.player_pokedex.add_entry(self.battle.enemy_team)
+            self.battle.player_pokedex.add_entry(self.battle.player_team)
+            self.battle.player_pokedex.encounters["won"] +=1
+        else:
+            self.battle.player_pokedex.encounters["lost"] +=1
+        self.battle.player_pokedex.encounters["done"] +=1
         self.next = "launch_menu"
         self.done = True

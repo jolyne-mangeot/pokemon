@@ -34,12 +34,11 @@ class Launch_menu_display(Game_menues_display):
         self.pokedex_menu_colors : tuple = (
             (255,255,255), (255,255,255)
         )
-    
-    
+
     def init_render_option_pokedex(self):
         options = []
-        for pokemon in list(self.player_pokedex.pokemon_dict.keys()):
-            entry = "#" + self.player_pokedex.pokemon_dict[pokemon]["entry"]
+        for pokemon in self.player_pokedex.pokedex:
+            entry = "#" + pokemon
             name = self.dialogs[self.player_pokedex.pokemon_dict[pokemon]["name"]]
             option = entry + " "
             while len(option) + len(name) < 17:
@@ -48,12 +47,24 @@ class Launch_menu_display(Game_menues_display):
             options.append(option)
         return options
 
+    def load_manage_team_mini_images(self):
+        mini_images = []
+        for pokemon in self.player_pokedex.player_team:
+            mini_image = pg.image.load(
+                self.GRAPHICS_PATH+"pokemon/"+pokemon.entry+"/mini.png"
+            )
+            mini_image = pg.transform.scale(
+                mini_image,(self.width*0.2,self.width*0.17)
+            )
+            mini_images.append(mini_image)
+        return mini_images
+
     def load_pokedex_mini_images(self):
         mini_images = []
-        for pokemon in list(self.player_pokedex.pokemon_dict.keys()):
+        for pokemon in self.player_pokedex.pokedex:
             mini_image = pg.image.load(
-                self.GRAPHICS_PATH +"pokemon/"+\
-                self.player_pokedex.pokemon_dict[pokemon]["entry"]+"/mini.png")
+                self.GRAPHICS_PATH +"pokemon/"+pokemon+"/mini.png"
+            )
             mini_image = pg.transform.scale(
                 mini_image,(self.width*0.2,self.width*0.17)
             )
@@ -78,7 +89,8 @@ class Launch_menu_display(Game_menues_display):
         )
         self.manage_team_menu = Option_menu_model(
             self.pokedex_menu_variables,
-            self.init_render_option_team(self.player_pokedex.player_team, True)
+            self.init_render_option_team(self.player_pokedex.player_team, True),
+            images = self.load_manage_team_mini_images()
         )
         self.display_pokedex_menu = Option_menu_model(
             self.pokedex_menu_variables,
@@ -128,7 +140,7 @@ class Launch_menu_display(Game_menues_display):
     
     def draw_pokedex_infos(self):
         selected_entry = self.player_pokedex.pokemon_dict[
-            list(self.player_pokedex.pokemon_dict.keys())[self.display_pokedex_menu.selected_index]
+            list(self.player_pokedex.pokemon_dict.keys())[int(self.player_pokedex.pokedex[self.display_pokedex_menu.selected_index])-1]
         ]
         self.screen.blit(
             pg.transform.scale(
@@ -179,10 +191,10 @@ class Launch_menu_display(Game_menues_display):
                 self.width*0.025, self.width*0.2, self.height*0.57,
                 "midbottom", (255,255,255), True
             )
-            if self.focused_pokemon == list(self.player_pokedex.pokemon_dict.keys())[self.display_pokedex_menu.selected_index]:
+            if self.focused_pokemon == self.player_pokedex.pokedex[self.display_pokedex_menu.selected_index]:
                 self.screen.blit(
                     pg.transform.scale(
-                        self.display_pokedex_menu.images[int(self.focused_pokemon)-1],
+                        self.display_pokedex_menu.images[self.display_pokedex_menu.selected_index],
                         (self.width*0.25, self.width*0.25)
                     ),
                     (self.width*0.18, self.height*-abs(0.05))
@@ -230,7 +242,7 @@ class Launch_menu_display(Game_menues_display):
         ]
         self.screen.blit(
             pg.transform.scale(
-                self.display_pokedex_menu.images[int(selected_entry.entry)-1],
+                self.manage_team_menu.images[self.manage_team_menu.selected_index],
                 (self.width*0.25, self.width*0.25)
             ),
             (self.width*0.18, self.height*-abs(0.05))
