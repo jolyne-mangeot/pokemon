@@ -175,17 +175,15 @@ class Launch_menu_controller:
         """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and\
-                    not self.quit\
-                or pg.key.name(event.key) in self.confirm_keys and\
-                    self.confirm_action_menu.selected_index == 1:
+                    not self.quit:
                 self.menu_state = "main_launch_menu"
                 self.update_options()
-            if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
+            elif pg.key.name(event.key) in self.confirm_keys:
                 self.next = "in_battle"
                 self.done = True
                 self.launch_battle()
                 self.music_channel.stop()
-        self.confirm_action_menu.get_event_vertical(event)
+        self.launch_battle_menu.get_event_vertical(event)
 
     def get_event_quit(self, event):
         """

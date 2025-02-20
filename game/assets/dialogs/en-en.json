@@ -30,6 +30,9 @@
     "main menu":"MAIN MENU",
     "save select":"SELECT A SAVE FILE",
 
+    "plains" : "Plains",
+    "mountains" : "Mt Coronet",
+    "desert" : "Route 228",
 
     "save menu" : "SAVE MENU",
     "lost save" : "YOU LOST ALL YOUR POKEMONS !",
@@ -75,9 +78,11 @@
         " looks plain bored.",
         " acts unimpressed..",
         " looks deeply frightened.",
-        " fools around on the ground",
-        " judges the situation"
+        " fools around on the ground.",
+        " judges the situation."
     ],
+    "full health" : " has already max health !",
+    "health recovery" : " recovers 20 HP !",
 
     "active beat_1" : "Oh no ! ",
     "active beat_2" : " was beat !",

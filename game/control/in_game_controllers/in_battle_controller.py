@@ -80,18 +80,21 @@ class In_battle_controller:
                 self.update_options("run_away")
 
             elif pg.key.name(event.key) in self.confirm_keys and self.battle_stage_menu.selected_index == 0:
+                self.effects_channel.play(self.menues_sounds["confirm"])
                 if random.randint(0,100) > 90 + self.battle.active_pokemon.level/100:
                     self.update_turn("player_idle")
                 else:
                     self.update_turn("player_attack")
 
             elif pg.key.name(event.key) in self.confirm_keys and self.battle_stage_menu.selected_index == 1:
-                if random.randint(0,100) < 90 + self.battle.active_pokemon.level/100:
+                self.effects_channel.play(self.menues_sounds["confirm"])
+                if random.randint(0,100) > 90 + self.battle.active_pokemon.level/100:
                     self.update_turn("player_idle")
                 else:
                     self.update_turn("player_guard")
 
             elif pg.key.name(event.key) in self.confirm_keys and self.battle_stage_menu.selected_index in (2,3,4):
+                self.effects_channel.play(self.menues_sounds["confirm"])
                 self.update_options(self.battle_stage_menu.next_list[self.battle_stage_menu.selected_index])
         self.battle_stage_menu.get_event_vertical(event)
 
@@ -101,11 +104,14 @@ class In_battle_controller:
         """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit\
-                or pg.key.name(event.key) in self.confirm_keys and self.display_items_menu.selected_index == len(self.display_items_menu.options) - 1:
+                    or pg.key.name(event.key) in self.confirm_keys and \
+                    self.display_items_menu.selected_index == len(self.display_items_menu.options) - 1:
+                self.effects_channel.play(self.menues_sounds["confirm"])
                 self.update_options("battle_stage")
 
-            elif pg.key.name(event.key) in self.confirm_keys and self.display_items_menu.selected_index == 0:
-                self.update_turn("catch_attempt")
+            elif pg.key.name(event.key) in self.confirm_keys:
+                self.effects_channel.play(self.menues_sounds["confirm"])
+                self.update_turn(self.display_items_menu.next_list[self.display_items_menu.selected_index])
         self.display_items_menu.get_event_chart(event)
 
     def get_event_display_team(self, event):
@@ -121,12 +127,13 @@ class In_battle_controller:
                     if pg.key.name(event.key) in self.confirm_keys and\
                             self.display_team_menu.selected_index == len(self.display_team_menu.options) - 1\
                             and not self.forced_switch and not self.team_full:
+                        self.effects_channel.play(self.menues_sounds["confirm"])
                         self.update_options("battle_stage")
 
                     elif self.display_team_menu.selected_index == self.battle.player_team.index(self.battle.active_pokemon)\
                             and not self.team_full or\
                             self.battle.player_team[self.display_team_menu.selected_index].current_health_points <= 0 and not self.team_full:
-                        pass
+                        self.effects_channel.play(self.menues_sounds["cursor move"])
                     else:
                         self.update_options("select_pokemon_confirm")
             self.display_team_menu.get_event_chart(event)
@@ -138,9 +145,11 @@ class In_battle_controller:
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit\
                 or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
+                self.effects_channel.play(self.menues_sounds["confirm"])
                 self.update_options("display_team")
 
             if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
+                self.effects_channel.play(self.menues_sounds["confirm"])
                 self.update_turn("switch_pokemon_confirmed")
         self.confirm_action_menu.get_event_vertical(event)
 
@@ -151,8 +160,10 @@ class In_battle_controller:
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit\
                     or pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 1:
+                self.effects_channel.play(self.menues_sounds["confirm"])
                 self.update_options("battle_stage")
 
             if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
+                self.effects_channel.play(self.menues_sounds["confirm"])
                 self.update_turn("run_away_attempt")
         self.confirm_action_menu.get_event_vertical(event)

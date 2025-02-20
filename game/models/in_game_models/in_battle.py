@@ -35,6 +35,8 @@ class In_battle(
             "enemy_guard": self.pokemon_guard_scene,
             "player_idle" : self.pokemon_idle_scene,
             "enemy_idle" : self.pokemon_idle_scene,
+            "player_heal" : self.pokemon_heal_scene,
+            "enemy_heal" : self.pokemon_heal_scene,
             "switch_pokemon_confirmed" : self.pokemon_switch_scene,
             "active_beat": self.pokemon_beat_scene,
             "enemy_beat": self.pokemon_beat_scene,
@@ -108,8 +110,7 @@ class In_battle(
                 self.end_enemy_turn()
             else:
                 self.animation_frame +=1
-            
-    
+
     def pokemon_attack_scene(self, attacker="player_attack"):
         if attacker == "player_attack":
             if self.animate_attack(True):
@@ -172,6 +173,26 @@ class In_battle(
                 self.end_player_turn()
         else:
             self.animation_frame +=1
+    
+    def pokemon_heal_scene(self, healing="player_heal"):
+        if self.animation_frame == 0:
+            if self.battle.active_pokemon.current_health_points ==\
+            self.battle.active_pokemon.health_points:
+                self.full_health = True
+            else:
+                self.full_health = False
+                self.effects_channel.play(self.in_game_actions_sounds["heal"])
+                self.battle.heal(True)
+        if self.animate_pokemon_heal(healing):
+            if self.full_health:
+                self.update_turn("player_turn")
+                self.update_options("battle_stage")
+            else:
+                self.update_turn("enemy_turn")
+        else:
+            self.animation_frame +=1
+                
+
     
     def pokemon_switch_scene(self, none=None):
         if self.team_full:

@@ -25,6 +25,9 @@ class Launch_menu_display(Game_menues_display):
         self.main_menu_variables : tuple = (
             self.width*0.5, self.height*0.36, self.height*0.09
         )
+        self.launch_battle_menu_variables : tuple = (
+            self.width*0.5, self.height*0.5, self.height*0.1
+        )
         self.save_menu_variables : tuple = (
             self.width*0.5, self.height*0.44, self.height*0.09
         )
@@ -45,6 +48,12 @@ class Launch_menu_display(Game_menues_display):
                 option += " "
             option += name
             options.append(option)
+        return options
+    
+    def init_render_option_launch_fight(self):
+        options = []
+        for biome in list(self.player_pokedex.battle_biomes.keys()):
+            options.append(self.dialogs[biome])
         return options
 
     def load_manage_team_mini_images(self):
@@ -70,6 +79,16 @@ class Launch_menu_display(Game_menues_display):
             )
             mini_images.append(mini_image)
         return mini_images
+    
+    def load_battle_biomes_images(self):
+        images = []
+        for biome in list(self.player_pokedex.battle_biomes.keys()):
+            image = pg.image.load(
+                self.GRAPHICS_PATH+"biomes variants/"+\
+                    "launch_"+biome+"_box.png"
+            )
+            images.append(image)
+        return images
     
     def init_menues_objects(self):
         """
@@ -103,6 +122,11 @@ class Launch_menu_display(Game_menues_display):
             self.confirm_menu_variables,
             [self.dialogs["yes"], self.dialogs["no"]],
         )
+        self.launch_battle_menu = Option_menu_model(
+            self.launch_battle_menu_variables,
+            self.init_render_option_launch_fight(),
+            self.load_battle_biomes_images()
+        )
         self.save_menu = Option_menu_model(
             self.save_menu_variables,
             [
@@ -112,6 +136,7 @@ class Launch_menu_display(Game_menues_display):
             ]
         )
         self.main_launch_menu.update_colors((0,0,0),(80,96,176))
+        self.launch_battle_menu.update_colors((0,0,0),(0,0,0))
         self.confirm_action_menu.update_colors((0,0,0),(80,96,176))
         self.manage_team_menu.update_colors(
             (255,255,255),(255,255,255),(248,112,48)
@@ -125,12 +150,23 @@ class Launch_menu_display(Game_menues_display):
         self.options_menu_draw_dict[self.menu_state]()
 
     def draw_main_launch_menu(self):
-        self.blit_dialog(self.dialogs["main menu"],self.width*0.032,self.width*0.5,self.height*0.3,"midbottom", (0,0,0),True)
+        self.blit_dialog(
+            self.dialogs["main menu"],
+            self.width*0.032,self.width*0.5,
+            self.height*0.3,"midbottom", (0,0,0),True
+        )
         self.main_launch_menu.draw_vertical_options()
 
     def draw_launch_battle_confirm_menu(self):
-        self.blit_dialog(self.dialogs["confirm battle"],self.width*0.032,self.width*0.5,self.height*0.3,"midbottom", (0,0,0),True)
-        self.confirm_action_menu.draw_vertical_options()
+        self.screen.blit(
+            self.map_menu_image, (0,0)
+        )
+        self.blit_dialog(
+            self.dialogs["confirm battle"],
+            self.width*0.032,self.width*0.5,
+            self.height*0.3,"midbottom", (0,0,0),True
+        )
+        self.launch_battle_menu.draw_list_options()
     
     def draw_pokedex_menu(self):
         self.draw_pokedex_background()
@@ -140,7 +176,9 @@ class Launch_menu_display(Game_menues_display):
     
     def draw_pokedex_infos(self):
         selected_entry = self.player_pokedex.pokemon_dict[
-            list(self.player_pokedex.pokemon_dict.keys())[int(self.player_pokedex.pokedex[self.display_pokedex_menu.selected_index])-1]
+            list(self.player_pokedex.pokemon_dict.keys())[
+                int(self.player_pokedex.pokedex[self.display_pokedex_menu.selected_index])-1
+            ]
         ]
         self.screen.blit(
             pg.transform.scale(

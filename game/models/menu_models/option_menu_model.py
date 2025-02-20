@@ -224,7 +224,6 @@ class Option_menu_model(Display, Sounds):
         """
             Draws the menu options in a chart-like arrangement.
         """
-
         for index, option in enumerate(self.rendered["deselected"]):
             if index == len(self.rendered["deselected"]) - 1 and\
                     len(self.rendered["deselected"]) % 2 != 0:
@@ -248,6 +247,13 @@ class Option_menu_model(Display, Sounds):
                 self.screen.blit(selected_render[0], selected_render[1])
             else:
                 self.screen.blit(option[0],option[1])
+    
+    def draw_only_active_option(self):
+        for index, option in enumerate(self.rendered["selected"]):
+            if index == self.selected_index:
+                selected_render = self.rendered["selected"][index]
+                selected_render[1].center = option[1].center
+                self.screen.blit(selected_render[0], selected_render[1])
 
     def get_event_vertical(self, event):
         """

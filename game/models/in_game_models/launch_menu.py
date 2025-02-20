@@ -95,7 +95,9 @@ class Launch_menu(
         battle_level = ((self.player_pokedex.average_level*0.9) ** 3, 
                         (self.player_pokedex.average_level*1.1) ** 3)
         wild = True
-        battle_biome = self.player_pokedex.battle_biomes[random.choice(list(self.player_pokedex.battle_biomes.keys()))]
+        battle_biome = self.player_pokedex.battle_biomes[
+            list(self.player_pokedex.battle_biomes.keys())[self.launch_battle_menu.selected_index]
+        ]
         enemy_entry = random.choice(battle_biome["pokemons"])
         if self.focused_pokemon != None:
             if random.randint(0,100) > 60:

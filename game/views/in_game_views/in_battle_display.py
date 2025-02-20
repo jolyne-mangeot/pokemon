@@ -28,7 +28,7 @@ class In_battle_display(Game_menues_display):
         self.init_root_variables_in_game()
 
         self.battle_stage_menu_variables : tuple = (
-            self.width*0.8, self.height*0.69, 38
+            self.width*0.8, self.height*0.706, 42
         )
         self.confirm_menu_variables : tuple = (
             self.width*0.8, self.height*0.83, 42
@@ -129,6 +129,7 @@ class In_battle_display(Game_menues_display):
         self.display_items_menu = Option_menu_model(
             self.display_team_variables,
             ["pokeball", "potion", self.dialogs["back"]],
+            ["catch_attempt", "player_heal"],
             deselected_color=(255,255,255),
             selected_color=(248,232,0)
         )
@@ -572,6 +573,33 @@ class In_battle_display(Game_menues_display):
                 *self.game_dialog_variables
             )
         if self.animation_frame == 120:
+            return True
+        else:
+            return False
+    
+    def animate_pokemon_heal(self, player):
+        self.draw_pokemons()
+        self.draw_pokemons_infos()
+        self.draw_dialogue_box()
+        if player and self.full_health:
+            self.blit_dialog(
+                self.dialogs[self.battle.active_pokemon.name] +\
+                self.dialogs["full health"],
+                *self.game_dialog_variables
+            )
+        elif player:
+            self.blit_dialog(
+                self.dialogs[self.battle.active_pokemon.name] +\
+                self.dialogs["health recovery"],
+                *self.game_dialog_variables
+            )
+        else:
+            self.blit_dialog(
+                self.dialogs[self.battle.enemy_pokemon.name] +\
+                self.dialogs["health recovery"],
+                *self.game_dialog_variables
+            )
+        if self.animation_frame == 75:
             return True
         else:
             return False

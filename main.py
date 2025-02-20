@@ -27,4 +27,3 @@ game.setup_states(STATE_DICT, "title_menu")
 game.main_game_loop()
 
 pg.quit()
-exit()

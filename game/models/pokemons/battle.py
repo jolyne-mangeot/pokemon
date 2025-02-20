@@ -67,8 +67,19 @@ class Battle:
         else:
             self.enemy_guarded = True
 
-    def heal(self):
-        pass
+    def heal(self, player=True):
+        if player:
+            self.active_pokemon.current_health_points +=20
+            if self.active_pokemon.current_health_points >\
+                    self.active_pokemon.health_points:
+                self.active_pokemon.current_health_points =\
+                self.active_pokemon.health_points
+        else:
+            self.enemy_pokemon.current_health_points +=20
+            if self.enemy_pokemon.current_health_points >\
+                    self.enemy_pokemon.health_points:
+                self.enemy_pokemon.current_health_points =\
+                self.enemy_pokemon.health_points
 
     def catch_attempt(self):
         """
