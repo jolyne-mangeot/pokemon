@@ -194,7 +194,7 @@ class Launch_menu_display(Game_menues_display):
                 self.display_pokedex_menu.images[
                     self.display_pokedex_menu.selected_index
                 ],
-                (self.width*0.25, self.width*0.25)
+                (self.width*0.28, self.width*0.25)
             ),
             (self.width*0.18, self.height*-abs(0.05))
         )
@@ -248,15 +248,6 @@ class Launch_menu_display(Game_menues_display):
                     self.player_pokedex.pokedex[
                         self.display_pokedex_menu.selected_index
                     ]:
-                self.screen.blit(
-                    pg.transform.scale(
-                        self.display_pokedex_menu.images[
-                            self.display_pokedex_menu.selected_index
-                        ],
-                        (self.width*0.28, self.width*0.25)
-                    ),
-                    (self.width*0.18, self.height*-abs(0.05))
-                )
                 self.blit_dialog(
                     "#" +\
                         self.player_pokedex.pokemon_dict[self.focused_pokemon]["entry"],
