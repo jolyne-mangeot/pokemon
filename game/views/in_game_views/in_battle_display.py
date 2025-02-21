@@ -14,8 +14,8 @@ class In_battle_display(Game_menues_display):
         self.wild = wild
         self.init_in_game_display()
         self._load_graphics_combat_()
-        self._enemy_pokemon_load_()
         self.__init_root_variables_in_battle__()
+        self._enemy_pokemon_load_()
         self.__init_menues_objects__()
 
     def __init_root_variables_in_battle__(self):
