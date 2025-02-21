@@ -19,7 +19,11 @@ class Sounds(Control):
         self.music_channel = pg.mixer.Channel(0)
         self.music_channel.set_volume(self.music_volume*0.1)
         self.effects_channel = pg.mixer.Channel(1)
-        # self.effects_channel.set_volume(self.sfx_volume*0.4)
+        self.effects_channel.set_volume(self.sfx_volume*0.4)
+        self.double_effects_channel = pg.mixer.Channel(2)
+        self.double_effects_channel.set_volume(self.sfx_volume*0.2)
+        self.menu_effects_channel = pg.mixer.Channel(2)
+        self.menu_effects_channel.set_volume(self.sfx_volume*0.3)
 
         self.menues_sounds : dict = {
             "cursor move" : pg.mixer.Sound(self.SFX_PATH+"cursor move.wav"),

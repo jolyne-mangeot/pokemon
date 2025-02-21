@@ -47,7 +47,7 @@ class Pokemon:
         """
         This method increases the Pokémon's experience when it defeats another Pokémon.
         """
-        gained_experience = round(((defeated_pokemon.yield_experience*defeated_pokemon.level)/7 * 1.5) * (0.5 if reduced else 1),0)
+        gained_experience = round(((defeated_pokemon.yield_experience*defeated_pokemon.level)/7 * 2) * (0.5 if reduced else 1),0)
         self.experience_points += gained_experience
         self.current_experience += gained_experience
         return gained_experience

@@ -55,6 +55,18 @@ class New_game_display(Game_menues_display):
             mini_image = pg.image.load(self.GRAPHICS_PATH + "pokemon/" + pokemon["entry"] + "/mini.png")
             mini_image = pg.transform.scale(mini_image, (self.width*0.5, self.width*0.42))
             self.pokemon_starters_image.append(mini_image)
+    def draw(self):
+        """
+            init all display related script
+        """
+        self.draw_action_background()
+        match self.menu_state:
+            case "player_input":
+                self.draw_name_frame(self.width*0.188,self.height*0.475,self.width*0.62,self.height*0.07)
+                self.player_input.draw_input()
+            case "pokemon_choice":
+                self.pokemon_choice.draw_horizontal_options()
+                self.draw_starter_pokemon()
 
     def draw_starter_pokemon(self):
         for index, image in enumerate(self.pokemon_starters_image):

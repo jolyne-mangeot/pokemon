@@ -2,13 +2,13 @@ import pygame as pg
 
 from game.control.models_controller import Models_controller
 from game.views.main_menu_views.main_menues_display import Main_menues_display
-from game.control.main_game_controllers.main_menues_controller import Main_menues_controller
+from game.views.main_menu_views.main_menues_sounds import Main_menues_sounds
 
 from game.models.pokemons.pokedex import Pokedex
 
 class Load_menu(
-    Models_controller, Main_menues_controller, 
-    Main_menues_display):
+    Models_controller, 
+    Main_menues_display, Main_menues_sounds):
 
     def __init__(self):
         """
@@ -16,16 +16,24 @@ class Load_menu(
             placement of options
         """
         Models_controller.__init__(self)
-        Main_menues_controller.__init__(self)
+        self.init_config()
+        self.init_main_menu_display()
+        self.init_main_menues_sounds()
 
     def startup(self):
         """
             initiates all menu-related data
         """
-        self.init_config()
-        self.init_main_menu_display()
         self.player_saves_state = self.load_player_data()
         self.init_load_menu_object()
+
+    def update(self):
+        """
+            trigger all changes such as mouse hover or changing selected
+            option, done after having checked in control class change on
+            done and quit attribute from menu_manager inheritance
+        """
+        self.draw()
 
     def cleanup(self):
         """
@@ -61,16 +69,15 @@ class Load_menu(
                     self.select_option(self.load_menu)
 
         self.load_menu.get_event_vertical(event)
-    
-    def update(self):
+
+    def select_option(self, menu):
         """
-            trigger all changes such as mouse hover or changing selected
-            option, done after having checked in control class change on
-            done and quit attribute from menu_manager inheritance
+            change the active state with done attribute and change it
+            to correct user input
         """
-        self.update_menu()
-        self.draw()
-    
+        self.next = menu.next_list[menu.selected_index]
+        self.done = True
+
     def draw(self):
         """
             init all display related script

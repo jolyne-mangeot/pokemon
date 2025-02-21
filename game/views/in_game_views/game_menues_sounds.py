@@ -29,25 +29,22 @@ class Game_menues_sounds(Sounds):
         for pokemon in self.player_pokedex.player_team:
             cry_path : str = self.GRAPHICS_PATH + "pokemon/" + pokemon.entry + "/cry.ogg"
             pokemon.sound = pg.mixer.Sound(cry_path)
-            pokemon.sound.set_volume(0.2*self.sfx_volume)
     
     def init_evolved_pokemon_cry(self):
         pokemon = self.battle.active_pokemon
         cry_path : str = self.GRAPHICS_PATH + "pokemon/" + pokemon.entry + "/cry.ogg"
         pokemon.sound = pg.mixer.Sound(cry_path)
-        pokemon.sound.set_volume(0.2*self.sfx_volume)
     
     def init_enemy_pokemons_cry(self):
         for pokemon in self.battle.enemy_team:
             cry_path : str = self.GRAPHICS_PATH + "pokemon/" + pokemon.entry + "/cry.ogg"
             pokemon.sound = pg.mixer.Sound(cry_path)
-            pokemon.sound.set_volume(0.2*self.sfx_volume)
-    
+
     def play_enemy_pokemon_cry(self):
-        self.battle.enemy_pokemon.sound.play()
+        self.double_effects_channel.play(self.battle.enemy_pokemon.sound)
 
     def play_active_pokemon_cry(self):
-        self.battle.active_pokemon.sound.play()
+        self.double_effects_channel.play(self.battle.active_pokemon.sound)
 
     def init_in_battle_sounds(self):
         """
@@ -83,7 +80,3 @@ class Game_menues_sounds(Sounds):
             "hit not very effective" : pg.mixer.Sound(self.SFX_PATH + "hit_weak_not_very_effective.mp3"),
             "hit very effective" : pg.mixer.Sound(self.SFX_PATH + "hit_super_effective.mp3 ")
         }
-        for sound in list(self.in_game_actions_sounds.keys()):
-            self.in_game_actions_sounds[sound].set_volume(0.5*self.sfx_volume)
-        self.in_game_actions_sounds["pokemon out"].set_volume(0.03*self.sfx_volume)
-        self.in_game_actions_sounds["low health"].set_volume(0.03*self.sfx_volume)

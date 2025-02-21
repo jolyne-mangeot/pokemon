@@ -26,7 +26,7 @@ class Launch_menu_display(Game_menues_display):
             self.width*0.5, self.height*0.36, self.height*0.09
         )
         self.launch_battle_menu_variables : tuple = (
-            self.width*0.5, self.height*0.5, self.height*0.1
+            self.width*0.5, self.height*0.56, self.height*0.09
         )
         self.save_menu_variables : tuple = (
             self.width*0.5, self.height*0.44, self.height*0.09
@@ -158,9 +158,6 @@ class Launch_menu_display(Game_menues_display):
         self.main_launch_menu.draw_vertical_options()
 
     def draw_launch_battle_confirm_menu(self):
-        self.screen.blit(
-            self.map_menu_image, (0,0)
-        )
         self.blit_dialog(
             self.dialogs["confirm battle"],
             self.width*0.032,self.width*0.5,

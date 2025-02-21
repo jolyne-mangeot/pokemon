@@ -63,7 +63,7 @@ class Launch_menu_controller:
                 self.menu_state = "quit"
                 self.update_options()
             elif pg.key.name(event.key) in self.confirm_keys:
-                
+                self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 self.menu_state = self.main_launch_menu.next_list\
                     [self.main_launch_menu.selected_index]
                 self.update_options()
@@ -80,6 +80,7 @@ class Launch_menu_controller:
                 self.menu_state = "main_launch_menu"
                 self.update_options()
             elif pg.key.name(event.key) in self.confirm_keys:
+                self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 if type(self.manage_team_menu.picked_index) != int:
                     self.manage_team_menu.picked_index = \
                     self.manage_team_menu.selected_index
@@ -99,6 +100,7 @@ class Launch_menu_controller:
                 self.menu_state = "main_launch_menu"
                 self.update_options()
             elif pg.key.name(event.key) in self.confirm_keys:
+                self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 selected_entry = self.player_pokedex.pokemon_dict[
                     list(self.player_pokedex.pokemon_dict.keys())[
                         int(self.player_pokedex.pokedex[self.display_pokedex_menu.selected_index])-1
@@ -119,10 +121,12 @@ class Launch_menu_controller:
             if pg.key.name(event.key) in self.return_keys and not self.quit\
                 or pg.key.name(event.key) in self.confirm_keys and \
                     self.save_menu.selected_index == 2:
+                self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 self.menu_state = "main_launch_menu"
                 self.update_options()
             elif pg.key.name(event.key) in self.confirm_keys and \
                     self.save_menu.selected_index in (0,1):
+                self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 self.menu_state = "save_confirm"
                 self.update_options()
         self.save_menu.get_event_vertical(event)
@@ -133,13 +137,17 @@ class Launch_menu_controller:
         """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and\
-                    not self.quit\
-                or pg.key.name(event.key) in self.confirm_keys and\
-                    self.confirm_action_menu.selected_index == 1:
+                    not self.quit:
                 self.menu_state = "main_launch_menu"
                 self.update_options()
-                return None
-            if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
+            elif pg.key.name(event.key) in self.confirm_keys and\
+                    self.confirm_action_menu.selected_index == 1:
+                self.menu_effects_channel.play(self.menues_sounds["confirm"])
+                self.menu_state = "main_launch_menu"
+                self.update_options()
+            elif pg.key.name(event.key) in self.confirm_keys and\
+                    self.confirm_action_menu.selected_index == 0:
+                self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 self.menu_state = "main_launch_menu"
                 self.update_options()
                 player_data = self.player_pokedex.compress_data(str(self.save_menu.selected_index + 1))
@@ -153,12 +161,16 @@ class Launch_menu_controller:
         """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and\
-                    not self.quit\
-                or pg.key.name(event.key) in self.confirm_keys and\
-                    self.confirm_action_menu.selected_index == 1:
+                    not self.quit:
                 self.check_game_status()
                 self.update_options()
-            if pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
+            elif pg.key.name(event.key) in self.confirm_keys and\
+                    self.confirm_action_menu.selected_index == 1:
+                self.menu_effects_channel.play(self.menues_sounds["confirm"])
+                self.check_game_status()
+                self.update_options()
+            elif pg.key.name(event.key) in self.confirm_keys and self.confirm_action_menu.selected_index == 0:
+                self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 self.next = "title_menu"
                 self.done = True
                 if bool(self.player_pokedex.save):
@@ -179,6 +191,7 @@ class Launch_menu_controller:
                 self.menu_state = "main_launch_menu"
                 self.update_options()
             elif pg.key.name(event.key) in self.confirm_keys:
+                self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 self.next = "in_battle"
                 self.done = True
                 self.launch_battle()
@@ -191,13 +204,17 @@ class Launch_menu_controller:
         """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and\
-                    not self.quit or\
-                pg.key.name(event.key) in self.confirm_keys and\
+                    not self.quit:
+                self.check_game_status()
+                self.update_options()
+            elif pg.key.name(event.key) in self.confirm_keys and\
                     self.confirm_action_menu.selected_index == 1:
+                self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 self.check_game_status()
                 self.update_options()
             elif pg.key.name(event.key) in self.confirm_keys and\
                   self.confirm_action_menu.selected_index == 0:
+                self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 self.next = "title_menu"
                 self.done = True
         self.confirm_action_menu.get_event_vertical(event)

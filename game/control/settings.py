@@ -7,6 +7,7 @@ class Settings:
     """
         Handles all parameters from imported settings.json file
     """
+
     def load_player_data(self) -> dict:
         """
             Loads all player save data from the saves directory

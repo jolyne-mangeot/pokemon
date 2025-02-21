@@ -15,9 +15,9 @@ class In_battle(
         Initializes the battle state, including menu controllers and battle variables.
         """
         Models_controller.__init__(self)
+        self.init_config()
         self.next = "launch_menu"
         self.back = "launch_menu"
-        self.event = None
     
     def init_in_battle_config(self):
         self.options_states_dict : dict = {
@@ -51,7 +51,6 @@ class In_battle(
         """
         Initializes battle elements, setting up player and enemy Pokémon.
         """
-        self.init_config()
         self.battle = Models_controller.new_battle
         self.init_in_battle_display(self.battle.wild)
         self.init_in_battle_sounds()
@@ -88,6 +87,7 @@ class In_battle(
         cleans up all menu related data
         """
         self.music_channel.stop()
+        self.effects_channel.stop()
         self.battle.heal_all()
 
     def start_game_scene(self, none=None):
@@ -105,7 +105,7 @@ class In_battle(
             if self.animation_frame == 60:
                 self.music_channel.play(self.in_battle_musics["wild battle"], -1)
             if self.animate_spawn(True, True):
-                self.in_game_actions_sounds["pokemon out"].play()
+                self.effects_channel.play(self.in_game_actions_sounds["pokemon out"])
                 self.play_active_pokemon_cry()
                 self.end_enemy_turn()
             else:
@@ -123,11 +123,12 @@ class In_battle(
                     if self.efficiency == -1:
                         self.missed = True
                     if self.efficiency >= 2:
-                        self.in_game_actions_sounds["hit very effective"].play()
+                        self.effects_channel.play(self.in_game_actions_sounds["hit very effective"])
                     elif self.efficiency >=0.5:
-                        self.in_game_actions_sounds["hit no effective"].play()
+                        self.effects_channel.play(self.in_game_actions_sounds["hit not very effective"])
                     else:
-                        self.in_game_actions_sounds["hit not very effective"].play()
+                        self.effects_channel.play(self.in_game_actions_sounds["hit no effective"])
+                        
         else:
             if self.animate_attack(False):
                 self.missed = False
@@ -139,17 +140,18 @@ class In_battle(
                     if self.efficiency == -1:
                         self.missed = True
                     if self.efficiency >= 2:
-                        self.in_game_actions_sounds["hit very effective"].play()
+                        self.effects_channel.play(self.in_game_actions_sounds["hit very effective"])
                     elif self.efficiency >=0.5:
-                        self.in_game_actions_sounds["hit not very effective"].play()
+                        self.effects_channel.play(self.in_game_actions_sounds["hit not very effective"])
                     else:
-                        self.in_game_actions_sounds["hit no effective"].play()
-                    if self.battle.active_pokemon.current_health_points <=30:
-                        self.in_game_actions_sounds["low health"].play()
+                        self.effects_channel.play(self.in_game_actions_sounds["hit no effective"])
+                    if self.battle.active_pokemon.current_health_points <=\
+                            self.battle.active_pokemon.health_points*0.3:
+                        self.double_effects_channel.play(self.in_game_actions_sounds["low health"])
     
     def pokemon_guard_scene(self, guarding="player_guard"):
         if self.animation_frame == 1:
-            self.in_game_actions_sounds["statup"].play()
+            self.effects_channel.play(self.in_game_actions_sounds["statup"])
         if guarding == "player_guard":
             self.battle.guard(True)
             if self.animate_guard(True):
@@ -202,7 +204,7 @@ class In_battle(
             if not self.remove_animation_done:
                 if self.forced_switch or self.animate_remove():
                     self.battle.spawn_pokemon(self.chosen_pokemon, True)
-                    self.in_game_actions_sounds["pokemon out"].play()
+                    self.effects_channel.play(self.in_game_actions_sounds["pokemon out"])
                     self.play_active_pokemon_cry()
                     self.remove_animation_done = True
                     self.animation_frame = 0
@@ -247,7 +249,7 @@ class In_battle(
             self.battle.level_up_all()
             self.gained_level = self.battle.active_pokemon.level - level_start
             if self.gained_level >=1:
-                self.in_game_actions_sounds["levelup"].play()
+                self.effects_channel.play(self.in_game_actions_sounds["levelup"])
         if self.animate_level_up():
             if self.battle.check_victory_defeat(self.caught):
                 self.update_turn("victory")
@@ -260,9 +262,9 @@ class In_battle(
     
     def catch_attempt_scene(self, none=None):
         if self.animation_frame == 30 and self.battle.wild:
-            self.in_game_actions_sounds["pokeball throw"].play()
+            self.effects_channel.play(self.in_game_actions_sounds["pokeball throw"])
         if self.animation_frame == 120 and self.battle.wild:
-            self.in_game_actions_sounds["pokeball wobble"].play()
+            self.double_effects_channel.play(self.in_game_actions_sounds["pokeball wobble"])
         if self.animation_frame == 360 and self.battle.wild:
             self.caught = self.battle.catch_attempt()
             if self.caught:
@@ -286,7 +288,7 @@ class In_battle(
         if self.animation_frame == 45 and self.battle.wild:
             self.ran_away = self.battle.run_away()
             if self.ran_away:
-                self.in_game_actions_sounds["run away"].play()
+                self.effects_channel.play(self.in_game_actions_sounds["run away"])
         if self.animate_run_away():
             if not self.battle.wild:
                 self.update_turn("player_turn")

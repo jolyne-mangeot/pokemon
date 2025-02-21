@@ -36,6 +36,14 @@ class Pokedex:
         for pokemon in enemy_team:
             if pokemon.entry not in self.pokedex:
                 self.pokedex.append(pokemon.entry)
+                for pokemon in self.pokedex:
+                    pokemon = int(pokemon)
+                self.pokedex.sort()
+                for pokemon in self.pokedex:
+                    pokemon = str(pokemon)
+                    while len(pokemon) < 4:
+                        pokemon = "0" + pokemon
+
     
     def compress_data(self, chosen_save : str) -> dict:
         """

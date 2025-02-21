@@ -2,30 +2,38 @@ import pygame as pg
 
 from game.control.models_controller import Models_controller
 from game.views.main_menu_views.main_menues_display import Main_menues_display
-from game.control.main_game_controllers.main_menues_controller import Main_menues_controller
+from game.views.main_menu_views.main_menues_sounds import Main_menues_sounds
 
 from game._all_paths_ import LANGUAGES_DICT, SCREEN_RESOLUTION_DICT
 
 class Preferences_menu(
-    Models_controller, Main_menues_controller, 
-    Main_menues_display):
+    Models_controller, 
+    Main_menues_display, Main_menues_sounds):
     """
         A class representing the preferences menu, allowing the user to adjust various settings
         such as volume, language, and screen resolution.
     """
     def __init__(self):
         Models_controller.__init__(self)
-        Main_menues_controller.__init__(self)
+        self.init_config()
+        self.init_main_menu_display()
+        self.init_main_menues_sounds()
 
     def startup(self):
         """
             Initializes all menu-related data, loads settings, and prepares the menu display.
         """
-        self.init_config()
-        self.init_main_menu_display()
         self.settings_in_preferences = self.settings.copy()
         self.init_preferences_menu_object()
-    
+
+    def update(self):
+        """
+            update the menu with all new informations such as hovering or
+            selecting an option as well as playing a sound when happening,
+            then launch draw method
+        """
+        self.draw()
+
     def cleanup(self):
         """
             cleans up all menu related data
@@ -50,7 +58,7 @@ class Preferences_menu(
                     self.settings_in_preferences != self.settings:
                 self.save_settings(self.settings_in_preferences)
                 self.init_settings()
-                self.init_config()
+                self.re_init_config()
                 self.startup()
             elif pg.key.name(event.key) in self.left_keys:
                 self.change_settings(-1)
@@ -58,7 +66,15 @@ class Preferences_menu(
                 self.change_settings(1)
 
         self.preferences_menu.get_event_vertical(event)
-    
+
+    def select_option(self, menu):
+        """
+            change the active state with done attribute and change it
+            to correct user input
+        """
+        self.next = menu.next_list[menu.selected_index]
+        self.done = True
+
     def change_settings(self, operant):
         """
         Modifies the selected setting value based on user input.
@@ -101,15 +117,6 @@ class Preferences_menu(
             self.settings_in_preferences['screen_resolution'] = options_list[selected_setting_index]
         
         self.update_preferences_menu_object()
-
-    def update(self):
-        """
-            update the menu with all new informations such as hovering or
-            selecting an option as well as playing a sound when happening,
-            then launch draw method
-        """
-        self.update_menu()
-        self.draw()
     
     def draw(self):
         """

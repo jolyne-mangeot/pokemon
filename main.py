@@ -1,7 +1,6 @@
 import pygame as pg
 
 from game.control.control import Control
-
 from game.models.main_menu_models.title_menu import Title_menu
 from game.models.main_menu_models.preferences_menu import Preferences_menu
 from game.models.main_menu_models.load_menu import Load_menu
@@ -16,7 +15,7 @@ game.init_config()
 
 STATE_DICT = {
     "title_menu" : Title_menu(),
-    "options" : Preferences_menu(),
+    "preferences_menu" : Preferences_menu(),
     "new_game" : New_game(),
     "load_menu" : Load_menu(),
     "in_battle" : In_battle(),

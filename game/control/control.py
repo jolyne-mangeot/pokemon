@@ -1,24 +1,25 @@
 import pygame as pg
 import random
+
 from game.control.settings import Settings
-caption_list=["Not Digimon", "You thought it was Pokemon, but it was me! DIO!!!",\
-    "Is this Pokemon?", "Pokeballs are infinite here", "Animal slavery for children",\
-        "We don't know how legal this is but here's Pokemon",\
-            "Nintendo pls don't sue","If you see this you have to give 4 stars",\
-                "10 Push ups for every battle lost"]
-caption_choice=random.choice(caption_list)
+
 class Control(Settings):
     """
         Control class manages game states, settings, and event loops.
         It extends Settings and initializes essential configurations for the game.
     """
+
     def init_settings(self):
         """
             load game settings and init essential data related to Pygame
         """
-        Control.settings = self.load_settings()
-        Control.dialogs = self.load_language(Control.settings['language'])
-        self.done = False
+        Control.settings : dict = self.load_settings()
+        Control.dialogs : dict = self.load_language(Control.settings['language'])
+        self.caption_choice : str = random.choice(Control.dialogs["caption list"])
+        self.title= pg.display.set_caption(self.caption_choice)
+        self.icon=pg.image.load("game/assets/graphics/media/mini.png")
+        pg.display.set_icon(self.icon)
+        self.done : bool = False
 
     def init_config(self):
         """
@@ -30,20 +31,21 @@ class Control(Settings):
         self.__dict__.update(**Control.settings)
         self.screen_width, self.screen_height = map(int, self.settings['screen_resolution'].split(","))
         self.screen = pg.display.set_mode((self.screen_width, self.screen_height))
-        self.title= pg.display.set_caption(caption_choice)
-        self.icon=pg.image.load("game/assets/graphics/media/mini.png")
-        pg.display.set_icon(self.icon)
         self.screen_rect = self.screen.get_rect()
         self.clock = pg.time.Clock()
+
+    def re_init_config(self):
+        for menu in Control.STATE_DICT.values():
+            menu.__init__()
 
     def setup_states(self, STATE_DICT, start_state):
         """
             recover state dictionary and initialize first state
             based on given parameters ("title_menu" and such)
         """
-        self.state_dict = STATE_DICT
         self.state_name = start_state
-        self.state = self.state_dict[self.state_name]
+        Control.STATE_DICT = STATE_DICT
+        self.state = self.STATE_DICT[self.state_name]
         self.state.startup()
     
     def flip_state(self):
@@ -57,7 +59,7 @@ class Control(Settings):
         self.state.done = False
         previous, self.state_name = self.state_name, self.state.next
         self.state.cleanup()
-        self.state = self.state_dict[self.state_name]
+        self.state = Control.STATE_DICT[self.state_name]
         self.state.startup()
         self.state.previous = previous
     

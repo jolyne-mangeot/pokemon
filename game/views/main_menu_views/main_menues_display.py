@@ -33,7 +33,7 @@ class Main_menues_display(Display):
         self.title_menu = Option_menu_model(
             self.title_menu_variables,
             [self.dialogs['play'], self.dialogs['options'], self.dialogs['quit']],
-            ["load_menu", "options", "quit"]
+            ["load_menu", "preferences_menu", "quit"]
         )
         self.title_menu.update_colors((0,0,0), (255,255,0))
     
