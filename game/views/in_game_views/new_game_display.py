@@ -11,18 +11,18 @@ class New_game_display(Game_menues_display):
     """
     def init_new_game_display(self):
         self.display_init()
-        self.init_root_variables_new_game()
-        self.init_menues_objects()
-        self.init_pokemon_starters_mini()
-        self.load_graphics_launch_menues()
+        self.__init_root_variables_new_game__()
+        self.__init_menues_objects__()
+        self.__init_pokemon_starters_mini__()
+        self._load_graphics_launch_menues_()
 
-    def init_root_variables_new_game(self):
+    def __init_root_variables_new_game__(self):
         """
         Initializes root variables specifically for the New Game screen, such as positions
         for player input and Pokémon choice.
         """
 
-        self.init_root_variables_in_game()
+        self._init_root_variables_in_game_()
         
         self.player_input_variables : tuple = (
             self.width*0.5, self.height*0.5
@@ -31,7 +31,7 @@ class New_game_display(Game_menues_display):
             self.width*0.5, self.height*0.6, 60
         )
 
-    def init_menues_objects(self):
+    def __init_menues_objects__(self):
         """
         Initializes the menu objects for player name input and Pokémon selection.
         """
@@ -45,7 +45,7 @@ class New_game_display(Game_menues_display):
             options, (0,0,0), (43,255,255)
         )
 
-    def init_pokemon_starters_mini(self):
+    def __init_pokemon_starters_mini__(self):
         """
         Loads mini-images of starter Pokémon, scales them to fit the display, 
         and stores them in a list for later drawing
@@ -55,6 +55,7 @@ class New_game_display(Game_menues_display):
             mini_image = pg.image.load(self.GRAPHICS_PATH + "pokemon/" + pokemon["entry"] + "/mini.png")
             mini_image = pg.transform.scale(mini_image, (self.width*0.5, self.width*0.42))
             self.pokemon_starters_image.append(mini_image)
+
     def draw(self):
         """
             init all display related script

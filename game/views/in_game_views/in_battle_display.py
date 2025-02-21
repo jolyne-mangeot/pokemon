@@ -11,21 +11,19 @@ class In_battle_display(Game_menues_display):
         """
         Initializes the battle display
         """
-        self.init_in_game_display()
-        self.load_graphics_combat()
         self.wild = wild
-        self.init_root_variables_in_battle()
-        self.init_menues_objects()
-        self.enemy_pokemon_load()
-        self.load_pkmn_info_box()
+        self.init_in_game_display()
+        self._load_graphics_combat_()
+        self._enemy_pokemon_load_()
+        self.__init_root_variables_in_battle__()
+        self.__init_menues_objects__()
 
-
-    def init_root_variables_in_battle(self):
+    def __init_root_variables_in_battle__(self):
         """
             Sets up the root variables used specifically for battle, such as menu dimensions,
             Pokémon image sizes, coordinates for displaying health bars, names, and levels.
         """
-        self.init_root_variables_in_game()
+        self._init_root_variables_in_game_()
 
         self.battle_stage_menu_variables : tuple = (
             self.width*0.8, self.height*0.706, self.height*0.06
@@ -102,7 +100,7 @@ class In_battle_display(Game_menues_display):
             self.active_pokemon_name_coords[1] + self.height*0.05
         )
     
-    def init_menues_objects(self):
+    def __init_menues_objects__(self):
         """
             Initializes the various menu objects for the battle stage, such as the main action menu,
             confirmation menu, items menu, and team menu.
@@ -166,15 +164,6 @@ class In_battle_display(Game_menues_display):
         battle_attack_options.append(self.dialogs["back"])
         battle_attack_next_list.append("back")
         return battle_attack_options, battle_attack_next_list
-
-    def enemy_pokemon_load(self):
-        """
-            Loads and scales the front-facing images for the enemy Pokémon team.
-            Images are loaded from the specified path and resized to fit the defined dimensions.
-        """
-        for pokemon in self.battle.enemy_team:
-            front_image = pg.image.load(self.GRAPHICS_PATH + "pokemon/" + pokemon.entry + "/front.png")
-            pokemon.front_image = pg.transform.scale(front_image, self.enemy_pokemon_image_size)
 
     def draw(self):
         self.draw_action_background()
@@ -375,7 +364,22 @@ class In_battle_display(Game_menues_display):
                     self.dialogs["wild appears_2"],
                     *self.game_dialog_variables
                 )
-            if self.animation_frame == 120:
+            else:
+                self.draw_enemy_pokemon()
+                if infos_apparent:
+                    self.draw_pokemons_infos()
+                if other_apparent:
+                    self.draw_player_pokemon()
+                else:
+                    self.draw_player_pokemon_ground()
+                self.draw_dialogue_box()
+                self.blit_dialog(
+                    self.dialogs["wild appears_1"] + \
+                    self.dialogs[self.battle.enemy_pokemon.name] + \
+                    self.dialogs["wild appears_2"],
+                    *self.game_dialog_variables
+                )
+            if self.animation_frame == 150:
                 return True
             else:
                 return False

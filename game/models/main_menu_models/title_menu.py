@@ -53,8 +53,10 @@ class Title_menu(
             if pg.key.name(event.key) in self.return_keys:
                 self.quit = True
             if pg.key.name(event.key) in self.confirm_keys and self.title_menu.selected_index == 2:
+                self.menu_effects_channel.play(self.menues_sounds["quit game"])
                 self.quit = True
             elif pg.key.name(event.key) in self.confirm_keys:
+                self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 self.select_option(self.title_menu)
         self.title_menu.get_event_vertical(event)
 

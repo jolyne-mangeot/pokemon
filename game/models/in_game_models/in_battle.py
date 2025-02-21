@@ -96,17 +96,19 @@ class In_battle(
             Handles player input in the battle stage.
         """
         if not self.enemy_spawn_animation_done:
-            if self.animate_spawn(False, False):
+            if self.animation_frame == 120:
                 self.play_enemy_pokemon_cry()
+            if self.animate_spawn(False, False):
                 self.enemy_spawn_animation_done = True
                 self.animation_frame = 0
             else:
                 self.animation_frame +=1
         else:
-            if self.animation_frame == 60:
+            if self.animation_frame == 30:
                 self.music_channel.play(self.in_battle_musics["wild battle"], -1)
-            if self.animate_spawn(True, True):
+            if self.animation_frame == 50:
                 self.effects_channel.play(self.in_game_actions_sounds["pokemon out"])
+            if self.animate_spawn(True, True):
                 self.play_active_pokemon_cry()
                 self.end_enemy_turn()
             else:

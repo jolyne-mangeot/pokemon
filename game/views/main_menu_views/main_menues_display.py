@@ -3,8 +3,6 @@ import pygame as pg
 from game.views.display import Display
 from game.models.menu_models.option_menu_model import Option_menu_model
 
-from game._all_paths_ import LANGUAGES_DICT, SCREEN_RESOLUTION_DICT
-
 class Main_menues_display(Display):
     """
         Class for managing the main menus display. It includes the title menu, preferences menu, and load menu.
@@ -70,8 +68,8 @@ class Main_menues_display(Display):
         options = [
             self.dialogs['sfx volume'] + str(self.settings_in_preferences['sfx_volume']),
             self.dialogs['music volume'] + str(self.settings_in_preferences['music_volume']),
-            self.dialogs['language'] + LANGUAGES_DICT[self.settings_in_preferences['language']],
-            self.dialogs['screen resolution'] + SCREEN_RESOLUTION_DICT[self.settings_in_preferences['screen_resolution']],
+            self.dialogs['language'] + self.LANGUAGES_DICT[self.settings_in_preferences['language']],
+            self.dialogs['screen resolution'] + self.SCREEN_RESOLUTION_DICT[self.settings_in_preferences['screen_resolution']],
             self.dialogs['apply'], 
             self.dialogs['back']
         ]
@@ -99,23 +97,35 @@ class Main_menues_display(Display):
         """
             Loads and scales the graphics for the title, preferences, and load menus.
         """
-        self.titleimg=pg.image.load(self.GRAPHICS_PATH+"/media/"+"title screen.png")
-        self.titleimg=pg.transform.scale(self.titleimg,(self.screen_width,self.screen_height))
+        self.titleimg=pg.image.load(
+            self.GRAPHICS_PATH+"/media/"+"title screen.png"
+        )
+        self.titleimg=pg.transform.scale(
+            self.titleimg,
+            (self.screen_width,self.screen_height)
+        )
 
-        self.preferencesimg = pg.image.load(self.GRAPHICS_PATH+"/media/"+"preferences screen.png")
-        self.preferencesimg=pg.transform.scale(self.preferencesimg,(self.screen_width,self.screen_height))
+        self.preferencesimg = pg.image.load(
+            self.GRAPHICS_PATH+"/media/"+"preferences screen.png"
+        )
+        self.preferencesimg=pg.transform.scale(
+            self.preferencesimg,
+            (self.screen_width,self.screen_height)
+        )
 
-        self.loadimg=pg.image.load(self.GRAPHICS_PATH+"/media/"+"load screen.png")
-        self.loadimg=pg.transform.scale(self.loadimg,(self.screen_width,self.screen_height))
-
-    def draw_load_screen(self):
-        self.loadimg=pg.transform.scale(self.loadimg,(self.screen_width,self.screen_height))
-        self.screen.blit(self.loadimg,(0,0))
+        self.loadimg=pg.image.load(
+            self.GRAPHICS_PATH+"/media/"+"load screen.png"
+        )
+        self.loadimg=pg.transform.scale(
+            self.loadimg,
+            (self.screen_width,self.screen_height)
+        )
 
     def draw_title_screen(self):
-        self.titleimg=pg.transform.scale(self.titleimg,(self.screen_width,self.screen_height))
         self.screen.blit(self.titleimg,(0,0))
+
+    def draw_load_screen(self):
+        self.screen.blit(self.loadimg,(0,0))
     
     def draw_preferences_screen(self):
-        self.preferencesimg=pg.transform.scale(self.preferencesimg,(self.screen_width,self.screen_height))
         self.screen.blit(self.preferencesimg, (0,0))

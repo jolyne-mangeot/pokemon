@@ -15,11 +15,10 @@ class Game_menues_display(Display):
             Initializes the in-game display, root variables, and loads the graphics for both launch menus and Pokémon.
         """
         Display.__init__(self)
-        self.init_root_variables_in_game()
-        self.load_graphics_launch_menues()
-        self.load_graphics_pokemons()
+        self._init_root_variables_in_game_()
+        self._load_graphics_pokemons_()
 
-    def init_root_variables_in_game(self):
+    def _init_root_variables_in_game_(self):
         """
             Initializes root variables such as image sizes for active and mini Pokémon.
         """
@@ -45,7 +44,7 @@ class Game_menues_display(Display):
             options.append(self.dialogs['back'])
         return options
 
-    def load_graphics_pokemons(self):
+    def _load_graphics_pokemons_(self):
         """
             Loads and scales the graphics for the Pokémon in the player's team, 
             including their back and mini images.
@@ -56,7 +55,7 @@ class Game_menues_display(Display):
             mini_image = pg.image.load(self.GRAPHICS_PATH + "pokemon/" + pokemon.entry + "/mini.png")
             pokemon.mini_image = pg.transform.scale(mini_image, self.mini_image_size)
     
-    def load_graphics_combat(self):
+    def _load_graphics_combat_(self):
         self.pokemon_ground_img=pg.image.load(
             self.GRAPHICS_PATH+"biomes variants/"+\
             "battle_"+self.battle.battle_biome["name"]+"_ground.png"
@@ -110,13 +109,6 @@ class Game_menues_display(Display):
             (self.width, self.height*0.35)
         )
 
-    def load_evolution_combat(self):
-        back_image = pg.image.load(self.GRAPHICS_PATH + "pokemon/" + self.battle.active_pokemon.entry + "/back.png")
-        self.battle.active_pokemon.back_image = pg.transform.scale(back_image, self.active_pokemon_image_size)
-        mini_image = pg.image.load(self.GRAPHICS_PATH + "pokemon/" + self.battle.active_pokemon.entry + "/mini.png")
-        self.battle.active_pokemon.mini_image = pg.transform.scale(mini_image, self.mini_image_size)
-        
-    def load_pkmn_info_box(self):
         self.pkmn_info_box_enemy=pg.image.load(self.GRAPHICS_PATH+"/media/"+"pkmn info enemy.png")
         self.pkmn_info_box_enemy=pg.transform.scale(self.pkmn_info_box_enemy,(self.width*0.47,self.height*0.23))
 
@@ -126,8 +118,22 @@ class Game_menues_display(Display):
         self.action_box=pg.image.load(self.GRAPHICS_PATH+"/media/"+"textbox_combat.png")
         self.action_box=pg.transform.scale(self.action_box,(self.width, self.height*0.35))
 
+    def _enemy_pokemon_load_(self):
+        """
+            Loads and scales the front-facing images for the enemy Pokémon team.
+            Images are loaded from the specified path and resized to fit the defined dimensions.
+        """
+        for pokemon in self.battle.enemy_team:
+            front_image = pg.image.load(self.GRAPHICS_PATH + "pokemon/" + pokemon.entry + "/front.png")
+            pokemon.front_image = pg.transform.scale(front_image, self.enemy_pokemon_image_size)
 
-    def load_graphics_launch_menues(self):
+    def load_evolution_combat(self):
+        back_image = pg.image.load(self.GRAPHICS_PATH + "pokemon/" + self.battle.active_pokemon.entry + "/back.png")
+        self.battle.active_pokemon.back_image = pg.transform.scale(back_image, self.active_pokemon_image_size)
+        mini_image = pg.image.load(self.GRAPHICS_PATH + "pokemon/" + self.battle.active_pokemon.entry + "/mini.png")
+        self.battle.active_pokemon.mini_image = pg.transform.scale(mini_image, self.mini_image_size)
+
+    def _load_graphics_launch_menues_(self):
         self.map_menu_image=pg.image.load(
             self.GRAPHICS_PATH+"biomes variants/"+\
             "map_screen_background.jpg"

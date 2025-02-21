@@ -10,10 +10,11 @@ class Launch_menu_display(Game_menues_display):
     """
     def init_launch_menu_display(self):
         self.init_in_game_display()
-        self.init_root_variables_launch_menu()
-        self.init_menues_objects()
+        self._load_graphics_launch_menues_()
+        self.__init_root_variables_launch_menu__()
+        self.__init_menues_objects__()
 
-    def init_root_variables_launch_menu(self):
+    def __init_root_variables_launch_menu__(self):
         """
             Initializes the root variables for the launch menu, including positions and dimensions 
             for various menus such as confirm, main, and save menus.
@@ -63,7 +64,8 @@ class Launch_menu_display(Game_menues_display):
                 self.GRAPHICS_PATH+"pokemon/"+pokemon.entry+"/mini.png"
             )
             mini_image = pg.transform.scale(
-                mini_image,(self.width*0.2,self.width*0.17)
+                mini_image,
+                (self.width*0.2,self.width*0.17)
             )
             mini_images.append(mini_image)
         return mini_images
@@ -75,7 +77,8 @@ class Launch_menu_display(Game_menues_display):
                 self.GRAPHICS_PATH +"pokemon/"+pokemon+"/mini.png"
             )
             mini_image = pg.transform.scale(
-                mini_image,(self.width*0.2,self.width*0.17)
+                mini_image,
+                (self.width*0.2,self.width*0.17)
             )
             mini_images.append(mini_image)
         return mini_images
@@ -90,7 +93,7 @@ class Launch_menu_display(Game_menues_display):
             images.append(image)
         return images
     
-    def init_menues_objects(self):
+    def __init_menues_objects__(self):
         """
             Initializes the menu objects used in the launch menu.
             Each menu object is created with its corresponding variables and options.
@@ -135,9 +138,15 @@ class Launch_menu_display(Game_menues_display):
                 self.dialogs["back"]
             ]
         )
-        self.main_launch_menu.update_colors((0,0,0),(80,96,176))
-        self.launch_battle_menu.update_colors((0,0,0),(0,0,0))
-        self.confirm_action_menu.update_colors((0,0,0),(80,96,176))
+        self.main_launch_menu.update_colors(
+            (0,0,0),(80,96,176)
+        )
+        self.launch_battle_menu.update_colors(
+            (0,0,0),(0,0,0)
+        )
+        self.confirm_action_menu.update_colors(
+            (0,0,0),(80,96,176)
+        )
         self.manage_team_menu.update_colors(
             (255,255,255),(255,255,255),(248,112,48)
         )
@@ -174,12 +183,16 @@ class Launch_menu_display(Game_menues_display):
     def draw_pokedex_infos(self):
         selected_entry = self.player_pokedex.pokemon_dict[
             list(self.player_pokedex.pokemon_dict.keys())[
-                int(self.player_pokedex.pokedex[self.display_pokedex_menu.selected_index])-1
+                int(self.player_pokedex.pokedex[
+                    self.display_pokedex_menu.selected_index
+                ]) - 1
             ]
         ]
         self.screen.blit(
             pg.transform.scale(
-                self.display_pokedex_menu.images[self.display_pokedex_menu.selected_index],
+                self.display_pokedex_menu.images[
+                    self.display_pokedex_menu.selected_index
+                ],
                 (self.width*0.25, self.width*0.25)
             ),
             (self.width*0.18, self.height*-abs(0.05))
@@ -222,14 +235,23 @@ class Launch_menu_display(Game_menues_display):
                 "midbottom", (255,255,255), True
             )
             self.blit_dialog(
-                self.dialogs[self.player_pokedex.pokemon_dict[self.focused_pokemon]["name"]],
+                self.dialogs[
+                    self.player_pokedex.pokemon_dict[
+                        self.focused_pokemon
+                    ]["name"]
+                ],
                 self.width*0.025, self.width*0.2, self.height*0.57,
                 "midbottom", (255,255,255), True
             )
-            if self.focused_pokemon == self.player_pokedex.pokedex[self.display_pokedex_menu.selected_index]:
+            if self.focused_pokemon ==\
+                    self.player_pokedex.pokedex[
+                        self.display_pokedex_menu.selected_index
+                    ]:
                 self.screen.blit(
                     pg.transform.scale(
-                        self.display_pokedex_menu.images[self.display_pokedex_menu.selected_index],
+                        self.display_pokedex_menu.images[
+                            self.display_pokedex_menu.selected_index
+                        ],
                         (self.width*0.25, self.width*0.25)
                     ),
                     (self.width*0.18, self.height*-abs(0.05))
@@ -265,7 +287,11 @@ class Launch_menu_display(Game_menues_display):
                 )
 
     def draw_manage_team_menu(self):
-        self.blit_dialog("MANAGE TEAM",self.width*0.032,self.width*0.5,self.height*0.3,"midbottom", (0,0,0),True)
+        self.blit_dialog(
+            "MANAGE TEAM", self.width*0.032,
+            self.width*0.5,self.height*0.3,
+            "midbottom", (0,0,0), True
+        )
         self.draw_pokedex_background()
         self.manage_team_menu.draw_picked_list_options()
         self.draw_pokemon_infos()
@@ -277,7 +303,9 @@ class Launch_menu_display(Game_menues_display):
         ]
         self.screen.blit(
             pg.transform.scale(
-                self.manage_team_menu.images[self.manage_team_menu.selected_index],
+                self.manage_team_menu.images[
+                    self.manage_team_menu.selected_index
+                ],
                 (self.width*0.25, self.width*0.25)
             ),
             (self.width*0.18, self.height*-abs(0.05))
@@ -321,16 +349,25 @@ class Launch_menu_display(Game_menues_display):
         )
     
     def draw_save_confirm_menu(self):
-        self.blit_dialog(self.dialogs["confirm save"],self.width*0.032,self.width*0.5,self.height*0.3,"midbottom", (0,0,0),True)
+        self.blit_dialog(
+            self.dialogs["confirm save"], 
+            self.width*0.032, self.width*0.5, self.height*0.3,
+            "midbottom", (0,0,0), True
+        )
         self.confirm_action_menu.draw_vertical_options()
 
     def draw_delete_save_confirm_menu(self):
-        self.blit_dialog(self.dialogs["confirm delete"],self.width*0.032,self.width*0.5,self.height*0.3,"midbottom", (0,0,0),True)
+        self.blit_dialog(
+            self.dialogs["confirm delete"],
+            self.width*0.032, self.width*0.5, self.height*0.3,
+            "midbottom", (0,0,0), True
+        )
         self.confirm_action_menu.draw_vertical_options()
 
     def draw_launch_menu_lost_game(self):
         """
-            Draws the UI elements related to a lost game state, displaying messages about a lost save and how to delete it.
+            Draws the UI elements related to a lost game state,
+            displaying messages about a lost save and how to delete it.
         """
         self.blit_dialog(
             self.dialogs["lost save"],
@@ -346,5 +383,9 @@ class Launch_menu_display(Game_menues_display):
         )
     
     def draw_quit_confirm_menu(self):
-        self.blit_dialog(self.dialogs["confirm quit"],self.width*0.032,self.width*0.5,self.height*0.3,"midbottom", (0,0,0),True)
+        self.blit_dialog(
+            self.dialogs["confirm quit"],
+            self.width*0.032, self.width*0.5, self.height*0.3,
+            "midbottom", (0,0,0), True
+        )
         self.confirm_action_menu.draw_vertical_options()

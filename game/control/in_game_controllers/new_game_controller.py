@@ -26,6 +26,7 @@ class New_game_controller:
         """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit:
+                self.menu_effects_channel.play(self.menues_sounds["back"])
                 self.next = "title_menu"
                 self.done = True
             elif pg.key.name(event.key) in self.confirm_keys:
@@ -40,6 +41,7 @@ class New_game_controller:
         """
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys:
+                self.menu_effects_channel.play(self.menues_sounds["back"])
                 self.next = "title_menu"
                 self.done = True
             elif pg.key.name(event.key) in self.confirm_keys and self.player_input != "":

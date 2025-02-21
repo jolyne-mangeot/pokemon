@@ -57,11 +57,9 @@ class Launch_menu(
         """
            Initializes all menu-related configurations and settings.
         """
-        # if not self.previous == "new_game" and\
-        #         not self.previous == "load_menu":
         self.init_launch_menu_display()
         self.check_game_status()
-        self.update_options()
+        self.update_options("main_launch_menu")
         now_time = datetime.now()
         if 9 > int(now_time.strftime("%H")) > 17:
             self.music_channel.play(self.launch_menu_musics_dict["launch_menu"], -1)
@@ -88,10 +86,6 @@ class Launch_menu(
         """
         Starts a new battle by selecting an enemy Pokémon based on the player's Pokedex.
         """
-        # if self.player_pokedex.encounters['done'] % 5 == 0:
-        #     wild = False
-        #     pass # trainer fight
-        # else:
         battle_level = ((self.player_pokedex.average_level*0.9) ** 3, 
                         (self.player_pokedex.average_level*1.1) ** 3)
         wild = True

@@ -48,21 +48,28 @@ class Preferences_menu(
             self.quit = True
         if event.type == pg.KEYDOWN:
             if pg.key.name(event.key) in self.return_keys and not self.quit:
+                self.menu_effects_channel.play(self.menues_sounds["back"])
                 self.next = "title_menu"
                 self.done = True
             if pg.key.name(event.key) in self.confirm_keys and\
-                self.preferences_menu.selected_index == len(self.preferences_menu.next_list) - 1:
+                    self.preferences_menu.selected_index == len(
+                    self.preferences_menu.next_list) - 1:
+                self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 self.select_option(self.preferences_menu)
             elif pg.key.name(event.key) in self.confirm_keys\
                 and self.preferences_menu.selected_index == 4 and\
                     self.settings_in_preferences != self.settings:
+                self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 self.save_settings(self.settings_in_preferences)
                 self.init_settings()
                 self.re_init_config()
                 self.startup()
+                self.effects_channel.play(self.menues_sounds["save success"])
             elif pg.key.name(event.key) in self.left_keys:
+                self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 self.change_settings(-1)
             elif pg.key.name(event.key) in self.right_keys:
+                self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 self.change_settings(1)
 
         self.preferences_menu.get_event_vertical(event)

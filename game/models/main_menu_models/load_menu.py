@@ -55,13 +55,20 @@ class Load_menu(
         if event.type == pg.QUIT:
             self.quit = True
         if event.type == pg.KEYDOWN:
-            if pg.key.name(event.key) in self.return_keys and not self.quit\
-                or pg.key.name(event.key) in self.confirm_keys and\
-                    self.load_menu.selected_index == len(self.load_menu.next_list) - 1:
+            if pg.key.name(event.key) in self.return_keys and not self.quit:
+                self.menu_effects_channel.play(self.menues_sounds["back"])
+                self.next = "title_menu"
+                self.done = True
+
+            elif pg.key.name(event.key) in self.confirm_keys and\
+                    self.load_menu.selected_index == len(
+                        self.load_menu.next_list) - 1:
+                self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 self.next = "title_menu"
                 self.done = True
 
             elif pg.key.name(event.key) in self.confirm_keys:
+                self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 if self.load_menu.next_list[self.load_menu.selected_index] == "new_game":
                     self.select_option(self.load_menu)
                 else:
