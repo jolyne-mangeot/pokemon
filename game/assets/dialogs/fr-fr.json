@@ -84,9 +84,9 @@
     "enemy idle_1" : "L'ennemi ",
     "idle" : [
         " observe les environs...",
-        " vous regarde avec confusion.",
-        " pourrait s'endormir sur place.",
-        " n'a pas l'air très engagé..",
+        " vous regarde confus.",
+        " pourrait s'endormir.",
+        " n'a pas l'air engagé..",
         " s'ennuie à mourir.",
         " n'est pas impressionné..",
         " reste figé sur place.",

@@ -12,7 +12,8 @@ class Launch_menu_controller:
         match self.menu_state:
             case "manage_team":
                 self.manage_team_menu.update_options(
-                    self.init_render_option_team(self.player_pokedex.player_team, True)
+                    self.init_render_option_team(self.player_pokedex.player_team, True),
+                    images=self.load_manage_team_mini_images()
                 )
                 self.manage_team_menu.pre_render()
                 self.manage_team_menu.picked_index = None

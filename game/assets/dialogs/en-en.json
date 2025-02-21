@@ -84,12 +84,12 @@
     "idle" : [
         " looks around...",
         " looks at you confused.",
-        " could fall asleep at any second.",
-        " doesn't seem very engaged..",
+        " could fall asleep.",
+        " doesn't seem engaged..",
         " looks plain bored.",
         " acts unimpressed..",
-        " looks deeply frightened.",
-        " fools around on the ground.",
+        " looks confused.",
+        " fools around on.",
         " judges the situation."
     ],
     "full health" : " already has max health !",

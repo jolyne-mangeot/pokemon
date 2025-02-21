@@ -64,13 +64,13 @@ class Option_menu_model(Display, Sounds):
             self.picked_color = deselected_color
         self.pre_render()
 
-    def update_options(self, options, next_list = None):
+    def update_options(self, options, next_list = None, images=None):
         """
             Updates the list of options and optionally the next list
         """
-        
         self.options = options
         self.next_list = next_list
+        self.images=images
         self.pre_render()
 
     def draw_vertical_options(self):
