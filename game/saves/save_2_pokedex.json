@@ -1,18 +1,1 @@
-{
-    "player": "",
-    "save": "2",
-    "pokedex": [
-        "0004"
-    ],
-    "encounters": {
-        "done": 0,
-        "won": 0,
-        "lost": 0
-    },
-    "active_team": {
-        "pokemon_1": {
-            "entry": "0004",
-            "experience_points": 125
-        }
-    }
-}
+{}
