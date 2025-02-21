@@ -6,17 +6,28 @@ Group project done as a Pygame learning course with OOP paradigm and MVC code ar
 
 After running the game through the main.py file or the .exe file, you will be greeted by a title screen.
 
+![alt text](./docs/Readme%20images/title%20screen.png "title screen")
+
 ### START GAME
 
 This will start the game sending you to the load screen where you will either choose a save file or create a new one. creating a new one will prompt you to enter your name and choose a starter (bulbasaur, charmander, or squirtle)
 
+![alt text](./docs/Readme%20images/load%20screen.png "load menu")
+
 #### Start fight
+![alt text](./docs/Readme%20images/battle.png "combat screen")
 Enter into combat with another pokemon. trainer vs trainer fights are yet to be implemented so you will only fight wild pokemon.
 
+
+
 #### Check pokedex
-Check encountered pokemon. this will show all pokemon that you've fought regardless of whether or not you caught a copy of them
+![alt text](./docs/Readme%20images/pokedex.png "pokedex")
+Check encountered pokemon. this will show all pokemon that you've fought regardless of whether or not you caught a copy of them.
+
+Tapping enter on a pokemon will make them more likely to appear in the future.
 
 #### Manage pokemons
+![alt text](./docs/Readme%20images/team%20screen.png "team screen")
 Manage your current team. The pokemon at the top of the list will be the pokemon to fight first.
 
 #### Save
@@ -28,7 +39,10 @@ QUITTING WITHOUT SAVING THE GAME WILL ERASE ALL YOUR PROGRESS
 Quit the game and return to title screen. Don't forget to save beforehand.
 
 ### Combat basics
+![alt text](./docs/Readme%20images/battle.png "combat screen")
 Before starting the fight you will be prompted to choose a biome, different biomes contain different pokemon so make sure to not stay in one biome for too long to be able to fill your pokedex
+
+![alt text](./docs/Readme%20images/biome%20select.png "biome selection")
 
 (there are currently 42 pokemon waiting for you to discover them)
 
@@ -46,10 +60,12 @@ Sometimes the pokemon will decide to goof off or do its own thing instead of att
 Increase your defense to take less damage. Strategic
 
 #### Team
+![alt text](./docs/Readme%20images/team%20menu.png "team menu in combat")
 Change your current pokemon.
 Make sure to not send a weak pokemon to fight one that's much stronger than itself, that's just animal cruelty. or pokemon cruelty. just don't do it.
 
 #### Items
+![alt text](./docs/Readme%20images/items%20menu.png "items menu in combat")
 Allows you to choose between using a pokeball or a potion.
 
 Pokeball: Attempt to catch the enemy pokemon. it has a chance of failure.
@@ -64,6 +80,7 @@ Attempt to escape combat. Has a chance to fail.
 Failure will switch to the enemy's turn and success will send you back to the main menu.
 
 ### OPTIONS
+![alt text](./docs/Readme%20images/options.png "options screen")
 Back to the title screen for this one. In the options you will find settings for volume of music and sound effects, screen resolution and language settings.
 
 Currently the game supports English and French.
