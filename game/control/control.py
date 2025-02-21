@@ -60,8 +60,8 @@ class Control(Settings):
         previous, self.state_name = self.state_name, self.state.next
         self.state.cleanup()
         self.state = Control.STATE_DICT[self.state_name]
-        self.state.startup()
         self.state.previous = previous
+        self.state.startup()
     
     def update(self):
         """

@@ -71,5 +71,5 @@ class New_game_display(Game_menues_display):
 
     def draw_starter_pokemon(self):
         for index, image in enumerate(self.pokemon_starters_image):
-            self.draw_pkmn_frame(self.width/6 + index*self.width*0.24, self.height*0.3)
+            self.draw_pokemon_frame(index)
             self.screen.blit(image, (self.width*0.25 * index, self.height*0))

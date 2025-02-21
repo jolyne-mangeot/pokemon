@@ -44,6 +44,8 @@ class New_game_controller:
                 self.menu_effects_channel.play(self.menues_sounds["back"])
                 self.next = "title_menu"
                 self.done = True
-            elif pg.key.name(event.key) in self.confirm_keys and self.player_input != "":
+
+            elif pg.key.name(event.key) in self.confirm_keys and\
+                    self.player_input.input != "":
                 self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 self.menu_state = "pokemon_choice"

@@ -135,6 +135,7 @@ class Launch_menu_display(Game_menues_display):
             [
                 self.dialogs["save_1"],
                 self.dialogs["save_2"],
+                self.dialogs["save_3"],
                 self.dialogs["back"]
             ]
         )
@@ -252,7 +253,7 @@ class Launch_menu_display(Game_menues_display):
                         self.display_pokedex_menu.images[
                             self.display_pokedex_menu.selected_index
                         ],
-                        (self.width*0.25, self.width*0.25)
+                        (self.width*0.28, self.width*0.25)
                     ),
                     (self.width*0.18, self.height*-abs(0.05))
                 )
@@ -306,7 +307,7 @@ class Launch_menu_display(Game_menues_display):
                 self.manage_team_menu.images[
                     self.manage_team_menu.selected_index
                 ],
-                (self.width*0.25, self.width*0.25)
+                (self.width*0.28, self.width*0.25)
             ),
             (self.width*0.18, self.height*-abs(0.05))
         )

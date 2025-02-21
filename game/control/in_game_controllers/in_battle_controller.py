@@ -163,7 +163,7 @@ class In_battle_controller:
                             self.battle.player_team[self.display_team_menu.selected_index].current_health_points <= 0 and not self.team_full:
                         self.menu_effects_channel.play(self.menues_sounds["back"])
                     else:
-                        self.menu_effects_channel.play(self.menues_sounds["back"])
+                        self.menu_effects_channel.play(self.menues_sounds["confirm"])
                         self.update_options("select_pokemon_confirm")
             self.display_team_menu.get_event_chart(event)
 

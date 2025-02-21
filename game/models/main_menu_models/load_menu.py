@@ -70,8 +70,10 @@ class Load_menu(
             elif pg.key.name(event.key) in self.confirm_keys:
                 self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 if self.load_menu.next_list[self.load_menu.selected_index] == "new_game":
+                    self.music_channel.stop()
                     self.select_option(self.load_menu)
                 else:
+                    self.music_channel.stop()
                     self.init_player_save()
                     self.select_option(self.load_menu)
 

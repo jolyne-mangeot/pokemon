@@ -32,6 +32,7 @@ class New_game(
             ]
         self.init_new_game_display()
         self.init_game_menu_sounds()
+        self.music_channel.play(self.launch_menu_musics_dict["new_game"])
         self.menu_state : str = "player_input"
 
     def update(self):
@@ -44,7 +45,7 @@ class New_game(
         """
             cleans up all menu related data
         """
-        pass
+        self.music_channel.stop()
 
     def init_save_file(self):
         """

@@ -125,11 +125,10 @@ class Launch_menu_controller:
                 self.menu_effects_channel.play(self.menues_sounds["back"])
                 self.update_options("main_launch_menu")
             elif pg.key.name(event.key) in self.confirm_keys and \
-                    self.save_menu.selected_index == 2:
+                    self.save_menu.selected_index == len(self.save_menu.options) - 1:
                 self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 self.update_options("main_launch_menu")
-            elif pg.key.name(event.key) in self.confirm_keys and \
-                    self.save_menu.selected_index in (0,1):
+            elif pg.key.name(event.key) in self.confirm_keys:
                 self.menu_effects_channel.play(self.menues_sounds["confirm"])
                 self.update_options("save_confirm")
         self.save_menu.get_event_vertical(event)

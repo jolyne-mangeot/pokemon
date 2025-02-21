@@ -148,12 +148,12 @@ class Game_menues_display(Display):
         self.launch_menu_img=pg.transform.scale(
             self.launch_menu_img, (self.width,self.height)
         )
-        self.pkmn_frame_img=pg.image.load(
+        self.pokemon_frame_image=pg.image.load(
             self.GRAPHICS_PATH+"/media/"+\
             "pkmn frame.png"
         )
-        self.pkmn_frame_img=pg.transform.scale(
-            self.pkmn_frame_img,
+        self.pokemon_frame_image=pg.transform.scale(
+            self.pokemon_frame_image,
             (self.width*0.2, self.width*0.2)
         )
         self.action_bg_img=pg.image.load(
@@ -183,14 +183,17 @@ class Game_menues_display(Display):
             self.pokedex_background,(0,0)
         )
     
-    def draw_pkmn_frame(self,x:int, y:int):
+    def draw_pokemon_frame(self, index):
+        pokemon_frame_rect = self.pokemon_frame_image.get_rect(
+            center=(self.width*0.25 * (index+1), self.height*0.43)
+        )
         self.screen.blit(
-            self.pkmn_frame_img,(x,y)
+            self.pokemon_frame_image, pokemon_frame_rect
         )
 
     def draw_name_frame(self,x:int, y:int, width:int, height:int):
         self.name_frame_img=pg.transform.scale(
-            self.pkmn_frame_img, (width,height)
+            self.pokemon_frame_image, (width,height)
         )
         self.screen.blit(
             self.name_frame_img,(x,y)

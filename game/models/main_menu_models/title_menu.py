@@ -24,8 +24,8 @@ class Title_menu(
         """
             initiates all menu-related data
         """
-        if not self.previous == "preferences_menu" and\
-                not self.previous == "load_menu":
+        if self.previous != "preferences_menu" and\
+                self.previous != "load_menu":
             self.music_channel.play(self.main_menues_musics["title_screen"], -1)
 
     def update(self):

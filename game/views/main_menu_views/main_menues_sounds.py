@@ -10,5 +10,5 @@ class Main_menues_sounds(Sounds):
     
     def init_main_menues_musics(self):
         self.main_menues_musics : dict = {
-            "title_screen" : pg.mixer.Sound(self.MUSIC_PATH + "title_screen_sound_track.mp3")
+            "title_screen" : pg.mixer.Sound(self.MUSIC_PATH + "title_screen_sound_track.mp3"),
         }

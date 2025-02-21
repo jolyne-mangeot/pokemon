@@ -131,7 +131,7 @@ class Option_menu_model(Display, Sounds):
             if len(self.rendered["deselected"]) == 2:
                 option[1].center = (self.width/3 + index*self.width/3, self.from_top)
             else:
-                option[1].center = (self.width*0.25 + index*self.width*0.25, self.from_top)
+                option[1].center = (self.width*0.25 * (index+1), self.from_top)
             if index == self.selected_index:
                 if bool(self.picked_index):
                     if self.selected_index == self.picked_index:
