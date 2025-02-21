@@ -98,7 +98,7 @@ class Launch_menu(
         battle_biome = self.player_pokedex.battle_biomes[
             list(self.player_pokedex.battle_biomes.keys())[self.launch_battle_menu.selected_index]
         ]
-        enemy_entry = random.choice(battle_biome["pokemons"])
+        enemy_entry = random.choice(battle_biome["spawnable pokemons"])
         if self.focused_pokemon != None:
             if random.randint(0,100) > 60:
                 enemy_entry = self.focused_pokemon
