@@ -63,3 +63,20 @@ Attempt to escape combat. Has a chance to fail.
 
 Failure will switch to the enemy's turn and success will send you back to the main menu.
 
+### OPTIONS
+Back to the title screen for this one. In the options you will find settings for volume of music and sound effects, screen resolution and language settings.
+
+Currently the game supports English and French.
+
+After setting your game up as you like it, you have to tap apply for your settings to, well, apply.
+
+
+# Credits
+
+[Jolyne Mangeot](github.com/jolyne-mangeot)
+
+[Yuliia Sherstiuk](github.com/yuliia-sherstiuk)
+
+[Eltigani Abdallah](github.com/eltigani-abdallah)
+
+[Haytham Hammame](github.com/haytham-hammame) 
