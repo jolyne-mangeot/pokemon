@@ -21,11 +21,12 @@ class In_battle(
     
     def init_in_battle_config(self):
         self.options_states_dict : dict = {
+            "battle_stage": self.get_event_battle_stage,
+            "select_attacks" : self.get_event_battle_attack_menu,
             "display_items": self.get_event_display_items,
             "display_team": self.get_event_display_team,
             "select_pokemon_confirm": self.get_event_select_pokemon_confirm,
             "run_away": self.get_event_run_away,
-            "battle_stage": self.get_event_battle_stage
         }
         self.game_state_dict : dict = {
             "start": self.start_game_scene,
@@ -52,13 +53,13 @@ class In_battle(
         Initializes battle elements, setting up player and enemy Pokémon.
         """
         self.battle = Models_controller.new_battle
-        self.init_in_battle_display(self.battle.wild)
         self.init_in_battle_sounds()
         self.not_put_out_pokemons : list = self.battle.player_team.copy()
         self.put_out_pokemons : list = [self.not_put_out_pokemons.pop(0)]
         self.enemy_active_index = 0
         self.battle.spawn_pokemon(self.enemy_active_index, False)
         self.battle.spawn_pokemon(0, True)
+        self.init_in_battle_display(self.battle.wild)
         self.animation_frame = 0
         self.enemy_spawn_animation_done = False
         self.player_spawn_animation_done = False
@@ -119,7 +120,9 @@ class In_battle(
             else:
                 self.animation_frame +=1
                 if self.animation_frame == 60:
-                    self.efficiency = self.battle.attack(True)
+                    self.efficiency = self.battle.attack(
+                        True, self.type_attack
+                    )
                     if self.efficiency == -1:
                         self.missed = True
                     if self.efficiency >= 2:
@@ -136,7 +139,9 @@ class In_battle(
             else:
                 self.animation_frame +=1
                 if self.animation_frame == 60:
-                    self.efficiency = self.battle.attack(False)
+                    self.efficiency = self.battle.attack(
+                        False, self.type_attack
+                    )
                     if self.efficiency == -1:
                         self.missed = True
                     if self.efficiency >= 2:

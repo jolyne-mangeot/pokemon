@@ -33,7 +33,7 @@ class Battle:
         for pokemon in self.player_team:
             pokemon.current_health_points = pokemon.health_points
 
-    def attack(self, player=True):
+    def attack(self, player=True, type_attack="normal"):
         """
             Performs an attack on the opponent's Pokémon.
         """
@@ -48,7 +48,7 @@ class Battle:
         else:
             type_multiplicator = 1
             for type in attacked.type:
-                type_multiplicator *= self.type_chart[attacker.type[0]][type]
+                type_multiplicator *= self.type_chart[type_attack][type]
             damage = ((attacker.level*128/5+2) * attacker.attack\
                     /(attacked.defense if (self.enemy_guarded if player else self.player_guarded) == False else attacked.defense*1.6))/50+2 * type_multiplicator
             attacked.current_health_points -= int(damage)
