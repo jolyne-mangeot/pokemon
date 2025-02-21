@@ -86,8 +86,8 @@ class Launch_menu(
         """
         Starts a new battle by selecting an enemy Pokémon based on the player's Pokedex.
         """
-        battle_level = ((self.player_pokedex.average_level*0.9) ** 3, 
-                        (self.player_pokedex.average_level*1.1) ** 3)
+        battle_level = (int(self.player_pokedex.average_level*0.9) ** 3, 
+                        int(self.player_pokedex.average_level*1.1) ** 3)
         wild = True
         battle_biome = self.player_pokedex.battle_biomes[
             list(self.player_pokedex.battle_biomes.keys())[self.launch_battle_menu.selected_index]
@@ -103,7 +103,9 @@ class Launch_menu(
             "active_team": {
                 "pokemon_1": {
                     "entry": enemy_entry,
-                    "experience_points": random.randrange(int(battle_level[0]), int(battle_level[1]))
+                    "experience_points": random.randrange(
+                        (battle_level[0] if battle_level[0] > 0 else 1),
+                        (battle_level[1] if battle_level[1] <= 999999 else 999999))
                 }
             }
         }

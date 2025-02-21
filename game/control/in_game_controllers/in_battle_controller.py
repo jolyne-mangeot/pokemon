@@ -54,7 +54,7 @@ class In_battle_controller:
     def enemy_turn_action(self):
         if random.randint(0,100) > 80 + self.battle.enemy_pokemon.level/2:
             self.update_turn("enemy_idle")
-        elif random.randint(0,100) < 40 + self.battle.enemy_pokemon.level:
+        elif random.randint(0,100) > 40 + self.battle.enemy_pokemon.level:
             self.update_turn("enemy_guard")
         else:
             self.type_attack = random.choice(self.battle.enemy_pokemon.type)

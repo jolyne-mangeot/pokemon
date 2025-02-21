@@ -27,6 +27,7 @@ class Pokemon:
         """
         Determines the Pokémon's current level based on experience points.
         """
+        self.level = 1
         for potential_level in range (1,101):
             level_experience = potential_level ** 3
             if level_experience > self.experience_points:
