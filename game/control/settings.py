@@ -1,7 +1,6 @@
 import json
-import os
 
-from game._all_paths_ import CONTROL_SETTINGS_PATH, LANGUAGE_DIALOG_PATH, SAVES_PATH
+from game._all_paths_ import CONTROL_SETTINGS_PATH, LANGUAGE_DIALOG_PATH, SAVES_PATH, SAVE_PATH
 
 class Settings:
     """
@@ -13,8 +12,8 @@ class Settings:
             Loads all player save data from the saves directory
         """
         player_saves = []
-        for player_save in os.listdir(SAVES_PATH):
-            with open(SAVES_PATH + player_save, "r") as file:
+        for save_path in SAVES_PATH:
+            with open(save_path, "r") as file:
                 player_saves.append(json.load(file))
         return player_saves
 
@@ -33,15 +32,14 @@ class Settings:
         """
             Saves player data into a JSON file
         """
-
-        with open(SAVES_PATH + "save_" + save + "_pokedex.json", "w") as file:
+        with open(SAVE_PATH + "save_" + save + "_pokedex.json", "w") as file:
             json.dump(player_data, file, indent=4)
     
     def reset_player_data(self, save : str):
         """
             Resets player save data by overwriting the file with an empty dictionary
         """
-        with open(SAVES_PATH + "save_" + save + "_pokedex.json", "w") as file:
+        with open(SAVE_PATH + "save_" + save + "_pokedex.json", "w") as file:
             json.dump({}, file, indent=4)     
 
     def load_settings(self):

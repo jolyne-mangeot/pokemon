@@ -1,0 +1,38 @@
+{
+    "fps": 60,
+    "sfx_volume": 10,
+    "music_volume": 7,
+    "language": "en-en",
+    "screen_resolution": "1024,768",
+    "confirm_keys": [
+        "return",
+        "space",
+        "enter"
+    ],
+    "return_keys": [
+        "escape",
+        "left shift",
+        "right shift"
+    ],
+    "left_keys": [
+        "left",
+        "q"
+    ],
+    "right_keys": [
+        "right",
+        "d"
+    ],
+    "up_keys": [
+        "up",
+        "z"
+    ],
+    "down_keys": [
+        "down",
+        "s"
+    ],
+    "delete_save_keys": [
+        "d",
+        "e",
+        "l"
+    ]
+}

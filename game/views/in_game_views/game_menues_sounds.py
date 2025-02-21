@@ -20,6 +20,7 @@ class Game_menues_sounds(Sounds):
         self.launch_menu_musics_dict : dict = {
             "launch_menu" : pg.mixer.Sound(self.MUSIC_PATH + "launch_menu_sound_track.mp3"),
             "launch_menu_night" : pg.mixer.Sound(self.MUSIC_PATH + "launch_menu_night_sound_track.wav"),
+            "new_game" : pg.mixer.Sound(self.MUSIC_PATH + "new_game_sound_track.wav")
         }
 
     def init_pokemons_cry(self):
