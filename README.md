@@ -59,7 +59,7 @@ Potion: Restore the HP of active pokemon.
 TIP: reduce the hp of the enemy pokemon to have an easier time catching it
 
 #### Run
-Attempt to escape combat. Has a chance to fail
+Attempt to escape combat. Has a chance to fail.
 
-
+Failure will switch to the enemy's turn and success will send you back to the main menu.
 
