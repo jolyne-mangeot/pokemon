@@ -1,0 +1,489 @@
+{
+    "0001" : {
+        "entry" : "0001",
+        "name": "bulbasaur",
+        "type": ["grass", "poison"],
+        "base_defence": 49,
+        "base_attack": 49,
+        "base_health_points": 45,
+
+        "evolution_level" : 16,
+        "yield_experience" : 64,
+        "catch_rate" : 45
+    },
+    "0002" : {
+        "entry" : "0002",
+        "name": "ivysaur",
+        "type": ["grass", "poison"],
+        "base_defence": 63,
+        "base_attack": 62,
+        "base_health_points": 60,
+
+        "evolution_level" : 32,
+        "yield_experience" : 142,
+        "catch_rate" : 45
+    },
+    "0003" : {
+        "entry" : "0003",
+        "name": "venusaur",
+        "type": ["grass", "poison"],
+        "base_defence": 83,
+        "base_attack": 82,
+        "base_health_points": 80,
+
+        "yield_experience" : 263,
+        "catch_rate" : 45
+    },
+    "0004" : {
+        "entry" : "0004",
+        "name": "charmander",
+        "type": ["fire"],
+        "base_defence": 43,
+        "base_attack": 52,
+        "base_health_points": 39,
+
+        "evolution_level" : 16,
+        "yield_experience" : 62,
+        "catch_rate" : 45
+    },
+    "0005" : {
+        "entry" : "0005",
+        "name": "charmeleon",
+        "type": ["fire"],
+        "base_defence": 58,
+        "base_attack": 64,
+        "base_health_points": 58,
+
+        "evolution_level" : 36,
+        "yield_experience" : 142,
+        "catch_rate" : 45
+    },
+    "0006" : {
+        "entry" : "0006",
+        "name": "charizard",
+        "type": ["fire", "flying"],
+        "base_defence": 78,
+        "base_attack": 84,
+        "base_health_points": 78,
+
+        "yield_experience" : 267,
+        "catch_rate" : 45
+    },
+    "0007" : {
+        "entry" : "0007",
+        "name": "squirtle",
+        "type": ["water"],
+        "base_defence": 65,
+        "base_attack": 48,
+        "base_health_points": 44,
+
+        "evolution_level" : 16,
+        "yield_experience" : 63,
+        "catch_rate" : 45
+    },
+    "0008" : {
+        "entry" : "0008",
+        "name": "wartortle",
+        "type": ["water"],
+        "base_defence": 80,
+        "base_attack": 63,
+        "base_health_points": 59,
+
+        "evolution_level" : 36,
+        "yield_experience" : 142,
+        "catch_rate" : 45
+    },
+    "0009" : {
+        "entry" : "0009",
+        "name": "blastoise",
+        "type": ["water"],
+        "base_defence": 100,
+        "base_attack": 83,
+        "base_health_points": 79,
+
+        "yield_experience" : 265,
+        "catch_rate" : 45
+    },
+    "0010" : {
+        "entry" : "0010",
+        "name": "caterpie",
+        "type": ["bug"],
+        "base_defence": 35,
+        "base_attack": 30,
+        "base_health_points": 45,
+
+        "evolution_level" : 7,
+        "yield_experience" : 39,
+        "catch_rate" : 255
+    },
+    "0011" : {
+        "entry" : "0011",
+        "name": "metapod",
+        "type": ["bug"],
+        "base_defence": 55,
+        "base_attack": 20,
+        "base_health_points": 50,
+
+        "evolution_level" : 10,
+        "yield_experience" : 72,
+        "catch_rate" : 120
+    },
+    "0012" : {
+        "entry" : "0012",
+        "name": "butterfree",
+        "type": ["bug", "flying"],
+        "base_defence": 50,
+        "base_attack": 45,
+        "base_health_points": 60,
+
+        "yield_experience" : 198,
+        "catch_rate" : 45
+    },
+    "0013" : {
+        "entry" : "0013",
+        "name": "weedle",
+        "type": ["bug", "poison"],
+        "base_defence": 30,
+        "base_attack": 35,
+        "base_health_points": 40,
+
+        "evolution_level" : 7,
+        "yield_experience" : 39,
+        "catch_rate" : 255
+    },
+    "0014" : {
+        "entry" : "0014",
+        "name": "kakuna",
+        "type": ["bug", "poison"],
+        "base_defence": 50,
+        "base_attack": 25,
+        "base_health_points": 45,
+
+        "evolution_level" : 10,
+        "yield_experience" : 72,
+        "catch_rate" : 120
+    },
+    "0015" : {
+        "entry" : "0015",
+        "name": "beedrill",
+        "type": ["bug", "poison"],
+        "base_defence": 40,
+        "base_attack": 90,
+        "base_health_points": 65,
+
+        "yield_experience" : 198,
+        "catch_rate" : 45
+    },
+    "0016" : {
+        "entry" : "0016",
+        "name": "pidgey",
+        "type": ["normal", "flying"],
+        "base_defence": 40,
+        "base_attack": 45,
+        "base_health_points": 40,
+
+        "evolution_level" : 18,
+        "yield_experience" : 50,
+        "catch_rate" : 255
+    },
+    "0017" : {
+        "entry" : "0017",
+        "name": "pidgeotto",
+        "type": ["normal", "flying"],
+        "base_defence": 55,
+        "base_attack": 60,
+        "base_health_points": 63,
+
+        "evolution_level" : 36,
+        "yield_experience" : 122,
+        "catch_rate" : 120
+    },
+    "0018" : {
+        "entry" : "0018",
+        "name": "pidgeot",
+        "type": ["normal", "flying"],
+        "base_defence": 75,
+        "base_attack": 80,
+        "base_health_points": 83,
+
+        "yield_experience" : 240,
+        "catch_rate" : 45
+    },
+    "0019" : {
+        "entry" : "0019",
+        "name": "rattata",
+        "type": ["normal"],
+        "base_defence": 35,
+        "base_attack": 56,
+        "base_health_points": 30,
+
+        "evolution_level" : 20,
+        "yield_experience" : 51,
+        "catch_rate" : 255
+    },
+    "0020" : {
+        "entry" : "0020",
+        "name": "raticate",
+        "type": ["normal"],
+        "base_defence": 60,
+        "base_attack": 81,
+        "base_health_points": 55,
+
+        "yield_experience" : 145,
+        "catch_rate" : 127
+    },
+    "0021" : {
+        "entry" : "0021",
+        "name": "spearow",
+        "type": ["normal", "flying"],
+        "base_defence": 30,
+        "base_attack": 60,
+        "base_health_points": 40,
+
+        "evolution_level" : 20,
+        "yield_experience" : 52,
+        "catch_rate" : 255
+    },
+    "0022" : {
+        "entry" : "0022",
+        "name": "fearow",
+        "type": ["normal", "flying"],
+        "base_defence": 65,
+        "base_attack": 90,
+        "base_health_points": 65,
+
+        "yield_experience" : 155,
+        "catch_rate" : 90
+    },
+    "0023" : {
+        "entry" : "0023",
+        "name": "ekans",
+        "type": ["poison"],
+        "base_defence": 44,
+        "base_attack": 60,
+        "base_health_points": 35,
+
+        "evolution_level" : 22,
+        "yield_experience" : 58,
+        "catch_rate" : 255
+    },
+    "0024" : {
+        "entry" : "0024",
+        "name": "arbok",
+        "type": ["poison"],
+        "base_defence": 69,
+        "base_attack": 85,
+        "base_health_points": 60,
+
+        "yield_experience" : 157,
+        "catch_rate" : 90
+    },
+    "0025" : {
+        "entry" : "0025",
+        "name": "pikachu",
+        "type": ["electric"],
+        "base_defence": 40,
+        "base_attack": 55,
+        "base_health_points": 35,
+
+        "evolution_level" : 22,
+        "yield_experience" : 112,
+        "catch_rate" : 190
+    },
+    "0026" : {
+        "entry" : "0026",
+        "name": "raichu",
+        "type": ["electric"],
+        "base_defence": 55,
+        "base_attack": 90,
+        "base_health_points": 60,
+
+        "yield_experience" : 243,
+        "catch_rate" : 75
+    },
+    "0027" : {
+        "entry" : "0027",
+        "name": "sandshrew",
+        "type": ["ground"],
+        "base_defence": 85,
+        "base_attack": 75,
+        "base_health_points": 50,
+
+        "evolution_level" : 22,
+        "yield_experience" : 60,
+        "catch_rate" : 255
+    },
+    "0028" : {
+        "entry" : "0028",
+        "name": "sandslash",
+        "type": ["ground"],
+        "base_defence": 110,
+        "base_attack": 100,
+        "base_health_points": 75,
+
+        "yield_experience" : 158,
+        "catch_rate" : 90
+    },
+    "0029" : {
+        "entry" : "0029",
+        "name": "nidoran♀",
+        "type": ["poison"],
+        "base_defence": 52,
+        "base_attack": 47,
+        "base_health_points": 55,
+
+        "evolution_level" : 16,
+        "yield_experience" : 55,
+        "catch_rate" : 235
+    },
+    "0030" : {
+        "entry" : "0030",
+        "name": "nidorina",
+        "type": ["poison"],
+        "base_defence": 67,
+        "base_attack": 62,
+        "base_health_points": 70,
+
+        "evolution_level" : 36,
+        "yield_experience" : 128,
+        "catch_rate" : 120
+    },
+    "0031" : {
+        "entry" : "0031",
+        "name": "nidoqueen",
+        "type": ["poison", "ground"],
+        "base_defence": 87,
+        "base_attack": 92,
+        "base_health_points": 90,
+
+        "yield_experience" : 253,
+        "catch_rate" : 45
+    },
+    "0032" : {
+        "entry" : "0032",
+        "name": "nidoran♂",
+        "type": ["poison"],
+        "base_defence": 40,
+        "base_attack": 57,
+        "base_health_points": 46,
+
+        "evolution_level" : 16,
+        "yield_experience" : 55,
+        "catch_rate" : 235
+    },
+    "0033" : {
+        "entry" : "0033",
+        "name": "nidorino",
+        "type": ["poison"],
+        "base_defence": 57,
+        "base_attack": 72,
+        "base_health_points": 61,
+
+        "evolution_level" : 36,
+        "yield_experience" : 128,
+        "catch_rate" : 120
+    },
+    "0034" : {
+        "entry" : "0034",
+        "name": "nidoking",
+        "type": ["poison", "ground"],
+        "base_defence": 77,
+        "base_attack": 102,
+        "base_health_points": 81,
+
+        "yield_experience" : 253,
+        "catch_rate" : 45
+    },
+    "0035" : {
+        "entry" : "0035",
+        "name": "clefairy",
+        "type": ["fairy"],
+        "base_defence": 48,
+        "base_attack": 45,
+        "base_health_points": 70,
+
+        "evolution_level" : 28,
+        "yield_experience" : 113,
+        "catch_rate" : 150
+    },
+    "0036" : {
+        "entry" : "0036",
+        "name": "clefable",
+        "type": ["fairy"],
+        "base_defence": 73,
+        "base_attack": 70,
+        "base_health_points": 95,
+
+        "yield_experience" : 242,
+        "catch_rate" : 25
+    },
+    "0037" : {
+        "entry" : "0037",
+        "name": "vulpix",
+        "type": ["fire"],
+        "base_defence": 40,
+        "base_attack": 41,
+        "base_health_points": 38,
+
+        "evolution_level" : 22,
+        "yield_experience" : 60,
+        "catch_rate" : 190
+    },
+    "0038" : {
+        "entry" : "0038",
+        "name": "ninetales",
+        "type": ["fire"],
+        "base_defence": 75,
+        "base_attack": 76,
+        "base_health_points": 73,
+
+        "yield_experience" : 177,
+        "catch_rate" : 75
+    },
+    "0039" : {
+        "entry" : "0039",
+        "name": "jigglypuff",
+        "type": ["normal", "fairy"],
+        "base_defence": 20,
+        "base_attack": 45,
+        "base_health_points": 115,
+
+        "evolution_level" : 28,
+        "yield_experience" : 95,
+        "catch_rate" : 170
+    },
+    "0040" : {
+        "entry" : "0040",
+        "name": "wigglytuff",
+        "type": ["normal", "fairy"],
+        "base_defence": 45,
+        "base_attack": 70,
+        "base_health_points": 140,
+
+        "yield_experience" : 218,
+        "catch_rate" : 50
+    },
+    "0041" : {
+        "entry" : "0041",
+        "name": "zubat",
+        "type": ["poison", "flying"],
+        "base_defence": 35,
+        "base_attack": 45,
+        "base_health_points": 40,
+
+        "evolution_level" : 22,
+        "yield_experience" : 49,
+        "catch_rate" : 255
+    },
+    "0042" : {
+        "entry" : "0042",
+        "name": "golbat",
+        "type": ["poison", "flying"],
+        "base_defence": 70,
+        "base_attack": 80,
+        "base_health_points": 75,
+
+        "yield_experience" : 159,
+        "catch_rate" : 90
+    }
+}

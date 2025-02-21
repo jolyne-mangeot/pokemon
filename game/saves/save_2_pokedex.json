@@ -1,0 +1,38 @@
+{
+    "player": "test",
+    "save": "2",
+    "pokedex": [
+        "0001",
+        "0002",
+        "0003",
+        "0021",
+        "0027"
+    ],
+    "encounters": {
+        "done": 4,
+        "won": 1,
+        "lost": 0
+    },
+    "active_team": {
+        "pokemon_1": {
+            "entry": "0002",
+            "experience_points": 8267.0
+        },
+        "pokemon_2": {
+            "entry": "0003",
+            "experience_points": 287628.0
+        },
+        "pokemon_3": {
+            "entry": "0027",
+            "experience_points": 135.0
+        },
+        "pokemon_4": {
+            "entry": "0027",
+            "experience_points": 135.0
+        },
+        "pokemon_5": {
+            "entry": "0027",
+            "experience_points": 135.0
+        }
+    }
+}
