@@ -1,6 +1,7 @@
 # Pokémon fan-game
 Group project done as a Pygame learning course with OOP paradigm and MVC code architecture. Based on existing combat-focused Pokémon fangames, this work tries to offer dynamic visuals with basic yet expansable features such as fighting areas, mechanics as game-accurate as possible along with our personal take on how to make Pokémon combat more accessible.
 
+**Everything presented is open-source and done in an educational manner. All sprites, musics and sounds do not belong to us nor our organization and we do not declare any of our own property, instead crediting them to their rightful owners.**
 
 ## How to play
 
